@@ -13,7 +13,7 @@ public class IUserStore {
  * 
  * @poseidon-object-id [Icc33101m14bdb5d6dd4mm781f]
  */
-    public void Opération_6() {        
+    public void Operation_6() {        
         // your code here
     } 
 /**
