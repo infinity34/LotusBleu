@@ -20,7 +20,8 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
-import BL.IUser;
+import BL.AuthentificationLogic;
+
 
 
 public class UserLoginGUI {
@@ -28,7 +29,7 @@ public class UserLoginGUI {
 	private JFrame frmLotusBleu;
 	private JTextField txtUserId;
 	private JPasswordField pwdPassword;
-	private IUser user = new IUser();
+	private AuthentificationLogic user = new AuthentificationLogic();
 
 	/**
 	 * Launch the application.
