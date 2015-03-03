@@ -90,7 +90,7 @@ public class UserLoginGUI {
 					;
 			}
 		});
-		btnLogin.setBounds(128, 169, 117, 29);
+		btnLogin.setBounds(112, 169, 117, 29);
 		frmLotusBleu.getContentPane().add(btnLogin);
 		
 		txtUserId = new JTextField();
@@ -120,11 +120,6 @@ public class UserLoginGUI {
 		lblSignIn.setForeground(Color.BLUE);
 		lblSignIn.setBounds(0, 238, 344, 16);
 		frmLotusBleu.getContentPane().add(lblSignIn);
-		
-		JCheckBox chckbxRemember = new JCheckBox("Remember me");
-		chckbxRemember.setHorizontalAlignment(SwingConstants.CENTER);
-		chckbxRemember.setBounds(6, 145, 338, 23);
-		frmLotusBleu.getContentPane().add(chckbxRemember);
 		
 		pwdPassword = new JPasswordField();
 		pwdPassword.setText("Password");
