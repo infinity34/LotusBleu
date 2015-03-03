@@ -1,6 +1,11 @@
 
 package Data;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import BL.Connection;
+
 /**
  * 
  * 
@@ -24,7 +29,7 @@ public class DataBase {
     //Renvoie true si ya un User qui a ete trouve
     // Renvoie false sinon
         String query = "SELECT count(*) FROM USER WHERE userID="+username+" AND password="+password+"";
-        ResultSet result = connection.getState().executeQuery(query);
+        ResultSet result = ((BL.Connection) connection).getState().executeQuery(query);
         
         int nbCouple = result.getInt(1);
         if(nbCouple == 1 )

@@ -1,5 +1,7 @@
 
 package BL;
+import java.sql.SQLException;
+
 import BL.IUserStore;
 
 /**
@@ -20,7 +22,12 @@ public class AuthentificationLogic implements IUser {
 @Override
 public Boolean checkCredentials(String username, String password) {
 	// TODO Auto-generated method stub
-	return database.checkCredentials(username,password);
+	try {
+		return database.checkCredentials(username,password);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 
 @Override
