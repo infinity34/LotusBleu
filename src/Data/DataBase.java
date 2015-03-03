@@ -18,15 +18,12 @@ public class DataBase {
     
     //Check id and password in the database
     public Boolean checkCredentials(String username, String password){
-<<<<<<< HEAD
+
     //La requete a faire : 
     //SELECT UserID,Password FROM USER WHERE Password=password AND UserID=username
     //Renvoie true si ya un User qui a ete trouve
     // Renvoie false sinon
     	return false;
-=======
-    	
->>>>>>> origin/conception_login
     	
     }
  }
