@@ -22,6 +22,7 @@ public class DataBase {
     //SELECT UserID,Password FROM USER WHERE Password=password AND UserID=username
     //Renvoie true si ya un User qui a ete trouve
     // Renvoie false sinon
+    	return false;
     	
     }
  }
