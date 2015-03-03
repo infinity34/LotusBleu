@@ -13,7 +13,6 @@ public class AuthentificationLogic implements IUser {
  * 
  * @poseidon-object-id [Im7393253bm14bd0a52e7dmm7e07]
  */
-    public BL.IUser iUser;
     private Data.DataBase database;
     
 
