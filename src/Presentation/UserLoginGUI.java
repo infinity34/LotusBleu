@@ -4,22 +4,31 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
+
 import java.awt.Color;
+
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
+
+import BL.IUser;
 
 
 public class UserLoginGUI {
 
 	private JFrame frmLotusBleu;
-	private JTextField txtUserid;
+	private JTextField txtUserId;
 	private JPasswordField pwdPassword;
+	private IUser user = new IUser();
 
 	/**
 	 * Launch the application.
@@ -62,15 +71,33 @@ public class UserLoginGUI {
 		frmLotusBleu.getContentPane().add(lblLogin);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String userId = txtUserId.getText();
+				String password = pwdPassword.getText();
+				if(user.checkCredentials(userId,password)){
+					//display user interface
+				}
+				else {
+					JLabel errorMsg = new JLabel("UserID or password incorrect!");
+					errorMsg.setVisible(true);
+					errorMsg.setHorizontalAlignment(SwingConstants.CENTER);
+					errorMsg.setForeground(Color.RED);
+					errorMsg.setBounds(6, 55, 338, 16);
+					frmLotusBleu.getContentPane().add(errorMsg);
+				}
+					;
+			}
+		});
 		btnLogin.setBounds(128, 169, 117, 29);
 		frmLotusBleu.getContentPane().add(btnLogin);
 		
-		txtUserid = new JTextField();
-		txtUserid.setText("UserID");
-		txtUserid.setToolTipText("\n");
-		txtUserid.setBounds(122, 77, 134, 28);
-		frmLotusBleu.getContentPane().add(txtUserid);
-		txtUserid.setColumns(10);
+		txtUserId = new JTextField();
+		txtUserId.setText("UserID");
+		txtUserId.setToolTipText("\n");
+		txtUserId.setBounds(122, 77, 134, 28);
+		frmLotusBleu.getContentPane().add(txtUserId);
+		txtUserId.setColumns(10);
 		
 		JLabel lblUserid = new JLabel("UserID :");
 		lblUserid.setBounds(49, 83, 61, 16);
@@ -102,5 +129,7 @@ public class UserLoginGUI {
 		pwdPassword.setText("Password");
 		pwdPassword.setBounds(121, 117, 134, 28);
 		frmLotusBleu.getContentPane().add(pwdPassword);
+		
+		
 	}
 }
