@@ -38,15 +38,8 @@ public interface IUser {
  * @param username 
  * @return 
  */
-<<<<<<< HEAD
-    public String createUser(String username) {        
-        // your code here
-    	
-        return null;
-    } 
-=======
-    public String createUser(String username);
->>>>>>> FETCH_HEAD
+   public String createUser(String username);
+
 
 /**
  * <p>Does ...</p>
