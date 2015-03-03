@@ -7,7 +7,7 @@ package BL;
  * 
  * @poseidon-object-id [Im7393253bm14bd0a52e7dmm7e46]
  */
-public class IUser {
+public interface IUser {
 
 /**
  * <p>Does ...</p>
@@ -17,10 +17,7 @@ public class IUser {
  * @param password 
  * @return 
  */
-    public String checkCredentials(String username, String password) {        
-        // your code here
-        return null;
-    } 
+    public Boolean checkCredentials(String username, String password);
 
 /**
  * <p>Does ...</p>
@@ -31,10 +28,7 @@ public class IUser {
  * @param newPass 
  * @return 
  */
-    public Boolean changePassword(String username, String oldPass, String newPass) {        
-        // your code here
-        return null;
-    } 
+    public Boolean changePassword(String username, String oldPass, String newPass);
 
 /**
  * <p>Does ...</p>
@@ -43,10 +37,7 @@ public class IUser {
  * @param username 
  * @return 
  */
-    public String createUser(String username) {        
-        // your code here
-        return null;
-    } 
+    public String createUser(String username);
 
 /**
  * <p>Does ...</p>
@@ -54,7 +45,5 @@ public class IUser {
  * @poseidon-object-id [Icc33101m14bdb5d6dd4mm797f]
  * @param username 
  */
-    public void deleteUser(String username) {        
-        // your code here
-    } 
+    public void deleteUser(String username);
  }
