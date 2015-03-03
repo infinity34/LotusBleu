@@ -29,7 +29,7 @@ public class UserLoginGUI {
 	private JFrame frmLotusBleu;
 	private JTextField txtUserId;
 	private JPasswordField pwdPassword;
-	private AuthentificationLogic user = new AuthentificationLogic();
+	private AuthentificationLogic user;
 
 	/**
 	 * Launch the application.
@@ -75,9 +75,14 @@ public class UserLoginGUI {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userId = txtUserId.getText();
-				String password = pwdPassword.getText();
+				String password = new String(pwdPassword.getPassword());
 				if(user.checkCredentials(userId,password)){
-					//display user interface
+					/**
+					 * if(admin){
+					 * 		display admin interface
+					 * }
+					 * else display user interface
+					**/
 				}
 				else {
 					JLabel errorMsg = new JLabel("UserID or password incorrect!");
