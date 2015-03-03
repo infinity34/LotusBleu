@@ -1,5 +1,6 @@
 
 package BL;
+import BL.Interface_1;
 
 /**
  * 
@@ -16,7 +17,7 @@ public class IUser {
  * @param password 
  * @return 
  */
-    public String checkCredentials(BL.username username, BL.password password) {        
+    public String checkCredentials(String username, String password) {        
         // your code here
         return null;
     } 
@@ -30,7 +31,7 @@ public class IUser {
  * @param newPass 
  * @return 
  */
-    public Boolean changePassword(BL.username username, BL.oldPass oldPass, BL.newPass newPass) {        
+    public Boolean changePassword(String username, String oldPass, String newPass) {        
         // your code here
         return null;
     } 
@@ -42,7 +43,7 @@ public class IUser {
  * @param username 
  * @return 
  */
-    public String createUser(BL.username username) {        
+    public String createUser(String username) {        
         // your code here
         return null;
     } 
@@ -53,7 +54,7 @@ public class IUser {
  * @poseidon-object-id [Icc33101m14bdb5d6dd4mm797f]
  * @param username 
  */
-    public void deleteUser(BL.username username) {        
+    public void deleteUser(String username) {        
         // your code here
     } 
  }
