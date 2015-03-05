@@ -32,7 +32,6 @@ public class Connection {
 			Class.forName("com.mysql.jdbc.Driver");
 			this.con = DriverManager.getConnection(url,
 					user, password);
-			System.out.println("Je suis connecté");
 			this.state = ((java.sql.Connection) this.con).createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
