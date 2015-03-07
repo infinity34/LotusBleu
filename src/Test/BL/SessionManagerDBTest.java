@@ -12,9 +12,10 @@ import BL.SessionManagerDB;
 
 public class SessionManagerDBTest {
 
+	private static SessionManagerDB sessionManagerDB;	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		SessionManagerDB sessionManagerDB = new SessionManagerDB();
+		sessionManagerDB = new SessionManagerDB();	
 	}
 
 	@AfterClass
@@ -30,8 +31,9 @@ public class SessionManagerDBTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testLogin() {
+		assertEquals(true, sessionManagerDB.Login("maxime", "password"));
 	}
+
 
 }
