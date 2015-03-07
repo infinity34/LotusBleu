@@ -20,7 +20,7 @@ public class SessionManagerDB extends BL.SessionManager {
     
     
     public SessionManagerDB(){
-    	dbConnection = new DBconnection();
+    	dbConnection = DBconnection.getConnection();
     	Statement statement = dbConnection.getState();
     	
     	/* Exécution d'une requête de lecture */
