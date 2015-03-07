@@ -4,15 +4,23 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
+
 import java.awt.Color;
+
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
+
+import BL.SessionFacade;
 
 
 public class LoginGUI {
@@ -20,6 +28,7 @@ public class LoginGUI {
 	private JFrame frmLotusBleu;
 	private JTextField txtUserid;
 	private JPasswordField pwdPassword;
+	private SessionFacade facade;
 
 	/**
 	 * Launch the application.
@@ -101,5 +110,21 @@ public class LoginGUI {
 		pwdPassword.setText("Password");
 		pwdPassword.setBounds(121, 117, 134, 28);
 		frmLotusBleu.getContentPane().add(pwdPassword);
+		
+		
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String userId = txtUserid.getText();
+				String password = pwdPassword.getText();
+				if(facade.Login(userId,password)){
+					//display user interface
+					System.out.println("Connexion reussie"); //Pour tester comme il y a pas encore l'interface
+				}
+				else {
+					//display error message
+					System.out.println("Connexion echouee");
+				}
+			}
+		});
 	}
 }
