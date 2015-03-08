@@ -10,6 +10,7 @@ import Tools.DBconnection;
 /**
  * 
  * 
+<<<<<<< HEAD
  */
 public class SessionManagerDB extends BL.SessionManager {
 	/**
