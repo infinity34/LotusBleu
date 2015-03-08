@@ -20,7 +20,7 @@ public class SessionFacade {
 	 * 
 	 */
 	public SessionFacade(){
-		
+		sessionManager = new SessionManagerDB();
 	}
 	
 	/**

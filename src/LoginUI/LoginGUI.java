@@ -51,6 +51,7 @@ public class LoginGUI {
 	 */
 	public LoginGUI() {
 		initialize();
+		facade = new SessionFacade();
 	}
 
 	/**
