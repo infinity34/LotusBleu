@@ -1,6 +1,8 @@
-package Test.BL;
+package Test.Tools;
 
 import static org.junit.Assert.*;
+
+import java.sql.Statement;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -8,15 +10,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import BL.SessionManagerDB;
+import Tools.DBconnection;
 
-public class SessionManagerDBTest {
+public class DBconnectionTest {
 
-	private static SessionManagerDB sessionManagerDB;	
-	
+	private DBconnection con;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		sessionManagerDB = new SessionManagerDB();	
 	}
 
 	@AfterClass
@@ -30,13 +30,18 @@ public class SessionManagerDBTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
-	public void testLogin() {
-		Boolean test = sessionManagerDB.Login("maxime", "password");
-		
-		assertEquals(true, test);
+	public void testGetConnection() {
+		con = DBconnection.getConnection();
+		assertNotNull("la connection est nulle",con);
 	}
 
+	@Test
+	public void testGetState() {
+		con = DBconnection.getConnection();
+		Statement state = con.getState();
+		assertNull("le statement est nulle", state);
+	}
 
 }
