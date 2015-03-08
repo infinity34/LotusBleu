@@ -16,7 +16,7 @@ public class DBconnection {
 	public final static String user = "lotusbleu";
 	public final static String password = "lotusbleu";
 	//attributes
-	private static DBconnection connection = null;
+	private static DBconnection connection;
 	private Statement state;
 	private Connection con;
 
