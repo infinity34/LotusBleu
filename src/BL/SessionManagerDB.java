@@ -1,4 +1,3 @@
-
 package BL;
 
 import java.sql.ResultSet;
@@ -10,7 +9,7 @@ import Tools.DBconnection;
 /**
  * 
  * 
-<<<<<<< HEAD
+ <<<<<<< HEAD
  */
 public class SessionManagerDB extends BL.SessionManager {
 	/**
@@ -19,43 +18,35 @@ public class SessionManagerDB extends BL.SessionManager {
 	 */
 	private Tools.DBconnection dbConnection;
 
+	public SessionManagerDB() {
 
-	public SessionManagerDB(){
-		
 		dbConnection = DBconnection.getConnection();
 		System.out.println(dbConnection);
-		
+
 	}
 
 	/**
-	 * <p>Does ...</p>
+	 * <p>
+	 * Does ...
+	 * </p>
 	 * 
 	 * 
-	 * @return 
+	 * @return
 	 */
-	public Boolean Login(String username, String password) {        
+	public Boolean Login(String username, String password) {
 
-		Statement statement = dbConnection.getState();
-		System.out.println(statement);
-		
+		int test = 0;
 		/* Exécution d'une requête de lecture */
 		try {
-			ResultSet resultat = statement.executeQuery( "SELECT mail, password, username  FROM USER" );
-
-			/* Récupération des données du résultat de la requête de lecture */
-			/*while ( resultat.next() ) {
-				String userMail = resultat.getString( "mail" );
-				String pwd = resultat.getString( "password" );
-				String userName = resultat.getString( "username" );
-
-				/* Traiter ici les valeurs récupérées. */
-			/*}*/
-
+			ResultSet resultat = dbConnection.getState().executeQuery(
+					"SELECT * FROM lotusbleu.USER WHERE mail=\"" + username
+							+ "\" AND password = \"" + password + "\"");
+			resultat.last();
+			test = resultat.getRow();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return true;
-	} 
+		return (test > 0);
+	}
 }
