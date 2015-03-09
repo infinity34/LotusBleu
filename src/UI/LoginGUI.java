@@ -1,4 +1,4 @@
-package LoginUI;
+package UI;
 
 import java.awt.EventQueue;
 
