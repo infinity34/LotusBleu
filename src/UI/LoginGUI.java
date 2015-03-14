@@ -20,7 +20,7 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
-import Functions.SessionFacade;
+import BL.SessionFacade;
 
 
 public class LoginGUI {
