@@ -1,84 +1,149 @@
-
 package Data;
 
 /**
- * 
+ * This class represents an event
  * 
  * @poseidon-object-id [I5c276a37m14bf4d9e555mm7a9c]
  */
 public class Event {
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm792c]
- */
-    private String eventName;
+	/**
+	 * <p>
+	 * Represents the name of the event
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm792c]
+	 */
+	private String eventName;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76d3]
- */
-    private Data.Room eventRoom;
+	/**
+	 * <p>
+	 * Represents the room used for this event
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76d3]
+	 */
+	private Room eventRoom;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76c1]
- */
-    private Data.TimeSlot eventTimeSlot;
+	/**
+	 * <p>
+	 * Represents the time slot of the event
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76c1]
+	 */
+	private TimeSlot eventTimeSlot;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76af]
- */
-    private Data.Activity eventActivity;
+	/**
+	 * <p>
+	 * Represents the activity which the event depends on
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76af]
+	 */
+	private Activity eventActivity;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm769d]
- */
-    private Data.Contributor eventContributor;
+	/**
+	 * <p>
+	 * Represents the contributor responsible of this event
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm769d]
+	 */
+	private Contributor eventContributor;
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7af2]
- */
-    public void save() {        
-        // your code here
-    } 
+	/**
+	 * Create a new Event
+	 * 
+	 * @param eventName
+	 * @param eventRoom
+	 * @param eventTimeSlot
+	 * @param eventActivity
+	 * @param eventContributor
+	 */
+	public Event(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
+			Activity eventActivity, Contributor eventContributor) {
+		super();
+		this.eventName = eventName;
+		this.eventRoom = eventRoom;
+		this.eventTimeSlot = eventTimeSlot;
+		this.eventActivity = eventActivity;
+		this.eventContributor = eventContributor;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7acd]
- * @return 
- */
-    public String getEventName() {        
-        // your code here
-        return null;
-    } 
+	/**
+	 * @return the eventName
+	 */
+	public String getEventName() {
+		return eventName;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7aa8]
- * @param String 
- */
-    public void setEventName(String name) {        
-        // your code here
-    } 
+	/**
+	 * @param eventName
+	 *            the eventName to set
+	 */
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I330c5a92m14bf4fb0965mm79c4]
- */
-    public void create() {        
-        // your code here
-    } 
- }
+	/**
+	 * @return the eventRoom
+	 */
+	public Data.Room getEventRoom() {
+		return eventRoom;
+	}
+
+	/**
+	 * @param eventRoom
+	 *            the eventRoom to set
+	 */
+	public void setEventRoom(Data.Room eventRoom) {
+		this.eventRoom = eventRoom;
+	}
+
+	/**
+	 * @return the eventTimeSlot
+	 */
+	public Data.TimeSlot getEventTimeSlot() {
+		return eventTimeSlot;
+	}
+
+	/**
+	 * @param eventTimeSlot
+	 *            the eventTimeSlot to set
+	 */
+	public void setEventTimeSlot(Data.TimeSlot eventTimeSlot) {
+		this.eventTimeSlot = eventTimeSlot;
+	}
+
+	/**
+	 * @return the eventActivity
+	 */
+	public Data.Activity getEventActivity() {
+		return eventActivity;
+	}
+
+	/**
+	 * @param eventActivity
+	 *            the eventActivity to set
+	 */
+	public void setEventActivity(Data.Activity eventActivity) {
+		this.eventActivity = eventActivity;
+	}
+
+	/**
+	 * @return the eventContributor
+	 */
+	public Data.Contributor getEventContributor() {
+		return eventContributor;
+	}
+
+	/**
+	 * @param eventContributor
+	 *            the eventContributor to set
+	 */
+	public void setEventContributor(Data.Contributor eventContributor) {
+		this.eventContributor = eventContributor;
+	}
+
+}

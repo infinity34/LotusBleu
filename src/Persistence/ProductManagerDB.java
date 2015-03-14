@@ -20,5 +20,12 @@ public class ProductManagerDB extends Persistence.ProductManager {
 public ProductManagerDB() {
 	super();
 	this.connection = DBconnection.getConnection();
+	}
+
+	/**
+	 * @return the connection
+	 */
+	public DBconnection getConnection() {
+		return connection;
+	}
 }
- }

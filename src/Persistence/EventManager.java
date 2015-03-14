@@ -30,8 +30,7 @@ public EventManager() {
  * @return 
  */
     public ArrayList<Event> getEvents() {        
-        // your code here
-        return null;
+        return this.events;
     } 
 
 /**

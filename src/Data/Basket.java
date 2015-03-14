@@ -1,5 +1,6 @@
-
 package Data;
+
+import java.util.TreeSet;
 
 /**
  * 
@@ -8,83 +9,135 @@ package Data;
  */
 public class Basket {
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im73916ddfm14bf8e24976mm78ed]
- */
-    private Data.User user;
+	/**
+	 * <p>
+	 * Represents the owner of this basket
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im73916ddfm14bf8e24976mm78ed]
+	 */
+	private User user;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im77122398m14bf8fac935mm774d]
- */
-    private Data.Basket basket;
-/**
- * 
- * 
- * @poseidon-object-id [Ifc4ab2m14bf8c18020mm75a0]
- * @poseidon-type Data.OrderLine
- */
-    public java.util.Collection orderLine = new java.util.TreeSet();
+	/**
+	 * <p>
+	 * Represents the basket (Attribute which allow to implement singleton
+	 * pattern)
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im77122398m14bf8fac935mm774d]
+	 */
+	private static Basket basket;
+	
+	/**
+	 * 
+	 * 
+	 * @poseidon-object-id [Ifc4ab2m14bf8c18020mm75a0]
+	 * @poseidon-type Data.OrderLine
+	 */
+	private TreeSet<OrderLine> orderLine;
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im73916ddfm14bf8e24976mm78d9]
- */
-    public void getBasket() {        
-        // your code here
-    } 
+	/**
+	 * <p>
+	 * Return the current basket of the user
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im73916ddfm14bf8e24976mm78d9]
+	 * @return Basket
+	 */
+	public static Basket getBasket(User user) {
+		if (basket == null) {
+			basket = new Basket(user);
+		}
+		return basket;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im73916ddfm14bf8e24976mm78b4]
- */
-    private  Basket() {        
-        // your code here
-    } 
+	/**
+	 * <p>
+	 * Create a new Basket
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im73916ddfm14bf8e24976mm78b4]
+	 */
+	private Basket(User user) {
+		super();
+		this.orderLine = new TreeSet<OrderLine>();
+		this.setUser(user);
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I1af2f395m14bf8ee2be3mm786c]
- * @return 
- */
-    public boolean isEmpty() {        
-        // your code here
-        return false;
-    } 
+	/**
+	 * @return the orderLine
+	 */
+	public TreeSet<OrderLine> getOrderLine() {
+		return orderLine;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I1af2f395m14bf8ee2be3mm7845]
- */
-    public void empty() {        
-        // your code here
-    } 
+	/**
+	 * @param orderLine the orderLine to set
+	 */
+	public void setOrderLine(TreeSet<OrderLine> orderLine) {
+		this.orderLine = orderLine;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I1af2f395m14bf8ee2be3mm7820]
- * @param OrderLine 
- */
-    public void removeLine(Data.line OrderLine) {        
-        // your code here
-    } 
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I1af2f395m14bf8ee2be3mm77df]
- * @param Product 
- * @param quantity 
- */
-    public void addLine(Product product, int quantity) {        
-        // your code here
-    } 
- }
+	/**
+	 * @param user
+	 *            the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	/**
+	 * <p>
+	 * Test if the basket is empty
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm786c]
+	 * @return boolean
+	 */
+	public boolean isEmpty() {
+		return this.orderLine.isEmpty();
+	}
+
+	/**
+	 * <p>
+	 * Remove all the elements from the basket
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm7845]
+	 */
+	public void empty() {
+		this.orderLine = new TreeSet<OrderLine>();
+	}
+
+	/**
+	 * <p>
+	 * Remove a specified line from the basket
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm7820]
+	 * @param OrderLine
+	 */
+	public void removeLine(OrderLine line) {
+		this.orderLine.remove(line);
+	}
+
+	/**
+	 * <p>
+	 * Add a specified line to the basket
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm77df]
+	 * @param Product
+	 * @param quantity
+	 */
+	public void addLine(Product product, int quantity) {
+		this.orderLine.add(new OrderLine(product, quantity));
+	}
+}

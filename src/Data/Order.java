@@ -1,113 +1,166 @@
-
 package Data;
 
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.TreeSet;
 
 /**
- * 
+ * Represents an order
  * 
  * @poseidon-object-id [I5c276a37m14bf4d9e555mm7a9c]
  */
 public class Order {
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm792c]
- */
-    private String orderID;
+	/**
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm792c]
+	 */
+	private String orderID;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76d3]
- */
-    private java.util.Date orderDate;
+	/**
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76d3]
+	 */
+	private Date orderDate;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im77122398m14bf8fac935mm773c]
- */
-    private Data.User user;
+	/**
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 * 
+	 * @poseidon-object-id [Im77122398m14bf8fac935mm773c]
+	 */
+	private Data.User user;
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I48c9a015m14c095cecaamm737b]
- */
-    private String OrderState;
-/**
- * 
- * 
- * @poseidon-object-id [Im77122398m14bf8fac935mm77bd]
- */
-    public Data.OrderLine orderLine;
-/**
- * 
- * 
- * @poseidon-object-id [I48c9a015m14c095cecaamm730b]
- */
-    public Data.Payment payment;
+	/**
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I48c9a015m14c095cecaamm737b]
+	 */
+	private OrderState orderState;
+	/**
+	 * 
+	 * 
+	 * @poseidon-object-id [Im77122398m14bf8fac935mm77bd]
+	 */
+	public TreeSet<OrderLine> orderLine;
+	/**
+	 * 
+	 * 
+	 * @poseidon-object-id [I48c9a015m14c095cecaamm730b]
+	 */
+	public Data.Payment payment;
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7af2]
- */
-    public void save() {        
-        // your code here
-    } 
+	/**
+	 * 
+	 */
+	public Order(Basket basket, Payment payment) {
+		super();
+		this.orderDate = new Date();
+		this.orderLine = basket.getOrderLine();
+		this.orderState = OrderState.pending;
+		this.user = basket.getUser();
+		this.payment = payment;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7acd]
- * @return 
- */
-    public String getOrderID() {        
-        // your code here
-        return null;
-    } 
+	/**
+	 * @return the orderID
+	 */
+	public String getOrderID() {
+		return orderID;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7aa8]
- * @return 
- */
-    public java.util.Date getOrderDate() {        
-        // your code here
-        return null;
-    } 
+	/**
+	 * @param orderID
+	 *            the orderID to set
+	 */
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im77122398m14bf8fac935mm77fe]
- * @return 
- */
-    public ArrayList<OrderLine> getProductLines() {        
-        // your code here
-        return null;
-    } 
+	/**
+	 * @return the orderDate
+	 */
+	public Date getOrderDate() {
+		return orderDate;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im77122398m14bf8fac935mm7797]
- * @param Basket 
- */
-    public  Order(Data.Basket Basket) {        
-        // your code here
-    } 
+	/**
+	 * @param orderDate
+	 *            the orderDate to set
+	 */
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I2d1a4d66m14c0966aad0mm7521]
- */
-    public void getTotalAmount() {        
-        // your code here
-    } 
- }
+	/**
+	 * @return the user
+	 */
+	public Data.User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user
+	 *            the user to set
+	 */
+	public void setUser(Data.User user) {
+		this.user = user;
+	}
+
+	/**
+	 * @return the orderState
+	 */
+	public OrderState getOrderState() {
+		return orderState;
+	}
+
+	/**
+	 * @param orderState
+	 *            the orderState to set
+	 */
+	public void setOrderState(OrderState orderState) {
+		this.orderState = orderState;
+	}
+
+	/**
+	 * @return the payment
+	 */
+	public Data.Payment getPayment() {
+		return payment;
+	}
+
+	/**
+	 * @param payment
+	 *            the payment to set
+	 */
+	public void setPayment(Data.Payment payment) {
+		this.payment = payment;
+	}
+
+	/**
+	 * @return the orderLine
+	 */
+	public TreeSet<OrderLine> getOrderLine() {
+		return orderLine;
+	}
+
+	/**
+	 * <p>
+	 * Return the value of this order
+	 * </p>
+	 * 
+	 * @poseidon-object-id [I2d1a4d66m14c0966aad0mm7521]
+	 * @return double The amount of this order
+	 */
+	public double getTotalAmount() {
+		return 0;
+	}
+}
