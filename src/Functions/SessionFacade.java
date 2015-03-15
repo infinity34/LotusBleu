@@ -1,5 +1,8 @@
 
-package BL;
+package Functions;
+
+import BL.SessionManager;
+import BL.SessionManagerDB;
 
 /**
  * 
