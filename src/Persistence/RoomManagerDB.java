@@ -1,12 +1,12 @@
 
-package BL;
+package Persistence;
 
 /**
  * 
  * 
  * @poseidon-object-id [I64875daam14c1cbbcc52mm7c13]
  */
-public class RoomManagerDB extends BL.RoomManager {
+public class RoomManagerDB extends Persistence.RoomManager {
 /**
  * 
  * 

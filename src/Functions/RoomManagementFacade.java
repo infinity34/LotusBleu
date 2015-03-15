@@ -1,5 +1,5 @@
 
-package BL;
+package Functions;
 
 /**
  * 
@@ -63,5 +63,5 @@ public class RoomManagementFacade {
  * 
  * @poseidon-object-id [I64875daam14c1cbbcc52mm7d9b]
  */
-    public BL.RoomManager roomManager;
+    public Persistence.RoomManager roomManager;
  }

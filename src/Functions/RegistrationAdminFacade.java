@@ -1,5 +1,5 @@
 
-package BL;
+package Functions;
 
 /**
  * 
@@ -54,5 +54,5 @@ public class RegistrationAdminFacade {
  * 
  * @poseidon-object-id [I64875daam14c1cbbcc52mm7d9b]
  */
-    public BL.RegistrationAdminManager registrationAdminManager;
+    public Persistence.RegistrationAdminManager registrationAdminManager;
  }

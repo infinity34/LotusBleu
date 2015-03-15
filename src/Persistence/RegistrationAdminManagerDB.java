@@ -1,12 +1,12 @@
 
-package BL;
+package Persistence;
 
 /**
  * 
  * 
  * @poseidon-object-id [I64875daam14c1cbbcc52mm7c13]
  */
-public class RegistrationAdminManagerDB extends BL.RegistrationAdminManager {
+public class RegistrationAdminManagerDB extends Persistence.RegistrationAdminManager {
 /**
  * 
  * 
