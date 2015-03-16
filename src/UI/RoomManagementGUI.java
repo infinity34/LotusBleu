@@ -63,5 +63,5 @@ public class RoomManagementGUI {
  * 
  * @poseidon-object-id [I64875daam14c1cbbcc52mm7ddd]
  */
-    public BL.RoomManagementFacade roomManagementFacade;
+    public Functions.RoomManagementFacade roomManagementFacade;
  }

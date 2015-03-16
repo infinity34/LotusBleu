@@ -54,5 +54,5 @@ public class RegistrationAdminGUI {
  * 
  * @poseidon-object-id [I64875daam14c1cbbcc52mm7ddd]
  */
-    public BL.RegistrationAdminFacade registrationAdminFacade;
+    public Functions.RegistrationAdminFacade registrationAdminFacade;
  }
