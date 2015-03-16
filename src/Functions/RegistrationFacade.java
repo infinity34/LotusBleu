@@ -2,7 +2,7 @@
 package Functions;
 
 import Persistence.RegistrationManager;
-import Persistence.RegistrationManagerDB;
+import Persistence.RegisterForClassSessionManagerRegistrationManagerDB;
 
 /**
  * 
@@ -23,7 +23,7 @@ public class RegistrationFacade {
 	 * 
 	 */
 	public RegistrationFacade(){
-		registrationManager = new RegistrationManagerDB();
+		registrationManager = new RegisterForClassSessionManagerRegistrationManagerDB();
 	}
 	
 	/**

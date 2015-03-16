@@ -8,14 +8,14 @@ import Tools.DBconnection;
  * 
  * 
  */
-public class RegistrationManagerDB extends Persistence.RegistrationManager {
+public class RegisterForClassSessionManagerRegistrationManagerDB extends Persistence.RegistrationManager {
 	/**
 	 * 
 	 * 
 	 */
 	private Tools.DBconnection dbConnection;
 
-	public RegistrationManagerDB() {
+	public RegisterForClassSessionManagerRegistrationManagerDB() {
 
 		dbConnection = DBconnection.getConnection();
 

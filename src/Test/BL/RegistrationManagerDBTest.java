@@ -8,15 +8,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Persistence.RegistrationManagerDB;
+import Persistence.RegisterForClassSessionManagerRegistrationManagerDB;
 
 public class RegistrationManagerDBTest {
 	
-	private static RegistrationManagerDB registrationManagerDB;
+	private static RegisterForClassSessionManagerRegistrationManagerDB registrationManagerDB;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-	registrationManagerDB = new RegistrationManagerDB();	
+	registrationManagerDB = new RegisterForClassSessionManagerRegistrationManagerDB();	
 	}
 
 	@AfterClass
