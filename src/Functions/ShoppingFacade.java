@@ -101,5 +101,5 @@ public class ShoppingFacade {
  * 
  * @poseidon-object-id [I2d1a4d66m14c0966aad0mm761f]
  */
-    public Tools.PaymentFacade paymentFacade;
+    public Functions.PaymentFacade paymentFacade;
  }
