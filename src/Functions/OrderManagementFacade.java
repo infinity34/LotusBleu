@@ -27,5 +27,5 @@ public class OrderManagementFacade {
  * 
  * @poseidon-object-id [Ima570141m14bf9c09221mm694d]
  */
-    public Persistence.SessionManager sessionManager;
+    public Bl.SessionManager sessionManager;
  }

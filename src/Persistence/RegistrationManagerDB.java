@@ -1,4 +1,4 @@
-package BL;
+package Persistence;
 
 import java.sql.SQLException;
 
@@ -8,7 +8,7 @@ import Tools.DBconnection;
  * 
  * 
  */
-public class RegistrationManagerDB extends BL.RegistrationManager {
+public class RegistrationManagerDB extends Persistence.RegistrationManager {
 	/**
 	 * 
 	 * 

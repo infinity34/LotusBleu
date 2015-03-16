@@ -1,8 +1,8 @@
 
 package Functions;
 
-import Persistence.SessionManager;
-import Persistence.SessionManagerDB;
+import BL.SessionManager;
+import BL.SessionManagerDB;
 
 /**
  * 
@@ -16,7 +16,7 @@ public class SessionFacade {
 	 * 
 	 * 
 	 */
-	public Persistence.SessionManager sessionManager;
+	public BL.SessionManager sessionManager;
 
 	/**
 	 * 
