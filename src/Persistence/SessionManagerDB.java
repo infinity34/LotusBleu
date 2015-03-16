@@ -1,8 +1,7 @@
-package BL;
+package Persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import Tools.DBconnection;
 
@@ -11,7 +10,7 @@ import Tools.DBconnection;
  * 
  <<<<<<< HEAD
  */
-public class SessionManagerDB extends BL.SessionManager {
+public class SessionManagerDB extends Persistence.SessionManager {
 	/**
 	 * 
 	 * 
