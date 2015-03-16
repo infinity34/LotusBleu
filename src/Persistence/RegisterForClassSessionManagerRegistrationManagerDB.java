@@ -3,12 +3,12 @@ package Persistence;
 import java.sql.SQLException;
 
 import Tools.DBconnection;
-
+import Persistence.SessionManager;
 /**
  * 
  * 
  */
-public class RegisterForClassSessionManagerRegistrationManagerDB extends Persistence.RegistrationManager {
+public class RegisterForClassSessionManagerRegistrationManagerDB {
 	/**
 	 * 
 	 * 
@@ -42,6 +42,7 @@ public class RegisterForClassSessionManagerRegistrationManagerDB extends Persist
 			e.printStackTrace();
 		}
 		
-		return sessionManager.Login(username, password);
+		return null;
+		//SessionManager.Login(username, password)
 	}
 }
