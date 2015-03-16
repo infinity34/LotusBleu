@@ -59,6 +59,7 @@ public class LoginGUI {
 	 */
 	private void initialize() {
 		frmLotusBleu = new JFrame();
+		frmLotusBleu.setResizable(false);
 		frmLotusBleu.setTitle("ZEN LOUNGE");
 		frmLotusBleu.setBounds(100, 100, 350, 282);
 		frmLotusBleu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
