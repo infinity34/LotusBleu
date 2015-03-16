@@ -1,6 +1,11 @@
 
 package Persistence;
 
+import java.util.ArrayList;
+
+import Data.Event;
+import Data.User;
+
 /**
  * 
  * 
@@ -33,7 +38,7 @@ public class ContributorManager {
  * @param contributor 
  * @return 
  */
-    public Bl.ArrayList__Event_ listEvents(Data.User contributor) {        
+    public ArrayList<Event> listEvents(Data.User contributor) {        
         // your code here
         return null;
     } 
@@ -53,7 +58,7 @@ public class ContributorManager {
  * @poseidon-object-id [I610a0d25m14bffb8994amm7293]
  * @return 
  */
-    public Bl.ArrayList_User_ listContributor() {        
+    public ArrayList<User> listContributor() {        
         // your code here
         return null;
     } 
@@ -71,5 +76,5 @@ public class ContributorManager {
  * 
  * @poseidon-object-id [I610a0d25m14bffb8994amm72c6]
  */
-    public Bl.SessionManager sessionManager;
+    public Persistence.SessionManager sessionManager;
  }

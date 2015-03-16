@@ -1,5 +1,8 @@
 
-package Persistence;
+package Functions;
+
+import Persistence.RegistrationManager;
+import Persistence.RegistrationManagerDB;
 
 /**
  * 

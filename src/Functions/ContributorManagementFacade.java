@@ -1,6 +1,11 @@
 
 package Functions;
 
+import java.util.ArrayList;
+
+import Data.Event;
+import Data.User;
+
 /**
  * 
  * 
@@ -27,7 +32,7 @@ public class ContributorManagementFacade {
  * @param contributor 
  * @return 
  */
-    public Bl.ArrayList_Event_ listEvents(Data.User contributor) {        
+    public ArrayList<Event> listEvents(Data.User contributor) {        
         // your code here
         return null;
     } 
@@ -47,7 +52,7 @@ public class ContributorManagementFacade {
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm7018]
  * @return 
  */
-    public Bl.ArrayList_User_ listContributor() {        
+    public ArrayList<User> listContributor() {        
         // your code here
         return null;
     } 
@@ -65,5 +70,5 @@ public class ContributorManagementFacade {
  * 
  * @poseidon-object-id [Im16e76644m14bffa18d1dmm75ec]
  */
-    public Bl.ContributorManager contributorManager;
+    public Persistence.ContributorManager contributorManager;
  }

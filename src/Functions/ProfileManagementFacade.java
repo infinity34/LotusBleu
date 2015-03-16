@@ -21,5 +21,5 @@ public class ProfileManagementFacade {
  * 
  * @poseidon-object-id [Im1637d0am14c189fbb84mm72a9]
  */
-    public Bl.SessionManager sessionManager;
+    public Persistence.SessionManager sessionManager;
  }

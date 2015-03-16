@@ -21,11 +21,11 @@ public class OrderManagementFacade {
  * 
  * @poseidon-object-id [Im26623am14bf96eff7cmm7aaf]
  */
-    public Bl.OrderManager orderManager;
+    public Persistence.OrderManager orderManager;
 /**
  * 
  * 
  * @poseidon-object-id [Ima570141m14bf9c09221mm694d]
  */
-    public Bl.SessionManager sessionManager;
+    public Persistence.SessionManager sessionManager;
  }
