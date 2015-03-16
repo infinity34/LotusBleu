@@ -1,6 +1,10 @@
 
 package Functions;
 
+import java.util.ArrayList;
+
+import Data.Category;
+
 /**
  * 
  * 
@@ -50,7 +54,7 @@ public class CategoryFacade {
  * @poseidon-object-id [I2299bb83m14c1d5ce94bmm7671]
  * @return 
  */
-    public Functions.Array getAllCategory() {        
+    public ArrayList<Category> getAllCategory() {        
         // your code here
         return null;
     } 

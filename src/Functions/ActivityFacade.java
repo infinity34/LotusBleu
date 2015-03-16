@@ -1,6 +1,10 @@
 
 package Functions;
 
+import java.util.ArrayList;
+
+import Data.Activity;
+
 /**
  * 
  * 
@@ -18,7 +22,7 @@ public class ActivityFacade {
  * @param longDescription 
  * @return 
  */
-    public Data.Activity createActivity(String name, Persistence.inCharge inCharge, String shortDescription, String longDescription) {        
+    public Data.Activity createActivity(String name, Data.InCharge inCharge, String shortDescription, String longDescription) {        
         // your code here
         return null;
     } 
@@ -52,7 +56,7 @@ public class ActivityFacade {
  * @poseidon-object-id [I3abaef47m14c1a7d7d62mm59ad]
  * @return 
  */
-    public Persistence.Array getAllActivity() {        
+    public ArrayList<Activity> getAllActivity() {        
         // your code here
         return null;
     } 

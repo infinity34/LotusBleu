@@ -1,6 +1,8 @@
 
 package Persistence;
 
+import Tools.DBconnection;
+
 /**
  * 
  * 
@@ -12,5 +14,5 @@ public class CategoryFacadeBD extends Persistence.CategoryManager {
  * 
  * @poseidon-object-id [I74c1c3dfm14c22193038mm707b]
  */
-    public Tools.BCConnection bCConnection;
+    public DBconnection bCConnection;
  }

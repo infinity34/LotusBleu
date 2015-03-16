@@ -1,6 +1,8 @@
 
 package Persistence;
 
+import Tools.DBconnection;
+
 /**
  * 
  * 
@@ -12,5 +14,5 @@ public class ActivityManagerBD extends Persistence.ActivityManager {
  * 
  * @poseidon-object-id [I74c1c3dfm14c22193038mm7421]
  */
-    public Tools.BDConnection bDConnection;
+    public DBconnection bDConnection;
  }
