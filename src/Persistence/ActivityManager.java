@@ -1,5 +1,5 @@
 
-package Functions;
+package Persistence;
 
 import java.util.ArrayList;
 
@@ -8,14 +8,20 @@ import Data.Activity;
 /**
  * 
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5f3f]
+ * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5ed5]
  */
-public class ActivityFacade {
+public class ActivityManager {
+/**
+ * 
+ * 
+ * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5e2b]
+ */
+    public Data.Activity activity;
 
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5d82]
+ * @poseidon-object-id [I3abaef47m14c1a7d7d62mm58ac]
  * @param name 
  * @param inCharge 
  * @param shortDescription 
@@ -30,7 +36,7 @@ public class ActivityFacade {
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5b94]
+ * @poseidon-object-id [I3abaef47m14c1a7d7d62mm57cd]
  * @param name 
  * @param inCharge 
  * @param shortDescription 
@@ -43,7 +49,7 @@ public class ActivityFacade {
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5ab4]
+ * @poseidon-object-id [I3abaef47m14c1a7d7d62mm56ee]
  * @param name 
  */
     public void deleteActivity(String name) {        
@@ -53,17 +59,11 @@ public class ActivityFacade {
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm59ad]
+ * @poseidon-object-id [I3abaef47m14c1a7d7d62mm56ae]
  * @return 
  */
     public ArrayList<Activity> getAllActivity() {        
         // your code here
         return null;
     } 
-/**
- * 
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5ebf]
- */
-    public Persistence.ActivityManager activityManager;
  }

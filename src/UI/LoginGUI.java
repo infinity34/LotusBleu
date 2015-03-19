@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
 import Functions.SessionFacade;
+import Tools.PasswordHash;
 
 
 public class LoginGUI {
@@ -51,7 +52,7 @@ public class LoginGUI {
 	 */
 	public LoginGUI() {
 		initialize();
-		facade = new SessionFacade();
+		facade = SessionFacade.getSessionFacade();
 	}
 
 	/**
@@ -59,6 +60,7 @@ public class LoginGUI {
 	 */
 	private void initialize() {
 		frmLotusBleu = new JFrame();
+		frmLotusBleu.setResizable(false);
 		frmLotusBleu.setTitle("ZEN LOUNGE");
 		frmLotusBleu.setBounds(100, 100, 350, 282);
 		frmLotusBleu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,9 +119,21 @@ public class LoginGUI {
 			public void actionPerformed(ActionEvent e) {
 				String userId = txtUserid.getText();
 				String password = pwdPassword.getText();
+				
+				// Test de la fonction de Hashage
+				/*
+				PasswordHash hash = new PasswordHash();
+				try {
+					System.out.println(hash.PasswordHash(password));
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}*/
+				
 				if(facade.Login(userId,password)){
 					//display user interface
-					System.out.println("Connexion reussie"); //Pour tester comme il y a pas encore l'interface
+					System.out.println("Connexion reussie");
+					new MainFrame();//Pour tester comme il y a pas encore l'interface
 				}
 				else {
 					//display error message

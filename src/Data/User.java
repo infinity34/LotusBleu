@@ -1,5 +1,7 @@
 package Data;
 
+import java.util.ArrayList;
+
 /**
  * 
  * 
@@ -13,7 +15,7 @@ public class User {
 	 * 
 	 */
 	private String username;
-
+	
 	/**
 	 * <p>
 	 * Represents ...
@@ -69,7 +71,9 @@ public class User {
 	 * 
 	 */
 	private String password;
-
+	
+	private MemberRole memberRole;
+	
 	/**
 	 * @return the username
 	 */
@@ -188,5 +192,30 @@ public class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the memberRole
+	 */
+	public MemberRole getMemberRole() {
+		return memberRole;
+	}
+
+	/**
+	 * @param memberRole the memberRole to set
+	 */
+	public void setMemberRole(MemberRole memberRole) {
+		this.memberRole = memberRole;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", userfirstname="
+				+ userfirstname + ", address1=" + address1 + ", address2="
+				+ address2 + ", postcode=" + postcode + ", city=" + city
+				+ ", usermail=" + usermail + ", password=" + password + "]";
 	}
 }
