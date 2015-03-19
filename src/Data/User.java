@@ -72,8 +72,8 @@ public class User {
 	 */
 	private String password;
 	
-	private ArrayList<UserRole> roles;
-
+	private MemberRole memberRole;
+	
 	/**
 	 * @return the username
 	 */
@@ -195,31 +195,17 @@ public class User {
 	}
 
 	/**
-	 * @return the roles
+	 * @return the memberRole
 	 */
-	public ArrayList<UserRole> getRoles() {
-		return roles;
+	public MemberRole getMemberRole() {
+		return memberRole;
 	}
 
 	/**
-	 * @param roles the roles to set
+	 * @param memberRole the memberRole to set
 	 */
-	public void setRoles(ArrayList<UserRole> roles) {
-		this.roles = roles;
-	}
-
-	/**
-	 * @param role, the role to add
-	 */
-	public void addRole(UserRole role){
-		this.roles.add(role);
-	}
-	
-	/**
-	 * @param role, the roll to remove
-	 */
-	public void removeRole(UserRole role){
-		this.roles.remove(role);
+	public void setMemberRole(MemberRole memberRole) {
+		this.memberRole = memberRole;
 	}
 	
 	/* (non-Javadoc)

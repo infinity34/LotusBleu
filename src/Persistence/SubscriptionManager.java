@@ -1,6 +1,8 @@
 
 package Persistence;
 
+import Tools.DBconnection;
+
 /**
  * 
  * 
@@ -19,7 +21,7 @@ public class SubscriptionManager {
  * 
  * @poseidon-object-id [Im1fefd7f2m14c220ff2f4mm7d1a]
  */
-    public UI.PaymentGUI paymentGUI;
+    public UI.PaymentUI paymentGUI;
 
 /**
  * <p>Does ...</p>
@@ -48,5 +50,5 @@ public class SubscriptionManager {
  * 
  * @poseidon-object-id [Im5bf1e98dm14c1e0d6668mm7d7b]
  */
-    public Tools.BDConnection bDConnection;
+    public DBconnection bDConnection;
  }

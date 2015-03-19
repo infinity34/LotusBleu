@@ -1,12 +1,36 @@
 
 package Persistence;
 
+import java.util.Date;
+
+import Data.User;
+
 /**
  * 
  * 
  */
 public class SessionManager {
 
+	/**
+	 * 
+	 * 
+	 */
+	public User user;
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	/**
+	 * @param user
+	 */
+	public SessionManager() {
+		super();
+		this.user = new User();
+	}
 
 	/**
 	 * <p>Does ...</p>
@@ -15,8 +39,17 @@ public class SessionManager {
 	 * @return 
 	 */
 	public Boolean Login(String username, String password) {        
-		// your code here
 		return null;
+	} 
+
+	/**
+	 * <p>Disconnect the user</p>
+	 * 
+	 * 
+	 * @return 
+	 */
+	public void logout() {
+		this.user = null;
 	} 
 
 	/**
@@ -25,24 +58,14 @@ public class SessionManager {
 	 * 
 	 * @return 
 	 */
-	public Boolean Logout() {        
-		// your code here
-		return null;
-	} 
-
-	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
-	public Data.User GetCurrentUser() {        
-		// your code here
-		return null;
-	} 
-	/**
-	 * 
-	 * 
-	 */
-	public Data.User user;
+	public User GetCurrentUser() {        
+		return this.user;
+	}
+	
+	public void updateUser(){}
+	
+	public void changePassword(String password){}
+	
+	public void registerForAYear(Date date){}
+	
 }
