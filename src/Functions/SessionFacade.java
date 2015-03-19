@@ -70,6 +70,11 @@ public class SessionFacade {
 	public Boolean Registration() {        
 		// your code here
 		return null;
+	}
+
+	public static SessionFacade getSessionFacade() {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 
 }

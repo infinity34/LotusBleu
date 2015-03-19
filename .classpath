@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="src/|src/Test/" kind="src" path=""/>
+	<classpathentry excluding="Test/|Test/BL/|Test/BL/|Test/|Test/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/Test"/>
+	<classpathentry kind="lib" path="/Users/remy/Documents/workspace/LotusBleu/LotusBleu/com.mysql.jdbc_5.1.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
-	<classpathentry kind="lib" path="/Users/remy/Documents/workspace/LotusBleu/com.mysql.jdbc_5.1.5.jar"/>
-=======
-	<classpathentry kind="lib" path="/Users/adieupolytech/Downloads/mysql-connector-java-5.1.34-bin.jar"/>
->>>>>>> origin/conception_login
 	<classpathentry kind="output" path="bin"/>
 </classpath>
