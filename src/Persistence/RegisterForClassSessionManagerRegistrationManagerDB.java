@@ -42,7 +42,7 @@ public class RegisterForClassSessionManagerRegistrationManagerDB {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return true;
 		//SessionManager.Login(username, password)
 	}
 }
