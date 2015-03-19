@@ -31,5 +31,5 @@ public class PaymentManager {
  * 
  * @poseidon-object-id [Im27a4b8d9m14c215a6043mm7c90]
  */
-    public Tools.DBConnection dBConnection;
+    public Tools.DBconnection dBConnection;
  }
