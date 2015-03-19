@@ -1,3 +1,5 @@
+package UI;
+
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
