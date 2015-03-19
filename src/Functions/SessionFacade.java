@@ -16,14 +16,22 @@ public class SessionFacade {
 	 * 
 	 * 
 	 */
-	public SessionManager sessionManager;
+	private SessionManager sessionManager;
+	private static SessionFacade session;
 
 	/**
 	 * 
 	 * 
 	 */
-	public SessionFacade(){
+	private SessionFacade(){
 		sessionManager = new SessionManagerDB();
+	}
+	
+	public static SessionFacade getSessionFacade(){
+		if(session == null){
+			session = new SessionFacade();
+		}
+		return session;
 	}
 	
 	/**
@@ -57,8 +65,7 @@ public class SessionFacade {
 	 * @return 
 	 */
 	public Data.User GetCurrentUser() {        
-		// your code here
-		return null;
+		return sessionManager.GetCurrentUser();
 	} 
 
 	/**

@@ -52,7 +52,7 @@ public class LoginGUI {
 	 */
 	public LoginGUI() {
 		initialize();
-		facade = new SessionFacade();
+		facade = SessionFacade.getSessionFacade();
 	}
 
 	/**
@@ -132,7 +132,8 @@ public class LoginGUI {
 				
 				if(facade.Login(userId,password)){
 					//display user interface
-					System.out.println("Connexion reussie"); //Pour tester comme il y a pas encore l'interface
+					System.out.println("Connexion reussie");
+					new MainFrame();//Pour tester comme il y a pas encore l'interface
 				}
 				else {
 					//display error message

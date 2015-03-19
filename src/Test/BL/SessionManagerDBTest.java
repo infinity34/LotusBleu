@@ -33,7 +33,7 @@ public class SessionManagerDBTest {
 
 	@Test
 	public void testLogin() {
-		Boolean test = sessionManagerDB.Login("maxime", "password");
+		Boolean test = sessionManagerDB.Login("clerix.maxime@gmail.com", "password");
 		
 		assertEquals(true, test);
 	}

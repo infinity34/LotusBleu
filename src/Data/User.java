@@ -1,5 +1,7 @@
 package Data;
 
+import java.util.ArrayList;
+
 /**
  * 
  * 
@@ -13,7 +15,7 @@ public class User {
 	 * 
 	 */
 	private String username;
-
+	
 	/**
 	 * <p>
 	 * Represents ...
@@ -69,6 +71,8 @@ public class User {
 	 * 
 	 */
 	private String password;
+	
+	private ArrayList<UserRole> roles;
 
 	/**
 	 * @return the username
@@ -188,5 +192,44 @@ public class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the roles
+	 */
+	public ArrayList<UserRole> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(ArrayList<UserRole> roles) {
+		this.roles = roles;
+	}
+
+	/**
+	 * @param role, the role to add
+	 */
+	public void addRole(UserRole role){
+		this.roles.add(role);
+	}
+	
+	/**
+	 * @param role, the roll to remove
+	 */
+	public void removeRole(UserRole role){
+		this.roles.remove(role);
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", userfirstname="
+				+ userfirstname + ", address1=" + address1 + ", address2="
+				+ address2 + ", postcode=" + postcode + ", city=" + city
+				+ ", usermail=" + usermail + ", password=" + password + "]";
 	}
 }
