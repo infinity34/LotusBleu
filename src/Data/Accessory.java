@@ -14,6 +14,10 @@ public class Accessory {
  */
     private String accessoryName;
 
+public Accessory(String accessoryName) {
+	this.accessoryName = accessoryName;
+}
+
 /**
  * <p>Return the name of the accessory</p>
  *

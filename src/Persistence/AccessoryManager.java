@@ -5,72 +5,43 @@ import java.util.ArrayList;
 import Data.Accessory;
 
 /**
- * 
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm79b9]
+ * Accessory
+ * Designed by Maxime
+ * Developed by Prisca
  */
-public class AccessoryManager {
 
-	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm79a0]
-	 */
-	private ArrayList<Accessory> accessories;
-
-	public AccessoryManager() {
-		super();
-		this.setAccessories(new ArrayList<Accessory>());
-	}
+public abstract class AccessoryManager {
 
 	/**
 	 * @return the accessories
 	 */
-	public ArrayList<Accessory> getAccessories() {
-		return accessories;
-	}
+	public abstract ArrayList<Accessory> getAccessories();
+	
 
 	/**
-	 * @param accessories the accessories to set
-	 */
-	public void setAccessories(ArrayList<Accessory> accessories) {
-		this.accessories = accessories;
-	}
-
-	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I777ab4eam14bf4e91384mm7c7d]
+	 * <p> Add an accessory </p>
+	 *
 	 * @param String
+	 * @return 
 	 */
-	public void addAccessory(String name) {
-		// your code here
-	}
-
+	public abstract Boolean addAccessory(String name);
+	
 	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I777ab4eam14bf4e91384mm7c3c]
-	 */
-	public void loadAccessories() {
-		// your code here
-	}
-
-	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I777ab4eam14bf4e91384mm7c17]
+	 * <p> Set an accessory </p>
+	 *
 	 * @param String
+	 * @return 
 	 */
-	public void getAccessoriesByKeyword(String keyword) {
-		// your code here
-	}
+	public abstract Boolean setAccessory(Accessory accessory,String newName);
+	
+	/**
+	 * <p> Delete an accessory </p>
+	 *
+	 * @param String
+	 * @return 
+	 */
+	public abstract Boolean deleteAccessory(Accessory accessory);
+
+
+
 }
