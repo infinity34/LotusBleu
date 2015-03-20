@@ -1,15 +1,18 @@
 package UI;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class AccessoryDeleteView extends JPanel {
 
+	private JTextField txtEnterTheName;
 	/**
 	 * Create the panel.
 	 */
@@ -23,15 +26,17 @@ public class AccessoryDeleteView extends JPanel {
 		lblNewLabel.setBounds(6, 49, 628, 35);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Choose the accessory you want to delete in the list :");
+		JLabel lblNewLabel_1 = new JLabel("Enter the accessory you want to delete :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(6, 123, 628, 16);
 		add(lblNewLabel_1);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(210, 164, 218, 28);
-		add(spinner);
-		
+		txtEnterTheName = new JTextField();
+		txtEnterTheName.setForeground(Color.LIGHT_GRAY);
+		txtEnterTheName.setText("Enter the name");
+		txtEnterTheName.setBounds(210, 166, 231, 28);
+		add(txtEnterTheName);
+		txtEnterTheName.setColumns(10);
 		
 		JButton btnSubmite = new JButton("Submit");
 		btnSubmite.setBounds(406, 228, 117, 29);

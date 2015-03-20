@@ -1,16 +1,26 @@
 package UI;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 
+import Data.Accessory;
+import Functions.AccessoryFacade;
+import javax.swing.JTextField;
+import java.awt.Color;
+
 public class AccessoryUpdateView extends JPanel {
 
+	private AccessoryFacade accessoryFacade;
+	private JTextField txtEnterTheName;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -24,14 +34,13 @@ public class AccessoryUpdateView extends JPanel {
 		lblNewLabel.setBounds(6, 49, 628, 35);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Choose the accessory you want to update in the list :");
+		JLabel lblNewLabel_1 = new JLabel("Enter the accessory you want to update :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(6, 123, 628, 16);
 		add(lblNewLabel_1);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(210, 164, 218, 28);
-		add(spinner);
+		ArrayList<Accessory> accessories = accessoryFacade.getAccessories(); //get all accessories
+		SpinnerListModel accessoriesModel = new SpinnerListModel(accessories);
 		
 		
 		JButton btnSubmite = new JButton("Submit");
@@ -41,6 +50,13 @@ public class AccessoryUpdateView extends JPanel {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(122, 228, 117, 29);
 		add(btnCancel);
+		
+		txtEnterTheName = new JTextField();
+		txtEnterTheName.setForeground(Color.LIGHT_GRAY);
+		txtEnterTheName.setText("Enter the name");
+		txtEnterTheName.setBounds(210, 166, 231, 28);
+		add(txtEnterTheName);
+		txtEnterTheName.setColumns(10);
 		
 	}
 }
