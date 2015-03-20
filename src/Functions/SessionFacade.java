@@ -59,8 +59,12 @@ public class SessionFacade {
 		// your code here
 		return null;
 	} 
+	
+	public boolean registration(){
+		return true;
+	}
 
-	public void Registration() {        
+	public void registrationCotisation() {        
 		if (this.sessionManager.GetCurrentUser().getMemberRole() != null) {
 			Date endDate = this.sessionManager.GetCurrentUser().getMemberRole().getSubscription()
 					.getEndSubscriptionDate();
