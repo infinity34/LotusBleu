@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
@@ -119,26 +120,18 @@ public class LoginGUI {
 			public void actionPerformed(ActionEvent e) {
 				String userId = txtUserid.getText();
 				String password = pwdPassword.getText();
-				
-				// Test de la fonction de Hashage
-				
-				PasswordHash hash = new PasswordHash();
-				try {
-					System.out.println(hash.PasswordHash(password));
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+								
 				System.out.println("avant login");
 				if(facade.Login(userId,password)){
+<<<<<<< HEAD
 					// lance l'interface principale
 					
+=======
+>>>>>>> 3aff8ea6695d77debc77d2d1cc4ab661fb6f463c
 					new MainFrame();
 				}
 				else {
-					//display error message
-					System.out.println("Connexion echouee");
+					JOptionPane.showMessageDialog(null, "wrong login/password ");
 				}
 			}
 		});

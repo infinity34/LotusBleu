@@ -5,6 +5,10 @@
 	<classpathentry kind="src" path="src/Test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/home/raptor659/Desktop/IG4/S8/ProjetGenieLog/mysql-connector-java-5.1.34-bin.jar"/>
+=======
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.34-bin.jar"/>
+>>>>>>> 3aff8ea6695d77debc77d2d1cc4ab661fb6f463c
 	<classpathentry kind="output" path="bin"/>
 </classpath>
