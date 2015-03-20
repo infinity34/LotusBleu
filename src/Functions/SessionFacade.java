@@ -57,8 +57,7 @@ public class SessionFacade {
 	 * @return 
 	 */
 	public Data.User GetCurrentUser() {        
-		// your code here
-		return null;
+		return this.sessionManager.GetCurrentUser();
 	} 
 	
 	public boolean registration(){

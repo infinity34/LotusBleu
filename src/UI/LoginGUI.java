@@ -129,11 +129,11 @@ public class LoginGUI {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}*/
+				
 				System.out.println("avant login");
 				if(facade.Login(userId,password)){
-					//display user interface
-					System.out.println("Connexion reussie");
-					new MainFrame();//Pour tester comme il y a pas encore l'interface
+					// lance l'interface principale
+					new MainFrame();
 				}
 				else {
 					//display error message
