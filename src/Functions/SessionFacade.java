@@ -19,6 +19,10 @@ public class SessionFacade {
 	 * 
 	 */
 	private SessionManager sessionManager;
+	
+	/**
+	 * Represents the SessionFacade used to implement the singleton Pattern
+	 */
 	private static SessionFacade session;
 
 	/**
@@ -38,7 +42,7 @@ public class SessionFacade {
 	 * @param password 
 	 * @return 
 	 */
-	public Boolean Login(String username, String password) {        
+	public Boolean Login(String username, String password) { 		
 		return sessionManager.Login(username,password);
 	} 
 

@@ -8,6 +8,7 @@ import Data.MemberRole;
 import Data.Payment;
 import Data.Subscription;
 import Tools.DBconnection;
+import Tools.PasswordHash;
 
 /**
  * 
@@ -38,6 +39,8 @@ public class SessionManagerDB extends Persistence.SessionManager {
 
 		int numberOfRows = 0;
 		try {
+			// Cryptage du mot de passe
+			password = PasswordHash.PasswordHash(password);
 			// Récupération de l'utilisateur
 			ResultSet resultat = dbConnection.getState().executeQuery(
 					"SELECT * FROM lotusbleu.USER WHERE mail=\"" + username
@@ -75,7 +78,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 							subscriptionDate, subscriptionEndDate, payment)));
 				}
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return (numberOfRows > 0);
