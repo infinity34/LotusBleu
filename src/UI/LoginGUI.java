@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
@@ -136,8 +137,7 @@ public class LoginGUI {
 					new MainFrame();
 				}
 				else {
-					//display error message
-					System.out.println("Connexion echouee");
+					JOptionPane.showMessageDialog(null, "wrong login/password ");
 				}
 			}
 		});
