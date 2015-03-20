@@ -50,7 +50,7 @@ public class Event {
 	 * 
 	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm769d]
 	 */
-	private Contributor eventContributor;
+	private ContributorRole eventContributor;
 
 	/**
 	 * Create a new Event
@@ -62,7 +62,7 @@ public class Event {
 	 * @param eventContributor
 	 */
 	public Event(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
-			Activity eventActivity, Contributor eventContributor) {
+			Activity eventActivity, ContributorRole eventContributor) {
 		super();
 		this.eventName = eventName;
 		this.eventRoom = eventRoom;
@@ -134,7 +134,7 @@ public class Event {
 	/**
 	 * @return the eventContributor
 	 */
-	public Data.Contributor getEventContributor() {
+	public Data.ContributorRole getEventContributor() {
 		return eventContributor;
 	}
 
@@ -142,7 +142,7 @@ public class Event {
 	 * @param eventContributor
 	 *            the eventContributor to set
 	 */
-	public void setEventContributor(Data.Contributor eventContributor) {
+	public void setEventContributor(Data.ContributorRole eventContributor) {
 		this.eventContributor = eventContributor;
 	}
 
