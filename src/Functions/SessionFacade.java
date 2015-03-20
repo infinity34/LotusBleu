@@ -18,13 +18,15 @@ public class SessionFacade {
 	 * 
 	 * 
 	 */
-	public SessionManager sessionManager;
+	private SessionManager sessionManager;
+	private static SessionFacade session;
 
 	/**
 	 * 
 	 * 
 	 */
-	public SessionFacade(){
+	private SessionFacade(){
+		super();
 		sessionManager = new SessionManagerDB();
 	}
 	
@@ -37,7 +39,6 @@ public class SessionFacade {
 	 * @return 
 	 */
 	public Boolean Login(String username, String password) {        
-		// your code here
 		return sessionManager.Login(username,password);
 	} 
 
@@ -78,8 +79,10 @@ public class SessionFacade {
 	} 
 
 	public static SessionFacade getSessionFacade() {
-		// TODO Auto-generated method stub
-		return null;
+		if(session == null){
+			session = new SessionFacade();
+		}
+		return session;
 	} 
 
 }
