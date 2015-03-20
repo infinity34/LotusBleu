@@ -18,12 +18,11 @@ public class CategoryGUI {
 	
 	public CategoryGUI()
 	{
-		frmLotusBleu = new UI.MainFrame();
-		
+		frmLotusBleu = UI.MainFrame.getMainFrame();
 		facade = CategoryFacade.getFacade();
-	}
-
-	
+		frmLotusBleu.setMainPanel(new CategoryManagementMenu());
+		frmLotusBleu.setVisible(true);		
+	}	
 	
 	
 	public static void main(String[] args) {
@@ -31,8 +30,6 @@ public class CategoryGUI {
 			public void run() {
 				try {
 					CategoryGUI window = new CategoryGUI();
-					window.frmLotusBleu.setVisible(true);
-					window.frmLotusBleu.setMainPanel(new CategoryManagementMenu());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

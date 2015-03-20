@@ -133,6 +133,7 @@ public class LoginGUI {
 				System.out.println("avant login");
 				if(facade.Login(userId,password)){
 					// lance l'interface principale
+					
 					new MainFrame();
 				}
 				else {

@@ -4,10 +4,50 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 
 public class CategoryManagementMenu extends JPanel {
+	
+	private JButton btnAddACategory;
+	private JButton btnUpdateACategory;
+	private JButton btnDeleteACategory;
+	private JButton btnDisplayCategory;
+	private JButton btnBack;
+	
+	
+	//Getter for the JButton
+	public JButton getBtnAddACategory() {
+		return btnAddACategory;
+	}
+
+
+
+	public JButton getBtnUpdateACategory() {
+		return btnUpdateACategory;
+	}
+
+
+
+	public JButton getBtnDeleteACategory() {
+		return btnDeleteACategory;
+	}
+	
+	public JButton getBtnDisplayCategory() {
+		return btnDisplayCategory;
+	}
+
+
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+	
+	
+
+	
 
 	
 	public CategoryManagementMenu() {
@@ -27,30 +67,60 @@ public class CategoryManagementMenu extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblHereYouCan, 120, SpringLayout.WEST, this);
 		add(lblHereYouCan);
 		
-		JButton btnAddACategory = new JButton("Add a Category");
+		btnAddACategory = new JButton("Add a Category");
 		springLayout.putConstraint(SpringLayout.WEST, btnAddACategory, 40, SpringLayout.WEST, this);
 		add(btnAddACategory);
 		
-		JButton btnNewButton = new JButton("Udate a Category");
-		springLayout.putConstraint(SpringLayout.NORTH, btnAddACategory, 0, SpringLayout.NORTH, btnNewButton);
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 45, SpringLayout.SOUTH, lblHereYouCan);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 236, SpringLayout.WEST, this);
-		add(btnNewButton);
+		btnUpdateACategory = new JButton("Udate a Category");
+		springLayout.putConstraint(SpringLayout.NORTH, btnAddACategory, 0, SpringLayout.NORTH, btnUpdateACategory);
+		springLayout.putConstraint(SpringLayout.NORTH, btnUpdateACategory, 45, SpringLayout.SOUTH, lblHereYouCan);
+		springLayout.putConstraint(SpringLayout.WEST, btnUpdateACategory, 236, SpringLayout.WEST, this);
+		add(btnUpdateACategory);
 		
-		JButton btnDeleteACategory = new JButton("Delete a Category");
+		btnDeleteACategory = new JButton("Delete a Category");
 		springLayout.putConstraint(SpringLayout.NORTH, btnDeleteACategory, 0, SpringLayout.NORTH, btnAddACategory);
 		springLayout.putConstraint(SpringLayout.EAST, btnDeleteACategory, -25, SpringLayout.EAST, this);
 		add(btnDeleteACategory);
 		
-		JButton button = new JButton("< Back");
-		springLayout.putConstraint(SpringLayout.WEST, button, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, button, -10, SpringLayout.SOUTH, this);
-		add(button);
+		btnBack = new JButton("< Back");
+		springLayout.putConstraint(SpringLayout.WEST, btnBack, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
+		add(btnBack);
 		
-		JButton btnDisplayCategory = new JButton("Display all Categories");
-		springLayout.putConstraint(SpringLayout.NORTH, btnDisplayCategory, 66, SpringLayout.SOUTH, btnNewButton);
+		btnDisplayCategory = new JButton("Display all Categories");
+		springLayout.putConstraint(SpringLayout.NORTH, btnDisplayCategory, 66, SpringLayout.SOUTH, btnUpdateACategory);
 		springLayout.putConstraint(SpringLayout.EAST, btnDisplayCategory, -225, SpringLayout.EAST, this);
 		add(btnDisplayCategory);
+		
+		btnAddACategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementAddCategory());
+				}
+			});
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new HomePanel());
+				}
+			});
+		
+		btnDeleteACategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementDeleteCategory());
+				}
+			});
+		/*
+		btnDisplayCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementDeleteCategory());
+				}
+			});*/
+		
+		btnUpdateACategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategory());
+				}
+			});
 
 	}
 }

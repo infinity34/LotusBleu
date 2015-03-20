@@ -3,6 +3,9 @@ package UI;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -40,10 +43,16 @@ public class CategoryManagementUpdateCategory extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, btnUpdateCategory, 155, SpringLayout.WEST, this);
 		add(btnUpdateCategory);
 		
-		JButton button = new JButton("< Back");
-		springLayout.putConstraint(SpringLayout.WEST, button, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, button, -10, SpringLayout.SOUTH, this);
-		add(button);
+		JButton btnBack = new JButton("< Back");
+		springLayout.putConstraint(SpringLayout.WEST, btnBack, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
+		add(btnBack);
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenu());
+				}
+			});
 	
 
 	}

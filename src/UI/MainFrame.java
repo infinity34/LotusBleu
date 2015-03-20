@@ -19,6 +19,7 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private SessionFacade session;
 	private JPanel mainPanel;
+	private static MainFrame mainFrame;
 
 	/**
 	 * Launch the application.
@@ -39,7 +40,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	private MainFrame() {
 		session = SessionFacade.getSessionFacade();
 		setTitle("Lotus Bleu");
 		setResizable(false);
@@ -69,6 +70,15 @@ public class MainFrame extends JFrame {
 		mainPanel = new JPanel();
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		this.setVisible(true);
+	}
+	
+	public static MainFrame getMainFrame()
+	{
+		if (mainFrame == null)
+		{
+			mainFrame = new MainFrame();
+		}
+		return mainFrame;
 	}
 	
 	public void setMainPanel(JPanel panel)
