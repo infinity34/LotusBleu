@@ -4,7 +4,7 @@ package Data;
 /**
  * Activity
  * Designed by Lyvia
- * Developped by Prisca
+ * Developed by Prisca
  */
 public class Activity {
 

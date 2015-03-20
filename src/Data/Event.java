@@ -2,55 +2,17 @@ package Data;
 
 /**
  * This class represents an event
+ * Designed by Maxime
+ * Developed by Prisca
  * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7a9c]
  */
 public class Event {
 
-	/**
-	 * <p>
-	 * Represents the name of the event
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm792c]
-	 */
-	private String eventName;
-
-	/**
-	 * <p>
-	 * Represents the room used for this event
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76d3]
-	 */
-	private Room eventRoom;
-
-	/**
-	 * <p>
-	 * Represents the time slot of the event
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76c1]
-	 */
-	private TimeSlot eventTimeSlot;
-
-	/**
-	 * <p>
-	 * Represents the activity which the event depends on
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76af]
-	 */
-	private Activity eventActivity;
-
-	/**
-	 * <p>
-	 * Represents the contributor responsible of this event
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm769d]
-	 */
-	private ContributorRole eventContributor;
+	private String eventName; //Represents the name of the event
+	private Room eventRoom; //Represents the room used for this event
+	private TimeSlot eventTimeSlot; //Represents the time slot of the event
+	private Activity eventActivity; //Represents the activity which the event depends on
+	private ContributorRole eventContributor; //Represents the contributor responsible of this event
 
 	/**
 	 * Create a new Event
