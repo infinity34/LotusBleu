@@ -8,5 +8,13 @@ public class ClassRoom extends Room{
 		super(area, name);
 		this.maximumNumberOfParticipant = maximumNumberOfParticipant;
 	}
+	
+	public int getMaximumNumberOfParticipant(){
+		return maximumNumberOfParticipant;
+	}
+	
+	public void setMaximumNumberOfParticipant(int maximumNumberOfParticipant){
+		this.maximumNumberOfParticipant = maximumNumberOfParticipant;
+	}
 
 }
