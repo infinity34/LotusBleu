@@ -33,4 +33,9 @@ public class CategoryFacade {
     
 
     public Persistence.CategoryManager categoryManager;
+
+	public static CategoryFacade getFacade() {
+		// TODO Auto-generated method stub
+		return null;
+	}
  }

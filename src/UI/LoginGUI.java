@@ -121,14 +121,14 @@ public class LoginGUI {
 				String password = pwdPassword.getText();
 				
 				// Test de la fonction de Hashage
-				/*
+				
 				PasswordHash hash = new PasswordHash();
 				try {
 					System.out.println(hash.PasswordHash(password));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}*/
+				}
 				
 				System.out.println("avant login");
 				if(facade.Login(userId,password)){

@@ -18,6 +18,7 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private SessionFacade session;
+	private JPanel mainPanel;
 
 	/**
 	 * Launch the application.
@@ -65,7 +66,15 @@ public class MainFrame extends JFrame {
 		JButton btnDisconnect = new JButton("Disconnect");
 		menuPanel.add(btnDisconnect);
 		
-		JPanel mainPanel = new JPanel();
+		mainPanel = new JPanel();
+		contentPane.add(mainPanel, BorderLayout.CENTER);
+		this.setVisible(true);
+	}
+	
+	public void setMainPanel(JPanel panel)
+	{
+		contentPane.remove(mainPanel);
+		mainPanel = panel;
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
