@@ -14,7 +14,6 @@ public class OfficeTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		office = new Office(1,"nameOffice");
 	}
 
 	@AfterClass
@@ -23,6 +22,7 @@ public class OfficeTest {
 
 	@Before
 	public void setUp() throws Exception {
+		office = new Office(1,"nameOffice");
 	}
 
 	@After
