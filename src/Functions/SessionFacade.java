@@ -1,6 +1,8 @@
 
 package Functions;
 
+import java.util.Date;
+
 import Persistence.SessionManager;
 import Persistence.SessionManagerDB;
 
@@ -45,10 +47,7 @@ public class SessionFacade {
 	 * 
 	 * @return 
 	 */
-	public Boolean Logout() {        
-		// your code here
-		return null;
-	} 
+	public void Logout() {} 
 
 	/**
 	 * <p>Does ...</p>
@@ -61,16 +60,18 @@ public class SessionFacade {
 		return null;
 	} 
 
-	/**
-	 * <p>Does ...</p>
-	 * 
-	 * 
-	 * @return 
-	 */
-	public Boolean Registration() {        
-		// your code here
-		return null;
-	}
+	public void Registration() {        
+		if (this.sessionManager.GetCurrentUser().getMemberRole() != null) {
+			Date endDate = this.sessionManager.GetCurrentUser().getMemberRole().getSubscription()
+					.getEndSubscriptionDate();
+			Date currentDate = new Date();
+			if(endDate.before(currentDate)){
+				endDate = currentDate;
+			}
+			endDate.setYear(endDate.getYear()+1);
+			this.sessionManager.registerForAYear(endDate);
+		}
+	} 
 
 	public static SessionFacade getSessionFacade() {
 		// TODO Auto-generated method stub
