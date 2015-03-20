@@ -17,6 +17,8 @@ public class Notification {
 	private boolean read;
 	
 	private Date date;
+	
+	private int notificationID;
 
 	/**
 	 * @return the message
@@ -61,20 +63,35 @@ public class Notification {
 	}
 
 	/**
+	 * @return the notificationID
+	 */
+	public int getNotificationID() {
+		return notificationID;
+	}
+
+	/**
+	 * @param notificationID the notificationID to set
+	 */
+	public void setNotificationID(int notificationID) {
+		this.notificationID = notificationID;
+	}
+
+	/**
 	 * @param message
 	 * @param read
 	 * @param date
 	 */
-	public Notification(String message, boolean read, Date date) {
+	public Notification(String message, boolean read, Date date, int ID) {
 		super();
 		this.message = message;
 		this.read = read;
 		this.date = date;
+		this.notificationID = ID;
 	}
 
 	public String toString() {
 		return "Notification [message=" + message + ", read=" + read
-				+ ", date=" + date + "]";
+				+ ", date=" + date + ", ID = "+notificationID+"]";
 	}
 	
 	public void markAsRead(){

@@ -22,4 +22,6 @@ public class NotificationManager {
 	public void markAsRead(Notification notification){}
 	
 	public void markAsUnread(Notification notification){}
+	
+	public void removeNotification(Notification notification){}
 }

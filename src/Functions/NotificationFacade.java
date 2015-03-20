@@ -43,4 +43,8 @@ public class NotificationFacade {
 	public void markAsUnread(Notification notification){
 		this.notificationManager.markAsUnread(notification);
 	}
+	
+	public void remove(Notification notification){
+		this.notificationManager.removeNotification(notification);
+	}
 }

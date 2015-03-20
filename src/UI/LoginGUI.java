@@ -123,12 +123,8 @@ public class LoginGUI {
 								
 				System.out.println("avant login");
 				if(facade.Login(userId,password)){
-<<<<<<< HEAD
 					// lance l'interface principale
-					
-=======
->>>>>>> 3aff8ea6695d77debc77d2d1cc4ab661fb6f463c
-					new MainFrame();
+					MainFrame.getMainFrame();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "wrong login/password ");

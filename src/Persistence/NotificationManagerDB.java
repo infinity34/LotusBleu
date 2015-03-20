@@ -32,11 +32,23 @@ public class NotificationManagerDB extends NotificationManager {
 	}
 
 	public void markAsRead(Notification notification) {
-
+		try {
+			connection.getState().executeQuery(
+					"UPDATE NOTIFICATION SET read = 1 WHERE  notificationID = "
+							+ notification.getNotificationID());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void markAsUnread(Notification notification) {
-
+		try {
+			connection.getState().executeQuery(
+					"UPDATE NOTIFICATION SET read = 0 WHERE  notificationID = "
+							+ notification.getNotificationID());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void loadNotifications(User user) {
@@ -47,9 +59,19 @@ public class NotificationManagerDB extends NotificationManager {
 			do {
 				this.notifications.add(new Notification(resultat
 						.getString("notificationMessage"), resultat
-						.getBoolean("read"), resultat.getDate("notificationDate")));
+						.getBoolean("read"), resultat
+						.getDate("notificationDate"), resultat
+						.getInt("notificationID")));
 			} while (resultat.next());
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeNotification(Notification notification){
+		try{
+			connection.getState().executeQuery("DELETE FROM NOTIFICATION WHERE notificationID = "+notification.getNotificationID());
+		} catch(SQLException e){
 			e.printStackTrace();
 		}
 	}
