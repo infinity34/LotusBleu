@@ -2,36 +2,36 @@
 package Data;
 
 /**
- * 
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5e41]
+ * Activity
+ * Designed by Lyvia
+ * Developped by Prisca
  */
 public class Activity {
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5689]
- */
-    private String name;
-
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5678]
- */
-    private String shortDescription;
-
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5667]
- */
-    private String longDescription;
-/**
- * 
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5de7]
- */
+    private String name; //name of the activity
+    private String description; //description of the activity
     public Data.InCharge inCharge;
+    
+    //Constructor
+    public Activity(String aName, String aDescription){
+    	this.setName(aName);
+    	this.setDescription(aDescription);
+    }
+
+    //Getters and Setters
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
  }

@@ -6,64 +6,45 @@ import java.util.ArrayList;
 import Data.Activity;
 
 /**
- * 
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5ed5]
- */
-public class ActivityManager {
-/**
- * 
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5e2b]
- */
+ * Activity Manager
+ * Designed by Lyvia
+ * Developped by Prisca
+ */ 
+public abstract class ActivityManager {
+
     public Data.Activity activity;
+    private ArrayList<Activity> activities;
 
 /**
- * <p>Does ...</p>
+ * <p> Create an activity</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm58ac]
  * @param name 
  * @param inCharge 
  * @param shortDescription 
  * @param longDescription 
  * @return 
  */
-    public Data.Activity createActivity(String name, Data.InCharge inCharge, String shortDescription, String longDescription) {        
-        // your code here
-        return null;
-    } 
+    public abstract Data.Activity createActivity(String name, String description);
 
 /**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm57cd]
+ * <p> edit an activity</p>
+ *
  * @param name 
  * @param inCharge 
  * @param shortDescription 
  * @param longDescription 
  */
-    public void editActivity(String name, Data.InCharge inCharge, String shortDescription, String longDescription) {        
-        // your code here
-    } 
+    public abstract void editActivity(String name, String description);
 
 /**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm56ee]
+ * <p>Delete an activity</p>
  * @param name 
  */
-    public void deleteActivity(String name) {        
-        // your code here
-    } 
+    public abstract void deleteActivity(String name);
 
 /**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm56ae]
- * @return 
+ * <p> Get all activity</p>
+ * @return list of all activity
  */
-    public ArrayList<Activity> getAllActivity() {        
-        // your code here
-        return null;
-    } 
+    public abstract ArrayList<Activity> getAllActivities();
  }

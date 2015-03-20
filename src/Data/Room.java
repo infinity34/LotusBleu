@@ -9,27 +9,48 @@ package Data;
 public abstract class Room {
 	
 	private int area;
-	private String name;
+	private int numberOfParticipant;
+	private int roomID;
+	private String roomType;
 	
-	public Room(int area, String name){
+	public Room(int roomID, int area, int numberOfParticipant, String roomType){
 		this.area = area;
-		this.name = name;
+		this.roomID = roomID;
+		this.numberOfParticipant = numberOfParticipant;
+		this.roomType = roomType;
 	}
 	
 	public void setArea(int area){
 		this.area = area;
 	}
 	
-	public void setRoomName(String name){
-		this.name = name;
-	}
 	
 	public int getArea(){
 		return this.area;
 	}
-	
-	public String getRoomName(){
-		return this.name;
+
+	public int getRoomID() {
+		return roomID;
+	}
+
+	public void setRoomID(int roomID) {
+		this.roomID = roomID;
+	}
+
+	public int getNumberOfParticipant() {
+		return numberOfParticipant;
+	}
+
+	public void setNumberOfParticipant(int numberOfParticipant) {
+		this.numberOfParticipant = numberOfParticipant;
+	}
+
+	public String getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 	
  }

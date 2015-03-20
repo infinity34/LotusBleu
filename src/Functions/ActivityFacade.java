@@ -6,14 +6,16 @@ import java.util.ArrayList;
 import Data.Activity;
 
 /**
- * 
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5f3f]
+ * Activity facade
+ * Designed by Lyvia
+ * Developped by Prisca
  */
 public class ActivityFacade {
-
+	
+private Persistence.ActivityManager activityManager;
+	
 /**
- * <p>Does ...</p>
+ * <p>Create an activity</p>
  * 
  * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5d82]
  * @param name 
@@ -22,48 +24,49 @@ public class ActivityFacade {
  * @param longDescription 
  * @return 
  */
-    public Data.Activity createActivity(String name, Data.InCharge inCharge, String shortDescription, String longDescription) {        
+    public Data.Activity createActivity(String name, String description) {        
         // your code here
-        return null;
+        return activityManager.createActivity(name, description);
     } 
 
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5b94]
  * @param name 
  * @param inCharge 
  * @param shortDescription 
  * @param longDescription 
  */
-    public void editActivity(String name, Data.InCharge inCharge, String shortDescription, String longDescription) {        
-        // your code here
+    public void editActivity(String name, String description) {        
+        activityManager.editActivity(name, description);
     } 
 
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5ab4]
  * @param name 
  */
     public void deleteActivity(String name) {        
-        // your code here
+        activityManager.deleteActivity(name);
     } 
 
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm59ad]
  * @return 
  */
-    public ArrayList<Activity> getAllActivity() {        
+    public ArrayList<Activity> getAllActivities() {        
         // your code here
-        return null;
-    } 
-/**
- * 
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5ebf]
- */
-    public Persistence.ActivityManager activityManager;
+        return activityManager.getAllActivities();
+    }
+
+public Persistence.ActivityManager getActivityManager() {
+	return activityManager;
+}
+
+public void setActivityManager(Persistence.ActivityManager activityManager) {
+	this.activityManager = activityManager;
+} 
+
+    
  }

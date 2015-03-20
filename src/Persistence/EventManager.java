@@ -2,21 +2,20 @@
 package Persistence;
 import java.util.ArrayList;
 
+import Data.Activity;
+import Data.ContributorRole;
 import Data.Event;
+import Data.Room;
+import Data.TimeSlot;
 
 /**
- * 
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm79b9]
+ * Event manager class
+ * Designed by Maxime
+ * Developped by Prisca
  */
 public class EventManager {
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm79a0]
- */
-    private ArrayList<Event> events;
+private ArrayList<Event> events; //Represents the list of events
 
 public EventManager() {
 	super();
@@ -24,38 +23,35 @@ public EventManager() {
 }
 
 /**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7cc5]
- * @return 
+ * <p> Return the list of all events which are in the database</p>
+ *
+ * @return ArrayList<Event>
  */
     public ArrayList<Event> getEvents() {        
         return this.events;
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Add an event with its name</p>
  * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7c7d]
  * @param String 
  */
-    public void addEvent(String name) {        
+    public void addEvent(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
+			Activity eventActivity, ContributorRole eventContributor) {        
         // your code here
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Load all events</p>
  * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7c3c]
  */
     public void loadEvents() {        
         // your code here
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Get an event with keyword</p>
  * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7c17]
  * @param String 
  */
     public void getEventsByKeyword(String keyword) {        
