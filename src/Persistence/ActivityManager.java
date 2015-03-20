@@ -13,7 +13,6 @@ import Data.Activity;
 public abstract class ActivityManager {
 
     public Data.Activity activity;
-    private ArrayList<Activity> activities;
 
 /**
  * <p> Create an activity</p>
@@ -34,7 +33,7 @@ public abstract class ActivityManager {
  * @param shortDescription 
  * @param longDescription 
  */
-    public abstract void editActivity(String name, String description);
+    public abstract void editActivity(String oldName, String newName, String newDescription);
 
 /**
  * <p>Delete an activity</p>

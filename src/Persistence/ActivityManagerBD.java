@@ -41,21 +41,27 @@ public class ActivityManagerBD extends Persistence.ActivityManager {
 		// TODO Auto-generated method stub
 		try {
 			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY");
-			
+			this.activities = new ArrayList<Activity>();
 			do {
-				//Add the activity in the events arraylist
+				//Add the activity in the events ArrayList
 				this.activities.add(new Activity(resultat.getString("activityName"),resultat.getString("activityDescritption")));
 			} while (resultat.next());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return activities;
+		return this.activities;
 	}
 	
 	@Override
-	public void editActivity(String name, String description) {
-		// TODO Auto-generated method stub
+	public void editActivity(String oldName, String newName, String newDescription) {
+		try {
+			connection.getState().executeQuery(
+					"UPDATE ACTIVITY SET activityName =" + newName + " AND activityDescritption="+ newDescription +"WHERE  activityName = "
+							+ oldName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

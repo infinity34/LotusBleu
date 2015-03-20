@@ -37,8 +37,8 @@ private Persistence.ActivityManager activityManager;
  * @param shortDescription 
  * @param longDescription 
  */
-    public void editActivity(String name, String description) {        
-        activityManager.editActivity(name, description);
+    public void editActivity(String oldName, String newName, String newDescription) {        
+        activityManager.editActivity(oldName, newName, newDescription);
     } 
 
 /**
