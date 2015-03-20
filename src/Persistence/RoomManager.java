@@ -1,28 +1,51 @@
 
 package Persistence;
 
+import java.util.ArrayList;
+import Data.Room;
+
 /**
  * 
  * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7db7]
+ * 
  */
 public class RoomManager {
-/**
- * 
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7ae7]
- */
-    public Data.Room room;
 
+/**
+ * The ArrayList (rooms) contains all the rooms
+ */
+	private ArrayList<Room> rooms;
+
+	/**
+	 * 
+	 */
+	public RoomManager() {
+		this.setRooms(new ArrayList<Room>());
+	}
+	
+
+	/**
+	 * @return the room list
+	 */
+	public ArrayList<Room> getRooms() {
+		return this.rooms;
+	}
+
+	/**
+	 * @param set the room list
+	 */
+	public void setRooms(ArrayList<Room> rooms) {
+		this.rooms = rooms;
+	}
+	
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I64875daam14c1cbbcc52mm7cb4]
  * @return 
  */
-    private boolean addRoom() {        
-        // your code here
-        return false;
+    public void addRoom( Room room ) {        
+    	this.rooms.add(room);
     } 
 
 /**
