@@ -59,8 +59,8 @@ public class EventManagerDB extends Persistence.EventManager {
 	 * <p>Load all events</p>
 	 * 
 	 */
-	public void loadEvents() {        
-	 /**       // your code here
+	public ArrayList<Event> getEvents() {        
+	       // your code here
 		try {
 			ResultSet resultat = connection.getState().executeQuery(
 					"SELECT * FROM lotusbleu.EVENT");
@@ -75,8 +75,11 @@ public class EventManagerDB extends Persistence.EventManager {
 				
 				//Create the activity object
 				ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityID =" + resultat.getInt("activityID"));
-
+				Activity activity = new Activity(resultatActivity.getString("activityName"),resultatActivity.getString("activityDescritption"));
+				
 				//Create the contributorRole object
+				ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userID =" + resultat.getInt("contributorID"));
+				
 				
 				//Add the event in the events arraylist
 				this.events.add(new Event(resultat.getString("eventName"),room, timeslot, activity, contributor));
@@ -86,16 +89,37 @@ public class EventManagerDB extends Persistence.EventManager {
 			e.printStackTrace();
 		}
 		
-		**/
+		return events;
 	} 
 
 	/**
 	 * <p>Get all events with keyword</p>
 	 * 
 	 * @param String 
+	 * @return 
 	 */
-	public void getEventsByKeyword(String keyword) {        
+	public ArrayList<Event> getEventsByKeyword(String keyword) {
+		return events;        
 	        // your code here
-	} 
+	}
+
+	@Override
+	public void getAnEventWithName(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeEvent(Event eventToRemove) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateEvent(Event eventToUpdate) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

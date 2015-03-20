@@ -13,7 +13,7 @@ import Data.TimeSlot;
  * Designed by Maxime
  * Developped by Prisca
  */
-public class EventManager {
+public abstract class EventManager {
 
 private ArrayList<Event> events; //Represents the list of events
 
@@ -22,39 +22,50 @@ public EventManager() {
 	this.events = new ArrayList<Event>();
 }
 
-/**
- * <p> Return the list of all events which are in the database</p>
- *
- * @return ArrayList<Event>
- */
-    public ArrayList<Event> getEvents() {        
-        return this.events;
-    } 
+	/**
+	 * <p> Return the list of all events which are in the database</p>
+	 *
+	 * @return ArrayList<Event>
+	 */
+    public abstract ArrayList<Event> getEvents();
 
-/**
- * <p>Add an event with its name</p>
- * 
- * @param String 
- */
-    public void addEvent(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
-			Activity eventActivity, ContributorRole eventContributor) {        
-        // your code here
-    } 
+	/**
+	 * <p>Add an event with its name</p>
+	 * 
+	 * @param String 
+	 */
+    public abstract void addEvent(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
+			Activity eventActivity, ContributorRole eventContributor);
 
-/**
- * <p>Load all events</p>
- * 
- */
-    public void loadEvents() {        
-        // your code here
-    } 
 
-/**
- * <p>Get an event with keyword</p>
- * 
- * @param String 
- */
-    public void getEventsByKeyword(String keyword) {        
-        // your code here
-    } 
- }
+	/**
+	 * <p>Get an event with keyword</p>
+	 * 
+	 * @param String 
+	 * @return 
+	 */
+    public abstract ArrayList<Event> getEventsByKeyword(String keyword);
+ 
+
+	/**
+	 * <p>Get an event with name</p>
+	 * 
+	 * @param String 
+	 */
+    public abstract void getAnEventWithName(String name);
+
+    /**
+	 * <p>Remove an event</p>
+	 * 
+	 * @param String 
+	 */
+	public abstract void removeEvent(Event eventToRemove);
+
+	/**
+	 * <p>Update an event</p>
+	 * 
+	 * @param String 
+	 */
+	public abstract void updateEvent(Event eventToUpdate);
+	
+}

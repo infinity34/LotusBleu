@@ -5,100 +5,92 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import Data.Activity;
+import Data.ContributorRole;
 import Data.Event;
+import Data.Room;
+import Data.TimeSlot;
 
 /**
+ * Event facade
+ * Designed by Maxime
+ * Developed by Prisca
  * 
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7dda]
  */
 public class EventFacade {
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7ca0]
- */
+	//Variables
     private Functions.SessionFacade session;
-
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm763d]
- */
     private ActivityFacade activity;
-/**
- * 
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7952]
- */
     public Persistence.EventManager eventManager;
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7d5a]
- * @return 
- */
+    
+    //Methods
+    /**
+     * <p>Does ...</p>
+     * 
+     * @param String 
+     * @return 
+     */
     public ArrayList<Event> getEvents() {        
-        // your code here
-        return null;
+        
+        return eventManager.getEvents();
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7d14]
- * @param String 
- * @return 
- */
-    public ArrayList<Event> getEventByKeyword(String keyword) {        
-        // your code here
-        return null;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7cd3]
- * @param String 
- * @param Date 
- * @param Date 
- * @param Boolean 
- * @param Date 
- */
-    public void addEvent(String name, Date begin, Date end, Boolean recurrence, Date recurrenceEnd) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7c92]
- * @param Event 
- */
-    public void removeEvent(Event eventToRemove) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7c51]
- * @param Event 
- */
-    public void updateEvent(Event eventToUpdate) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm762b]
- * @return 
- */
-    public ArrayList<Activity> getActivities() {        
-        // your code here
-        return null;
-    } 
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * @param String 
+	 * @return 
+	 */
+	    public ArrayList<Event> getEventByKeyword(String keyword) {        
+	
+	    	return eventManager.getEventsByKeyword(keyword);
+	
+	    } 
+	
+	/**
+	 * <p>Add an event</p>
+	 * 
+	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm7cd3]
+	 * @param String 
+	 * @param Date 
+	 * @param Date 
+	 * @param Boolean 
+	 * @param Date 
+	 */
+	    public void addEvent(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
+				Activity eventActivity, ContributorRole eventContributor) {        
+	    	
+	    	eventManager.addEvent(eventName, eventRoom, eventTimeSlot, eventActivity, eventContributor);
+	    } 
+	
+	/**
+	 * <p>Remove an event</p>
+	 *
+	 * @param Event 
+	 */
+	    public void removeEvent(Event eventToRemove) {        
+	
+	    	eventManager.removeEvent(eventToRemove);
+	    } 
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm7c51]
+	 * @param Event 
+	 */
+	    public void updateEvent(Event eventToUpdate) {        
+	    	eventManager.updateEvent(eventToUpdate);
+	    } 
+	
+	/**
+	 * <p>Does ...</p>
+	 * 
+	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm762b]
+	 * @return 
+	 */
+	    public ArrayList<Activity> getAllActivities() {        
+	    	activity.getAllActivities();
+	        return null;
+	    } 
  }
