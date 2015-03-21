@@ -3,9 +3,7 @@ package Persistence;
 import java.util.ArrayList;
 
 import Data.Activity;
-import Data.ContributorRole;
 import Data.Event;
-import Data.Room;
 import Data.TimeSlot;
 
 /**
@@ -15,12 +13,6 @@ import Data.TimeSlot;
  */
 public abstract class EventManager {
 
-private ArrayList<Event> events; //Represents the list of events
-
-public EventManager() {
-	super();
-	this.events = new ArrayList<Event>();
-}
 
 	/**
 	 * <p> Return the list of all events which are in the database</p>
@@ -34,7 +26,7 @@ public EventManager() {
 	 * 
 	 * @param String 
 	 */
-    public abstract void addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+    public abstract Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			Activity eventActivity, String eventContributorName, String eventContributorFirstname );
 
 
@@ -67,6 +59,7 @@ public EventManager() {
 	 * 
 	 * @param String 
 	 */
-	public abstract Boolean updateEvent(Event eventToUpdate);
+	public abstract Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			Activity eventActivity, String eventContributorName, String eventContributorFirstname);
 	
 }

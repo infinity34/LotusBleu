@@ -5,9 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Data.Activity;
-import Data.ContributorRole;
 import Data.Event;
-import Data.Room;
 import Data.TimeSlot;
 import Tools.DBconnection;
 
@@ -42,9 +40,8 @@ public class EventManagerDB extends Persistence.EventManager {
 	 * 
 	 * @param String 
 	 */
-	public void addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+	public Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {        
-	        // your code heres
 		
 		try {
 			ResultSet resultatActivity = connection.getState().executeQuery("SELECT activityID FROM lotusbleu.ACTIVITY WHERE activityName =" + eventActivity.getName());
@@ -54,10 +51,12 @@ public class EventManagerDB extends Persistence.EventManager {
 			int eventContributorID = resultatContributor.getInt("userID");
 			
 			connection.getState().executeQuery("INSERT INTO EVENT (activityID,contributorID,roomID,eventName,beginDate,endDate,recurrence,lastrecurrence) VALUES("+ eventActivityID +","+ eventContributorID + ","+ eventRoomID + "," + eventName + "," + eventTimeSlot.getBeginDate() +"," + eventTimeSlot.getEndDate() + "," + eventTimeSlot.isRecurrence() + "," +eventTimeSlot.getLastReccurence() + ")");
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 		
 	} 
 
@@ -144,7 +143,8 @@ public class EventManagerDB extends Persistence.EventManager {
 	}
 
 	@Override
-	public Boolean updateEvent(Event eventToUpdate) {
+	public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			Activity eventActivity, String eventContributorName, String eventContributorFirstname) {
 		return null;
 		// TODO Auto-generated method stub
 		
