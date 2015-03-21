@@ -57,10 +57,10 @@ public class EventFacade {
 	 * @param Boolean 
 	 * @param Date 
 	 */
-	    public void addEvent(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
-				Activity eventActivity, ContributorRole eventContributor) {        
+	    public void addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+				Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {        
 	    	
-	    	eventManager.addEvent(eventName, eventRoom, eventTimeSlot, eventActivity, eventContributor);
+	    	eventManager.addEvent(eventName,eventRoomID,eventTimeSlot,eventActivity,eventContributorName,eventContributorFirstname );
 	    } 
 	
 	/**

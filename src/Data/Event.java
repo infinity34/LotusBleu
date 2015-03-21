@@ -9,10 +9,11 @@ package Data;
 public class Event {
 
 	private String eventName; //Represents the name of the event
-	private Room eventRoom; //Represents the room used for this event
+	private int eventRoomID; //Represents the room used for this event
 	private TimeSlot eventTimeSlot; //Represents the time slot of the event
 	private Activity eventActivity; //Represents the activity which the event depends on
-	private ContributorRole eventContributor; //Represents the contributor responsible of this event
+	private String eventContributorName; //Represents the contributor's name responsible of this event
+	private String eventContributorFirstname; //Represents the contributor's firstname responsible of this event
 
 	/**
 	 * Create a new Event
@@ -23,14 +24,15 @@ public class Event {
 	 * @param eventActivity
 	 * @param eventContributor
 	 */
-	public Event(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
-			Activity eventActivity, ContributorRole eventContributor) {
+	public Event(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {
 		super();
 		this.eventName = eventName;
-		this.eventRoom = eventRoom;
+		this.setEventRoomID(eventRoomID);
 		this.eventTimeSlot = eventTimeSlot;
 		this.eventActivity = eventActivity;
-		this.eventContributor = eventContributor;
+		this.setEventContributorName(eventContributorName);
+		this.setEventContributorFirstname(eventContributorFirstname);
 	}
 
 	/**
@@ -46,21 +48,6 @@ public class Event {
 	 */
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
-	}
-
-	/**
-	 * @return the eventRoom
-	 */
-	public Data.Room getEventRoom() {
-		return eventRoom;
-	}
-
-	/**
-	 * @param eventRoom
-	 *            the eventRoom to set
-	 */
-	public void setEventRoom(Data.Room eventRoom) {
-		this.eventRoom = eventRoom;
 	}
 
 	/**
@@ -93,19 +80,33 @@ public class Event {
 		this.eventActivity = eventActivity;
 	}
 
-	/**
-	 * @return the eventContributor
-	 */
-	public Data.ContributorRole getEventContributor() {
-		return eventContributor;
+	public String getEventContributorName() {
+		return eventContributorName;
 	}
 
-	/**
-	 * @param eventContributor
-	 *            the eventContributor to set
-	 */
-	public void setEventContributor(Data.ContributorRole eventContributor) {
-		this.eventContributor = eventContributor;
+	public void setEventContributorName(String eventContributorName) {
+		this.eventContributorName = eventContributorName;
+	}
+
+	public String getEventContributorFirstname() {
+		return eventContributorFirstname;
+	}
+
+	public void setEventContributorFirstname(String eventContributorFirstname) {
+		this.eventContributorFirstname = eventContributorFirstname;
+	}
+	
+	public void setEventContributor(String eventContributorName,String eventContributorFirstname) {
+		this.setEventContributorName(eventContributorName);
+		this.setEventContributorFirstname(eventContributorFirstname);
+	}
+
+	public int getEventRoomID() {
+		return eventRoomID;
+	}
+
+	public void setEventRoomID(int eventRoomID) {
+		this.eventRoomID = eventRoomID;
 	}
 
 }

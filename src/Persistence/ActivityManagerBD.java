@@ -68,7 +68,7 @@ public class ActivityManagerBD extends Persistence.ActivityManager {
 	@Override
 	public void deleteActivity(String name) {
 		// TODO Auto-generated method stub
-	try {
+		try {
 		//delete FROM ACTIVITY WHERE activityID=2;
 		connection.getState().executeQuery("DELETE INTO ACTIVITY WHERE activityName="+ name+")");
 		} catch (SQLException e) {

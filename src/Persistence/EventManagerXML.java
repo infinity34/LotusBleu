@@ -23,9 +23,8 @@ public class EventManagerXML extends Persistence.EventManager {
 	}
 
 	@Override
-	public void addEvent(String eventName, Room eventRoom,
-			TimeSlot eventTimeSlot, Activity eventActivity,
-			ContributorRole eventContributor) {
+	public void addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -38,19 +37,22 @@ public class EventManagerXML extends Persistence.EventManager {
 	}
 
 	@Override
-	public void getAnEventWithName(String name) {
+	public Event getAnEventWithName(String name) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void removeEvent(Event eventToRemove) {
+	public Boolean removeEvent(Event eventToRemove) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateEvent(Event eventToUpdate) {
+	public Boolean updateEvent(Event eventToUpdate) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

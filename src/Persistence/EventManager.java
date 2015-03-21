@@ -34,8 +34,8 @@ public EventManager() {
 	 * 
 	 * @param String 
 	 */
-    public abstract void addEvent(String eventName, Room eventRoom, TimeSlot eventTimeSlot,
-			Activity eventActivity, ContributorRole eventContributor);
+    public abstract void addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			Activity eventActivity, String eventContributorName, String eventContributorFirstname );
 
 
 	/**
@@ -51,21 +51,22 @@ public EventManager() {
 	 * <p>Get an event with name</p>
 	 * 
 	 * @param String 
+	 * @return 
 	 */
-    public abstract void getAnEventWithName(String name);
+    public abstract Event getAnEventWithName(String name);
 
     /**
 	 * <p>Remove an event</p>
 	 * 
 	 * @param String 
 	 */
-	public abstract void removeEvent(Event eventToRemove);
+	public abstract Boolean removeEvent(Event eventToRemove);
 
 	/**
 	 * <p>Update an event</p>
 	 * 
 	 * @param String 
 	 */
-	public abstract void updateEvent(Event eventToUpdate);
+	public abstract Boolean updateEvent(Event eventToUpdate);
 	
 }
