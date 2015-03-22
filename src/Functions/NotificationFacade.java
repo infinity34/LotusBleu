@@ -2,9 +2,12 @@ package Functions;
 
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
+
 import Data.Notification;
 import Data.User;
 import Persistence.NotificationManager;
+import Persistence.NotificationManagerDB;
 
 public class NotificationFacade {
 
@@ -29,11 +32,19 @@ public class NotificationFacade {
 	 */
 	public NotificationFacade() {
 		super();
-		this.notificationManager = new NotificationManager();
+		this.notificationManager = new NotificationManagerDB();
 	}
 	
 	public ArrayList<Notification> getNotifications(User user){
 		return this.getNotificationManager().getNotifications(user);
+	}
+	
+	public Notification[] getNotificationsArray(User user){
+		return this.getNotificationManager().getNotificationsArray(user);
+	}
+	
+	public DefaultListModel<Notification> getNotificationsListModel(User user, boolean state){
+		return this.getNotificationManager().getNotificationsListModel(user, state);
 	}
 	
 	public void markAsRead(Notification notification){

@@ -33,8 +33,8 @@ public class NotificationManagerDB extends NotificationManager {
 
 	public void markAsRead(Notification notification) {
 		try {
-			connection.getState().executeQuery(
-					"UPDATE NOTIFICATION SET read = 1 WHERE  notificationID = "
+			connection.getState().executeUpdate(
+					"UPDATE NOTIFICATION SET notificationRead = 1 WHERE  notificationID = "
 							+ notification.getNotificationID());
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -43,9 +43,10 @@ public class NotificationManagerDB extends NotificationManager {
 
 	public void markAsUnread(Notification notification) {
 		try {
-			connection.getState().executeQuery(
-					"UPDATE NOTIFICATION SET read = 0 WHERE  notificationID = "
-							+ notification.getNotificationID());
+			String query = "UPDATE lotusbleu.NOTIFICATION SET notificationRead = '0' WHERE notificationID = '"
+					+ notification.getNotificationID()+"';";
+			System.out.println(query);
+			connection.getState().executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,23 +56,24 @@ public class NotificationManagerDB extends NotificationManager {
 		try {
 			ResultSet resultat = connection.getState().executeQuery(
 					"SELECT * FROM lotusbleu.NOTIFICATION WHERE userID=\""
-							+ user.getUsermail() + "");
-			do {
+							+ user.getUsermail() + "\"");
+			while (resultat.next()) {
 				this.notifications.add(new Notification(resultat
 						.getString("notificationMessage"), resultat
-						.getBoolean("read"), resultat
-						.getDate("notificationDate"), resultat
+						.getBoolean("notificationRead"), null, resultat
 						.getInt("notificationID")));
-			} while (resultat.next());
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void removeNotification(Notification notification){
-		try{
-			connection.getState().executeQuery("DELETE FROM NOTIFICATION WHERE notificationID = "+notification.getNotificationID());
-		} catch(SQLException e){
+
+	public void removeNotification(Notification notification) {
+		try {
+			connection.getState().executeUpdate(
+					"DELETE FROM NOTIFICATION WHERE notificationID = "
+							+ notification.getNotificationID());
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

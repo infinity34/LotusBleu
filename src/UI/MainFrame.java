@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import Functions.SessionFacade;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
@@ -59,6 +61,11 @@ public class MainFrame extends JFrame {
 		menuPanel.add(btnHome);
 		
 		JButton btnNotifications = new JButton("Notifications");
+		btnNotifications.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new NotificationGUI());
+			}
+		});
 		menuPanel.add(btnNotifications);
 		
 		JLabel lblLoggedAs = new JLabel("Logged as : "+ session.GetCurrentUser().getUsername());

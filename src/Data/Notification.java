@@ -90,14 +90,19 @@ public class Notification {
 	}
 
 	public String toString() {
-		return "Notification [message=" + message + ", read=" + read
-				+ ", date=" + date + ", ID = "+notificationID+"]";
+		return message;
 	}
 	
+	/**
+	 * 
+	 */
 	public void markAsRead(){
 		this.setRead(true);
 	}
 	
+	/**
+	 * 
+	 */
 	public void markAsUnread(){
 		this.setRead(false);
 	}

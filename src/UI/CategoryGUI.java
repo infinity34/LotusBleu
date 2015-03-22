@@ -13,15 +13,14 @@ import UI.MainFrame;
 
 public class CategoryGUI {
 	
-	private UI.MainFrame frmLotusBleu;
+	//private UI.MainFrame frmLotusBleu;
 	private CategoryFacade facade;
 	
 	public CategoryGUI()
 	{
-		frmLotusBleu = UI.MainFrame.getMainFrame();
 		facade = CategoryFacade.getFacade();
-		frmLotusBleu.setMainPanel(new CategoryManagementMenu());
-		frmLotusBleu.setVisible(true);		
+		MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenu());
+		MainFrame.getMainFrame().setVisible(true);		
 	}	
 	
 	
