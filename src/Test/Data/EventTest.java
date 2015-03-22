@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +29,7 @@ public class EventTest {
 		//Room room = new ClassRoom(0, null, 0);
 		Activity activity = new Activity("Salsa", "Salsa description");
 		TimeSlot timeslot = new TimeSlot(null, null, false, null);
-		event = new Event("Salsa Night",null,timeslot,activity,null);
+		event = new Event("Salsa Night",101,timeslot,activity,"Toto","Jean");
 	}
 
 	@After
@@ -42,6 +41,9 @@ public class EventTest {
 		assertNotNull(event);
 		assertEquals(event.getEventName(), "Salsa Night");
 		assertEquals(event.getEventActivity().getName(), "Salsa");
+		assertEquals(event.getEventRoomID(), 101);
+		assertEquals(event.getEventContributorName(), "Toto");
+		assertEquals(event.getEventContributorFirstname(), "Jean");
 	}
 
 	@Test
@@ -53,7 +55,9 @@ public class EventTest {
 
 	@Test
 	public void testSetEventRoom() {
-		//fail("Not yet implemented");
+		assertEquals(event.getEventRoomID(), 101);
+		event.setEventRoomID(201);
+		assertEquals(event.getEventRoomID(), 201);
 	}
 
 	@Test
@@ -93,7 +97,11 @@ public class EventTest {
 
 	@Test
 	public void testSetEventContributor() {
-		//fail("Not yet implemented");
+		assertEquals(event.getEventContributorName(), "Toto");
+		assertEquals(event.getEventContributorFirstname(), "Jean");
+		event.setEventContributor("Titi", "Sophie");
+		assertEquals(event.getEventContributorName(), "Titi");
+		assertEquals(event.getEventContributorFirstname(), "Sophie");
 	}
 
 }
