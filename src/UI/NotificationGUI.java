@@ -74,6 +74,7 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				notificationFacade.remove(selectedNotification);
+				MainFrame.getMainFrame().setMainPanel(new NotificationGUI());
 			}
 		});
 		add(btnSupprimer);
@@ -83,7 +84,12 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 				SpringLayout.WEST, btnMarkAsUnread);
 		btnMarkAsUnread.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				notificationFacade.markAsUnread(list_read.getSelectedValue());
+				if (selectedNotification.isRead()) {
+					notificationFacade.markAsUnread(selectedNotification);
+				} else {
+					notificationFacade.markAsRead(selectedNotification);
+				}
+				MainFrame.getMainFrame().setMainPanel(new NotificationGUI());
 			}
 		});
 		springLayout.putConstraint(SpringLayout.WEST, btnMarkAsUnread, 429,
@@ -103,7 +109,8 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 				SpringLayout.EAST, list);
 		springLayout.putConstraint(SpringLayout.SOUTH, txtpnDate, -6,
 				SpringLayout.NORTH, txtpnZoneDeNotification);
-		springLayout.putConstraint(SpringLayout.EAST, txtpnDate, 0, SpringLayout.EAST, txtpnZoneDeNotification);
+		springLayout.putConstraint(SpringLayout.EAST, txtpnDate, 0,
+				SpringLayout.EAST, txtpnZoneDeNotification);
 		txtpnDate.setText("Date");
 		add(txtpnDate);
 
@@ -141,19 +148,21 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getSource() == list) {
-			this.txtpnZoneDeNotification.setText(list.getSelectedValue()
+			this.selectedNotification = list.getSelectedValue();
+			this.txtpnZoneDeNotification.setText(selectedNotification
 					.getMessage());
-			this.btnMarkAsUnread.setEnabled(false);
-			this.notificationFacade.markAsRead(list.getSelectedValue());
-			//this.txtpnDate.setText(list.getSelectedValue().getDate().toString());
+			this.btnMarkAsUnread.setEnabled(true);
+			this.btnMarkAsUnread.setText("Mark as read");
+			// this.txtpnDate.setText(list.getSelectedValue().getDate().toString());
+			// this.list.getSelectionModel().clearSelection();
 		} else {
-			this.txtpnZoneDeNotification.setText(this.list_read
-					.getSelectedValue().getMessage());
+			this.selectedNotification = list_read.getSelectedValue();
+			this.txtpnZoneDeNotification.setText(selectedNotification
+					.getMessage());
 			this.btnMarkAsUnread.setText("Mark as unread");
 			this.btnMarkAsUnread.setEnabled(true);
-			//this.txtpnDate.setText(list_read.getSelectedValue().getDate().toString());
-			this.revalidate();
-			this.repaint();
+			// this.txtpnDate.setText(list_read.getSelectedValue().getDate().toString());
+			// this.list_read.getSelectionModel().clearSelection();
 		}
 	}
 }

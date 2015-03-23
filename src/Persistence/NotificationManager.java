@@ -40,6 +40,7 @@ public class NotificationManager {
 			current = it.next();
 			if(current.isRead() == state){
 				dlm.addElement(current);
+				System.out.println(current.toString());
 			}
 		}
 		return dlm;
