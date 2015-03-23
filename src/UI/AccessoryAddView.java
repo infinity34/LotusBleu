@@ -3,15 +3,22 @@ package UI;
 import java.awt.Font;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+
+import Functions.AccessoryFacade;
 
 public class AccessoryAddView extends JPanel {
 	private JTextField txtAccessoryName;
-
+	private AccessoryFacade myFacade;
 	/**
 	 * Create the panel.
 	 */
@@ -42,13 +49,33 @@ public class AccessoryAddView extends JPanel {
 		lblAccessoryName.setBounds(110, 192, 137, 16);
 		add(lblAccessoryName);
 		
-		JButton btnSubmite = new JButton("Submit");
-		btnSubmite.setBounds(413, 278, 117, 29);
-		add(btnSubmite);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(413, 278, 117, 29);
+		add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(143, 278, 117, 29);
 		add(btnCancel);
+		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean isAdd = myFacade.addAccessory(txtAccessoryName.getText());
+				
+				if(!isAdd){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "The accessory doesn't add in the database", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					JOptionPane.showMessageDialog(null, "Accessory Added", "Well done", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+				}
+			}});
 
 	}
 }

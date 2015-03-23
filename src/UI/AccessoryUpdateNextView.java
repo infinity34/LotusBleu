@@ -8,10 +8,17 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
+import Data.Accessory;
+import Functions.AccessoryFacade;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AccessoryUpdateNextView extends JPanel {
 	private JTextField txtEnterTheNew;
+	private String oldAccessoryName;
+	private AccessoryFacade myFacade;
 
 	/**
 	 * Create the panel.
@@ -47,13 +54,32 @@ public class AccessoryUpdateNextView extends JPanel {
 		add(txtEnterTheNew);
 		txtEnterTheNew.setColumns(10);
 		
-		JButton btnSubmite = new JButton("Submit");
-		btnSubmite.setBounds(413, 278, 117, 29);
-		add(btnSubmite);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(413, 278, 117, 29);
+		add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(143, 278, 117, 29);
 		add(btnCancel);
+		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				myFacade.updateAccessory(new Accessory(oldAccessoryName), txtEnterTheNew.getText());
+				//MainFrame.getMainFrame().setMainPanel(nextPanel);
+			}});
+	}
+
+	public String getOldAccessoryName() {
+		return oldAccessoryName;
+	}
+
+	public void setOldAccessoryName(String oldAccessoryName) {
+		this.oldAccessoryName = oldAccessoryName;
 	}
 
 }

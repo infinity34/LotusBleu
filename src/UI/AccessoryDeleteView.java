@@ -2,6 +2,8 @@ package UI;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,9 +12,13 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Functions.AccessoryFacade;
+
 public class AccessoryDeleteView extends JPanel {
 
 	private JTextField txtEnterTheName;
+	private AccessoryFacade myFacade;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -38,13 +44,24 @@ public class AccessoryDeleteView extends JPanel {
 		add(txtEnterTheName);
 		txtEnterTheName.setColumns(10);
 		
-		JButton btnSubmite = new JButton("Submit");
-		btnSubmite.setBounds(406, 228, 117, 29);
-		add(btnSubmite);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(406, 228, 117, 29);
+		add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(122, 228, 117, 29);
 		add(btnCancel);
+		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				myFacade.addAccessory(txtEnterTheName.getText());
+				//MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}});
 	}
 
 }

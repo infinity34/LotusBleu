@@ -3,7 +3,11 @@ package UI;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class AccessoryMainView extends JPanel {
@@ -37,6 +41,24 @@ public class AccessoryMainView extends JPanel {
 		JButton btnDeleteAnAccessory = new JButton("Delete an accessory");
 		btnDeleteAnAccessory.setBounds(178, 301, 300, 29);
 		add(btnDeleteAnAccessory);
+		
+		btnAddAnAccessory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryAddView());
+			}
+		});
+		
+		btnUpdateAnAccessory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryUpdateView());
+			}
+		});
+		
+		btnDeleteAnAccessory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryDeleteView());
+			}
+		});
 
 	}
 }

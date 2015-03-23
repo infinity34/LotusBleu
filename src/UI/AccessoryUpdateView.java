@@ -13,13 +13,18 @@ import javax.swing.JSpinner;
 
 import Data.Accessory;
 import Functions.AccessoryFacade;
+
 import javax.swing.JTextField;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AccessoryUpdateView extends JPanel {
 
 	private AccessoryFacade accessoryFacade;
 	private JTextField txtEnterTheName;
+	
 	
 	/**
 	 * Create the panel.
@@ -39,13 +44,9 @@ public class AccessoryUpdateView extends JPanel {
 		lblNewLabel_1.setBounds(6, 123, 628, 16);
 		add(lblNewLabel_1);
 		
-		ArrayList<Accessory> accessories = accessoryFacade.getAccessories(); //get all accessories
-		SpinnerListModel accessoriesModel = new SpinnerListModel(accessories);
-		
-		
-		JButton btnSubmite = new JButton("Submit");
-		btnSubmite.setBounds(406, 228, 117, 29);
-		add(btnSubmite);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(406, 228, 117, 29);
+		add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(122, 228, 117, 29);
@@ -58,5 +59,16 @@ public class AccessoryUpdateView extends JPanel {
 		add(txtEnterTheName);
 		txtEnterTheName.setColumns(10);
 		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccessoryUpdateNextView nextPanel = new AccessoryUpdateNextView();
+				nextPanel.setOldAccessoryName(txtEnterTheName.getText());
+				MainFrame.getMainFrame().setMainPanel(nextPanel);
+			}});
 	}
 }
