@@ -7,17 +7,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Data.Accessory;
 import Functions.AccessoryFacade;
 
 public class AccessoryDeleteView extends JPanel {
 
 	private JTextField txtEnterTheName;
-	private AccessoryFacade myFacade;
+	private AccessoryFacade myFacade = new AccessoryFacade();
 	
 	/**
 	 * Create the panel.
@@ -59,8 +61,17 @@ public class AccessoryDeleteView extends JPanel {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				myFacade.addAccessory(txtEnterTheName.getText());
-				//MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+				Boolean isDeleted = myFacade.removeAccessory(new Accessory(txtEnterTheName.getText()));
+				
+				if(!isDeleted){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "The accessory doesn't delete! :(", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					JOptionPane.showMessageDialog(null, "Accessory Deleted! :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+				}
 			}});
 	}
 

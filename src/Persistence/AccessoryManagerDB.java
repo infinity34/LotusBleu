@@ -57,7 +57,7 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 	public Boolean setAccessory(Accessory accessory, String newName) {
 		try {
 			connection.getState().executeUpdate(
-					"UPDATE ACCESSORY SET accessoryName =" + newName + " WHERE accessoryName="+ accessory.getAccessoryName());
+					"UPDATE ACCESSORY SET accessoryName = '" + newName + "' WHERE accessoryName= '"+ accessory.getAccessoryName()+"'");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,7 +68,7 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 	@Override
 	public Boolean deleteAccessory(Accessory accessory) {
 		try {
-			connection.getState().executeUpdate("DELETE INTO ACCESSORY WHERE accessoryName="+ accessory.getAccessoryName()+")");
+			connection.getState().executeUpdate("DELETE FROM ACCESSORY WHERE accessoryName= '"+ accessory.getAccessoryName()+"'");
 			return true;
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
