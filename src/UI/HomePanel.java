@@ -14,6 +14,7 @@ public class HomePanel extends JPanel {
 	 * Create the panel.
 	 */
 	public HomePanel() {
+		this.setSize(640, 480);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnCategoryManagement = new JButton("Manage Category");

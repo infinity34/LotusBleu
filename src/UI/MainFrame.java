@@ -58,6 +58,11 @@ public class MainFrame extends JFrame {
 		menuPanel.setLayout(new GridLayout(0, 4, 0, 0));
 		
 		JButton btnHome = new JButton("Home");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new HomePanel());
+			}
+		});
 		menuPanel.add(btnHome);
 		
 		JButton btnNotifications = new JButton("Notifications");
