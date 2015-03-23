@@ -72,7 +72,7 @@ public class EventManagerDB extends Persistence.EventManager {
 			
 			
 			do {
-				//Create the timeslot object
+				//Create the TimeSlot object
 				TimeSlot timeslot = new TimeSlot(resultat.getDate("beginDate"),resultat.getDate("endDate"),resultat.getBoolean("recurrence"),resultat.getDate("lastReccurence"));
 				
 				//Create the activity object
@@ -83,7 +83,7 @@ public class EventManagerDB extends Persistence.EventManager {
 				ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userID =" + resultat.getInt("contributorID"));
 				
 				
-				//Add the event in the events arraylist
+				//Add the event in the events ArrayList
 				this.events.add(new Event(resultat.getString("eventName"),resultat.getInt("roomID"), timeslot, activity, resultatContributor.getString("userName"), resultatContributor.getString("userFirstName")));
 			} while (resultat.next());
 		} catch (SQLException e) {
@@ -145,9 +145,30 @@ public class EventManagerDB extends Persistence.EventManager {
 	@Override
 	public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			Activity eventActivity, String eventContributorName, String eventContributorFirstname) {
-		return null;
-		// TODO Auto-generated method stub
 		
+		try {
+			//Get the activityID
+			ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityName =" + eventActivity.getName());
+			
+			//Get the contributorID
+			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userName =" + eventContributorName + "AND userFirstName ="+ eventContributorFirstname );
+			
+			connection.getState().executeQuery(
+					"UPDATE ACTIVITY SET eventName =" + eventName 
+									+ " AND roomID ="+ eventRoomID
+									+ " AND activityID ="+ resultatActivity.getString("activityID")
+									+ " AND contributorID ="+ resultatContributor.getString("userID")
+									+ " AND beginDate ="+ eventTimeSlot.getBeginDate()
+									+ " AND endDate ="+ eventTimeSlot.getEndDate()
+									+ " AND recurrence ="+ eventTimeSlot.getLastReccurence()
+									+ " AND lastrecurrence ="+ eventTimeSlot.isRecurrence()
+									+"WHERE  eventName = " + eventToUpdate.getEventName());
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	
