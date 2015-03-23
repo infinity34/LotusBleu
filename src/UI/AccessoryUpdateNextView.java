@@ -48,7 +48,7 @@ public class AccessoryUpdateNextView extends JPanel {
 		add(lblNewName);
 		
 		txtEnterTheNew = new JTextField();
-		txtEnterTheNew.setForeground(Color.LIGHT_GRAY);
+		txtEnterTheNew.setForeground(Color.BLACK);
 		txtEnterTheNew.setText("Enter the new name");
 		txtEnterTheNew.setBounds(266, 200, 243, 28);
 		add(txtEnterTheNew);

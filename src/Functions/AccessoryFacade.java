@@ -4,6 +4,8 @@ package Functions;
 import java.util.ArrayList;
 
 import Data.Accessory;
+import Persistence.AccessoryManager;
+import Persistence.AccessoryManagerDB;
 import Persistence.SessionManager;
 
 /**
@@ -13,8 +15,13 @@ import Persistence.SessionManager;
  */
 public class AccessoryFacade {
 
-    private SessionManager session;
+    //private SessionManager session;
     public Persistence.AccessoryManager accessoryManager;
+    
+    public AccessoryFacade(){
+    	super();
+    	this.accessoryManager = new AccessoryManagerDB();
+    }
 
 /**
  * <p> Get all accessories</p>

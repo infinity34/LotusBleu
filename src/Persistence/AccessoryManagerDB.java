@@ -18,12 +18,10 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 
 	DBconnection connection;
 	private ArrayList<Accessory> accessories;
-
-	/**
-	 * @return the connection
-	 */
-	public DBconnection getConnection() {
-		return connection;
+	
+	public AccessoryManagerDB() {
+		super();
+		this.connection = DBconnection.getConnection();
 	}
 
 	@Override
@@ -46,20 +44,19 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 	@Override
 	public Boolean addAccessory(String name) {
 		try {
-			connection.getState().executeQuery("INSERT INTO ACCESSORY(accessoryName) VALUES("+ name +")");
+			connection.getState().executeUpdate("INSERT INTO ACCESSORY(accessoryID,accessoryName) VALUE( DEFAULT,'"+ name +"')");
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
-		
 	}
 
 	@Override
 	public Boolean setAccessory(Accessory accessory, String newName) {
 		try {
-			connection.getState().executeQuery(
+			connection.getState().executeUpdate(
 					"UPDATE ACCESSORY SET accessoryName =" + newName + " WHERE accessoryName="+ accessory.getAccessoryName());
 			return true;
 		} catch (SQLException e) {
@@ -71,7 +68,7 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 	@Override
 	public Boolean deleteAccessory(Accessory accessory) {
 		try {
-			connection.getState().executeQuery("DELETE INTO ACCESSORY WHERE accessoryName="+ accessory.getAccessoryName()+")");
+			connection.getState().executeUpdate("DELETE INTO ACCESSORY WHERE accessoryName="+ accessory.getAccessoryName()+")");
 			return true;
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block

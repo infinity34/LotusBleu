@@ -38,7 +38,7 @@ public class AccessoryDeleteView extends JPanel {
 		add(lblNewLabel_1);
 		
 		txtEnterTheName = new JTextField();
-		txtEnterTheName.setForeground(Color.LIGHT_GRAY);
+		txtEnterTheName.setForeground(Color.BLACK);
 		txtEnterTheName.setText("Enter the name");
 		txtEnterTheName.setBounds(210, 166, 231, 28);
 		add(txtEnterTheName);

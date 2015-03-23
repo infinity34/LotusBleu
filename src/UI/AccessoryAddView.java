@@ -18,7 +18,7 @@ import Functions.AccessoryFacade;
 
 public class AccessoryAddView extends JPanel {
 	private JTextField txtAccessoryName;
-	private AccessoryFacade myFacade;
+	private AccessoryFacade myFacade = new AccessoryFacade();
 	/**
 	 * Create the panel.
 	 */
@@ -39,7 +39,7 @@ public class AccessoryAddView extends JPanel {
 		add(lblNewLabel_1);
 		
 		txtAccessoryName = new JTextField();
-		txtAccessoryName.setForeground(Color.LIGHT_GRAY);
+		txtAccessoryName.setForeground(Color.BLACK);
 		txtAccessoryName.setText("Enter the name");
 		txtAccessoryName.setBounds(259, 186, 282, 28);
 		add(txtAccessoryName);
@@ -68,11 +68,11 @@ public class AccessoryAddView extends JPanel {
 				
 				if(!isAdd){
 					//Error popup 
-					JOptionPane.showMessageDialog(null, "The accessory doesn't add in the database", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "The accessory doesn't add in the database!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else{
 					//Information popup
-					JOptionPane.showMessageDialog(null, "Accessory Added", "Well done", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Accessory Added! :) :)", "Success", JOptionPane.INFORMATION_MESSAGE);
 					MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
 				}
 			}});
