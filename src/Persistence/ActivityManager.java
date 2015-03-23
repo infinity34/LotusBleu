@@ -32,14 +32,16 @@ public abstract class ActivityManager {
  * @param inCharge 
  * @param shortDescription 
  * @param longDescription 
+ * @return 
  */
-    public abstract void editActivity(String oldName, String newName, String newDescription);
+    public abstract Boolean editActivity(String oldName, String newName, String newDescription);
 
 /**
  * <p>Delete an activity</p>
  * @param name 
+ * @return 
  */
-    public abstract void deleteActivity(String name);
+    public abstract Boolean deleteActivity(String name);
 
 /**
  * <p> Get all activity</p>

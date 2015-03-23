@@ -19,13 +19,15 @@ public class ActivityManagerXML extends Persistence.ActivityManager {
 	}
 
 	@Override
-	public void editActivity(String oldName, String newName, String newDescription) {
+	public Boolean editActivity(String oldName, String newName, String newDescription) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteActivity(String name) {
+	public Boolean deleteActivity(String name) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

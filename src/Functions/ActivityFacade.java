@@ -37,8 +37,8 @@ private Persistence.ActivityManager activityManager;
  * @param shortDescription 
  * @param longDescription 
  */
-    public void editActivity(String oldName, String newName, String newDescription) {        
-        activityManager.editActivity(oldName, newName, newDescription);
+    public Boolean editActivity(String oldName, String newName, String newDescription) {        
+       return activityManager.editActivity(oldName, newName, newDescription);
     } 
 
 /**
@@ -46,8 +46,8 @@ private Persistence.ActivityManager activityManager;
  * 
  * @param name 
  */
-    public void deleteActivity(String name) {        
-        activityManager.deleteActivity(name);
+    public Boolean deleteActivity(String name) {        
+       return activityManager.deleteActivity(name);
     } 
 
 /**

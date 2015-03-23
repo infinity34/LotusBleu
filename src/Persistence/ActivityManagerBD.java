@@ -54,26 +54,29 @@ public class ActivityManagerBD extends Persistence.ActivityManager {
 	}
 	
 	@Override
-	public void editActivity(String oldName, String newName, String newDescription) {
+	public Boolean editActivity(String oldName, String newName, String newDescription) {
 		try {
 			connection.getState().executeQuery(
 					"UPDATE ACTIVITY SET activityName =" + newName + " AND activityDescritption="+ newDescription +"WHERE  activityName = "
 							+ oldName);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return false;
 	}
 	
 	@Override
-	public void deleteActivity(String name) {
+	public Boolean deleteActivity(String name) {
 		// TODO Auto-generated method stub
 		try {
 		//delete FROM ACTIVITY WHERE activityID=2;
 		connection.getState().executeQuery("DELETE INTO ACTIVITY WHERE activityName="+ name+")");
+		return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
  }
