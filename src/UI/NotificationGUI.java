@@ -1,5 +1,7 @@
 package UI;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JList;
@@ -14,6 +16,7 @@ import Functions.SessionFacade;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.ListModel;
 
 @SuppressWarnings("serial")
@@ -73,8 +76,10 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 				SpringLayout.SOUTH, this);
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				notificationFacade.remove(selectedNotification);
-				MainFrame.getMainFrame().setMainPanel(new NotificationGUI());
+				if(JOptionPane.showConfirmDialog(null, "Do you want to delete this notification ?", "Delete Notification", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+					notificationFacade.remove(selectedNotification);
+					MainFrame.getMainFrame().setMainPanel(new NotificationGUI());
+				}
 			}
 		});
 		add(btnSupprimer);
@@ -127,7 +132,6 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 		springLayout.putConstraint(SpringLayout.EAST, list_read, 0,
 				SpringLayout.EAST, list);
 		add(list_read);
-
 	}
 
 	/**
@@ -153,7 +157,7 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 					.getMessage());
 			this.btnMarkAsUnread.setEnabled(true);
 			this.btnMarkAsUnread.setText("Mark as read");
-			// this.txtpnDate.setText(list.getSelectedValue().getDate().toString());
+			 this.txtpnDate.setText(selectedNotification.getDate().toString());
 			// this.list.getSelectionModel().clearSelection();
 		} else {
 			this.selectedNotification = list_read.getSelectedValue();
@@ -161,7 +165,7 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 					.getMessage());
 			this.btnMarkAsUnread.setText("Mark as unread");
 			this.btnMarkAsUnread.setEnabled(true);
-			// this.txtpnDate.setText(list_read.getSelectedValue().getDate().toString());
+			this.txtpnDate.setText(selectedNotification.getDate().toString());
 			// this.list_read.getSelectionModel().clearSelection();
 		}
 	}

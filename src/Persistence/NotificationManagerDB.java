@@ -2,6 +2,7 @@ package Persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Data.Notification;
 import Data.User;
@@ -53,6 +54,7 @@ public class NotificationManagerDB extends NotificationManager {
 	}
 
 	public void loadNotifications(User user) {
+		this.notifications = new ArrayList<Notification>();
 		try {
 			ResultSet resultat = connection.getState().executeQuery(
 					"SELECT * FROM lotusbleu.NOTIFICATION WHERE userID=\""
@@ -60,7 +62,7 @@ public class NotificationManagerDB extends NotificationManager {
 			while (resultat.next()) {
 				this.notifications.add(new Notification(resultat
 						.getString("notificationMessage"), resultat
-						.getBoolean("notificationRead"), null, resultat
+						.getBoolean("notificationRead"),resultat.getDate("notificationDate"), resultat
 						.getInt("notificationID")));
 			}
 		} catch (SQLException e) {

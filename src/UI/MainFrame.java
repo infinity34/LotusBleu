@@ -68,10 +68,24 @@ public class MainFrame extends JFrame {
 		});
 		menuPanel.add(btnNotifications);
 		
-		JLabel lblLoggedAs = new JLabel("Logged as : "+ session.GetCurrentUser().getUsername());
+		JButton lblLoggedAs = new JButton("Logged as : "+ session.GetCurrentUser().getUsername());
+		lblLoggedAs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ProfileManagementGUI());
+			}
+		});
 		menuPanel.add(lblLoggedAs);
 		
 		JButton btnDisconnect = new JButton("Disconnect");
+		btnDisconnect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				session.Logout();
+				getMainFrame().setVisible(false);
+				LoginGUI window = new LoginGUI();
+				window.getFrmLotusBleu().setVisible(true);
+				window.getFrmLotusBleu().requestFocus();
+			}
+		});
 		menuPanel.add(btnDisconnect);
 		
 		mainPanel = new JPanel();
@@ -85,9 +99,17 @@ public class MainFrame extends JFrame {
 		{
 			mainFrame = new MainFrame();
 		}
+		mainFrame.setVisible(true);
 		return mainFrame;
 	}
 	
+	/**
+	 * @return the session
+	 */
+	public SessionFacade getSession() {
+		return session;
+	}
+
 	public void setMainPanel(JPanel panel)
 	{
 		contentPane.remove(mainPanel);

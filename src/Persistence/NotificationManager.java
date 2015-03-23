@@ -39,8 +39,7 @@ public class NotificationManager {
 		while(it.hasNext()){
 			current = it.next();
 			if(current.isRead() == state){
-				dlm.addElement(current);
-				System.out.println(current.toString());
+					dlm.addElement(current);
 			}
 		}
 		return dlm;

@@ -86,6 +86,13 @@ public class SessionFacade {
 			session = new SessionFacade();
 		}
 		return session;
+	}
+
+	/**
+	 * @return the sessionManager
+	 */
+	public SessionManager getSessionManager() {
+		return sessionManager;
 	} 
 
 }

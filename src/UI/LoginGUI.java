@@ -121,15 +121,22 @@ public class LoginGUI {
 				String userId = txtUserid.getText();
 				String password = pwdPassword.getText();
 								
-				System.out.println("avant login");
 				if(facade.Login(userId,password)){
 					// lance l'interface principale
 					MainFrame.getMainFrame();
+					getFrmLotusBleu().dispose();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "wrong login/password ");
 				}
 			}
 		});
+	}
+
+	/**
+	 * @return the frmLotusBleu
+	 */
+	public JFrame getFrmLotusBleu() {
+		return frmLotusBleu;
 	}
 }

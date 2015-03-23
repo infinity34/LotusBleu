@@ -13,8 +13,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 
+import Data.User;
+import Functions.ProfileManagementFacade;
+
 public class ProfileManagementGUI extends JPanel {
 	public ProfileManagementGUI() {
+		profileManagementFacade = new ProfileManagementFacade();
+		User user = profileManagementFacade.getUser();
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 
@@ -38,6 +43,11 @@ public class ProfileManagementGUI extends JPanel {
 		add(lblDateDeFin);
 
 		JLabel lbldate = new JLabel("XX/XX/XXXX");
+		/*if(user.getMemberRole().getSubscription().getEndSubscriptionDate() != null){
+			lbldate.setText(user.getMemberRole().getSubscription().getEndSubscriptionDate().toString());
+		}else{
+			lbldate.setText("N/A");
+		}*/
 		springLayout.putConstraint(SpringLayout.NORTH, lbldate, 0,
 				SpringLayout.NORTH, lblDateDeFin);
 		springLayout.putConstraint(SpringLayout.WEST, lbldate, 6,
@@ -45,6 +55,7 @@ public class ProfileManagementGUI extends JPanel {
 		add(lbldate);
 
 		nameTextfield = new JTextField();
+		this.nameTextfield.setText(user.getUsername());
 		springLayout.putConstraint(SpringLayout.NORTH, nameTextfield, -6,
 				SpringLayout.NORTH, lblName);
 		springLayout.putConstraint(SpringLayout.WEST, nameTextfield, 31,
@@ -53,6 +64,7 @@ public class ProfileManagementGUI extends JPanel {
 		nameTextfield.setColumns(10);
 
 		firstnameTextfield = new JTextField();
+		this.firstnameTextfield.setText(user.getUserfirstname());
 		springLayout.putConstraint(SpringLayout.NORTH, lblDateDeFin, 6,
 				SpringLayout.SOUTH, firstnameTextfield);
 		springLayout.putConstraint(SpringLayout.NORTH, firstnameTextfield, 6,
@@ -74,43 +86,47 @@ public class ProfileManagementGUI extends JPanel {
 				SpringLayout.EAST, lbldate);
 		add(btnSignIn);
 
-		JLabel lblNewLabel = new JLabel("Address 1 :");
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 10,
+		JLabel lblAddress1 = new JLabel("Address 1 :");
+		springLayout.putConstraint(SpringLayout.WEST, lblAddress1, 10,
 				SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel, -224,
+		springLayout.putConstraint(SpringLayout.SOUTH, lblAddress1, -224,
 				SpringLayout.SOUTH, this);
-		add(lblNewLabel);
+		add(lblAddress1);
 
-		JLabel lblAddress = new JLabel("Address 2 :");
-		springLayout.putConstraint(SpringLayout.NORTH, lblAddress, 21,
-				SpringLayout.SOUTH, lblNewLabel);
-		springLayout.putConstraint(SpringLayout.WEST, lblAddress, 0,
-				SpringLayout.WEST, lblNewLabel);
-		add(lblAddress);
+		JLabel lblAddress2 = new JLabel("Address 2 :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblAddress2, 21,
+				SpringLayout.SOUTH, lblAddress1);
+		springLayout.putConstraint(SpringLayout.WEST, lblAddress2, 0,
+				SpringLayout.WEST, lblAddress1);
+		add(lblAddress2);
 
 		JLabel lblPostcode = new JLabel("PostCode :");
 		springLayout.putConstraint(SpringLayout.WEST, lblPostcode, 0,
-				SpringLayout.WEST, lblNewLabel);
+				SpringLayout.WEST, lblAddress1);
 		add(lblPostcode);
 
-		JLabel lblNewLabel_1 = new JLabel("City :");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 345,
+		JLabel lblCity = new JLabel("City :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblCity, 345,
 				SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPostcode, -18,
-				SpringLayout.NORTH, lblNewLabel_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 0,
-				SpringLayout.WEST, lblNewLabel);
-		add(lblNewLabel_1);
+				SpringLayout.NORTH, lblCity);
+		springLayout.putConstraint(SpringLayout.WEST, lblCity, 0,
+				SpringLayout.WEST, lblAddress1);
+		add(lblCity);
 
 		address1Textfield = new JTextField();
+		if(user.getAddress1() != null){
+			this.address1Textfield.setText(user.getAddress1());
+		}
 		springLayout.putConstraint(SpringLayout.NORTH, address1Textfield, -6,
-				SpringLayout.NORTH, lblNewLabel);
+				SpringLayout.NORTH, lblAddress1);
 		springLayout.putConstraint(SpringLayout.WEST, address1Textfield, 14,
-				SpringLayout.EAST, lblNewLabel);
+				SpringLayout.EAST, lblAddress1);
 		add(address1Textfield);
 		address1Textfield.setColumns(10);
 
 		postcodeTextfield = new JTextField();
+		this.postcodeTextfield.setText(Integer.toString(user.getPostcode()));
 		springLayout.putConstraint(SpringLayout.WEST, postcodeTextfield, 18,
 				SpringLayout.EAST, lblPostcode);
 		springLayout.putConstraint(SpringLayout.EAST, postcodeTextfield, -355,
@@ -123,20 +139,26 @@ public class ProfileManagementGUI extends JPanel {
 		postcodeTextfield.setColumns(10);
 
 		cityTextfield = new JTextField();
+		if(user.getCity() != null){
+			this.cityTextfield.setText(user.getCity());
+		}
 		springLayout.putConstraint(SpringLayout.NORTH, cityTextfield, 6,
 				SpringLayout.SOUTH, postcodeTextfield);
 		springLayout.putConstraint(SpringLayout.WEST, cityTextfield, 52,
-				SpringLayout.EAST, lblNewLabel_1);
+				SpringLayout.EAST, lblCity);
 		springLayout.putConstraint(SpringLayout.EAST, cityTextfield, -355,
 				SpringLayout.EAST, this);
 		add(cityTextfield);
 		cityTextfield.setColumns(10);
 
 		address2Textfield = new JTextField();
+		if(user.getAddress2() != null){
+			this.address2Textfield.setText(user.getAddress2());
+		}
 		springLayout.putConstraint(SpringLayout.NORTH, address2Textfield, 9,
 				SpringLayout.SOUTH, address1Textfield);
 		springLayout.putConstraint(SpringLayout.WEST, address2Textfield, 14,
-				SpringLayout.EAST, lblAddress);
+				SpringLayout.EAST, lblAddress2);
 		springLayout.putConstraint(SpringLayout.EAST, address2Textfield, -355,
 				SpringLayout.EAST, this);
 		add(address2Textfield);
@@ -153,6 +175,9 @@ public class ProfileManagementGUI extends JPanel {
 		add(phoneTextfield);
 
 		mailTextfield = new JTextField();
+		if(user.getUsermail() != null){
+			this.mailTextfield.setText(user.getUsermail());
+		}
 		mailTextfield.setEditable(false);
 		mailTextfield.setEnabled(false);
 		springLayout.putConstraint(SpringLayout.NORTH, mailTextfield, 6,
@@ -164,19 +189,19 @@ public class ProfileManagementGUI extends JPanel {
 		mailTextfield.setColumns(10);
 		add(mailTextfield);
 
-		JLabel lblNewLabel_2 = new JLabel("Phone :");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 6,
+		JLabel lblPhone = new JLabel("Phone :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblPhone, 6,
 				SpringLayout.NORTH, phoneTextfield);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_2, 0,
-				SpringLayout.WEST, lblNewLabel);
-		add(lblNewLabel_2);
+		springLayout.putConstraint(SpringLayout.WEST, lblPhone, 0,
+				SpringLayout.WEST, lblAddress1);
+		add(lblPhone);
 
-		JLabel lblNewLabel_3 = new JLabel("Mail : ");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 6,
+		JLabel lblMail = new JLabel("Mail : ");
+		springLayout.putConstraint(SpringLayout.NORTH, lblMail, 6,
 				SpringLayout.NORTH, mailTextfield);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_3, 0,
-				SpringLayout.WEST, lblNewLabel);
-		add(lblNewLabel_3);
+		springLayout.putConstraint(SpringLayout.WEST, lblMail, 0,
+				SpringLayout.WEST, lblAddress1);
+		add(lblMail);
 
 		Component verticalStrut = Box.createVerticalStrut(20);
 		springLayout.putConstraint(SpringLayout.NORTH, verticalStrut, 0,
@@ -189,7 +214,7 @@ public class ProfileManagementGUI extends JPanel {
 
 		JButton btnSaveChanges = new JButton("Save Changes");
 		springLayout.putConstraint(SpringLayout.NORTH, btnSaveChanges, -5,
-				SpringLayout.NORTH, lblNewLabel);
+				SpringLayout.NORTH, lblAddress1);
 		springLayout.putConstraint(SpringLayout.WEST, btnSaveChanges, 25,
 				SpringLayout.EAST, verticalStrut);
 		springLayout.putConstraint(SpringLayout.EAST, btnSaveChanges, -25,
