@@ -1,7 +1,11 @@
 package UI;
 
 import javax.swing.JPanel;
+
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class HomePanel extends JPanel {
@@ -15,8 +19,8 @@ public class HomePanel extends JPanel {
 		JButton btnCategoryManagement = new JButton("Manage Category");
 		add(btnCategoryManagement);
 		
-		JButton btnNewButton = new JButton("New button");
-		add(btnNewButton);
+		JButton btnAccessoryManagement = new JButton("Manage Accessory");
+		add(btnAccessoryManagement);
 		
 		JButton btnNewButton_2 = new JButton("New button");
 		add(btnNewButton_2);
@@ -26,6 +30,12 @@ public class HomePanel extends JPanel {
 		
 		JButton btnNewButton_4 = new JButton("New button");
 		add(btnNewButton_4);
+		
+		btnAccessoryManagement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}
+		});
 
 	}
 
