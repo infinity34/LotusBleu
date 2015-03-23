@@ -55,7 +55,7 @@ public class CategoryManagementDeleteCategory extends JPanel {
 		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenu());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
 				}
 			});
 

@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import Functions.CategoryFacade;
 
 
-public class CategoryManagementMenu extends JPanel {
+public class CategoryManagementMenuGUI extends JPanel {
 	
 	private JButton btnAddACategory;
 	private JButton btnUpdateACategory;
@@ -54,7 +54,7 @@ public class CategoryManagementMenu extends JPanel {
 	
 
 	
-	public CategoryManagementMenu() {
+	public CategoryManagementMenuGUI() {
 		
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
@@ -98,7 +98,7 @@ public class CategoryManagementMenu extends JPanel {
 		
 		btnAddACategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementAddCategory());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementAddCategoryGUI());
 				}
 			});
 		

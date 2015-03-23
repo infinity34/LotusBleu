@@ -19,7 +19,7 @@ public class CategoryGUI {
 	public CategoryGUI()
 	{
 		facade = CategoryFacade.getFacade();
-		MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenu());
+		MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
 		MainFrame.getMainFrame().setVisible(true);		
 	}	
 	

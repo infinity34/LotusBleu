@@ -17,7 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 
 
-public class CategoryManagementAddCategory extends JPanel {
+public class CategoryManagementAddCategoryGUI extends JPanel {
 	
 	private JTextField categoryName;
 	private JButton btnCreateCategory;
@@ -28,7 +28,7 @@ public class CategoryManagementAddCategory extends JPanel {
 	
 	private CategoryFacade facade;
 
-	public CategoryManagementAddCategory() {
+	public CategoryManagementAddCategoryGUI() {
 		this.setSize(640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -84,7 +84,7 @@ public class CategoryManagementAddCategory extends JPanel {
 		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenu());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
 				}
 			});
 		
