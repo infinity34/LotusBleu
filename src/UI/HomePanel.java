@@ -12,8 +12,8 @@ public class HomePanel extends JPanel {
 	public HomePanel() {
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		add(btnNewButton_1);
+		JButton btnCategoryManagement = new JButton("Manage Category");
+		add(btnCategoryManagement);
 		
 		JButton btnNewButton = new JButton("New button");
 		add(btnNewButton);

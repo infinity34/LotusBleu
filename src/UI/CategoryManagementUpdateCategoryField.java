@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import Functions.CategoryFacade;
+
 
 public class CategoryManagementUpdateCategoryField extends JPanel {
 
@@ -16,6 +18,8 @@ public class CategoryManagementUpdateCategoryField extends JPanel {
 	 */
 	private JTextField textField;
 	private JTextField textField_1;
+	
+	private CategoryFacade facade;
 
 	public CategoryManagementUpdateCategoryField() {
 		this.setSize( 640, 480);

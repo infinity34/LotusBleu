@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import Functions.CategoryFacade;
+
 
 public class CategoryManagementMenu extends JPanel {
 	
@@ -17,6 +19,8 @@ public class CategoryManagementMenu extends JPanel {
 	private JButton btnDeleteACategory;
 	private JButton btnDisplayCategory;
 	private JButton btnBack;
+	
+	private CategoryFacade facade;
 	
 	
 	//Getter for the JButton

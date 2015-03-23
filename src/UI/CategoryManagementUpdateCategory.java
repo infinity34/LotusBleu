@@ -10,10 +10,14 @@ import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import Functions.CategoryFacade;
+
 
 public class CategoryManagementUpdateCategory extends JPanel {
 	
 	private JTextField textField;
+	
+	private CategoryFacade facade;
 
 
 	public CategoryManagementUpdateCategory() {

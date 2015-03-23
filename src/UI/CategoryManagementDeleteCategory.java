@@ -10,9 +10,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import Functions.CategoryFacade;
+
 
 public class CategoryManagementDeleteCategory extends JPanel {
 	private JTextField textField;
+	
+	private CategoryFacade facade;
 
 	/**
 	 * Create the panel.

@@ -4,12 +4,17 @@ package Persistence;
 import java.util.ArrayList;
 
 import Data.Category;
+import Data.Notification;
 
 public class CategoryManager {
 
-    public Data.Category category;
+	protected ArrayList<Category> category;
 
-    public Data.Category createCategory(String name, Data.Category fatherCategory, Boolean available) {        
+    public ArrayList<Category> getCategory() {
+		return category;
+	}
+
+	public Data.Category createCategory(String name, Data.Category fatherCategory, Boolean available) {        
         // your code here
         return null;
     } 
@@ -22,8 +27,6 @@ public class CategoryManager {
         // your code here
     } 
 
-    public ArrayList<Category> getAllCategory() {        
-        // your code here
-        return null;
-    } 
+    public void getAllCategory() {} 
+    public void getCategory(String name) {}
  }

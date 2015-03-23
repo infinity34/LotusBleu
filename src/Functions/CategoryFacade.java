@@ -8,10 +8,11 @@ import Data.Category;
 
 public class CategoryFacade {
 	
-	public UI.CategoryGUI categoryGUI;
 
-    public Data.Category createCategory(String name, Data.Category fatherCategory, Boolean available) {        
-        // your code here
+    public Data.Category createCategory(String name, Data.Category motherCategory, Boolean available) {    
+    	
+    	categoryManager.createCategory(name, motherCategory, available);
+    	
         return null;
     } 
 
@@ -25,10 +26,16 @@ public class CategoryFacade {
         // your code here
     } 
 
-    public ArrayList<Category> getAllCategory() {        
-        // your code here
-        return null;
+    public ArrayList<Category> getAllCategory() {    
+    	
+    	return categoryManager.getCategory();
     } 
+    
+    public Category getCategory(String name) {
+    	
+    	return categoryManager.getCategory().get(0);
+    }
+    
 
     
 
