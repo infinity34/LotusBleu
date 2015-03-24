@@ -1,113 +1,114 @@
 package UI;
+import Functions.RoomManagementFacade;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import Functions.SessionFacade;
 import javax.swing.SpringLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLayeredPane;
+import javax.swing.JTabbedPane;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.JTable;
 
-public class RoomManagementGUI extends JFrame {
+public class RoomManagementGUI extends JPanel {
 
-	private JPanel contentPane;
-	private SessionFacade session;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RoomManagementGUI frame = new RoomManagementGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private RoomManagementFacade roomManagementFacade;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField txtListAMettre;
+	private JTable table;
 
 	/**
-	 * Create the frame.
+	 * Create the panel.
 	 */
 	public RoomManagementGUI() {
-		//session = SessionFacade.getSessionFacade();
-		setTitle("Lotus Bleu");
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 686, 498);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		this.roomManagementFacade = new RoomManagementFacade();
+		this.setSize(640, 480);
+		SpringLayout springLayout = new SpringLayout();
+		setLayout(springLayout);
 		
-		JPanel menuPanel = new JPanel();
-		contentPane.add(menuPanel, BorderLayout.NORTH);
-		menuPanel.setLayout(new GridLayout(0, 4, 0, 0));
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
+		springLayout.putConstraint(SpringLayout.NORTH, tabbedPane, 20, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, tabbedPane, 66, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, tabbedPane, -27, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, tabbedPane, -21, SpringLayout.EAST, this);
+		add(tabbedPane);
 		
-		JButton btnHome = new JButton("Home");
-		menuPanel.add(btnHome);
+		JPanel panelAddRoom = new JPanel();
+		tabbedPane.addTab("add a room", null, panelAddRoom, null);
+		SpringLayout sl_panelAddRoom = new SpringLayout();
+		panelAddRoom.setLayout(sl_panelAddRoom);
 		
-		JButton btnNotifications = new JButton("Notifications");
-		menuPanel.add(btnNotifications);
+		JLabel lblNewLabel = new JLabel("Type of the room");
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, lblNewLabel, 43, SpringLayout.NORTH, panelAddRoom);
+		sl_panelAddRoom.putConstraint(SpringLayout.WEST, lblNewLabel, 46, SpringLayout.WEST, panelAddRoom);
+		panelAddRoom.add(lblNewLabel);
 		
-		//JLabel lblLoggedAs = new JLabel("Logged as : "+ session.GetCurrentUser().getUsername());
-		JLabel lblLoggedAs = new JLabel("Logged as : ");
-		menuPanel.add(lblLoggedAs);
+		JLabel lblRoomName = new JLabel("Room name");
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, lblRoomName, 44, SpringLayout.SOUTH, lblNewLabel);
+		sl_panelAddRoom.putConstraint(SpringLayout.WEST, lblRoomName, 0, SpringLayout.WEST, lblNewLabel);
+		panelAddRoom.add(lblRoomName);
 		
-		JButton btnDisconnect = new JButton("Disconnect");
-		menuPanel.add(btnDisconnect);
+		JLabel lblRoomArea = new JLabel("Room area");
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, lblRoomArea, 45, SpringLayout.SOUTH, lblRoomName);
+		sl_panelAddRoom.putConstraint(SpringLayout.WEST, lblRoomArea, 0, SpringLayout.WEST, lblNewLabel);
+		panelAddRoom.add(lblRoomArea);
 		
-		JPanel mainPanel = new JPanel();
-		contentPane.add(mainPanel, BorderLayout.CENTER);
-		SpringLayout sl_mainPanel = new SpringLayout();
-		mainPanel.setLayout(sl_mainPanel);
+		JLabel lblMaximalNumberOf = new JLabel("Maximal number of attendee");
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, lblMaximalNumberOf, 46, SpringLayout.SOUTH, lblRoomArea);
+		sl_panelAddRoom.putConstraint(SpringLayout.WEST, lblMaximalNumberOf, 0, SpringLayout.WEST, lblNewLabel);
+		panelAddRoom.add(lblMaximalNumberOf);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		sl_mainPanel.putConstraint(SpringLayout.NORTH, btnNewButton, 103, SpringLayout.NORTH, mainPanel);
-		sl_mainPanel.putConstraint(SpringLayout.WEST, btnNewButton, 10, SpringLayout.WEST, mainPanel);
-		mainPanel.add(btnNewButton);
+		JButton btnAddARoom = new JButton("Add a room");
+		sl_panelAddRoom.putConstraint(SpringLayout.SOUTH, btnAddARoom, -39, SpringLayout.SOUTH, panelAddRoom);
+		sl_panelAddRoom.putConstraint(SpringLayout.EAST, btnAddARoom, -174, SpringLayout.EAST, panelAddRoom);
+		panelAddRoom.add(btnAddARoom);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		sl_mainPanel.putConstraint(SpringLayout.NORTH, btnNewButton_1, 6, SpringLayout.SOUTH, btnNewButton);
-		sl_mainPanel.putConstraint(SpringLayout.WEST, btnNewButton_1, 0, SpringLayout.WEST, btnNewButton);
-		mainPanel.add(btnNewButton_1);
+		textField = new JTextField();
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, textField, 0, SpringLayout.NORTH, lblMaximalNumberOf);
+		sl_panelAddRoom.putConstraint(SpringLayout.EAST, textField, -62, SpringLayout.EAST, panelAddRoom);
+		panelAddRoom.add(textField);
+		textField.setColumns(10);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		sl_mainPanel.putConstraint(SpringLayout.NORTH, btnNewButton_2, 6, SpringLayout.SOUTH, btnNewButton_1);
-		sl_mainPanel.putConstraint(SpringLayout.WEST, btnNewButton_2, 0, SpringLayout.WEST, btnNewButton);
-		mainPanel.add(btnNewButton_2);
+		textField_1 = new JTextField();
+		sl_panelAddRoom.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, textField);
+		sl_panelAddRoom.putConstraint(SpringLayout.SOUTH, textField_1, -35, SpringLayout.NORTH, textField);
+		panelAddRoom.add(textField_1);
+		textField_1.setColumns(10);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		sl_mainPanel.putConstraint(SpringLayout.NORTH, btnNewButton_3, 6, SpringLayout.SOUTH, btnNewButton_2);
-		sl_mainPanel.putConstraint(SpringLayout.WEST, btnNewButton_3, 0, SpringLayout.WEST, btnNewButton);
-		mainPanel.add(btnNewButton_3);
+		textField_2 = new JTextField();
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, textField_2, 0, SpringLayout.NORTH, lblRoomName);
+		sl_panelAddRoom.putConstraint(SpringLayout.EAST, textField_2, 0, SpringLayout.EAST, textField);
+		panelAddRoom.add(textField_2);
+		textField_2.setColumns(10);
 		
-		JLayeredPane layeredPane_1 = new JLayeredPane();
-		contentPane.add(layeredPane_1, BorderLayout.SOUTH);
+		txtListAMettre = new JTextField();
+		txtListAMettre.setText("List A mettre");
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, txtListAMettre, 0, SpringLayout.NORTH, lblNewLabel);
+		sl_panelAddRoom.putConstraint(SpringLayout.EAST, txtListAMettre, 0, SpringLayout.EAST, textField);
+		panelAddRoom.add(txtListAMettre);
+		txtListAMettre.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 61, 436);
-		layeredPane_1.add(lblNewLabel);
-		sl_mainPanel.putConstraint(SpringLayout.NORTH, lblNewLabel, 40, SpringLayout.NORTH, mainPanel);
-		sl_mainPanel.putConstraint(SpringLayout.WEST, lblNewLabel, 136, SpringLayout.WEST, mainPanel);
+		JPanel panelUpdateRoom = new JPanel();
+		tabbedPane.addTab("Update a room", null, panelUpdateRoom, null);
+		panelUpdateRoom.setLayout(new SpringLayout());
 		
-		JLayeredPane layeredPane_2 = new JLayeredPane();
-		contentPane.add(layeredPane_2, BorderLayout.WEST);
-		this.setVisible(true);
+		JPanel panelDeleteRoom = new JPanel();
+		tabbedPane.addTab("Delete a room", null, panelDeleteRoom, null);
+		panelDeleteRoom.setLayout(new SpringLayout());
+		
+		JPanel panelAllRooms = new JPanel();
+		tabbedPane.addTab("All rooms", null, panelAllRooms, null);
+		SpringLayout sl_panelAllRooms = new SpringLayout();
+		panelAllRooms.setLayout(sl_panelAllRooms);
+		
+		table = new JTable();
+		sl_panelAllRooms.putConstraint(SpringLayout.NORTH, table, 5, SpringLayout.NORTH, panelAllRooms);
+		sl_panelAllRooms.putConstraint(SpringLayout.WEST, table, 253, SpringLayout.WEST, panelAllRooms);
+		panelAllRooms.add(table);
+
 	}
 }

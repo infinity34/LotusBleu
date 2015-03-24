@@ -22,7 +22,7 @@ public class OfficeTest {
 
 	@Before
 	public void setUp() throws Exception {
-		office = new Office(1,"nameOffice");
+		office = new Office(1,3);
 	}
 
 	@After
@@ -32,20 +32,20 @@ public class OfficeTest {
 	@Test
 	public void testCreationOffice() {
 		assertNotNull(office);
-		assertEquals(office.getRoomName(), "nameOffice");
-		assertEquals(office.getArea(), 1);
+		assertEquals(office.getRoomID(), 1);
+		assertEquals(office.getArea(), 3);
 	}
 	
 	@Test
 	public void testSetNameOffice() {
-		assertEquals(office.getRoomName(), "nameOffice");
-		office.setRoomName("MonOffice");
-		assertEquals(office.getRoomName(), "MonOffice");
+		assertEquals(office.getRoomID(), 1);
+		office.setRoomID(2);
+		assertEquals(office.getRoomID(), 2);
 	}
 	
 	@Test
 	public void testSetAreaOffice() {
-		assertEquals(office.getArea(), 1);
+		assertEquals(office.getArea(), 3);
 		office.setArea(2);
 		assertEquals(office.getArea(), 2);
 	}

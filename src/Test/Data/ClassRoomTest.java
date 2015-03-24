@@ -22,7 +22,7 @@ public class ClassRoomTest {
 
 	@Before
 	public void setUp() throws Exception {
-		classRoom = new ClassRoom(1,"nameOffice",15);
+		classRoom = new ClassRoom(1,20,15);
 	}
 
 	@After
@@ -32,27 +32,27 @@ public class ClassRoomTest {
 	@Test
 	public void testCreationClassRoom() {
 		assertNotNull(classRoom);
-		assertEquals(classRoom.getRoomName(), "nameOffice");
-		assertEquals(classRoom.getArea(), 1);
+		assertEquals(classRoom.getRoomID(), 1);
+		assertEquals(classRoom.getArea(), 20);
 		assertEquals(classRoom.getMaximumNumberOfParticipant(), 15);
 	}
 	
 	@Test
-	public void testSetNameOffice() {
-		assertEquals(classRoom.getRoomName(), "nameOffice");
-		classRoom.setRoomName("MonOffice");
-		assertEquals(classRoom.getRoomName(), "MonOffice");
+	public void testSetIDClassRoom() {
+		assertEquals(classRoom.getRoomID(), 1);
+		classRoom.setRoomID(2);
+		assertEquals(classRoom.getRoomID(), 2);
 	}
 	
 	@Test
-	public void testSetAreaOffice() {
-		assertEquals(classRoom.getArea(), 1);
+	public void testSetAreaClassRoom() {
+		assertEquals(classRoom.getArea(), 20);
 		classRoom.setArea(2);
 		assertEquals(classRoom.getArea(), 2);
 	}
 	
 	@Test
-	public void testSetParticipantNumber() {
+	public void testSetParticipantNumberClassRoom() {
 		assertEquals(classRoom.getMaximumNumberOfParticipant(), 15);
 		classRoom.setMaximumNumberOfParticipant(20);
 		assertEquals(classRoom.getMaximumNumberOfParticipant(), 20);

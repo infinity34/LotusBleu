@@ -1,10 +1,34 @@
 
 package Persistence;
 
+import Data.Room;
+
 /**
  * 
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7c2c]
  */
 public class RoomManagerXML extends Persistence.RoomManager {
+
+	@Override
+	public void addRoom(int roomID, int area, int numberOfParticipant) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addRoom(int roomID, int area) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void loadRooms() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeRoom(Room room) {
+		// TODO Auto-generated method stub
+		
+	}
  }

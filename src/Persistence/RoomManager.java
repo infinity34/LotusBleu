@@ -9,11 +9,11 @@ import Data.Room;
  * 
  * 
  */
-public class RoomManager {
+public abstract class RoomManager {
 
-/**
- * The ArrayList (rooms) contains all the rooms
- */
+	/**
+	 * The ArrayList (rooms) contains all the rooms
+	 */
 	private ArrayList<Room> rooms;
 
 	/**
@@ -22,7 +22,7 @@ public class RoomManager {
 	public RoomManager() {
 		this.setRooms(new ArrayList<Room>());
 	}
-	
+
 
 	/**
 	 * @return the room list
@@ -37,54 +37,25 @@ public class RoomManager {
 	public void setRooms(ArrayList<Room> rooms) {
 		this.rooms = rooms;
 	}
+
+	/**
+	 * 
+	 * @return 
+	 */
+	public void addListRoom( Room room ) {        
+		this.rooms.add(room);
+	} 
+
+	public abstract void addRoom(int roomID, int area, int numberOfParticipant);
 	
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7cb4]
- * @return 
- */
-    public void addRoom( Room room ) {        
-    	this.rooms.add(room);
-    } 
+	public abstract void addRoom(int roomID, int area);
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7c8f]
- * @return 
- */
-    private boolean updateRoom() {        
-        // your code here
-        return false;
-    } 
+	public abstract void loadRooms();
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7c6a]
- * @return 
- */
-    private boolean deleteRoom() {        
-        // your code here
-        return false;
-    } 
+	public abstract void removeRoom(Room room);
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm79a6]
- */
-    private void listAllRoom() {        
-        // your code here
-    } 
+	public void removeListRoom(Room room) {
+		this.rooms.remove(room);
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I34add1b6m14c1cdf1de1mm7797]
- */
-    private void displayRoomPlanning() {        
-        // your code here
-    } 
- }
+}
