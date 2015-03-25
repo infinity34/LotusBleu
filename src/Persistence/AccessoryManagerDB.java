@@ -27,12 +27,12 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 	@Override
 	public ArrayList<Accessory> getAccessories() {
 		try {
-			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACCESSORY");
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM ACCESSORY");
 			this.accessories = new ArrayList<Accessory>();
-			do {
+			while (resultat.next()){
 				//Add the activity in the events ArrayList
 				this.accessories.add(new Accessory(resultat.getString("accessoryName")));
-			} while (resultat.next());
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
