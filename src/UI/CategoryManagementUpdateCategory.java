@@ -11,13 +11,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import Functions.CategoryFacade;
+import javax.swing.JComboBox;
 
 
 public class CategoryManagementUpdateCategory extends JPanel {
 	
-	private JTextField textField;
-	
 	private CategoryFacade facade;
+	private JButton btnUpdateCategory;
+	private JButton btnBack;
+	private JComboBox listeCategory;
 
 
 	public CategoryManagementUpdateCategory() {
@@ -36,21 +38,27 @@ public class CategoryManagementUpdateCategory extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblNameOfThe, 46, SpringLayout.WEST, this);
 		add(lblNameOfThe);
 		
-		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, textField, 17, SpringLayout.EAST, lblNameOfThe);
-		springLayout.putConstraint(SpringLayout.SOUTH, textField, 0, SpringLayout.SOUTH, lblNameOfThe);
-		add(textField);
-		textField.setColumns(10);
-		
-		JButton btnUpdateCategory = new JButton("Update Category");
+		btnUpdateCategory = new JButton("Update Category");
 		springLayout.putConstraint(SpringLayout.NORTH, btnUpdateCategory, 25, SpringLayout.SOUTH, lblNameOfThe);
 		springLayout.putConstraint(SpringLayout.WEST, btnUpdateCategory, 155, SpringLayout.WEST, this);
 		add(btnUpdateCategory);
 		
-		JButton btnBack = new JButton("< Back");
+		btnBack = new JButton("< Back");
 		springLayout.putConstraint(SpringLayout.WEST, btnBack, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
 		add(btnBack);
+		
+		listeCategory = new JComboBox();
+		//ArrayList<Category> allCategory =  facade.getAllCategory();
+				/*
+				for(int i = 0 ; i< allCategory.size(); i++)
+				{
+					listCategory.addItem(allCategory.get(i));
+				}*/
+		springLayout.putConstraint(SpringLayout.NORTH, listeCategory, -5, SpringLayout.NORTH, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.WEST, listeCategory, 22, SpringLayout.EAST, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.EAST, listeCategory, 163, SpringLayout.EAST, lblNameOfThe);
+		add(listeCategory);
 		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

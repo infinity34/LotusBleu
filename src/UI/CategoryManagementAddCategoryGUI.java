@@ -65,11 +65,12 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 		add(btnBack);
 		
 		listCategory = new JComboBox<Category>();
-		ArrayList<Category> allCategory =  facade.getAllCategory();
+		//ArrayList<Category> allCategory =  facade.getAllCategory();
+		/*
 		for(int i = 0 ; i< allCategory.size(); i++)
 		{
 			listCategory.addItem(allCategory.get(i));
-		}
+		}*/
 		
 		springLayout.putConstraint(SpringLayout.NORTH, btnCreateCategory, 52, SpringLayout.SOUTH, listCategory);
 		springLayout.putConstraint(SpringLayout.NORTH, listCategory, -5, SpringLayout.NORTH, lblNameOfThe_1);

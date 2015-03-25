@@ -30,15 +30,12 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 	public void getAllCategory() {
 		this.category = new ArrayList<Category>();
 		try {
-			ResultSet resultat = connection.getState().executeQuery(
-					"SELECT * FROM lotusbleu.CATEGORY");
-			while (resultat.next()) {
-				/*
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY");
+			while (resultat.next()) {/*
 				this.category.add(new Category(resultat
-						.getString("Name"), resultat
+						.getString("Name", resultat
 						.getBoolean("available"),resultat.getDate("notificationDate"), resultat
-						.getInt("notificationID")));
-						*/
+						.getInt("notificationID")));*/
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

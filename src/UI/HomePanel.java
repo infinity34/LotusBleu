@@ -37,6 +37,12 @@ public class HomePanel extends JPanel {
 				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
 			}
 		});
+		
+		btnCategoryManagement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+			}
+		});
 
 	}
 

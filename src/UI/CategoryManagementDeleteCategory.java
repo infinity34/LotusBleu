@@ -6,17 +6,22 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import Data.Category;
 import Functions.CategoryFacade;
+import javax.swing.JComboBox;
 
 
 public class CategoryManagementDeleteCategory extends JPanel {
-	private JTextField textField;
 	
 	private CategoryFacade facade;
+	private JComboBox listCategory;
+	private JButton btnBack;
+	private JButton btnDeleteCategory;
 
 	/**
 	 * Create the panel.
@@ -37,21 +42,27 @@ public class CategoryManagementDeleteCategory extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblNameOfThe, 86, SpringLayout.WEST, this);
 		add(lblNameOfThe);
 		
-		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField, -2, SpringLayout.NORTH, lblNameOfThe);
-		springLayout.putConstraint(SpringLayout.WEST, textField, 28, SpringLayout.EAST, lblNameOfThe);
-		add(textField);
-		textField.setColumns(10);
-		
-		JButton btnBack = new JButton("< Back");
+		btnBack = new JButton("< Back");
 		springLayout.putConstraint(SpringLayout.WEST, btnBack, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
 		add(btnBack);
 		
-		JButton btnDeleteCategory = new JButton("Delete Category");
+		btnDeleteCategory = new JButton("Delete Category");
 		springLayout.putConstraint(SpringLayout.NORTH, btnDeleteCategory, 46, SpringLayout.SOUTH, lblNameOfThe);
 		springLayout.putConstraint(SpringLayout.WEST, btnDeleteCategory, 249, SpringLayout.WEST, this);
 		add(btnDeleteCategory);
+		
+		listCategory = new JComboBox();
+		//ArrayList<Category> allCategory =  facade.getAllCategory();
+		/*
+		for(int i = 0 ; i< allCategory.size(); i++)
+		{
+			listCategory.addItem(allCategory.get(i));
+		}*/
+		springLayout.putConstraint(SpringLayout.NORTH, listCategory, -5, SpringLayout.NORTH, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.WEST, listCategory, 16, SpringLayout.EAST, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.EAST, listCategory, 140, SpringLayout.EAST, lblNameOfThe);
+		add(listCategory);
 		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
