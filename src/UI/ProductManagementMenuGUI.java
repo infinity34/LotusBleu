@@ -6,11 +6,22 @@ import javax.swing.SpringLayout;
 import Functions.ProductManagementFacade;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 public class ProductManagementMenuGUI extends JPanel {
 	
+	private JButton btnAddProduct;
+	private JButton btnUpdateProduct;
+	private JButton btnDeleteProduct;
+	private JButton btnDisplayAllProducts;
+	private JButton btnBack;
+	
 	private ProductManagementFacade facade;
+	
 	
 
 	  public ProductManagementMenuGUI()
@@ -25,24 +36,59 @@ public class ProductManagementMenuGUI extends JPanel {
 			lblProductManagement.setFont(new Font("Dialog", Font.BOLD, 20));
 			add(lblProductManagement);
 			
-			JButton btnAddProduct = new JButton("Add Product");
+			btnAddProduct = new JButton("Add Product");
 			springLayout.putConstraint(SpringLayout.NORTH, btnAddProduct, 114, SpringLayout.SOUTH, lblProductManagement);
 			springLayout.putConstraint(SpringLayout.WEST, btnAddProduct, 129, SpringLayout.WEST, this);
 			add(btnAddProduct);
 			
-			JButton btnUpdateProduct = new JButton("Update Product");
+			btnUpdateProduct = new JButton("Update Product");
 			springLayout.putConstraint(SpringLayout.NORTH, btnUpdateProduct, 0, SpringLayout.NORTH, btnAddProduct);
 			springLayout.putConstraint(SpringLayout.WEST, btnUpdateProduct, 46, SpringLayout.EAST, btnAddProduct);
 			add(btnUpdateProduct);
 			
-			JButton btnDeleteProduct = new JButton("Delete Product");
+			btnDeleteProduct = new JButton("Delete Product");
 			springLayout.putConstraint(SpringLayout.NORTH, btnDeleteProduct, 0, SpringLayout.NORTH, btnAddProduct);
 			springLayout.putConstraint(SpringLayout.EAST, btnDeleteProduct, -26, SpringLayout.EAST, this);
 			add(btnDeleteProduct);
 			
-			JButton btnDisplayAllProdcuts = new JButton("Display All Prodcuts");
-			springLayout.putConstraint(SpringLayout.NORTH, btnDisplayAllProdcuts, 87, SpringLayout.SOUTH, btnUpdateProduct);
-			springLayout.putConstraint(SpringLayout.EAST, btnDisplayAllProdcuts, -201, SpringLayout.EAST, this);
-			add(btnDisplayAllProdcuts);
+			btnDisplayAllProducts = new JButton("Display All Prodcuts");
+			springLayout.putConstraint(SpringLayout.NORTH, btnDisplayAllProducts, 87, SpringLayout.SOUTH, btnUpdateProduct);
+			springLayout.putConstraint(SpringLayout.EAST, btnDisplayAllProducts, -201, SpringLayout.EAST, this);
+			add(btnDisplayAllProducts);
+			
+			btnBack = new JButton("< Back");
+			springLayout.putConstraint(SpringLayout.WEST, btnBack, 10, SpringLayout.WEST, this);
+			springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
+			add(btnBack);
+			
+			btnAddProduct.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					UI.MainFrame.getMainFrame().setMainPanel(new ProductManagementAddProductGUI());
+					}
+				});
+			
+			btnDeleteProduct.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					UI.MainFrame.getMainFrame().setMainPanel(new ProductManagementDeleteProductGUI());
+					}
+				});
+			
+			btnUpdateProduct.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					UI.MainFrame.getMainFrame().setMainPanel(new ProductManagementUpdateProductGUI());
+					}
+				});
+			
+			btnDisplayAllProducts.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					UI.MainFrame.getMainFrame().setMainPanel(new ProductManagementDisplayAllProductsGUI());
+					}
+				});
+			
+			btnBack.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					UI.MainFrame.getMainFrame().setMainPanel(new HomePanel());
+					}
+				});
 	  }
 }
