@@ -26,8 +26,8 @@ public class HomePanel extends JPanel {
 		JButton btnProductManagement = new JButton("Manage Product");
 		add(btnProductManagement);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		add(btnNewButton_3);
+		JButton btnContributorManagement = new JButton("Manage Contributor");
+		add(btnContributorManagement);
 		
 		JButton btnNewButton_4 = new JButton("New button");
 		add(btnNewButton_4);
@@ -47,6 +47,12 @@ public class HomePanel extends JPanel {
 		btnProductManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new ProductManagementMenuGUI());
+			}
+		});
+		
+		btnContributorManagement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ContributorManagementMenuGUI());
 			}
 		});
 
