@@ -40,11 +40,11 @@ public class ContributorManagementMenuGUI extends JPanel {
 		
 		addContributorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.getMainFrame().setMainPanel(new AddContributorGUI());
+				MainFrame.getMainFrame().setMainPanel(new ContributorAddGUI());
 			}
 		});
 		
-		updateContributorButton.addActionListener(new ActionListener() {
+		/*updateContributorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new UpdateContributorGUI());
 			}
@@ -54,6 +54,6 @@ public class ContributorManagementMenuGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new DeleteContributorGUI());
 			}
-		});
+		});*/
 	}
 }	

@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,17 +15,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Data.Event;
 import Functions.ContributorManagementFacade;
+import Functions.EventFacade;
+
 import javax.swing.JTable;
 import javax.swing.JComboBox;
 
-public class AddContributorGUI extends JPanel {
-	private JTextField txtEventName;
+
+
+
+public class ContributorAddGUI extends JPanel {
 	private ContributorManagementFacade myFacade = new ContributorManagementFacade();
-	private JTable table;
-	private JComboBox contributorList;
+	private EventFacade myFacadeEvent = new EventFacade();
 	
-	public AddContributorGUI() {
+	
+	public ContributorAddGUI() {
 		this.setSize(640, 480);
 		
 		setLayout(null);
@@ -39,31 +46,33 @@ public class AddContributorGUI extends JPanel {
 		instruct.setBounds(6, 127, 628, 16);
 		add(instruct);
 		
-		/*txtEventName = new JTextField();
-		txtEventName.setForeground(Color.BLACK);
-		txtEventName.setText("Enter the name");
-		txtEventName.setBounds(259, 186, 282, 28);
-		add(txtEventName);
-		txtEventName.setColumns(10);*/
-		
 		JLabel eventNamelabel = new JLabel("Event name :");
 		eventNamelabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		eventNamelabel.setBounds(56, 190, 137, 16);
 		add(eventNamelabel);
 		
-		JComboBox eventList = new JComboBox();
-		eventList.setEditable(true);
+		 
+		/*JComboBox eventList = new JComboBox();
+		//Display the event in the comboBox
+		for(int index=0; index<(myFacadeEvent.getEvents()).size();index++){
+			eventList.addItem(myFacadeEvent.getEvents().get(index));
+		}
+		eventList.setEditable(false);
 		eventList.setBounds(203, 238, 310, 20);
 		add(eventList);
-				
+			
 		JLabel contributorNamelabel = new JLabel("Contributor name :");
 		contributorNamelabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		contributorNamelabel.setBounds(56, 238, 137, 16);
 		add(contributorNamelabel);
-		
-		JComboBox contributorList;
-		contributorList = new JComboBox();
-		contributorList.setEditable(true);
+		*/
+		JComboBox contributorList = new JComboBox();
+		/*ArrayList listC = new ArrayList();
+		listC = myFacade.listContributor();
+		for(int index=0; index<(myFacade.listContributor()).size();index++){
+			contributorList.addItem(listC.get(index));
+		}*/
+		contributorList.setEditable(false);
 		contributorList.setBounds(203, 190, 310, 20);
 		add(contributorList);
 				
@@ -76,16 +85,16 @@ public class AddContributorGUI extends JPanel {
 		add(btnCancel);
 		
 		
-		
-
-		/*
+		//Listeners
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new ContributorManagementMenuGUI());
 			}});
 		
-		btnSubmit.addActionListener(new ActionListener() {
+		/*btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Event myEvent = new Event();
+				myEvent.getAnEventWithName(contributorList.getToolTipText());
 				Boolean isAdded = myFacade.addContributorToEvent(txtEventName.getText());
 				
 				if(!isAdded){
