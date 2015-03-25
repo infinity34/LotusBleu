@@ -43,5 +43,8 @@ public abstract class AccessoryManager {
 	public abstract Boolean deleteAccessory(Accessory accessory);
 
 
+	public abstract Accessory getAnAccessory(String accessoryName);
+
+
 
 }

@@ -76,4 +76,22 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 		}	
 		return false;
 	}
+
+	@Override
+	public Accessory getAnAccessory(String accessoryName) {
+		Accessory accessory = null;
+		try {
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM ACCESSORY WHERE accessoryName = \""+accessoryName+"\"" );
+			resultat.last();
+			//System.out.println(resultat.getRow());
+			if(resultat.getRow()!=0){
+				accessory = new Accessory(resultat.getString("accessoryName"));
+				return accessory;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return accessory;
+	}
 }

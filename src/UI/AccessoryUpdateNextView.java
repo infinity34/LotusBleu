@@ -4,6 +4,7 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -18,7 +19,8 @@ import java.awt.event.ActionListener;
 public class AccessoryUpdateNextView extends JPanel {
 	private JTextField txtEnterTheNew;
 	private String oldAccessoryName;
-	private AccessoryFacade myFacade;
+	private AccessoryFacade myFacade = new AccessoryFacade();
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Create the panel.
@@ -38,7 +40,7 @@ public class AccessoryUpdateNextView extends JPanel {
 		lblNewLabel_1.setBounds(6, 123, 628, 16);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Old Accessory Name");
+		this.lblNewLabel_2 = new JLabel("Old Accessory Name");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(6, 151, 628, 16);
 		add(lblNewLabel_2);
@@ -67,10 +69,20 @@ public class AccessoryUpdateNextView extends JPanel {
 				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
 			}});
 		
+		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				myFacade.updateAccessory(new Accessory(oldAccessoryName), txtEnterTheNew.getText());
-				//MainFrame.getMainFrame().setMainPanel(nextPanel);
+				Boolean isUpdated = myFacade.updateAccessory(new Accessory(oldAccessoryName), txtEnterTheNew.getText());
+				
+				if(!isUpdated){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "The accessory doesn't update! :(", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					JOptionPane.showMessageDialog(null, "Accessory Updated! :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+				}
 			}});
 	}
 
@@ -80,6 +92,7 @@ public class AccessoryUpdateNextView extends JPanel {
 
 	public void setOldAccessoryName(String oldAccessoryName) {
 		this.oldAccessoryName = oldAccessoryName;
+		this.lblNewLabel_2.setText(this.oldAccessoryName);
 	}
 
 }
