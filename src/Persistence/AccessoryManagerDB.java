@@ -27,12 +27,12 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 	@Override
 	public ArrayList<Accessory> getAccessories() {
 		try {
-			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACCESSORY");
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM ACCESSORY");
 			this.accessories = new ArrayList<Accessory>();
-			do {
-				//Add the activity in the events ArrayList
+			while (resultat.next()){
+				//Add the accessory in the arrayList
 				this.accessories.add(new Accessory(resultat.getString("accessoryName")));
-			} while (resultat.next());
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,5 +75,23 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 				e.printStackTrace();
 		}	
 		return false;
+	}
+
+	@Override
+	public Accessory getAnAccessory(String accessoryName) {
+		Accessory accessory = null;
+		try {
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM ACCESSORY WHERE accessoryName = \""+accessoryName+"\"" );
+			resultat.last();
+			//System.out.println(resultat.getRow());
+			if(resultat.getRow()!=0){
+				accessory = new Accessory(resultat.getString("accessoryName"));
+				return accessory;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return accessory;
 	}
 }

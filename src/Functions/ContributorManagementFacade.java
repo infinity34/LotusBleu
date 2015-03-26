@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import Data.Event;
 import Data.User;
+import Persistence.AccessoryManagerDB;
+import Persistence.ContributorManagerDB;
 
 /**
  * 
@@ -12,7 +14,17 @@ import Data.User;
  * @poseidon-object-id [Im16e76644m14bffa18d1dmm764c]
  */
 public class ContributorManagementFacade {
-
+	
+	//private SessionManager session;
+    public Persistence.ContributorManager contributorManager;
+    
+    public ContributorManagementFacade(){
+    	super();
+    	this.contributorManager = new ContributorManagerDB();
+    }
+	
+	
+	
 /**
  * <p>Does ...</p>
  * 
@@ -20,6 +32,9 @@ public class ContributorManagementFacade {
  * @param contributor 
  * @return 
  */
+	
+	 
+	 
     public boolean addContributor(Data.User contributor) {        
         // your code here
         return false;
@@ -32,29 +47,28 @@ public class ContributorManagementFacade {
  * @param contributor 
  * @return 
  */
-    public ArrayList<Event> listEvents(Data.User contributor) {        
-        // your code here
-        return null;
+    public ArrayList<Event> listEvents(Data.User contributor) {    
+        return contributorManager.listEvents(contributor);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>make a user become a contributor.</p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm703d]
  */
-    public void createContributor() {        
-        // your code here
+    public Boolean createContributor(String name,String firstname) {        
+        return contributorManager.createContributor(name,firstname);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Return a list of all contributor's name and first name</p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm7018]
- * @return 
+ * @return ArrayList of all contributors
  */
-    public ArrayList<User> listContributor() {        
+    public ArrayList<String> listContributor() {        
         // your code here
-        return null;
+        return contributorManager.listContributor();
     } 
 
 /**
@@ -62,13 +76,19 @@ public class ContributorManagementFacade {
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm6ff3]
  */
-    public void deleteContributorEvent() {        
-        // your code here
+    public Boolean deleteContributor(String name, String firstname) {        
+        return contributorManager.deleteContributor(name, firstname);
     } 
+    
+    
+    public Boolean deleteContributorFromEvent(String eventName, String name, String firstname) { 
+		 return contributorManager.deleteContributorFromEvent(eventName, name, firstname);
+	} 
+    
 /**
  * 
  * 
  * @poseidon-object-id [Im16e76644m14bffa18d1dmm75ec]
  */
-    public Persistence.ContributorManager contributorManager;
+    
  }

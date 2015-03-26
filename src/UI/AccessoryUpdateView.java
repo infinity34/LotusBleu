@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
@@ -22,8 +23,9 @@ import java.awt.event.ActionListener;
 
 public class AccessoryUpdateView extends JPanel {
 
-	private AccessoryFacade accessoryFacade;
+	
 	private JTextField txtEnterTheName;
+	private AccessoryFacade myFacade = new AccessoryFacade();
 	
 	
 	/**
@@ -66,9 +68,15 @@ public class AccessoryUpdateView extends JPanel {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AccessoryUpdateNextView nextPanel = new AccessoryUpdateNextView();
-				nextPanel.setOldAccessoryName(txtEnterTheName.getText());
-				MainFrame.getMainFrame().setMainPanel(nextPanel);
+				Accessory accessory = myFacade.getAnAccessory(txtEnterTheName.getText());
+				if(accessory != null){
+					AccessoryUpdateNextView nextPanel = new AccessoryUpdateNextView();
+					nextPanel.setOldAccessoryName(txtEnterTheName.getText());
+					MainFrame.getMainFrame().setMainPanel(nextPanel);
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "This accessory doesn't exist! Try with another name", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}});
 	}
 }

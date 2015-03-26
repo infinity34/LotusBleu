@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import Data.Category;
 import Data.Notification;
 
-public class CategoryManager {
+public abstract class CategoryManager {
 
 	protected ArrayList<Category> category;
 
@@ -14,10 +14,7 @@ public class CategoryManager {
 		return category;
 	}
 
-	public Data.Category createCategory(String name, Data.Category fatherCategory, Boolean available) {        
-        // your code here
-        return null;
-    } 
+    public void createCategory(String name, String motherCategoryName, Boolean available) {} 
 
     public void updateCategory(String name, Data.Category fatherCategory, Boolean available) {        
         // your code here

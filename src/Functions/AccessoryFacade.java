@@ -57,4 +57,8 @@ public class AccessoryFacade {
     public Boolean updateAccessory(Accessory accessory, String newName) {        
     	return accessoryManager.setAccessory(accessory,newName);
     } 
+    
+    public Accessory getAnAccessory(String accessoryName){
+    	return accessoryManager.getAnAccessory(accessoryName);
+    }
  }

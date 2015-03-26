@@ -40,4 +40,11 @@ public class AccessoryManagerXML extends Persistence.AccessoryManager {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public Accessory getAnAccessory(String accessoryName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
  }

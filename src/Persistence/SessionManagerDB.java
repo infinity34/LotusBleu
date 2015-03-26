@@ -54,7 +54,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				user.setAddress1(resultat.getString("address1"));
 				user.setAddress2(resultat.getString("address2"));
 				user.setCity(resultat.getString("city"));
-				user.setPostcode(resultat.getInt("postCode"));
+				user.setPostcode(resultat.getString("postCode"));
 				user.setUsermail(resultat.getString("mail"));
 
 				// Création du MemberRole, de la subscription et du payment
