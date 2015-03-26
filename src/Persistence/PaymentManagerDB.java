@@ -1,10 +1,25 @@
 
 package Persistence;
 
+import Tools.DBconnection;
+
 /**
  * 
  * 
- * @poseidon-object-id [Im27a4b8d9m14c215a6043mm7c2b]
  */
-public class PaymentManagerDB extends Persistence.PaymentManager {
- }
+public class PaymentManagerDB extends PaymentManager {
+
+	/**
+	 * Tools alows the connection to the dataBase
+	 */
+	public DBconnection dBconnection;
+
+	/**
+	 * 
+	 * 
+	 */
+	public PaymentManagerDB(){
+		super();
+		this.dBconnection = DBconnection.getConnection();
+	}
+}

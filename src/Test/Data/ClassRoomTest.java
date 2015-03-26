@@ -22,7 +22,7 @@ public class ClassRoomTest {
 
 	@Before
 	public void setUp() throws Exception {
-		classRoom = new ClassRoom(1,20,15);
+		classRoom = new ClassRoom("name",20,15);
 	}
 
 	@After
@@ -32,16 +32,16 @@ public class ClassRoomTest {
 	@Test
 	public void testCreationClassRoom() {
 		assertNotNull(classRoom);
-		assertEquals(classRoom.getRoomID(), 1);
+		assertEquals(classRoom.getRoomName(), "name");
 		assertEquals(classRoom.getArea(), 20);
 		assertEquals(classRoom.getMaximumNumberOfParticipant(), 15);
 	}
 	
 	@Test
-	public void testSetIDClassRoom() {
-		assertEquals(classRoom.getRoomID(), 1);
-		classRoom.setRoomID(2);
-		assertEquals(classRoom.getRoomID(), 2);
+	public void testSetNameClassRoom() {
+		assertEquals(classRoom.getRoomName(), "name");
+		classRoom.setRoomName("name2");
+		assertEquals(classRoom.getRoomName(), "name2");
 	}
 	
 	@Test

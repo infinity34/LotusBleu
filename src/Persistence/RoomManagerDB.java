@@ -45,7 +45,7 @@ public class RoomManagerDB extends RoomManager {
 			ResultSet resultatClassRoom = dBconnection.getState().executeQuery(
 					"SELECT * FROM lotusbleu.ROOM where roomType='ClassRoom'");
 			while (resultatClassRoom.next()) {
-				this.addListRoom(new ClassRoom(resultatClassRoom.getInt("roomID"),
+				this.addListRoom(new ClassRoom(resultatClassRoom.getString("roomName"),
 						resultatClassRoom.getInt("roomArea"),
 						resultatClassRoom.getInt("numberOfParticpant")));
 			}
@@ -53,7 +53,7 @@ public class RoomManagerDB extends RoomManager {
 			ResultSet resultatOffice = dBconnection.getState().executeQuery(
 					"SELECT * FROM lotusbleu.ROOM where roomType='ClassRoom'");
 			while (resultatOffice.next()) {
-				this.addListRoom(new ClassRoom(resultatOffice.getInt("roomID"),
+				this.addListRoom(new ClassRoom(resultatOffice.getString("roomName"),
 						resultatOffice.getInt("roomArea"),
 						resultatOffice.getInt("numberOfParticpant")));
 			}
@@ -69,16 +69,16 @@ public class RoomManagerDB extends RoomManager {
 			if(room.getClass().getSimpleName().equals("ClassRoom")){
 
 				dBconnection.getState().executeUpdate(
-						"INSERT INTO `lotusbleu`.`ROOM` (`roomID`, `roomArea`, `numberOfParticpant`, `roomType`)"
-								+ "VALUES ("+ room.getRoomID() +", "
+						"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
+								+ "VALUES ('"+ room.getRoomName() +"', "
 								+ room.getArea() +", "
 								+((ClassRoom)room).getMaximumNumberOfParticipant() 
 								+", 'ClassRoom')");
 			}
 			else if(room.getClass().getSimpleName().equals("Office")){
 				dBconnection.getState().executeUpdate(
-						"INSERT INTO `lotusbleu`.`ROOM` (`roomID`, `roomArea`, `numberOfParticpant`, `roomType`)"
-								+ "VALUES ("+ room.getRoomID() +", "
+						"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
+								+ "VALUES ('"+ room.getRoomName() +"', "
 								+ room.getArea() +", "
 								+"null , Office)");
 			}
@@ -92,15 +92,15 @@ public class RoomManagerDB extends RoomManager {
 
 	/**
 	 * allows to add a classRoom to the database and to the list
-	 * @param :int roomID, int area, int numberOfParticipant (parameters of a classroom) 
+	 * @param :STring name , int area, int numberOfParticipant (parameters of a classroom) 
 	 */
-	public void addRoom( int roomID, int area, int numberOfParticipant ) {
-		Room room = new ClassRoom(roomID, area, numberOfParticipant);
+	public void addRoom( String name, int area, int numberOfParticipant ) {
+		Room room = new ClassRoom(name, area, numberOfParticipant);
 		this.addListRoom(room);
 		try {
 			dBconnection.getState().executeUpdate(
-					"INSERT INTO `lotusbleu`.`ROOM` (`roomID`, `roomArea`, `numberOfParticpant`, `roomType`)"
-							+ "VALUES ("+ room.getRoomID() +", "
+					"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
+							+ "VALUES ('"+ room.getRoomName() +"', "
 							+ room.getArea() +", "
 							+((ClassRoom)room).getMaximumNumberOfParticipant() 
 							+", 'ClassRoom')");
@@ -114,13 +114,13 @@ public class RoomManagerDB extends RoomManager {
 	 * allows to add an office to the database and to the list
 	 * @param :int roomID, int area (parameters of a office) 
 	 */
-	public void addRoom( int roomID, int area ) {
-		Room room = new Office(roomID, area);
+	public void addRoom(  String name, int area ) {
+		Room room = new Office(name, area);
 		this.addListRoom(room);
 		try {
 			dBconnection.getState().executeUpdate(
-					"INSERT INTO `lotusbleu`.`ROOM` (`roomID`, `roomArea`, `numberOfParticpant`, `roomType`)"
-							+ "VALUES ("+ room.getRoomID() +", "
+					"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
+							+ "VALUES ('"+ room.getRoomName() +"', "
 							+ room.getArea() +", "
 							+"null , Office)");
 
@@ -132,8 +132,8 @@ public class RoomManagerDB extends RoomManager {
 		this.removeListRoom(room);
 		try {
 			dBconnection.getState().executeUpdate(
-					"DELETE FROM Room WHERE roomID = "
-							+ room.getRoomID());
+					"DELETE FROM Room WHERE roomName = '"
+							+ room.getRoomName() +"'");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -46,9 +46,9 @@ public abstract class RoomManager {
 		this.rooms.add(room);
 	} 
 
-	public abstract void addRoom(int roomID, int area, int numberOfParticipant);
+	public abstract void addRoom(String name, int area, int numberOfParticipant);
 	
-	public abstract void addRoom(int roomID, int area);
+	public abstract void addRoom(String name, int area);
 
 	public abstract void loadRooms();
 
