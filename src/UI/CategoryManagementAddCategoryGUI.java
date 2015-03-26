@@ -21,12 +21,10 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 	
 	private JTextField categoryName;
 	private JButton btnCreateCategory;
-	private JComboBox<Category> listCategory;
+	private JComboBox<String> listCategory;
 	private JCheckBox chckbxAvailable;
 	
 	private JButton btnBack;
-	
-	private CategoryFacade facade;
 
 	public CategoryManagementAddCategoryGUI() {
 		this.setSize(640, 480);
@@ -64,12 +62,14 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
 		add(btnBack);
 		
-		listCategory = new JComboBox<Category>();
-		//ArrayList<Category> allCategory =  facade.getAllCategory();
-		/*
+		listCategory = new JComboBox<String>();
+		listCategory.addItem("");
+		listCategory.addItem("Vetements");
+		/*ArrayList<Category> allCategory =  facade.getAllCategory();
+		
 		for(int i = 0 ; i< allCategory.size(); i++)
 		{
-			listCategory.addItem(allCategory.get(i));
+			listCategory.addItem(allCategory.get(i).getCategoryName());
 		}*/
 		
 		springLayout.putConstraint(SpringLayout.NORTH, btnCreateCategory, 52, SpringLayout.SOUTH, listCategory);
@@ -92,10 +92,9 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 		btnCreateCategory.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Data.Category motherCategory = (Category) listCategory.getSelectedItem();
+				String motherCategory = (String)listCategory.getSelectedItem();
 				
-				
-				facade.createCategory(categoryName.getText(), motherCategory, true);
+				CategoryFacade.getFacade().createCategory(categoryName.getText(), motherCategory , chckbxAvailable.isSelected());
 				}
 			});
 

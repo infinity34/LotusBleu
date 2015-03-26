@@ -3,28 +3,29 @@ package Persistence;
 
 import Tools.DBconnection;
 
-/**
- * 
- * 
- * @poseidon-object-id [I2d1a4d66m14c0966aad0mm767f]
- */
+
 public class ProductManagerDB extends Persistence.ProductManager {
 
-/**
- * <p>Represents ...</p>
- * 
- * @poseidon-object-id [I2d1a4d66m14c0966aad0mm7633]
- */
-    private DBconnection connection;
+	private static ProductManagerDB managerBD;
 
-public ProductManagerDB() {
+    private DBconnection connection;
+    
+	
+	public static ProductManagerDB getManagerDB()
+	{
+		if (managerBD == null)
+		{
+			managerBD = new ProductManagerDB();
+		}
+		
+		return managerBD;
+	}
+
+private ProductManagerDB() {
 	super();
 	this.connection = DBconnection.getConnection();
 	}
 
-	/**
-	 * @return the connection
-	 */
 	public DBconnection getConnection() {
 		return connection;
 	}

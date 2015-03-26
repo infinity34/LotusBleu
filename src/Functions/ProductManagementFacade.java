@@ -1,58 +1,46 @@
 
 package Functions;
 
-/**
- * 
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7df9]
- */
 public class ProductManagementFacade {
+	
+	private ProductManagementFacade facade;
+	
+	private ProductManagementFacade()
+	{
+		
+	}
+	
+	public ProductManagementFacade getFacade()
+	{
+		if (facade == null)
+		{
+			facade = new ProductManagementFacade();
+		}
+		
+		return facade;
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im3e57f184m14c1d0a4e02mm7755]
- * @return 
- */
     private boolean addProduct() {        
         // your code here
         return false;
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im3e57f184m14c1d0a4e02mm7729]
- * @return 
- */
+
     private boolean updateProduct() {        
         // your code here
         return false;
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im3e57f184m14c1d0a4e02mm7711]
- * @return 
- */
+
     private boolean deleteProduct() {        
         // your code here
         return false;
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im3e57f184m14c1d0a4e02mm76f9]
- */
+
     private void displayAllProduct() {        
         // your code here
     } 
-/**
- * 
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7d9b]
- */
-    public Persistence.ProductManager productManager;
+
+    
  }

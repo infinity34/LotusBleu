@@ -8,23 +8,30 @@ import java.util.ArrayList;
 import Data.Category;
 import Data.Notification;
 import Data.User;
+import Functions.CategoryFacade;
 import Tools.DBconnection;
 
 
 public class CategoryManagerBD extends Persistence.CategoryManager {
+	
+	private static CategoryManagerBD managerBD;
 
-    public DBconnection connection;
+    private DBconnection connection;
     
-    public DBconnection getConnection() {
-		return connection;
+	
+	private CategoryManagerBD()
+	{
+		this.connection = DBconnection.getConnection();
 	}
-
-	/**
-	 * @param connection
-	 *            the connection to set
-	 */
-	public void setConnection(DBconnection connection) {
-		this.connection = connection;
+	
+	public static CategoryManagerBD getManagerDB()
+	{
+		if (managerBD == null)
+		{
+			managerBD = new CategoryManagerBD();
+		}
+		
+		return managerBD;
 	}
 	
 	public void getAllCategory() {
@@ -60,23 +67,14 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 			}
 	}
 		
-		public Data.Category createCategory(String name, Data.Category fatherCategory, Boolean available) {        
-			try {
-				ResultSet resultat = connection.getState().executeQuery(""
-						//"SELECT * FROM lotusbleu.CATEGORY WHERE name = "
-						);
-				while (resultat.next()) {
-					/*
-					this.category.add(new Category(resultat
-							.getString("Name"), resultat
-							.getBoolean("available"),resultat.getDate("notificationDate"), resultat
-							.getInt("notificationID")));
-							*/
+		public void createCategory(String name, String motherCategoryName, Boolean available) {   
+				try {
+					
+					connection.getState().executeQuery("INSERT INTO lotusbleu.CATEGORY(categoryName,available,subCategoryOf) " +
+							"VALUES(\""+ name +"\",\""+motherCategoryName+"\","+available+")");
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-	        return null;
 	    } 
     
  }

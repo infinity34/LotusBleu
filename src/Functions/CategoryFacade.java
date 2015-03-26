@@ -4,16 +4,24 @@ package Functions;
 import java.util.ArrayList;
 
 import Data.Category;
+import Persistence.CategoryManagerBD;
+import UI.MainFrame;
 
 
 public class CategoryFacade {
 	
+	private static CategoryFacade facade;
+	
+	private CategoryFacade()
+	{
+		
+	}
+	
 
-    public Data.Category createCategory(String name, Data.Category motherCategory, Boolean available) {    
+    public void createCategory(String name, String motherCategoryName, Boolean available) {    
     	
-    	categoryManager.createCategory(name, motherCategory, available);
+    	CategoryManagerBD.getManagerDB().createCategory(name, motherCategoryName, available);
     	
-        return null;
     } 
 
 
@@ -39,10 +47,15 @@ public class CategoryFacade {
 
     
 
-    public Persistence.CategoryManager categoryManager;
+    private CategoryManagerBD categoryManager;
 
 	public static CategoryFacade getFacade() {
-		// TODO Auto-generated method stub
-		return null;
+		if (facade == null)
+		{
+			facade = new CategoryFacade();
+		}
+		
+		return facade;
+		
 	}
  }
