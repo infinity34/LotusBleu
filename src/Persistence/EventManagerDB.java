@@ -153,7 +153,7 @@ public class EventManagerDB extends Persistence.EventManager {
 			//Get the contributorID
 			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userName =" + eventContributorName + "AND userFirstName ="+ eventContributorFirstname );
 			
-			connection.getState().executeQuery(
+			connection.getState().executeUpdate(
 					"UPDATE ACTIVITY SET eventName =" + eventName 
 									+ " AND roomID ="+ eventRoomID
 									+ " AND activityID ="+ resultatActivity.getString("activityID")

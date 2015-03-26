@@ -1,11 +1,11 @@
 
 package Persistence;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import Data.ContributorRole;
-import Data.Event;
-import Data.User;
+
+
 
 /**
  * Contributor
@@ -14,9 +14,9 @@ import Data.User;
  */
 public abstract class ContributorManager {
 	
-	public abstract boolean addContributor(Data.User contributor);
+	public abstract Boolean addContributorToEvent(String myEvent,String begin,String end, String name, String firstname);
      
-    public abstract ArrayList<Event> listEvents(Data.User contributor);
+    public abstract ResultSet listEvents(String name, String firstname);
 
     public abstract Boolean createContributor(String name, String firstname);
     

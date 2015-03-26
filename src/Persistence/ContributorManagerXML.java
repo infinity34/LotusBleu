@@ -1,11 +1,9 @@
 
 package Persistence;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import Data.ContributorRole;
-import Data.Event;
-import Data.User;
 
 /**
  * 
@@ -14,40 +12,45 @@ import Data.User;
  */
 public class ContributorManagerXML extends Persistence.ContributorManager {
 
-	@Override
-	public boolean addContributor(User contributor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+	
 
 	@Override
-	public ArrayList<Event> listEvents(User contributor) {
+	public ResultSet listEvents(String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void createContributor() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ArrayList<User> listContributor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteContributorEvent(Event myEvent,
-			ContributorRole myContributor) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public Boolean deleteContributorFromEvent(String eventName,
 			String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean addContributorToEvent(String myEvent, String begin,
+			String end, String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean createContributor(String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean deleteContributor(String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<String> listContributor() {
 		// TODO Auto-generated method stub
 		return null;
 	}

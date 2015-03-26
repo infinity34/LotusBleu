@@ -12,10 +12,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Data.Accessory;
-import Data.User;
+
+
 import Functions.ContributorManagementFacade;
 
+@SuppressWarnings("serial")
 public class ContributorManagementMenuGUI extends JPanel {
 
 		public ContributorManagementFacade myFacade = new ContributorManagementFacade();
@@ -35,28 +36,20 @@ public class ContributorManagementMenuGUI extends JPanel {
 		instruct.setBounds(286, 151, 312, 16);
 		add(instruct);
 		
-		JButton addContributorButton = new JButton("Add a contributor to an event");
-		addContributorButton.setBounds(286, 181, 300, 29);
+		JButton addContributorButton = new JButton("Add/Modify a contributor to an event");
+		addContributorButton.setBounds(284, 178, 300, 29);
 		add(addContributorButton);
 		
-		JButton updateContributorButton = new JButton("Update a contributor of an event");
-		updateContributorButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		updateContributorButton.setBounds(286, 221, 300, 29);
-		add(updateContributorButton);
-		
 		JButton deleteContributorButton = new JButton("Delete a contributor from an event");
-		deleteContributorButton.setBounds(286, 261, 300, 29);
+		deleteContributorButton.setBounds(284, 218, 300, 29);
 		add(deleteContributorButton);
 		
 		JButton createContributorButton = new JButton("Add a new contributor");
-		createContributorButton.setBounds(286, 301, 300, 29);
+		createContributorButton.setBounds(284, 258, 300, 29);
 		add(createContributorButton);
 		
 		JButton removeContributor = new JButton("Remove a contributor");
-		removeContributor.setBounds(286, 341, 300, 29);
+		removeContributor.setBounds(284, 298, 300, 29);
 		add(removeContributor);
 		
 		 JLabel lblAllContributors = new JLabel("List of contributors :");
@@ -79,7 +72,11 @@ public class ContributorManagementMenuGUI extends JPanel {
 		 JList<String> liste = new JList<String>(listModel);
 		 liste.setBounds(26, 181, 173, 178);
 		 //liste.addListSelectionListener(this);
-		 add(liste);		
+		 add(liste);
+		 
+		 JButton btnSeeAllThe = new JButton("See all the events of a contributor");
+		 btnSeeAllThe.setBounds(286, 342, 300, 29);
+		 add(btnSeeAllThe);
 		
 		
 		 //Listener
@@ -114,5 +111,12 @@ public class ContributorManagementMenuGUI extends JPanel {
 				MainFrame.getMainFrame().setMainPanel(new ContributorRemoveGUI());
 			}
 		});
+		
+		btnSeeAllThe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ContributorEvent(null));
+			}
+		});
+		
 	}
 }	

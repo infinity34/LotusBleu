@@ -63,7 +63,7 @@ public class ContributorDeleteGUI extends JPanel {
 		txtEnterTheFirstName.setText("Enter the contributor's firstname");
 		txtEnterTheFirstName.setToolTipText("");
 		txtEnterTheFirstName.setForeground(Color.BLACK);
-		txtEnterTheName.setText("Enter the first name");
+		txtEnterTheFirstName.setText("Enter the first name");
 		txtEnterTheFirstName.setBounds(210, 263, 231, 28);
 		add(txtEnterTheFirstName);
 		txtEnterTheFirstName.setColumns(10);

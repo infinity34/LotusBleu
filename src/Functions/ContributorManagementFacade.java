@@ -1,11 +1,12 @@
 
 package Functions;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import Data.Event;
-import Data.User;
-import Persistence.AccessoryManagerDB;
+
+
+
 import Persistence.ContributorManagerDB;
 
 /**
@@ -26,29 +27,25 @@ public class ContributorManagementFacade {
 	
 	
 /**
- * <p>Does ...</p>
+ * <p>Add or update the contributor of an event.</p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm7126]
  * @param contributor 
  * @return 
  */
-	
-	 
-	 
-    public boolean addContributor(Data.User contributor) {        
-        // your code here
-        return false;
+public Boolean addContributorToEvent(String myEvent,String begin,String end, String name, String firstname) {        
+    	return contributorManager.addContributorToEvent(myEvent,begin, end, name, firstname);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p></p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm70e6]
  * @param contributor 
  * @return 
  */
-    public ArrayList<Event> listEvents(Data.User contributor) {    
-        return contributorManager.listEvents(contributor);
+    public ResultSet listEvents(String name, String firstname) {    
+        return contributorManager.listEvents(name, firstname);
     } 
 
 /**
@@ -72,7 +69,7 @@ public class ContributorManagementFacade {
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Make a user no being a contributor anymore.</p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm6ff3]
  */
