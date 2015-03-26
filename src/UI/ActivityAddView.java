@@ -2,12 +2,20 @@ package UI;
 
 import javax.swing.JPanel;
 
+import Data.Activity;
 import Functions.ActivityFacade;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
@@ -15,8 +23,8 @@ import javax.swing.SwingConstants;
 
 public class ActivityAddView extends JPanel {
 	
-	private ActivityFacade myFacade = new ActivityFacade();
 	private JTextField txtActivityName;
+	private JTextArea txtrActivityDescription;
 
 	/**
 	 * Create the panel.
@@ -75,7 +83,7 @@ public class ActivityAddView extends JPanel {
 		gbc_lblDescription.gridy = 7;
 		add(lblDescription, gbc_lblDescription);
 		
-		JTextArea txtrActivityDescription = new JTextArea();
+		txtrActivityDescription = new JTextArea();
 		txtrActivityDescription.setText("Activity Description");
 		GridBagConstraints gbc_txtrActivityDescription = new GridBagConstraints();
 		gbc_txtrActivityDescription.insets = new Insets(0, 0, 5, 5);
@@ -98,6 +106,27 @@ public class ActivityAddView extends JPanel {
 		gbc_btnSubmit.gridy = 9;
 		add(btnSubmit, gbc_btnSubmit);
 		
+		//Listeners
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ActivityMainView());
+			}});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean isAdd = ActivityFacade.getFacade().createActivity(txtActivityName.getText(),txtrActivityDescription.getText());
+				
+				if(!isAdd){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "The activity doesn't add in the database!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					JOptionPane.showMessageDialog(null, "Activity Added! :) :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getMainFrame().setMainPanel(new ActivityMainView());
+				}
+			}});
+
 	}
 
 }

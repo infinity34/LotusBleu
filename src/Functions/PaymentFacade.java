@@ -1,13 +1,31 @@
 
 package Functions;
 
+import javax.swing.JOptionPane;
+
 /**
  * 
- * 
- * @poseidon-object-id [Im3d5f9a4em14c178ccc5bmm7e19]
  */
 public class PaymentFacade {
 
+<<<<<<< Updated upstream
+	/**
+	 * 
+	 */
+	public Persistence.PaymentManager paymentManager;
+
+	/**
+	 * 
+	 * @param cardInformation 
+	 * @param amount 
+	 * @return 
+	 */
+	public Boolean ProceedPayment(String cardInformation, float amount) {
+		return paymentManager.ProceedPayment(cardInformation, amount);
+	} 
+
+}
+=======
 /**
  * <p>Does ...</p>
  * 
@@ -16,9 +34,9 @@ public class PaymentFacade {
  * @param amount 
  * @return 
  */
-    public Boolean ProceedPayment(String cardInformation, float amount) {        
-        // your code here
-        return null;
+    public Boolean ProceedPayment(float amount) {        
+    	JOptionPane.showInputDialog(null, "Enter your credit card number", "Payment", JOptionPane.QUESTION_MESSAGE);
+        return true;
     } 
 /**
  * 
@@ -27,3 +45,4 @@ public class PaymentFacade {
  */
     public Persistence.PaymentManager paymentManager;
  }
+>>>>>>> Stashed changes

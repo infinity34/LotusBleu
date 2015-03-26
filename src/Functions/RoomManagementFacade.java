@@ -1,67 +1,95 @@
 
 package Functions;
 
+import java.util.ArrayList;
+
+import Data.Room;
+import Persistence.RoomManager;
+import Persistence.RoomManagerDB;
+
 /**
  * 
  * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7df9]
  */
 public class RoomManagementFacade {
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7d71]
- * @return 
- */
-    private boolean addRoom() {        
-        // your code here
-        return false;
-    } 
+	/**
+	 * 
+	 * 
+	 */
+	public RoomManager roomManager;
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7d4c]
- * @return 
- */
-    private boolean supdateRoom() {        
-        // your code here
-        return false;
-    } 
+	/**
+	 * 
+	 * 
+	 */
+	public RoomManagementFacade(){
+		super();
+		//TODO
+		this.roomManager = new RoomManagerDB();
+	}
+	
+	/**
+	 * @return the roomManager
+	 */
+	public RoomManager getRoomManager(){
+		return this.roomManager;
+	}
+	
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7d27]
- * @return 
- */
-    private boolean deleteRoom() {        
-        // your code here
-        return false;
-    } 
+	/**
+	 * set the room manager with the roomManager
+	 * in parameter
+	 * @param the roomManager
+	 */
+	public void setRoomManager(RoomManager roomManager){
+		this.roomManager = roomManager;
+	}
+	
+	/**
+	 * return the list of all rooms
+	 */
+	public ArrayList<Room> loadRooms(){
+		this.roomManager.loadRooms();
+		return this.roomManager.getRooms();
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm79e3]
- */
-    private void listAllRoom() {        
-        // your code here
-    } 
+	/**
+	 * add a room
+	 * create an instance in the dataBase
+	 * and add the room at the list
+	 */
+	public void addRoom(String name, int area, int numberOfParticipant){
+		System.out.println(name+", "+area +", "+numberOfParticipant);
+		this.roomManager.addRoom(name, area, numberOfParticipant);
+	}
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I34add1b6m14c1cdf1de1mm77b0]
- */
-    private void displayRoomPlanning() {        
-        // your code here
-    } 
-/**
- * 
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7d9b]
- */
-    public Persistence.RoomManager roomManager;
- }
+	/**
+	 * add a room
+	 * create an instance in the dataBase
+	 * and add the room at the list
+	 */
+	public void addRoom(String name, int area){
+		this.roomManager.addRoom(name, area);
+	}
+	
+	/**
+	 * Delete a room
+	 * Delete the instance in the DataBase
+	 * and Delete the room in list of the roomManager
+	 * @return 
+	 */
+	public void deleteRoom(Room room) {        
+		this.roomManager.removeRoom(room);
+	} 
+	
+	/**
+	 * Update a room
+	 * Update the instance in the DataBase
+	 * @return 
+	 */
+	public void updateRoom(int roomID, int area, int numberOfParticipant) {        
+		
+	}
+
+}

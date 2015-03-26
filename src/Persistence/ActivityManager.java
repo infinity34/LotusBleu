@@ -12,7 +12,6 @@ import Data.Activity;
  */ 
 public abstract class ActivityManager {
 
-    public Data.Activity activity;
 
 	/**
 	 * <p> Create an activity</p>
@@ -23,7 +22,7 @@ public abstract class ActivityManager {
 	 * @param longDescription 
 	 * @return 
 	 */
-    public abstract Data.Activity createActivity(String name, String description);
+    public abstract Boolean createActivity(String name, String description);
 
 	/**
 	 * <p> edit an activity</p>
@@ -44,8 +43,14 @@ public abstract class ActivityManager {
     public abstract Boolean deleteActivity(String name);
 
 	/**
-	 * <p> Get all activity</p>
+	 * <p> Get all activities</p>
 	 * @return list of all activity
 	 */
     public abstract ArrayList<Activity> getAllActivities();
+    
+	/**
+	 * <p> Get an activity</p>
+	 * @return list of all activity
+	 */
+    public abstract Activity getAnActivity(String activityName);
  }

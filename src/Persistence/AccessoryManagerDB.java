@@ -30,7 +30,7 @@ public class AccessoryManagerDB extends Persistence.AccessoryManager {
 			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM ACCESSORY");
 			this.accessories = new ArrayList<Accessory>();
 			while (resultat.next()){
-				//Add the accessory in the arrayList
+				//Add the activity in the events ArrayList
 				this.accessories.add(new Accessory(resultat.getString("accessoryName")));
 			}
 		} catch (SQLException e) {

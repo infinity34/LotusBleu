@@ -1,11 +1,16 @@
 package UI;
+import Functions.CategoryFacade;
 import Functions.RoomManagementFacade;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JTabbedPane;
+
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -15,9 +20,9 @@ import javax.swing.JTable;
 public class RoomManagementGUI extends JPanel {
 
 	private RoomManagementFacade roomManagementFacade;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField roomMaxAttendeeTextfield;
+	private JTextField roomAreaTextfield;
+	private JTextField roomNameTextfield;
 	private JTextField txtListAMettre;
 	private JTable table;
 
@@ -36,6 +41,8 @@ public class RoomManagementGUI extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, tabbedPane, -27, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, tabbedPane, -21, SpringLayout.EAST, this);
 		add(tabbedPane);
+		
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		JPanel panelAddRoom = new JPanel();
 		tabbedPane.addTab("add a room", null, panelAddRoom, null);
@@ -67,30 +74,42 @@ public class RoomManagementGUI extends JPanel {
 		sl_panelAddRoom.putConstraint(SpringLayout.EAST, btnAddARoom, -174, SpringLayout.EAST, panelAddRoom);
 		panelAddRoom.add(btnAddARoom);
 		
-		textField = new JTextField();
-		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, textField, 0, SpringLayout.NORTH, lblMaximalNumberOf);
-		sl_panelAddRoom.putConstraint(SpringLayout.EAST, textField, -62, SpringLayout.EAST, panelAddRoom);
-		panelAddRoom.add(textField);
-		textField.setColumns(10);
+		roomMaxAttendeeTextfield = new JTextField();
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, roomMaxAttendeeTextfield, 0, SpringLayout.NORTH, lblMaximalNumberOf);
+		sl_panelAddRoom.putConstraint(SpringLayout.EAST, roomMaxAttendeeTextfield, -62, SpringLayout.EAST, panelAddRoom);
+		panelAddRoom.add(roomMaxAttendeeTextfield);
+		roomMaxAttendeeTextfield.setColumns(10);
 		
-		textField_1 = new JTextField();
-		sl_panelAddRoom.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, textField);
-		sl_panelAddRoom.putConstraint(SpringLayout.SOUTH, textField_1, -35, SpringLayout.NORTH, textField);
-		panelAddRoom.add(textField_1);
-		textField_1.setColumns(10);
+		roomAreaTextfield = new JTextField();
+		sl_panelAddRoom.putConstraint(SpringLayout.WEST, roomAreaTextfield, 0, SpringLayout.WEST, roomMaxAttendeeTextfield);
+		sl_panelAddRoom.putConstraint(SpringLayout.SOUTH, roomAreaTextfield, -35, SpringLayout.NORTH, roomMaxAttendeeTextfield);
+		panelAddRoom.add(roomAreaTextfield);
+		roomAreaTextfield.setColumns(10);
 		
-		textField_2 = new JTextField();
-		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, textField_2, 0, SpringLayout.NORTH, lblRoomName);
-		sl_panelAddRoom.putConstraint(SpringLayout.EAST, textField_2, 0, SpringLayout.EAST, textField);
-		panelAddRoom.add(textField_2);
-		textField_2.setColumns(10);
+		roomNameTextfield = new JTextField();
+		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, roomNameTextfield, 0, SpringLayout.NORTH, lblRoomName);
+		sl_panelAddRoom.putConstraint(SpringLayout.EAST, roomNameTextfield, 0, SpringLayout.EAST, roomMaxAttendeeTextfield);
+		panelAddRoom.add(roomNameTextfield);
+		roomNameTextfield.setColumns(10);
 		
 		txtListAMettre = new JTextField();
 		txtListAMettre.setText("List A mettre");
 		sl_panelAddRoom.putConstraint(SpringLayout.NORTH, txtListAMettre, 0, SpringLayout.NORTH, lblNewLabel);
-		sl_panelAddRoom.putConstraint(SpringLayout.EAST, txtListAMettre, 0, SpringLayout.EAST, textField);
+		sl_panelAddRoom.putConstraint(SpringLayout.EAST, txtListAMettre, 0, SpringLayout.EAST, roomMaxAttendeeTextfield);
 		panelAddRoom.add(txtListAMettre);
 		txtListAMettre.setColumns(10);
+		
+		btnAddARoom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = roomNameTextfield.getText();
+				int area = Integer.parseInt(roomAreaTextfield.getText());
+				int NBAttendee = Integer.parseInt(roomMaxAttendeeTextfield.getText());
+				roomManagementFacade.addRoom(name, area, NBAttendee);
+				}
+	
+			});
+		
+		///////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		JPanel panelUpdateRoom = new JPanel();
 		tabbedPane.addTab("Update a room", null, panelUpdateRoom, null);
@@ -100,15 +119,15 @@ public class RoomManagementGUI extends JPanel {
 		tabbedPane.addTab("Delete a room", null, panelDeleteRoom, null);
 		panelDeleteRoom.setLayout(new SpringLayout());
 		
-		JPanel panelAllRooms = new JPanel();
-		tabbedPane.addTab("All rooms", null, panelAllRooms, null);
-		SpringLayout sl_panelAllRooms = new SpringLayout();
-		panelAllRooms.setLayout(sl_panelAllRooms);
+		JPanel panelListRoom = new JPanel();
+		tabbedPane.addTab("All rooms", null, panelListRoom, null);
+		SpringLayout sl_roomNameTextfield = new SpringLayout();
+		panelListRoom.setLayout(sl_roomNameTextfield);
 		
 		table = new JTable();
-		sl_panelAllRooms.putConstraint(SpringLayout.NORTH, table, 5, SpringLayout.NORTH, panelAllRooms);
-		sl_panelAllRooms.putConstraint(SpringLayout.WEST, table, 253, SpringLayout.WEST, panelAllRooms);
-		panelAllRooms.add(table);
+		sl_roomNameTextfield.putConstraint(SpringLayout.NORTH, table, 5, SpringLayout.NORTH, panelListRoom);
+		sl_roomNameTextfield.putConstraint(SpringLayout.WEST, table, 253, SpringLayout.WEST, panelListRoom);
+		panelListRoom.add(table);
 
 	}
 }

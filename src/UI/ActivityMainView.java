@@ -2,18 +2,25 @@ package UI;
 
 import javax.swing.JPanel;
 
+import Data.Activity;
 import Functions.ActivityFacade;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 
 public class ActivityMainView extends JPanel {
-	
-	private ActivityFacade myFacade = new ActivityFacade();
 	
 	/**
 	 * Create the panel.
@@ -70,13 +77,47 @@ public class ActivityMainView extends JPanel {
 		gbc_lblActivitiesAlreadyExisted.gridy = 7;
 		add(lblActivitiesAlreadyExisted, gbc_lblActivitiesAlreadyExisted);
 		
-		JList list = new JList();
+		
+		//Create listModel
+		DefaultListModel listModel = new DefaultListModel();
+		//Get all accessories
+		ArrayList<Activity> activities = ActivityFacade.getFacade().getAllActivities();
+				 
+		//Fill the model
+		int size = activities.size();
+		if(size!=0){
+			for(int index=0; index<size; index++)
+			{
+				listModel.addElement(activities.get(index).getName());
+			}
+		}
+		JList list = new JList(listModel);
+		//JList list = new JList();
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.insets = new Insets(0, 0, 5, 5);
 		gbc_list.fill = GridBagConstraints.BOTH;
 		gbc_list.gridx = 5;
 		gbc_list.gridy = 8;
 		add(list, gbc_list);
+		
+		//Listeners
+		btnAddAnActivity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ActivityAddView());
+			}
+		});
+		
+		btnDeleteAnActivity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ActivityDeleteView());
+			}
+		});
+		
+		btnUpdateAnActivity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ActivityUpdateView());
+			}
+		});
 		
 	}
 

@@ -2,8 +2,8 @@ package Data;
 
 public class Office extends Room{
 	
-	public Office (int id, int area){
-		super(id, area);
+	public Office (String name, int area){
+		super(name, area);
 	}
 	
 }
