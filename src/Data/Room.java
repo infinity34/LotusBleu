@@ -9,11 +9,11 @@ package Data;
 public abstract class Room {
 	
 	private int area;
-	private int roomID;
+	private String name;
 	
-	public Room(int roomID, int area){
+	public Room(String name , int area){
 		this.area = area;
-		this.roomID = roomID;
+		this.name = name;
 	}
 	
 	public void setArea(int area){
@@ -24,12 +24,12 @@ public abstract class Room {
 		return this.area;
 	}
 
-	public int getRoomID() {
-		return roomID;
+	public String getRoomName() {
+		return name;
 	}
 
-	public void setRoomID(int roomID) {
-		this.roomID = roomID;
+	public void setRoomName(String name) {
+		this.name = name;
 	}
 	
  }

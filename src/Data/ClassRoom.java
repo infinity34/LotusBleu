@@ -4,8 +4,8 @@ public class ClassRoom extends Room{
 
 	private int maximumNumberOfParticipant;
 
-	public ClassRoom(int roomID, int area,  int maximumNumberOfParticipant){
-		super(roomID, area);
+	public ClassRoom(String name, int area,  int maximumNumberOfParticipant){
+		super(name, area);
 		this.maximumNumberOfParticipant = maximumNumberOfParticipant;
 	}
 	

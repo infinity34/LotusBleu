@@ -35,7 +35,7 @@ public class RoomManagerDBTest {
 	@Test
 	public void testAddListRoom() {
 		assertEquals("problème la liste n'est pas vide à l'initialisation",0,roomManager.getRooms().size());
-		Room room1 = new ClassRoom(1,15, 45);
+		Room room1 = new ClassRoom("classroom",15, 45);
 		roomManager.addListRoom(room1);
 		assertEquals("problème la liste n'a pas le bon nombre de pièce",1,roomManager.getRooms().size());
 	}
@@ -52,8 +52,7 @@ public class RoomManagerDBTest {
 	@Test
 	public void testAddRoom() {
 		
-		Room room = new ClassRoom(5,20,25);
-		roomManager.addRoom(room);
+		roomManager.addRoom("classroom 2",20,25);
 	}
 	
 
