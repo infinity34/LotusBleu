@@ -4,6 +4,8 @@ package Functions;
 import java.util.ArrayList;
 
 import Data.Activity;
+import Persistence.AccessoryManagerDB;
+import Persistence.ActivityManagerBD;
 
 /**
  * Activity facade
@@ -14,59 +16,62 @@ public class ActivityFacade {
 	
 private Persistence.ActivityManager activityManager;
 	
-/**
- * <p>Create an activity</p>
- * 
- * @poseidon-object-id [I3abaef47m14c1a7d7d62mm5d82]
- * @param name 
- * @param inCharge 
- * @param shortDescription 
- * @param longDescription 
- * @return 
- */
+	public ActivityFacade(){
+		super();
+		this.activityManager = new ActivityManagerBD();
+	}
+	
+	/**
+	 * <p>Create an activity</p>
+	 * 
+	 * @param name 
+	 * @param description 
+	 * @return Boolean
+	 */
     public Data.Activity createActivity(String name, String description) {        
-        // your code here
         return activityManager.createActivity(name, description);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @param name 
- * @param inCharge 
- * @param shortDescription 
- * @param longDescription 
- */
+	/**
+	 * <p> Update an activity</p>
+	 * 
+	 * @param name 
+	 * @param inCharge 
+	 * @param shortDescription 
+	 * @param longDescription 
+	 * @return Boolean
+	 */
     public Boolean editActivity(String oldName, String newName, String newDescription) {        
        return activityManager.editActivity(oldName, newName, newDescription);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @param name 
- */
+	/**
+	 * <p>Delete an activity</p>
+	 * 
+	 * @param name 
+	 * @return Boolean
+	 */
     public Boolean deleteActivity(String name) {        
        return activityManager.deleteActivity(name);
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * @return 
- */
+	/**
+	 * <p> Get all activities</p>
+	 * 
+	 * @return the list of all activities existing in the database
+	 */
     public ArrayList<Activity> getAllActivities() {        
         // your code here
         return activityManager.getAllActivities();
     }
 
-public Persistence.ActivityManager getActivityManager() {
-	return activityManager;
-}
-
-public void setActivityManager(Persistence.ActivityManager activityManager) {
-	this.activityManager = activityManager;
-} 
+	public Persistence.ActivityManager getActivityManager() {
+		return activityManager;
+	}
+	
+	public void setActivityManager(Persistence.ActivityManager activityManager) {
+		this.activityManager = activityManager;
+	} 
 
     
  }
