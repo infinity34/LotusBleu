@@ -67,7 +67,7 @@ public class ContributorManagementFacade {
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm7018]
  * @return 
  */
-    public ArrayList<User> listContributor() {        
+    public ArrayList<String> listContributor() {        
         // your code here
         return contributorManager.listContributor();
     } 
@@ -82,8 +82,8 @@ public class ContributorManagementFacade {
     } 
     
     
-    public Boolean deleteContributorEventFromEvent(String eventName, String name, String firstname) { 
-		 return contributorManager.deleteContributorEventFromEvent(eventName, name, firstname);
+    public Boolean deleteContributorFromEvent(String eventName, String name, String firstname) { 
+		 return contributorManager.deleteContributorFromEvent(eventName, name, firstname);
 	} 
     
 /**

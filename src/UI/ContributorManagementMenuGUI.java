@@ -3,14 +3,23 @@ package UI;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import Data.Accessory;
+import Data.User;
+import Functions.ContributorManagementFacade;
+
 public class ContributorManagementMenuGUI extends JPanel {
 
+		public ContributorManagementFacade myFacade = new ContributorManagementFacade();
+	
 	public ContributorManagementMenuGUI() {
 		this.setSize(640, 480);
 		setLayout(null);
@@ -23,20 +32,43 @@ public class ContributorManagementMenuGUI extends JPanel {
 		
 		JLabel instruct = new JLabel("Choose the action that you will perform");
 		instruct.setHorizontalAlignment(SwingConstants.CENTER);
-		instruct.setBounds(6, 108, 628, 16);
+		instruct.setBounds(286, 151, 312, 16);
 		add(instruct);
 		
 		JButton addContributorButton = new JButton("Add a contributor");
-		addContributorButton.setBounds(178, 182, 300, 29);
+		addContributorButton.setBounds(286, 181, 300, 29);
 		add(addContributorButton);
 		
 		JButton updateContributorButton = new JButton("Update a contributor");
-		updateContributorButton.setBounds(178, 239, 300, 29);
+		updateContributorButton.setBounds(286, 237, 300, 29);
 		add(updateContributorButton);
 		
 		JButton deleteContributorButton = new JButton("Delete a contributor");
-		deleteContributorButton.setBounds(178, 301, 300, 29);
+		deleteContributorButton.setBounds(286, 295, 300, 29);
 		add(deleteContributorButton);
+		
+		 JLabel lblAllAccessories = new JLabel("List of contributors :");
+		 lblAllAccessories.setBounds(26, 142, 173, 35);
+		 add(lblAllAccessories);
+		 revalidate();
+		
+		
+		//Create listModel
+		DefaultListModel listModel = new DefaultListModel();
+		//Get all contributors
+		 ArrayList<String> contributors = myFacade.listContributor();
+		 //Fill the model
+		 int size = contributors.size();
+		 for(int index=0; index<size; index++)
+		 {
+			 String fullname = contributors.get(index);
+		     listModel.addElement(fullname);
+		 }
+		 JList liste = new JList(listModel);
+		 liste.setBounds(26, 181, 173, 178);
+		 //liste.addListSelectionListener(this);
+		 add(liste);		
+		
 		
 		addContributorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

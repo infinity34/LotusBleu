@@ -20,10 +20,10 @@ public abstract class ContributorManager {
 
     public abstract void createContributor();
     
-    public abstract ArrayList<User> listContributor(); 
+    public abstract ArrayList<String> listContributor(); 
 
     public abstract void deleteContributorEvent(Event myEvent, ContributorRole myContributor);
     
-    public abstract Boolean deleteContributorEventFromEvent(String eventName, String name, String firstname);
+    public abstract Boolean deleteContributorFromEvent(String eventName, String name, String firstname);
 
  }

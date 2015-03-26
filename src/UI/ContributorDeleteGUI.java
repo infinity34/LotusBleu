@@ -83,7 +83,7 @@ public class ContributorDeleteGUI extends JPanel {
 		
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Boolean isDeleted = myFacade.deleteContributorEventFromEvent(txtEnterTheEvent.getText(),txtEnterTheName.getText(),txtEnterTheFirstName.getText());
+				Boolean isDeleted = myFacade.deleteContributorFromEvent(txtEnterTheEvent.getText(),txtEnterTheName.getText(),txtEnterTheFirstName.getText());
 				
 				if(!isDeleted){
 					//Error popup 

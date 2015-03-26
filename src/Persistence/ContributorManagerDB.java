@@ -17,7 +17,7 @@ import Tools.DBconnection;
 
 public class ContributorManagerDB extends Persistence.ContributorManager {
 	DBconnection connection;
-	private ArrayList<User> contributorList;
+	private ArrayList contributorList;
 	private ArrayList<Event> eventList;
 	public EventManagerDB eventManagerDB;
 	private ContributorRole myContributor;
@@ -28,16 +28,23 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	}
 	
 	
-	 public ArrayList<User> listContributor() {        
+	 public ArrayList<String> listContributor() {        
 		 this.contributorList = null;
 			try {
-				ResultSet resultContributors = connection.getState().executeQuery("SELECT * FROM CONTRIBUTORROLE");
-				resultContributors.beforeFirst();	//Moves the cursor to the front of this ResultSet 
-					do {
-						this.contributorList.add((User) resultContributors.getObject(resultContributors.getRow()));
+				ResultSet result = connection.getState().executeQuery("SELECT * FROM CONTRIBUTOR");
+				this.contributorList = new ArrayList();
+				//Add the contributor in the contributors ArrayList
+				String name;
+				String firstname;
+				String fullname;
+				while (result.next())
+					{
+					 name = result.getString("username");
+					 firstname = result.getString("userfirtname");
+					 fullname = name+firstname;
+				     (this.contributorList).add(fullname);
 					}
-					while(resultContributors.next());					
-				}
+			}
 				catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -50,9 +57,14 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	 }
 	 
 	 
-	 public Boolean deleteContributorEventFromEvent(String eventName, String name, String firstname) { 
+	 public Boolean deleteContributorFromEvent(String eventName, String name, String firstname) { 
 		 Event myEvent = eventManagerDB.getAnEventWithName(eventName);
 		 return eventManagerDB.updateEvent(myEvent, myEvent.getEventName(), myEvent.getEventRoomID(), myEvent.getEventTimeSlot(),myEvent.getEventActivity(), name, firstname);
+		/* try{
+			 ResultSet resultEvent = connection.getState().executeQuery("SELECT * FROM EVENT WHERE eventName ='"+eventName+"'");
+			 
+		 }*/
+	 
 	 }
 
 
