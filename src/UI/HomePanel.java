@@ -32,6 +32,9 @@ public class HomePanel extends JPanel {
 		JButton btnActivityManagement = new JButton("Manage Activity");
 		add(btnActivityManagement);
 		
+		JButton btnManageRoom = new JButton("Manage Room");
+		add(btnManageRoom);
+		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
@@ -59,6 +62,12 @@ public class HomePanel extends JPanel {
 		btnActivityManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new ActivityMainView());
+			}
+		});
+
+		btnManageRoom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new RoomManagementGUI());
 			}
 		});
 
