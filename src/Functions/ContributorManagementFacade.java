@@ -52,7 +52,7 @@ public class ContributorManagementFacade {
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>make a user become a contributor.</p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm703d]
  */
@@ -76,8 +76,8 @@ public class ContributorManagementFacade {
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm6ff3]
  */
-    public void deleteContributorEvent() {        
-        // your code here
+    public Boolean deleteContributor(String name, String firstname) {        
+        return contributorManager.deleteContributor(name, firstname);
     } 
     
     

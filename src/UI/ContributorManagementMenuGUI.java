@@ -40,20 +40,28 @@ public class ContributorManagementMenuGUI extends JPanel {
 		add(addContributorButton);
 		
 		JButton updateContributorButton = new JButton("Update a contributor of an event");
-		updateContributorButton.setBounds(286, 237, 300, 29);
+		updateContributorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		updateContributorButton.setBounds(286, 221, 300, 29);
 		add(updateContributorButton);
 		
 		JButton deleteContributorButton = new JButton("Delete a contributor from an event");
-		deleteContributorButton.setBounds(286, 289, 300, 29);
+		deleteContributorButton.setBounds(286, 261, 300, 29);
 		add(deleteContributorButton);
 		
 		JButton createContributorButton = new JButton("Add a new contributor");
-		createContributorButton.setBounds(286, 339, 300, 29);
+		createContributorButton.setBounds(286, 301, 300, 29);
 		add(createContributorButton);
 		
-		 JLabel lblAllAccessories = new JLabel("List of contributors :");
-		 lblAllAccessories.setBounds(26, 142, 173, 35);
-		 add(lblAllAccessories);
+		JButton removeContributor = new JButton("Remove a contributor");
+		removeContributor.setBounds(286, 341, 300, 29);
+		add(removeContributor);
+		
+		 JLabel lblAllContributors = new JLabel("List of contributors :");
+		 lblAllContributors.setBounds(26, 142, 173, 35);
+		 add(lblAllContributors);
 		 revalidate();
 		
 		
@@ -74,6 +82,8 @@ public class ContributorManagementMenuGUI extends JPanel {
 		 add(liste);		
 		
 		
+		 //Listener
+		 
 		addContributorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new ContributorAddGUI());
@@ -96,6 +106,12 @@ public class ContributorManagementMenuGUI extends JPanel {
 		createContributorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new ContributorCreateGUI());
+			}
+		});
+		
+		removeContributor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ContributorRemoveGUI());
 			}
 		});
 	}

@@ -10,6 +10,7 @@ import Data.Accessory;
 import Data.Activity;
 import Data.ContributorRole;
 import Data.Event;
+import Data.MemberRole;
 import Data.TimeSlot;
 import Data.User;
 import Tools.DBconnection;
@@ -31,16 +32,17 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	 public ArrayList<String> listContributor() {        
 		 this.contributorList = null;
 			try {
-				ResultSet result = connection.getState().executeQuery("SELECT * FROM CONTRIBUTOR");
+				ResultSet result = connection.getState().executeQuery("SELECT * FROM USER WHERE isContributor=1");
 				this.contributorList = new ArrayList();
 				//Add the contributor in the contributors ArrayList
 				String name;
 				String firstname;
 				String fullname;
+				result.beforeFirst();
 				while (result.next())
 					{
-					 name = result.getString("username");
-					 firstname = result.getString("userfirtname");
+					 name = result.getString("userName");
+					 firstname = result.getString("userFirstName");
 					 fullname = name+firstname;
 				     (this.contributorList).add(fullname);
 					}
@@ -83,16 +85,34 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 
 
 	@Override
-	public void createContributor() {
-		// TODO Auto-generated method stub
-		
+	public Boolean createContributor(String name, String firstname) {
+		try {
+			ResultSet result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
+			result.last();
+			if (!(result.getInt("isContributor") == 1)){
+				connection.getState().executeUpdate("UPDATE USER SET isContributor = 1");
+			}
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 
 	@Override
-	public void deleteContributorEvent(Event myEvent,
-			ContributorRole myContributor) {
-		// TODO Auto-generated method stub
-		
+	public Boolean deleteContributor(String name, String firstname) {
+		try{
+			ResultSet result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
+			result.last();
+			if ((result.getInt("isContributor") == 1)){
+				connection.getState().executeUpdate("UPDATE USER SET isContributor = 0");
+			}
+		return true;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	} 
  }
