@@ -74,13 +74,16 @@ public class User {
 	
 	private MemberRole memberRole;
 	
+
+	
 	/**
 	 * @return the username
 	 */
 	public String getUsername() {
 		return username;
 	}
-
+	
+	
 	/**
 	 * @param username
 	 *            the username to set

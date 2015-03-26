@@ -35,17 +35,21 @@ public class ContributorManagementMenuGUI extends JPanel {
 		instruct.setBounds(286, 151, 312, 16);
 		add(instruct);
 		
-		JButton addContributorButton = new JButton("Add a contributor");
+		JButton addContributorButton = new JButton("Add a contributor to an event");
 		addContributorButton.setBounds(286, 181, 300, 29);
 		add(addContributorButton);
 		
-		JButton updateContributorButton = new JButton("Update a contributor");
+		JButton updateContributorButton = new JButton("Update a contributor of an event");
 		updateContributorButton.setBounds(286, 237, 300, 29);
 		add(updateContributorButton);
 		
-		JButton deleteContributorButton = new JButton("Delete a contributor");
-		deleteContributorButton.setBounds(286, 295, 300, 29);
+		JButton deleteContributorButton = new JButton("Delete a contributor from an event");
+		deleteContributorButton.setBounds(286, 289, 300, 29);
 		add(deleteContributorButton);
+		
+		JButton createContributorButton = new JButton("Add a new contributor");
+		createContributorButton.setBounds(286, 339, 300, 29);
+		add(createContributorButton);
 		
 		 JLabel lblAllAccessories = new JLabel("List of contributors :");
 		 lblAllAccessories.setBounds(26, 142, 173, 35);
@@ -54,7 +58,7 @@ public class ContributorManagementMenuGUI extends JPanel {
 		
 		
 		//Create listModel
-		DefaultListModel listModel = new DefaultListModel();
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		//Get all contributors
 		 ArrayList<String> contributors = myFacade.listContributor();
 		 //Fill the model
@@ -64,7 +68,7 @@ public class ContributorManagementMenuGUI extends JPanel {
 			 String fullname = contributors.get(index);
 		     listModel.addElement(fullname);
 		 }
-		 JList liste = new JList(listModel);
+		 JList<String> liste = new JList<String>(listModel);
 		 liste.setBounds(26, 181, 173, 178);
 		 //liste.addListSelectionListener(this);
 		 add(liste);		
@@ -85,6 +89,13 @@ public class ContributorManagementMenuGUI extends JPanel {
 		deleteContributorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new ContributorDeleteGUI());
+			}
+		});
+		
+		
+		createContributorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ContributorCreateGUI());
 			}
 		});
 	}

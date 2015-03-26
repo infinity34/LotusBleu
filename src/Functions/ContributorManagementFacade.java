@@ -47,8 +47,7 @@ public class ContributorManagementFacade {
  * @param contributor 
  * @return 
  */
-    public ArrayList<Event> listEvents(Data.User contributor) {        
-        // your code here
+    public ArrayList<Event> listEvents(Data.User contributor) {    
         return contributorManager.listEvents(contributor);
     } 
 
@@ -57,15 +56,15 @@ public class ContributorManagementFacade {
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm703d]
  */
-    public void createContributor() {        
-        // your code here
+    public Boolean createContributor(String name,String firstname) {        
+        return contributorManager.createContributor(name,firstname);
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>Return a list of all contributor's name and first name</p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm7018]
- * @return 
+ * @return ArrayList of all contributors
  */
     public ArrayList<String> listContributor() {        
         // your code here

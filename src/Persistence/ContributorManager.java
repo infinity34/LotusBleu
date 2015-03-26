@@ -18,7 +18,7 @@ public abstract class ContributorManager {
      
     public abstract ArrayList<Event> listEvents(Data.User contributor);
 
-    public abstract void createContributor();
+    public abstract Boolean createContributor(String name, String firstname);
     
     public abstract ArrayList<String> listContributor(); 
 
