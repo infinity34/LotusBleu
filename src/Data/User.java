@@ -46,7 +46,7 @@ public class User {
 	 * </p>
 	 * 
 	 */
-	private int postcode;
+	private String postcode;
 
 	/**
 	 * <p>
@@ -137,7 +137,7 @@ public class User {
 	/**
 	 * @return the postcode
 	 */
-	public int getPostcode() {
+	public String getPostcode() {
 		return postcode;
 	}
 
@@ -145,7 +145,7 @@ public class User {
 	 * @param postcode
 	 *            the postcode to set
 	 */
-	public void setPostcode(int postcode) {
+	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
 
