@@ -62,6 +62,13 @@ public class HomePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, btnManageRoom, 0, SpringLayout.WEST, btnNewButton);
 		add(btnNewButton);
 		
+		JButton btnManageEvent = new JButton("Manage Event");
+		springLayout.putConstraint(SpringLayout.NORTH, btnManageEvent, 10, SpringLayout.SOUTH, btnActivityManagement);
+		springLayout.putConstraint(SpringLayout.WEST, btnManageEvent, 55, SpringLayout.EAST, btnProductManagement);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnManageEvent, 39, SpringLayout.SOUTH, btnActivityManagement);
+		springLayout.putConstraint(SpringLayout.EAST, btnManageEvent, 0, SpringLayout.EAST, btnAccessoryManagement);
+		add(btnManageEvent);
+		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
@@ -102,6 +109,11 @@ public class HomePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		btnManageEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventMainView());
+			}
+		});
 	}
-
 }

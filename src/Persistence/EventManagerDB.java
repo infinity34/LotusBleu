@@ -44,13 +44,13 @@ public class EventManagerDB extends Persistence.EventManager {
 			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {        
 		
 		try {
-			ResultSet resultatActivity = connection.getState().executeQuery("SELECT activityID FROM lotusbleu.ACTIVITY WHERE activityName =" + eventActivity.getName());
+			ResultSet resultatActivity = connection.getState().executeQuery("SELECT activityID FROM ACTIVITY WHERE activityName ='" + eventActivity.getName()+"'");
 			int eventActivityID = resultatActivity.getInt("activityID");
 			
-			ResultSet resultatContributor = connection.getState().executeQuery("SELECT userID FROM lotusbleu.USER WHERE userName =" + eventContributorName +"AND userFirstName =" + eventContributorFirstname);
+			ResultSet resultatContributor = connection.getState().executeQuery("SELECT userID FROM lotusbleu.USER WHERE userName ='" + eventContributorName +"' AND userFirstName = '" + eventContributorFirstname+"'");
 			int eventContributorID = resultatContributor.getInt("userID");
 			
-			connection.getState().executeQuery("INSERT INTO EVENT (activityID,contributorID,roomID,eventName,beginDate,endDate,recurrence,lastrecurrence) VALUES("+ eventActivityID +","+ eventContributorID + ","+ eventRoomID + "," + eventName + "," + eventTimeSlot.getBeginDate() +"," + eventTimeSlot.getEndDate() + "," + eventTimeSlot.isRecurrence() + "," +eventTimeSlot.getLastReccurence() + ")");
+			connection.getState().executeUpdate("INSERT INTO EVENT (activityID,contributorID,roomID,eventName,beginDate,endDate,recurrence,lastrecurrence) VALUES("+ eventActivityID +","+ eventContributorID + ","+ eventRoomID + ",'" + eventName + "'," + eventTimeSlot.getBeginDate() +"," + eventTimeSlot.getEndDate() + "," + eventTimeSlot.isRecurrence() + "," +eventTimeSlot.getLastReccurence() + ")");
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,21 +71,21 @@ public class EventManagerDB extends Persistence.EventManager {
 					"SELECT * FROM lotusbleu.EVENT");
 			
 			
-			do {
+			while (resultat.next()) {
 				//Create the TimeSlot object
 				TimeSlot timeslot = new TimeSlot(resultat.getDate("beginDate"),resultat.getDate("endDate"),resultat.getBoolean("recurrence"),resultat.getDate("lastReccurence"));
 				
 				//Create the activity object
-				ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityID =" + resultat.getInt("activityID"));
+				ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityID = '" + resultat.getInt("activityID")+"'");
 				Activity activity = new Activity(resultatActivity.getString("activityName"),resultatActivity.getString("activityDescritption"));
 				
 				//Get the contributorRole
-				ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userID =" + resultat.getInt("contributorID"));
+				ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userID ='" + resultat.getInt("contributorID")+"'");
 				
 				
 				//Add the event in the events ArrayList
 				this.events.add(new Event(resultat.getString("eventName"),resultat.getInt("roomID"), timeslot, activity, resultatContributor.getString("userName"), resultatContributor.getString("userFirstName")));
-			} while (resultat.next());
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,14 +109,14 @@ public class EventManagerDB extends Persistence.EventManager {
 	public Event getAnEventWithName(String name) {
 		Event event = null;
 		try {
-			ResultSet resultEvent = connection.getState().executeQuery("SELECT * FROM EVENT WHERE eventName="+ name);
+			ResultSet resultEvent = connection.getState().executeQuery("SELECT * FROM EVENT WHERE eventName= '"+ name+"'");
 			
 			//Create the activity object
-			ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityID =" + resultEvent.getInt("activityID"));
+			ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityID ='" + resultEvent.getInt("activityID")+"'");
 			Activity activity = new Activity(resultatActivity.getString("activityName"),resultatActivity.getString("activityDescritption"));
 			
 			//Get the contributorRole
-			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userID =" + resultEvent.getInt("contributorID"));
+			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userID = '" + resultEvent.getInt("contributorID")+"'");
 			
 			
 			event = new Event(resultEvent.getString("eventName"),resultEvent.getInt("eventRoomID"), new TimeSlot(resultEvent.getDate("beginDate"),resultEvent.getDate("endDate"),resultEvent.getBoolean("recurrence"),resultEvent.getDate("lastReccurence")), activity,resultatContributor.getString("userName"), resultatContributor.getString("userFirstName") );
@@ -133,7 +133,7 @@ public class EventManagerDB extends Persistence.EventManager {
 		
 		try {
 			//delete FROM ACTIVITY WHERE activityID=2;
-			connection.getState().executeQuery("DELETE INTO EVENT WHERE eventName="+ eventToRemove.getEventName());
+			connection.getState().executeUpdate("DELETE FROM EVENT WHERE eventName='"+ eventToRemove.getEventName()+"'");
 			return true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -148,21 +148,21 @@ public class EventManagerDB extends Persistence.EventManager {
 		
 		try {
 			//Get the activityID
-			ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityName =" + eventActivity.getName());
+			ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityName ='" + eventActivity.getName()+"'");
 			
 			//Get the contributorID
-			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userName =" + eventContributorName + "AND userFirstName ="+ eventContributorFirstname );
+			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userName = '" + eventContributorName + "' AND userFirstName = '"+ eventContributorFirstname +"'");
 			
-			connection.getState().executeQuery(
-					"UPDATE ACTIVITY SET eventName =" + eventName 
-									+ " AND roomID ="+ eventRoomID
+			connection.getState().executeUpdate(
+					"UPDATE EVENT SET eventName = '" + eventName 
+									+ "' AND roomID ="+ eventRoomID
 									+ " AND activityID ="+ resultatActivity.getString("activityID")
 									+ " AND contributorID ="+ resultatContributor.getString("userID")
 									+ " AND beginDate ="+ eventTimeSlot.getBeginDate()
 									+ " AND endDate ="+ eventTimeSlot.getEndDate()
 									+ " AND recurrence ="+ eventTimeSlot.getLastReccurence()
 									+ " AND lastrecurrence ="+ eventTimeSlot.isRecurrence()
-									+"WHERE  eventName = " + eventToUpdate.getEventName());
+									+"WHERE  eventName = '" + eventToUpdate.getEventName()+"'");
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
