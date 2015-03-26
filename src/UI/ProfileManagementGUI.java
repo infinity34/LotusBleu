@@ -14,7 +14,9 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 
 import Data.User;
+import Functions.PaymentFacade;
 import Functions.ProfileManagementFacade;
+import Functions.SessionFacade;
 
 public class ProfileManagementGUI extends JPanel {
 	public ProfileManagementGUI() {
@@ -77,7 +79,12 @@ public class ProfileManagementGUI extends JPanel {
 		JButton btnSignIn = new JButton("Sign in");
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				PaymentFacade payment = new PaymentFacade();
+				if(payment.ProceedPayment(100)){
+					System.out.println("Avant cotisation");
+					SessionFacade.getSessionFacade().registrationCotisation();
+					System.out.println("après cotisation");
+				}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnSignIn, -5,

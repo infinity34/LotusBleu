@@ -109,12 +109,30 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		}
 	}
 
-	public void registerForAYear(Date date) {
+	public void registerForAYear(Date date, boolean firstSubscription) {
+		java.util.Date current = new java.util.Date();
+		Date sqlDate = new Date(current.getTime());
 		try {
 			dbConnection.getState().executeQuery(
 					"UPDATE Subscription SET endDate =" + date.toString()
 							+ " WHERE  userID = "
 							+ user.getUsermail());
+			String insert = "INSERT INTO PAYMENT (paymentAmount,paymentDate) VALUES (100, '"
+					+ date.toString() + "')";
+			System.out.println(insert);
+			dbConnection.getState().execute(insert);
+			if (firstSubscription) {
+				String query = "INSERT INTO SUBSCRIPTION (userID, subscriptionDate, subscriptionEndDate) VALUES (\""+user.getUsermail()+"\",'"+sqlDate.toString()+"','"+date.toString()+"')";
+				System.out.println(query);
+				dbConnection.getState().execute(query);
+			} else {
+				String query = "UPDATE SUBSCRIPTION SET subscriptionEndDate = '"
+						+ date.toString()
+						+ "' WHERE  userID = \""
+						+ user.getUsermail() + "\"";
+				System.out.println(query);
+				dbConnection.getState().executeUpdate(query);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
