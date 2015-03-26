@@ -23,18 +23,42 @@ public class HomePanel extends JPanel {
 		JButton btnAccessoryManagement = new JButton("Manage Accessory");
 		add(btnAccessoryManagement);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		add(btnNewButton_2);
+		JButton btnProductManagement = new JButton("Manage Product");
+		add(btnProductManagement);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		add(btnNewButton_3);
+		JButton btnContributorManagement = new JButton("Manage Contributor");
+		add(btnContributorManagement);
 		
-		JButton btnNewButton_4 = new JButton("New button");
-		add(btnNewButton_4);
+		JButton btnManageRoom = new JButton("Manage Room");
+		add(btnManageRoom);
 		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}
+		});
+		
+		btnCategoryManagement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+			}
+		});
+		
+		btnProductManagement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ProductManagementMenuGUI());
+			}
+		});
+		
+		btnContributorManagement.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ContributorManagementMenuGUI());
+			}
+		});
+		
+		btnManageRoom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new RoomManagementGUI());
 			}
 		});
 
