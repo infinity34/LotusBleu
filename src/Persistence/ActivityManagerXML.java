@@ -13,7 +13,7 @@ import Data.Activity;
 public class ActivityManagerXML extends Persistence.ActivityManager {
 
 	@Override
-	public Activity createActivity(String name, String description) {
+	public Boolean createActivity(String name, String description) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -34,6 +34,14 @@ public class ActivityManagerXML extends Persistence.ActivityManager {
 
 	@Override
 	public ArrayList<Activity> getAllActivities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Activity getAnActivity(String activityName) {
 		// TODO Auto-generated method stub
 		return null;
 	}

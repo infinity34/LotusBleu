@@ -15,10 +15,21 @@ import Persistence.ActivityManagerBD;
 public class ActivityFacade {
 	
 private Persistence.ActivityManager activityManager;
+private static ActivityFacade facade;
 	
-	public ActivityFacade(){
+	private ActivityFacade(){
 		super();
 		this.activityManager = new ActivityManagerBD();
+	}
+	
+	public static ActivityFacade getFacade() {
+		if (facade == null)
+		{
+			facade = new ActivityFacade();
+		}
+		
+		return facade;
+		
 	}
 	
 	/**
@@ -28,7 +39,7 @@ private Persistence.ActivityManager activityManager;
 	 * @param description 
 	 * @return Boolean
 	 */
-    public Data.Activity createActivity(String name, String description) {        
+    public Boolean createActivity(String name, String description) {        
         return activityManager.createActivity(name, description);
     } 
 
@@ -65,6 +76,15 @@ private Persistence.ActivityManager activityManager;
         return activityManager.getAllActivities();
     }
 
+    /**
+	 * <p> Get an activity</p>
+	 * @return list of all activity
+	 */
+    public Activity getAnActivity(String activityName){
+    	return activityManager.getAnActivity(activityName);
+    }
+    
+    
 	public Persistence.ActivityManager getActivityManager() {
 		return activityManager;
 	}

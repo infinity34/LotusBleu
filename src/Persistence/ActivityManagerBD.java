@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Data.Accessory;
 import Data.Activity;
 import Tools.DBconnection;
 
@@ -18,22 +19,28 @@ public class ActivityManagerBD extends Persistence.ActivityManager {
     public DBconnection connection;
     private ArrayList<Activity> activities;
 
+	public ActivityManagerBD() {
+		super();
+		this.connection = DBconnection.getConnection();
+	}
+    
 	@Override
-	public Activity createActivity(String name, String description) {
+	public Boolean createActivity(String name, String description) {
 		
 		try {
-			connection.getState().executeQuery("INSERT INTO ACTIVITY(activityName,activityDescritption) VALUES('"+ name +"','"+description+"')");
+			connection.getState().executeUpdate("INSERT INTO ACTIVITY(activityName,activityDescritption) VALUES('"+ name +"','"+description+"')");
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return new Activity(name,description);
+		return false;
 	}
 	
 	@Override
 	public ArrayList<Activity> getAllActivities() {
-		
 		try {
-			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY");
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM ACTIVITY");
+			System.out.println(resultat.getRow());
 			this.activities = new ArrayList<Activity>();
 			while (resultat.next()){
 				this.activities.add(new Activity(resultat.getString("activityName"),resultat.getString("activityDescritption")));
@@ -47,8 +54,8 @@ public class ActivityManagerBD extends Persistence.ActivityManager {
 	@Override
 	public Boolean editActivity(String oldName, String newName, String newDescription) {
 		try {
-				connection.getState().executeQuery(
-					"UPDATE ACTIVITY SET activityName ='" + newName + "' AND activityDescritption= '"+ newDescription +"' WHERE  activityName = '"
+				connection.getState().executeUpdate(
+					"UPDATE ACTIVITY SET activityName ='" + newName + "', activityDescritption= '"+ newDescription +"' WHERE  activityName = '"
 							+ oldName +"'");
 				return true;
 		} catch (SQLException e) {
@@ -61,12 +68,27 @@ public class ActivityManagerBD extends Persistence.ActivityManager {
 	public Boolean deleteActivity(String name) {
 		
 		try {
-			connection.getState().executeQuery("DELETE INTO ACTIVITY WHERE activityName='"+ name+"'");
+			connection.getState().executeUpdate("DELETE FROM ACTIVITY WHERE activityName='"+ name+"'");
 			return true;
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public Activity getAnActivity(String activityName) {
+		Activity activity = null;
+		try {
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityName = '"+activityName+"'" );
+			resultat.last();
+			if(resultat.getRow()!=0){
+				activity = new Activity(resultat.getString("activityName"),resultat.getString("activityDescritption"));
+				return activity;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return activity;
 	}
  }
