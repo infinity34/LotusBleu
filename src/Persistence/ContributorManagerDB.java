@@ -16,10 +16,10 @@ import java.util.Date;
 
 
 
+
 import Data.Activity;
 import Data.Event;
 import Data.TimeSlot;
-import Data.User;
 import Tools.DBconnection;
 
 
@@ -43,15 +43,15 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 				//Add the contributor in the contributors ArrayList
 				String name;
 				String firstname;
-				String fullname;
+				String fullname = null;
 				result.beforeFirst();
 				while (result.next())
 					{
-					 name = result.getString("userName");
-					 firstname = result.getString("userFirstName");
-					 fullname = name+firstname;
-				     (this.contributorList).add(fullname);
+					name = result.getString("userName");
+					firstname = result.getString("userFirstName");
+					fullname = name+" "+firstname;
 					}
+				     (this.contributorList).add(fullname);
 			}
 				catch (SQLException e) {
 					e.printStackTrace();
@@ -171,5 +171,33 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 			e.printStackTrace();
 			return false;
 		}
-	} 
+	}
+	
+	
+	public String searchContributor(String name, String firstname){
+		// this.contributorList = null;
+			try {
+				ResultSet result = connection.getState().executeQuery("SELECT * FROM USER u,CONTRIBUTOR c WHERE username='" +name+ "'and userfirstname='" +firstname+ "'and u.mail=c.contributorID");
+				//result.last();
+				String contributors = new String();
+				//Add the contributor in the contributors ArrayList
+				String longDescription;
+				//String fullContributor;
+				result.beforeFirst();
+				/*while (result.next())
+				{*/
+					//longDescription = result.getString("longDescription");
+					contributors = "Name : "+name+"/n First name : "+firstname; //+"/n Long description : "+longDescription;
+				    //(this.contributorList).add(fullContributor);
+				//} 
+					return contributors
+					;
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			// this.contributorList;
+	   } 
+	
  }

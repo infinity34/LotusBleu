@@ -77,6 +77,10 @@ public class ContributorManagementMenuGUI extends JPanel {
 		 JButton btnSeeAllThe = new JButton("See all the events of a contributor");
 		 btnSeeAllThe.setBounds(286, 342, 300, 29);
 		 add(btnSeeAllThe);
+		 
+		 JButton btnSearchAContributor = new JButton("Search a contributor");
+		 btnSearchAContributor.setBounds(24, 371, 173, 29);
+		 add(btnSearchAContributor);
 		
 		
 		 //Listener
@@ -118,5 +122,10 @@ public class ContributorManagementMenuGUI extends JPanel {
 			}
 		});
 		
+		btnSearchAContributor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ContributorSearchGUI());
+			}
+		});
 	}
 }	

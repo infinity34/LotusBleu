@@ -38,7 +38,7 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
     } 
 
 /**
- * <p></p>
+ * <p>List all the events of a contributor</p>
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm70e6]
  * @param contributor 
@@ -81,6 +81,10 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
     public Boolean deleteContributorFromEvent(String eventName, String name, String firstname) { 
 		 return contributorManager.deleteContributorFromEvent(eventName, name, firstname);
 	} 
+    
+    public String searchContributor(String name, String firstname){
+    	return contributorManager.searchContributor(name,firstname);
+    }
     
 /**
  * 

@@ -54,4 +54,11 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public ArrayList<String> searchContributor(String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
  }
