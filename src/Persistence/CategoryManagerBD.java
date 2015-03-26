@@ -70,8 +70,8 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		public void createCategory(String name, String motherCategoryName, Boolean available) {   
 				try {
 					
-					connection.getState().executeQuery("INSERT INTO lotusbleu.CATEGORY(categoryName,available,subCategoryOf) " +
-							"VALUES(\""+ name +"\",\""+motherCategoryName+"\","+available+")");
+					connection.getState().executeUpdate("INSERT INTO lotusbleu.CATEGORY(categoryName,available,subCategoryOf) " +
+							"VALUES(\""+ name +"\",\""+available+"\","+motherCategoryName+")");
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
