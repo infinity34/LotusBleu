@@ -61,16 +61,23 @@ public class AccessoryDeleteView extends JPanel {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Boolean isDeleted = myFacade.removeAccessory(new Accessory(txtEnterTheName.getText()));
 				
-				if(!isDeleted){
-					//Error popup 
-					JOptionPane.showMessageDialog(null, "The accessory doesn't delete! :(", "Error", JOptionPane.ERROR_MESSAGE);
+				Accessory accessory = myFacade.getAnAccessory(txtEnterTheName.getText());
+				if(accessory != null){
+					Boolean isDeleted = myFacade.removeAccessory(new Accessory(txtEnterTheName.getText()));
+					
+					if(!isDeleted){
+						//Error popup 
+						JOptionPane.showMessageDialog(null, "The accessory doesn't delete! :(", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+					else{
+						//Information popup
+						JOptionPane.showMessageDialog(null, "Accessory Deleted! :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+						MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+					}
 				}
 				else{
-					//Information popup
-					JOptionPane.showMessageDialog(null, "Accessory Deleted! :)", "Success", JOptionPane.INFORMATION_MESSAGE);
-					MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+					JOptionPane.showMessageDialog(null, "This accessory doesn't exist! Try with another name", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}});
 	}
