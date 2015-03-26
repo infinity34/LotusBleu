@@ -89,4 +89,9 @@ public class EventFacade {
 	    	activity.getAllActivities();
 	        return null;
 	    } 
+	    
+	    
+	    public Event getAnEventWithName(String name) {
+	    	return eventManager.getAnEventWithName(name);
+	    }
  }

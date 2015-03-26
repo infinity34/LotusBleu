@@ -20,6 +20,7 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	private ArrayList<User> contributorList;
 	private ArrayList<Event> eventList;
 	public EventManagerDB eventManagerDB;
+	private ContributorRole myContributor;
 	
 	public ContributorManagerDB() {
 		super();
@@ -47,4 +48,39 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	 public Boolean addContributorToEvent(Event myEvent, ContributorRole myContributor) {
 		 return eventManagerDB.updateEvent(myEvent, myEvent.getEventName(), myEvent.getEventRoomID(), myEvent.getEventTimeSlot(),myEvent.getEventActivity(), myContributor.getUsername(), myContributor.getUserfirstname());
 	 }
+	 
+	 
+	 public Boolean deleteContributorEventFromEvent(String eventName, String name, String firstname) { 
+		 Event myEvent = eventManagerDB.getAnEventWithName(eventName);
+		 return eventManagerDB.updateEvent(myEvent, myEvent.getEventName(), myEvent.getEventRoomID(), myEvent.getEventTimeSlot(),myEvent.getEventActivity(), name, firstname);
+	 }
+
+
+	@Override
+	public boolean addContributor(User contributor) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public ArrayList<Event> listEvents(User contributor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void createContributor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteContributorEvent(Event myEvent,
+			ContributorRole myContributor) {
+		// TODO Auto-generated method stub
+		
+	} 
  }
