@@ -54,7 +54,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				user.setAddress1(resultat.getString("address1"));
 				user.setAddress2(resultat.getString("address2"));
 				user.setCity(resultat.getString("city"));
-				user.setPostcode(resultat.getInt("postCode"));
+				user.setPostcode(resultat.getString("postCode"));
 				user.setUsermail(resultat.getString("mail"));
 
 				// Création du MemberRole, de la subscription et du payment
@@ -86,14 +86,15 @@ public class SessionManagerDB extends Persistence.SessionManager {
 
 	public void updateUser() {
 		try {
-			dbConnection.getState().executeQuery(
-					"UPDATE User SET userName =" + user.getUsername()
-							+ "AND userFirstName=" + user.getUserfirstname()
-							+ "AND address1=" + user.getAddress1()
-							+ "AND address2 = " + user.getAddress2()
-							+ "AND city = " + user.getCity() + "AND postCode="
-							+ user.getPostcode() + " WHERE  mail = "
-							+ user.getUsermail());
+			String query = "UPDATE USER SET userName = \"" + user.getUsername()
+					+ "\" , userFirstName = \"" + user.getUserfirstname()
+					+ "\" , address1 = \"" + user.getAddress1()
+					+ "\" , address2 = \"" + user.getAddress2()
+					+ "\" , city = \"" + user.getCity() + "\" , postCode = \""
+					+ user.getPostcode() + "\" WHERE  mail = \""
+					+ user.getUsermail() + "\"";
+			System.out.println(query);
+			dbConnection.getState().executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -101,20 +102,24 @@ public class SessionManagerDB extends Persistence.SessionManager {
 
 	public void changePassword(String password) {
 		try {
-			dbConnection.getState().executeQuery(
-					"UPDATE User SET password =" + password + " WHERE  mail = "
-							+ user.getUsermail());
+			password = PasswordHash.PasswordHash(password);
+			dbConnection.getState()
+					.executeUpdate(
+							"UPDATE USER SET password = \"" + password
+									+ "\" WHERE  mail = \""
+									+ user.getUsermail() + "\"");
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void registerForAYear(Date date) {
 		try {
-			dbConnection.getState().executeQuery(
-					"UPDATE Subscription SET endDate =" + date.toString()
-							+ " WHERE  userID = "
-							+ user.getUsermail());
+			dbConnection.getState().executeUpdate(
+					"UPDATE SUBSCRIPTION SET endDate = " + date.toString()
+							+ " WHERE  userID = " + user.getUsermail());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
