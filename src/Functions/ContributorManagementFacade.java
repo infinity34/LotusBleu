@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import Data.Event;
 import Data.User;
+import Persistence.AccessoryManagerDB;
+import Persistence.ContributorManagerDB;
 
 /**
  * 
@@ -12,7 +14,17 @@ import Data.User;
  * @poseidon-object-id [Im16e76644m14bffa18d1dmm764c]
  */
 public class ContributorManagementFacade {
-
+	
+	//private SessionManager session;
+    public Persistence.ContributorManager contributorManager;
+    
+    public ContributorManagementFacade(){
+    	super();
+    	this.contributorManager = new ContributorManagerDB();
+    }
+	
+	
+	
 /**
  * <p>Does ...</p>
  * 
@@ -20,6 +32,9 @@ public class ContributorManagementFacade {
  * @param contributor 
  * @return 
  */
+	
+	 
+	 
     public boolean addContributor(Data.User contributor) {        
         // your code here
         return false;
@@ -34,7 +49,7 @@ public class ContributorManagementFacade {
  */
     public ArrayList<Event> listEvents(Data.User contributor) {        
         // your code here
-        return null;
+        return contributorManager.listEvents(contributor);
     } 
 
 /**
@@ -54,7 +69,7 @@ public class ContributorManagementFacade {
  */
     public ArrayList<User> listContributor() {        
         // your code here
-        return null;
+        return contributorManager.listContributor();
     } 
 
 /**
@@ -65,10 +80,16 @@ public class ContributorManagementFacade {
     public void deleteContributorEvent() {        
         // your code here
     } 
+    
+    
+    public Boolean deleteContributorEventFromEvent(String eventName, String name, String firstname) { 
+		 return contributorManager.deleteContributorEventFromEvent(eventName, name, firstname);
+	} 
+    
 /**
  * 
  * 
  * @poseidon-object-id [Im16e76644m14bffa18d1dmm75ec]
  */
-    public Persistence.ContributorManager contributorManager;
+    
  }

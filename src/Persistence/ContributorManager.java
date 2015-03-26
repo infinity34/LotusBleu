@@ -3,78 +3,27 @@ package Persistence;
 
 import java.util.ArrayList;
 
+import Data.ContributorRole;
 import Data.Event;
 import Data.User;
 
 /**
- * 
- * 
- * @poseidon-object-id [Im16e76644m14bffa18d1dmm7633]
+ * Contributor
+ * Designed by Remy
+ * Developed by Lyvia
  */
-public class ContributorManager {
-/**
- * 
- * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm74ad]
- */
-    public Data.Event event;
+public abstract class ContributorManager {
+	
+	public abstract boolean addContributor(Data.User contributor);
+     
+    public abstract ArrayList<Event> listEvents(Data.User contributor);
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [Im16e76644m14bffa18d1dmm75c6]
- * @param contributor 
- * @return 
- */
-    public boolean addContributor(Data.User contributor) {        
-        // your code here
-        return false;
-    } 
+    public abstract void createContributor();
+    
+    public abstract ArrayList<User> listContributor(); 
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm7372]
- * @param contributor 
- * @return 
- */
-    public ArrayList<Event> listEvents(Data.User contributor) {        
-        // your code here
-        return null;
-    } 
+    public abstract void deleteContributorEvent(Event myEvent, ContributorRole myContributor);
+    
+    public abstract Boolean deleteContributorEventFromEvent(String eventName, String name, String firstname);
 
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm7332]
- */
-    public void createContributor() {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm7293]
- * @return 
- */
-    public ArrayList<User> listContributor() {        
-        // your code here
-        return null;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm7211]
- */
-    public void deleteContributorEvent() {        
-        // your code here
-    } 
-/**
- * 
- * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm72c6]
- */
-    public Persistence.SessionManager sessionManager;
  }
