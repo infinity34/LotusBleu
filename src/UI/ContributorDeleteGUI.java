@@ -27,7 +27,6 @@ public class ContributorDeleteGUI extends JPanel {
 	private JTextField txtEnterTheFirstName;
 	private JTextField txtEnterTheEvent;
 	private ContributorManagementFacade myFacade = new ContributorManagementFacade();
-	private EventFacade eventFacade = new EventFacade();
 	
 	
 	public ContributorDeleteGUI() {
@@ -83,7 +82,7 @@ public class ContributorDeleteGUI extends JPanel {
 		
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Boolean isDeleted = myFacade.deleteContributorFromEvent(txtEnterTheEvent.getText(),txtEnterTheName.getText(),txtEnterTheFirstName.getText());
+				Boolean isDeleted = myFacade.deleteContributorFromEvent(txtEnterTheEvent.getText());
 				
 				if(!isDeleted){
 					//Error popup 

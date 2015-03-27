@@ -53,10 +53,14 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
  * 
  * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm703d]
  */
-    public Boolean createContributor(String name,String firstname) {        
-        return contributorManager.createContributor(name,firstname);
+    public Boolean createContributor(String name,String firstname, String description) {        
+        return contributorManager.createContributor(name,firstname,description);
     } 
 
+    
+    
+    
+    
 /**
  * <p>Return a list of all contributor's name and first name</p>
  * 
@@ -82,7 +86,7 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
 		 return contributorManager.deleteContributorFromEvent(eventName);
 	} 
     
-    public String searchContributor(String name, String firstname){
+    public ArrayList<String> searchContributor(String name, String firstname){
     	return contributorManager.searchContributor(name,firstname);
     }
     

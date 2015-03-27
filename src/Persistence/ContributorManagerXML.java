@@ -36,10 +36,9 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 	}
 
 	@Override
-	public Boolean createContributor(String name, String firstname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	 public Boolean createContributor(String name,String firstname, String description){
+		 return null;
+	 }
 
 	@Override
 	public Boolean deleteContributor(String name, String firstname) {
@@ -56,7 +55,7 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 
 
 	@Override
-	public String searchContributor(String name, String firstname) {
+	public ArrayList<String> searchContributor(String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}

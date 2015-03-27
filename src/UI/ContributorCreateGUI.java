@@ -14,11 +14,13 @@ import javax.swing.SwingConstants;
 
 import Functions.ContributorManagementFacade;
 
+@SuppressWarnings("serial")
 public class ContributorCreateGUI extends JPanel {
 
 	ContributorManagementFacade myFacade = new ContributorManagementFacade();
 	private JTextField txtContributorName;
 	private JTextField txtContributorFirstName;
+	private JTextField txtWriteTheDescription;
 	
 	/**
 	 * Create the panel.
@@ -62,12 +64,25 @@ public class ContributorCreateGUI extends JPanel {
 		add(lblContributorFirstName);
 		
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(410, 327, 117, 29);
+		btnSubmit.setBounds(411, 403, 117, 29);
 		add(btnSubmit);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(140, 327, 117, 29);
+		btnCancel.setBounds(141, 403, 117, 29);
 		add(btnCancel);
+		
+		JLabel lblContributorDescription = new JLabel("Contributor description :");
+		lblContributorDescription.setBounds(110, 294, 137, 16);
+		add(lblContributorDescription);
+		
+		txtWriteTheDescription = new JTextField();
+		txtWriteTheDescription.setText("Write a description of the contributor here");
+		txtWriteTheDescription.setForeground(Color.BLACK);
+		txtWriteTheDescription.setColumns(10);
+		txtWriteTheDescription.setBounds(259, 288, 282, 89);
+		add(txtWriteTheDescription);
+		
+
 		
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +91,7 @@ public class ContributorCreateGUI extends JPanel {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Boolean isAdd = myFacade.createContributor(txtContributorName.getText(), txtContributorFirstName.getText());
+				Boolean isAdd = myFacade.createContributor(txtContributorName.getText(), txtContributorFirstName.getText(),txtWriteTheDescription.getText());
 				
 				if(!isAdd){
 					//Error popup 
@@ -90,5 +105,4 @@ public class ContributorCreateGUI extends JPanel {
 			}});
 
 	}
-
 }

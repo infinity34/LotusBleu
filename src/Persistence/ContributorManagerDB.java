@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 
-import java.util.Date;
+
 
 
 
@@ -26,8 +26,7 @@ import Tools.DBconnection;
 public class ContributorManagerDB extends Persistence.ContributorManager {
 	DBconnection connection;
 	private ArrayList<String> contributorList;
-	public EventManagerDB eventManagerDB;
-	
+	public EventManagerDB eventManagerDB = new EventManagerDB();
 	
 	public ContributorManagerDB() {
 		super();
@@ -81,7 +80,7 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 				 int roomID = result.getInt("roomID");
 				 Event event = new Event(myEvent, roomID, ts, act, name, firstname);	
 				 
-				 return eventManagerDB.updateEvent(event, myEvent, roomID, ts, act, name, firstname);
+				 return eventManagerDB.updateEvent(event, myEvent, roomID, ts, act.getName(), name, firstname);
 			
 				} 
 			catch (ParseException e) {
@@ -103,7 +102,7 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	 public Boolean deleteContributorFromEvent(String eventName) { 
 		 //Retrieval of the event with its name
 		 Event myEvent = eventManagerDB.getAnEventWithName(eventName);
-		 return eventManagerDB.updateEvent(myEvent, myEvent.getEventName(), myEvent.getEventRoomID(), myEvent.getEventTimeSlot(),myEvent.getEventActivity(), name, firstname);
+		 return eventManagerDB.updateEvent(myEvent, myEvent.getEventName(), myEvent.getEventRoomID(), myEvent.getEventTimeSlot(),myEvent.getEventActivity().getName(), "", "");
 	
 	 }
 
@@ -143,12 +142,15 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 
 
 	@Override
-	public Boolean createContributor(String name, String firstname) {
+	public Boolean createContributor(String name, String firstname, String description) {
 		try {
 			ResultSet result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
 			result.last();
 			if (!(result.getInt("isContributor") == 1)){
-				connection.getState().executeUpdate("UPDATE USER SET isContributor = 1");
+				connection.getState().executeUpdate("UPDATE USER SET isContributor = 1 WHERE mail='"+result.getString("mail")+"'");
+				result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
+				result.last();
+				connection.getState().executeUpdate("INSERT INTO CONTRIBUTOR(longDesc,usermail) VALUES ('"+description+"','"+ result.getString("mail")+"')");
 			}
 			return true;
 		} catch (SQLException e) {
@@ -165,6 +167,9 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 			result.last();
 			if ((result.getInt("isContributor") == 1)){
 				connection.getState().executeUpdate("UPDATE USER SET isContributor = 0");
+				result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
+				result.last();
+				connection.getState().executeUpdate("DELETE FROM CONTRITOR WHERE userMail='"+result.getString("mail")+"'");
 			}
 		return true;
 		}
@@ -175,30 +180,27 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	}
 	
 	
-	public String searchContributor(String name, String firstname){
-		// this.contributorList = null;
-			try {
-				ResultSet result = connection.getState().executeQuery("SELECT * FROM USER u,CONTRIBUTOR c WHERE username='" +name+ "'and userfirstname='" +firstname+ "'and u.mail=c.contributorID");
-				//result.last();
-				String contributors = new String();
-				//Add the contributor in the contributors ArrayList
+	public ArrayList<String> searchContributor(String name, String firstname){
+
+		try {
+				ResultSet result = connection.getState().executeQuery("SELECT longDesc FROM USER u,CONTRIBUTOR c WHERE username='" +name+ "'and userfirstname='" +firstname+ "'and u.mail=c.userMail");
+				result.last();
 				String longDescription;
 				//String fullContributor;
-				result.beforeFirst();
-				/*while (result.next())
-				{*/
-					//longDescription = result.getString("longDescription");
-					contributors = "Name : "+name+"/n First name : "+firstname; //+"/n Long description : "+longDescription;
-				    //(this.contributorList).add(fullContributor);
-				//} 
-					return contributors
-					;
+				//result.beforeFirst();
+				
+					longDescription = result.getString("longDesc");
+					this.contributorList = new ArrayList<String>() ;
+					contributorList.add("Name : "+name);
+					contributorList.add("");
+					contributorList.add("First name : "+firstname);
+					contributorList.add("");
+					contributorList.add("Description : "+longDescription);
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
-				return null;
 			}
-			// this.contributorList;
+		return this.contributorList;
 	   } 
 	
  }
