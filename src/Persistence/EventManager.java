@@ -60,6 +60,6 @@ public abstract class EventManager {
 	 * @param String 
 	 */
 	public abstract Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname);
+			String eventActivity, String eventContributorName, String eventContributorFirstname);
 	
 }

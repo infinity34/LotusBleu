@@ -23,8 +23,7 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 
 	
 	@Override
-	public Boolean deleteContributorFromEvent(String eventName,
-			String name, String firstname) {
+	public Boolean deleteContributorFromEvent(String eventName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -57,7 +56,7 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 
 
 	@Override
-	public ArrayList<String> searchContributor(String name, String firstname) {
+	public String searchContributor(String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}

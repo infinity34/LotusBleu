@@ -51,7 +51,7 @@ public class EventManagerXML extends Persistence.EventManager {
 
 	@Override
 	public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname) {
+			String eventActivity, String eventContributorName, String eventContributorFirstname) {
 		return null;
 		// TODO Auto-generated method stub
 		

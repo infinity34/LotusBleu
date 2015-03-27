@@ -78,8 +78,8 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
     } 
     
     
-    public Boolean deleteContributorFromEvent(String eventName, String name, String firstname) { 
-		 return contributorManager.deleteContributorFromEvent(eventName, name, firstname);
+    public Boolean deleteContributorFromEvent(String eventName) { 
+		 return contributorManager.deleteContributorFromEvent(eventName);
 	} 
     
     public String searchContributor(String name, String firstname){

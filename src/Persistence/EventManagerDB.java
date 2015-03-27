@@ -1,5 +1,6 @@
 package Persistence;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -144,20 +145,26 @@ public class EventManagerDB extends Persistence.EventManager {
 
 	@Override
 	public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname) {
+			String eventActivity, String eventContributorName, String eventContributorFirstname) {
 		
 		try {
-			//Get the activityID
-			ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityName =" + eventActivity.getName());
+			//Get the activity with its name
+			ResultSet resultActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityName ='" + eventActivity+"'");
 			
-			//Get the contributorID
-			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userName =" + eventContributorName + "AND userFirstName ="+ eventContributorFirstname );
+		
+			int contributorID = (Integer) null;
+			if (!(eventContributorName =="")&&(eventContributorFirstname=="")){
+				//Get the contributorID
+				ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userName ='" + eventContributorName + "' AND userFirstName ='"+ eventContributorFirstname +"' AND isContributor=1");
+				contributorID = resultContributor.getInt("contributorID");
+			}
 			
+			//Update the event
 			connection.getState().executeUpdate(
-					"UPDATE ACTIVITY SET eventName =" + eventName 
-									+ " AND roomID ="+ eventRoomID
-									+ " AND activityID ="+ resultatActivity.getString("activityID")
-									+ " AND contributorID ="+ resultatContributor.getString("userID")
+					"UPDATE EVENT SET eventName ='" + eventName 
+									+ "' AND roomID ="+ eventRoomID
+									+ "' AND activityID ="+ resultActivity.getInt("activityID")
+									+ "' AND contributorID ="+ contributorID
 									+ " AND beginDate ="+ eventTimeSlot.getBeginDate()
 									+ " AND endDate ="+ eventTimeSlot.getEndDate()
 									+ " AND recurrence ="+ eventTimeSlot.getLastReccurence()

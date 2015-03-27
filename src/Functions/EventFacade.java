@@ -87,7 +87,7 @@ public class EventFacade {
 		 * 
 		 */
 	    public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-				Activity eventActivity, String eventContributorName, String eventContributorFirstname) {        
+				String eventActivity, String eventContributorName, String eventContributorFirstname) {        
 	    	return eventManager.updateEvent( eventToUpdate,  eventName,  eventRoomID,  eventTimeSlot,
 	    			 eventActivity,  eventContributorName,  eventContributorFirstname);
 	    } 
