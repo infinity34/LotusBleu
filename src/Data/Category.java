@@ -13,6 +13,13 @@ public class Category {
 		super();
 		this.categoryName = categoryName;
 		this.available = available;
+		this.motherCategory = motherCategory;
+	}
+	
+	public Category(String categoryName, Boolean available) {
+		super();
+		this.categoryName = categoryName;
+		this.available = available;
 	}
 
 	public String getCategoryName() {

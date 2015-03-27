@@ -1,5 +1,7 @@
 package UI;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
@@ -64,13 +66,13 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 		
 		listCategory = new JComboBox<String>();
 		listCategory.addItem("");
-		listCategory.addItem("Vetements");
-		/*ArrayList<Category> allCategory =  facade.getAllCategory();
+		//listCategory.addItem("Vetements");
+		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();
 		
 		for(int i = 0 ; i< allCategory.size(); i++)
 		{
 			listCategory.addItem(allCategory.get(i).getCategoryName());
-		}*/
+		}
 		
 		springLayout.putConstraint(SpringLayout.NORTH, btnCreateCategory, 52, SpringLayout.SOUTH, listCategory);
 		springLayout.putConstraint(SpringLayout.NORTH, listCategory, -5, SpringLayout.NORTH, lblNameOfThe_1);
@@ -83,6 +85,7 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, chckbxAvailable, 0, SpringLayout.WEST, categoryName);
 		add(chckbxAvailable);
 		
+		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
@@ -94,9 +97,17 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String motherCategory = (String)listCategory.getSelectedItem();
 				
-				CategoryFacade.getFacade().createCategory(categoryName.getText(), motherCategory , chckbxAvailable.isSelected());
+				if(CategoryFacade.getFacade().createCategory(categoryName.getText(), motherCategory , chckbxAvailable.isSelected()))
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Category added !");
+					UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
 				}
-			});
+				else
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"Category already exists !");
+				}
+			}
 
+		});
 	}
 }

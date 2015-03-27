@@ -18,9 +18,9 @@ public class CategoryFacade {
 	}
 	
 
-    public void createCategory(String name, String motherCategoryName, Boolean available) {    
+    public boolean createCategory(String name, String motherCategoryName, Boolean available) {    
     	
-    	CategoryManagerBD.getManagerDB().createCategory(name, motherCategoryName, available);
+    	return CategoryManagerBD.getManagerDB().createCategory(name, motherCategoryName, available);
     	
     } 
 
@@ -36,12 +36,13 @@ public class CategoryFacade {
 
     public ArrayList<Category> getAllCategory() {    
     	
-    	return categoryManager.getCategory();
+    	return Persistence.CategoryManagerBD.getManagerDB().getAllCategory();
     } 
     
     public Category getCategory(String name) {
+		return null;
     	
-    	return categoryManager.getCategory().get(0);
+    	//return categoryManager.getCategory().get(0);
     }
     
 
