@@ -116,21 +116,27 @@ public class EventManagerDB extends Persistence.EventManager {
 
 	@Override
 	public ArrayList<Event> getEventsWithAName(String name) {
-		events2 = null;
+		events2 = new ArrayList<Event>() ;
+		
+		
 		try {
-			ResultSet resultEvent = connection.getState().executeQuery("SELECT * FROM EVENT WHERE eventName='"+ name+"'");
-			//resultEvent.last();
+			ResultSet resultEvent = connection.getState().executeQuery("SELECT * FROM EVENT WHERE eventName LIKE '"+ name+"%'");
+			//resultEvent.first();
+			String eventName;
+			int eventActivityID;
+			String eventContributorID; 
+			TimeSlot timeSlot;
+			int eventRoomID;
 			while (resultEvent.next()){
-				//Create the activity object
-				ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityID =" + resultEvent.getInt("activityID"));
-				resultatActivity.first();
-				Activity activity = new Activity(resultatActivity.getString("activityName"),resultatActivity.getString("activityDescritption"));
+				eventName = resultEvent.getString("eventName");
+				timeSlot = new TimeSlot(resultEvent.getDate("beginDate"),resultEvent.getDate("endDate"),resultEvent.getInt("recurrence"),resultEvent.getDate("lastrecurrence"));
+				eventActivityID = resultEvent.getInt("activityID");
+				eventContributorID = resultEvent.getString("usermail");
+				eventRoomID = resultEvent.getInt("roomID");
 				
-				//Get the contributorRole
-				ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE mail ='" + resultEvent.getString("usermail")+"'");
-				resultatContributor.first();
-				
-				events2.add(new Event(resultEvent.getString("eventName"),resultEvent.getInt("eventRoomID"), new TimeSlot(resultEvent.getDate("beginDate"),resultEvent.getDate("endDate"),resultEvent.getInt("recurrence"),resultEvent.getDate("lastReccurence")), activity,resultatContributor.getString("userName"), resultatContributor.getString("userFirstName") ));
+				events2.add(new Event(eventName,eventRoomID,timeSlot, eventActivityID, eventContributorID));
+
+				System.out.println("Result");
 				}
 			return events2;
 			} catch (SQLException e) {

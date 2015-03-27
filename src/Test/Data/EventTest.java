@@ -80,7 +80,7 @@ public class EventTest {
 		
 		assertEquals(event.getEventTimeSlot().getBeginDate(), null);
 		assertEquals(event.getEventTimeSlot().getEndDate(), null);
-		event.setEventTimeSlot(new TimeSlot(beginDate,endDate,false,null));
+		event.setEventTimeSlot(new TimeSlot(beginDate,endDate,1,null));
 		assertEquals(event.getEventTimeSlot().getBeginDate(), beginDate);
 		assertEquals(event.getEventTimeSlot().getEndDate(), endDate);
 		

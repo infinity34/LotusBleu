@@ -1,20 +1,30 @@
 package UI;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import Data.Event;
+
 public class EventDeleteNextView extends JPanel {
 
+	private ArrayList<Event> events;
+	
 	/**
 	 * Create the panel.
 	 */
-	public EventDeleteNextView() {
+	public EventDeleteNextView(ArrayList<Event> events) {
+		this.events = events;
 		this.setSize(640, 480);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -40,7 +50,13 @@ public class EventDeleteNextView extends JPanel {
 		gbc_lblChooseTheEvent.gridy = 4;
 		add(lblChooseTheEvent, gbc_lblChooseTheEvent);
 		
-		JComboBox comboBox = new JComboBox();
+		int nbEvents = this.events.size();
+		String[] eventsName = new String[nbEvents];
+		for(int i = 0; i<nbEvents; i++){
+			eventsName[i] = events.get(i).toString();
+		}
+		
+		JComboBox comboBox = new JComboBox(eventsName);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -62,6 +78,14 @@ public class EventDeleteNextView extends JPanel {
 		gbc_btnSubmit.gridy = 8;
 		add(btnSubmit, gbc_btnSubmit);
 
+	}
+	
+	public ArrayList<Event> getEvents(){
+		return this.events;
+	}
+	
+	public void setEvents(ArrayList<Event> alist){
+		this.events = alist;
 	}
 
 }

@@ -14,6 +14,8 @@ public class Event {
 	private Activity eventActivity; //Represents the activity which the event depends on
 	private String eventContributorName; //Represents the contributor's name responsible of this event
 	private String eventContributorFirstname; //Represents the contributor's firstname responsible of this event
+	private int eventActivityID;
+	private String eventContributorID;
 
 	/**
 	 * Create a new Event
@@ -33,6 +35,16 @@ public class Event {
 		this.eventActivity = eventActivity;
 		this.setEventContributorName(eventContributorName);
 		this.setEventContributorFirstname(eventContributorFirstname);
+	}
+	
+	public Event(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			int eventActivityID, String eventContributorID) {
+		super();
+		this.eventName = eventName;
+		this.setEventRoomID(eventRoomID);
+		this.eventTimeSlot = eventTimeSlot;
+		this.eventActivityID = eventActivityID;
+		this.eventContributorID = eventContributorID;
 	}
 
 	/**
@@ -107,6 +119,18 @@ public class Event {
 
 	public void setEventRoomID(int eventRoomID) {
 		this.eventRoomID = eventRoomID;
+	}
+	
+	public String toString(){
+		return this.eventName + ":" + this.eventTimeSlot.getBeginDate();
+	}
+
+	public int getEventActivityID() {
+		return eventActivityID;
+	}
+
+	public void setEventActivityID(int eventActivityID) {
+		this.eventActivityID = eventActivityID;
 	}
 
 }
