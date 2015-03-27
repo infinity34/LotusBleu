@@ -39,24 +39,9 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		try {
 			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY");
 			while (resultat.next()) {
-				/*if(resultat.getString("subCategoryOf") != "")
-				{
-					ResultSet resultTmp = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryName = \""+resultat.getString("subCategoryOf")+"\"");
-					Category cateTmp = new Category(
-							resultTmp.getString("categoryName"),
-							resultTmp.getBoolean("available"));
-					
 					allCat.add(new Category(
 							resultat.getString("categoryName"),
-							cateTmp,
-							resultat.getBoolean("available")));
-				}
-				else
-				{*/
-					allCat.add(new Category(
-							resultat.getString("categoryName"),
-							resultat.getBoolean("available")));					
-				//}
+							resultat.getBoolean("available")));	
 			
 						
 				
@@ -69,7 +54,6 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		
 		public boolean createCategory(String name, String motherCategoryName, Boolean available) {   
 				try {
-					System.out.println(motherCategoryName);
 					int avail;
 					if(available)
 					{
@@ -84,7 +68,6 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 							"VALUES(\""+ name +"\",\""+avail+"\",\""+motherCategoryName+"\")");
 					return true;
 				} catch (SQLException e) {
-					//e.printStackTrace();
 					return false;
 				}
 				
@@ -97,15 +80,47 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		}
 
 		@Override
-		public void updateCategory(String name, Category fatherCategory,
-				Boolean available) {
-			// TODO Auto-generated method stub
+		public boolean updateCategory(String oldName, String name, String fatherCategory,	Boolean available) {
+			try {
+				int avail;
+				if(available)
+				{
+					avail= 1;
+				}
+				else
+				{
+					avail= 0;
+				}	
+				int resultat = connection.getState().executeUpdate("UPDATE CATEGORY SET " +
+						"categoryName = \"" +name+"\", subCategoryOf = \""+fatherCategory+"\", available =\""+avail+"\""+
+						"WHERE  categoryName =  \"" +oldName+"\"");
+				if(resultat > 0)
+					return true;
+				else
+					return false;
+						
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 			
 		}
 
 		@Override
-		public void deleteCategory(String name) {
-			// TODO Auto-generated method stub
+		public boolean deleteCategory(String name) {
+			try {
+				int resultat = connection.getState().executeUpdate("DELETE FROM lotusbleu.CATEGORY WHERE " +
+						"categoryName = \""+name+"\"" +
+						"OR subCategoryOf = \""+name+ "\"");
+				if(resultat > 0)
+					return true;
+				else
+					return false;
+						
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
 			
 		}
 

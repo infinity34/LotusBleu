@@ -1,5 +1,6 @@
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
@@ -67,6 +68,22 @@ public class CategoryManagementDeleteCategory extends JPanel {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+				}
+			});
+		
+		btnDeleteCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String choosenCategory = (String)listCategory.getSelectedItem();
+				if(CategoryFacade.getFacade().deleteCategory(choosenCategory))
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Category deleted !");
+					UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"Delete failed !");
+				}
+				
 				}
 			});
 

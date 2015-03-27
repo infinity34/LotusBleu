@@ -1,14 +1,21 @@
 package UI;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import Data.Category;
 import Functions.CategoryFacade;
+import javax.swing.JComboBox;
 
 
 public class CategoryManagementUpdateCategoryField extends JPanel {
@@ -16,54 +23,95 @@ public class CategoryManagementUpdateCategoryField extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	private JTextField textField;
-	private JTextField textField_1;
-	
-	private CategoryFacade facade;
+	private JCheckBox chckbxAvailable;
+	private JComboBox listCategory;
+	private JTextField categoryName;
+	private final String oldName;
 
-	public CategoryManagementUpdateCategoryField() {
+	public CategoryManagementUpdateCategoryField(String name) {
+		oldName = name;
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
 		JLabel lblAddACategory = new JLabel("Update a Category or a Subcategory");
-		springLayout.putConstraint(SpringLayout.NORTH, lblAddACategory, 36, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblAddACategory, 36, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.NORTH, lblAddACategory, 61, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, lblAddACategory, -101, SpringLayout.EAST, this);
 		lblAddACategory.setFont(new Font("Dialog", Font.BOLD, 20));
 		add(lblAddACategory);
 		
 		JLabel lblNameOfThe = new JLabel("Rename the Category :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblNameOfThe, 72, SpringLayout.SOUTH, lblAddACategory);
+		springLayout.putConstraint(SpringLayout.WEST, lblNameOfThe, 71, SpringLayout.WEST, this);
 		add(lblNameOfThe);
 		
-		textField = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, textField, 22, SpringLayout.EAST, lblNameOfThe);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNameOfThe, 2, SpringLayout.NORTH, textField);
-		springLayout.putConstraint(SpringLayout.NORTH, textField, 33, SpringLayout.SOUTH, lblAddACategory);
-		add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblNameOfThe_1 = new JLabel("Set the father's Category :");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNameOfThe_1, 25, SpringLayout.SOUTH, lblNameOfThe);
-		springLayout.putConstraint(SpringLayout.EAST, lblNameOfThe, 0, SpringLayout.EAST, lblNameOfThe_1);
-		springLayout.putConstraint(SpringLayout.WEST, lblNameOfThe_1, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.NORTH, lblNameOfThe_1, 43, SpringLayout.SOUTH, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.EAST, lblNameOfThe_1, 0, SpringLayout.EAST, lblNameOfThe);
 		add(lblNameOfThe_1);
 		
-		textField_1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textField_1, 0, SpringLayout.NORTH, lblNameOfThe_1);
-		springLayout.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, textField);
-		add(textField_1);
-		textField_1.setColumns(10);
 		
-		JButton btnCreateCategory = new JButton("Update Category");
-		springLayout.putConstraint(SpringLayout.NORTH, btnCreateCategory, 47, SpringLayout.SOUTH, textField_1);
-		springLayout.putConstraint(SpringLayout.WEST, btnCreateCategory, 160, SpringLayout.WEST, this);
-		add(btnCreateCategory);
+		JButton btnBack = new JButton("< Back");
+		springLayout.putConstraint(SpringLayout.WEST, btnBack, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
+		add(btnBack);
 		
-		JButton button = new JButton("< Back");
-		springLayout.putConstraint(SpringLayout.WEST, button, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, button, -10, SpringLayout.SOUTH, this);
-		add(button);
+		categoryName = new JTextField();
+		springLayout.putConstraint(SpringLayout.NORTH, categoryName, 0, SpringLayout.NORTH, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.WEST, categoryName, 63, SpringLayout.EAST, lblNameOfThe);
+		add(categoryName);
+		categoryName.setColumns(10);
+		
+		listCategory = new JComboBox();
+		
+		listCategory.addItem("");		
+		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();		
+		for(int i = 0 ; i< allCategory.size(); i++)
+		{	if(! allCategory.get(i).getCategoryName().equals(oldName))
+			{
+				listCategory.addItem(allCategory.get(i).getCategoryName());
+			}
+		}
+		
+		springLayout.putConstraint(SpringLayout.NORTH, listCategory, -5, SpringLayout.NORTH, lblNameOfThe_1);
+		springLayout.putConstraint(SpringLayout.WEST, listCategory, 49, SpringLayout.EAST, lblNameOfThe_1);
+		springLayout.putConstraint(SpringLayout.EAST, listCategory, 0, SpringLayout.EAST, categoryName);
+		add(listCategory);
+		
+		chckbxAvailable = new JCheckBox("Available");
+		springLayout.putConstraint(SpringLayout.NORTH, chckbxAvailable, 35, SpringLayout.SOUTH, listCategory);
+		springLayout.putConstraint(SpringLayout.WEST, chckbxAvailable, 0, SpringLayout.WEST, categoryName);
+		add(chckbxAvailable);
+		
+		JButton btnUpdate = new JButton("Update");
+		springLayout.putConstraint(SpringLayout.SOUTH, btnUpdate, -79, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, btnUpdate, 0, SpringLayout.EAST, categoryName);
+		add(btnUpdate);
+		
+		
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategory());
+				}
+			});
+		
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String motherCategory = (String)listCategory.getSelectedItem();
+				
+				if(CategoryFacade.getFacade().updateCategory(oldName,categoryName.getText(), motherCategory , chckbxAvailable.isSelected()))
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Category updated !");
+					UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"Update Failed !");
+				}
+				
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategory());
+				}
+			});
 
 	}
-
 }
