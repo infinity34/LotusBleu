@@ -1,5 +1,6 @@
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
@@ -16,7 +17,7 @@ import Functions.CategoryFacade;
 import javax.swing.JComboBox;
 
 
-public class CategoryManagementDeleteCategory extends JPanel {
+public class CategoryManagementDeleteCategoryGUI extends JPanel {
 	
 	private CategoryFacade facade;
 	private JComboBox listCategory;
@@ -26,7 +27,7 @@ public class CategoryManagementDeleteCategory extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CategoryManagementDeleteCategory() {
+	public CategoryManagementDeleteCategoryGUI() {
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -67,6 +68,22 @@ public class CategoryManagementDeleteCategory extends JPanel {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+				}
+			});
+		
+		btnDeleteCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String choosenCategory = (String)listCategory.getSelectedItem();
+				if(CategoryFacade.getFacade().deleteCategory(choosenCategory))
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Category deleted !");
+					UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"Delete failed !");
+				}
+				
 				}
 			});
 

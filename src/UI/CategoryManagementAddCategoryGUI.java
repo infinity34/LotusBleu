@@ -66,7 +66,7 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 		
 		listCategory = new JComboBox<String>();
 		listCategory.addItem("");
-		//listCategory.addItem("Vetements");
+		
 		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();
 		
 		for(int i = 0 ; i< allCategory.size(); i++)

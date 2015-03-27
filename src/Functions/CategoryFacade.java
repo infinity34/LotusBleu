@@ -25,13 +25,13 @@ public class CategoryFacade {
     } 
 
 
-    public void updateCategory(String name, Data.Category fatherCategory, Boolean available) {        
-        // your code here
+    public boolean updateCategory(String oldName, String name, String fatherCategory, Boolean available) {        
+    	return CategoryManagerBD.getManagerDB().updateCategory(oldName, name, fatherCategory, available);
     } 
 
 
-    public void deleteCategory(String name) {        
-        // your code here
+    public boolean deleteCategory(String name) {        
+        return CategoryManagerBD.getManagerDB().deleteCategory(name);
     } 
 
     public ArrayList<Category> getAllCategory() {    

@@ -16,15 +16,15 @@ import Functions.CategoryFacade;
 import javax.swing.JComboBox;
 
 
-public class CategoryManagementUpdateCategory extends JPanel {
+public class CategoryManagementUpdateCategoryGUI extends JPanel {
 	
 	private CategoryFacade facade;
 	private JButton btnUpdateCategory;
 	private JButton btnBack;
-	private JComboBox listeCategory;
+	private JComboBox listCategory;
 
 
-	public CategoryManagementUpdateCategory() {
+	public CategoryManagementUpdateCategoryGUI() {
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -50,23 +50,29 @@ public class CategoryManagementUpdateCategory extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
 		add(btnBack);
 		
-		listeCategory = new JComboBox();
+		listCategory = new JComboBox();
 		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();
-		
 		for(int i = 0 ; i< allCategory.size(); i++)
 		{
 			listCategory.addItem(allCategory.get(i).getCategoryName());
 		}
-		springLayout.putConstraint(SpringLayout.NORTH, listeCategory, -5, SpringLayout.NORTH, lblNameOfThe);
-		springLayout.putConstraint(SpringLayout.WEST, listeCategory, 22, SpringLayout.EAST, lblNameOfThe);
-		springLayout.putConstraint(SpringLayout.EAST, listeCategory, 163, SpringLayout.EAST, lblNameOfThe);
-		add(listeCategory);
+		springLayout.putConstraint(SpringLayout.NORTH, listCategory, -5, SpringLayout.NORTH, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.WEST, listCategory, 22, SpringLayout.EAST, lblNameOfThe);
+		springLayout.putConstraint(SpringLayout.EAST, listCategory, 163, SpringLayout.EAST, lblNameOfThe);
+		add(listCategory);
 		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
 				}
 			});
+		
+		btnUpdateCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryFieldGUI((String)listCategory.getSelectedItem()));
+				}
+			});
+	
 	
 
 	}
