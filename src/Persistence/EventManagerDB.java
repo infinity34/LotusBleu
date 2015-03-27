@@ -48,13 +48,12 @@ public class EventManagerDB extends Persistence.EventManager {
 
 			int eventActivityID = resultatActivity.getInt("activityID");
 			
-			ResultSet resultatContributor = connection.getState().executeQuery("SELECT userID FROM lotusbleu.USER WHERE userName =" + eventContributorName +"AND userFirstName =" + eventContributorFirstname);
-			int eventContributorID = resultatContributor.getInt("userID");
+			ResultSet resultatContributor = connection.getState().executeQuery("SELECT usermail FROM lotusbleu.USER WHERE userName =" + eventContributorName +"AND userFirstName =" + eventContributorFirstname);
+			String eventContributorID = resultatContributor.getString("usermail");
 			
-			connection.getState().executeQuery("INSERT INTO EVENT (activityID,contributorID,roomID,eventName,beginDate,endDate,recurrence,lastrecurrence) VALUES("+ eventActivityID +","+ eventContributorID + ","+ eventRoomID + "," + eventName + "," + eventTimeSlot.getBeginDate() +"," + eventTimeSlot.getEndDate() + "," + eventTimeSlot.isRecurrence() + "," +eventTimeSlot.getLastReccurence() + ")");
+			connection.getState().executeQuery("INSERT INTO EVENT (activityID,usermail,roomID,eventName,beginDate,endDate,recurrence,lastrecurrence) VALUES("+ eventActivityID +",'"+ eventContributorID + "',"+ eventRoomID + ",'" + eventName + "'," + eventTimeSlot.getBeginDate() +"," + eventTimeSlot.getEndDate() + "," + eventTimeSlot.isRecurrence() + "," +eventTimeSlot.getLastReccurence() + ")");
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;

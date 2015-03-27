@@ -1,11 +1,17 @@
 package UI;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class EventMainView extends JPanel {
@@ -65,6 +71,30 @@ public class EventMainView extends JPanel {
 		gbc_btnDisplayEvents.gridy = 8;
 		add(btnDisplayEvents, gbc_btnDisplayEvents);
 
+		btnAddAnEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventAddView());
+			}
+		});
+		
+		btnUpdateAnEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventUpdateView());
+			}
+		});
+		
+		btnDeleteAnEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventDeleteView());
+			}
+		});
+		
+		btnDisplayEvents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventDisplayView());
+			}
+		});
+		
 	}
 
 }
