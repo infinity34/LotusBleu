@@ -20,7 +20,7 @@ public class EventManagerDB extends Persistence.EventManager {
 	//Variables
 	private DBconnection connection;
 	private ArrayList<Data.Event> events;
-	private ArrayList<Event> events2;
+	private ArrayList<Data.Event> events2;
 	
 	//Constructor
 	public EventManagerDB() {
@@ -47,20 +47,13 @@ public class EventManagerDB extends Persistence.EventManager {
 		
 		try {
 			ResultSet resultatActivity = connection.getState().executeQuery("SELECT activityID FROM ACTIVITY WHERE activityName ='" + eventActivity+"'");
-			resultatActivity.first();
+
 			int eventActivityID = resultatActivity.getInt("activityID");
 			
-			ResultSet resultatContributor = connection.getState().executeQuery("SELECT mail FROM USER WHERE userName ='" + eventContributorName +"' AND userFirstName ='" + eventContributorFirstname+"'");
-			resultatContributor.first();
-			String eventContributorID = resultatContributor.getString("mail");
+			ResultSet resultatContributor = connection.getState().executeQuery("SELECT usermail FROM lotusbleu.USER WHERE userName =" + eventContributorName +"AND userFirstName =" + eventContributorFirstname);
+			String eventContributorID = resultatContributor.getString("usermail");
 			
-			if(eventTimeSlot.getLastReccurence()!=null){
-				connection.getState().executeUpdate("INSERT INTO EVENT (activityID,roomID,eventName,beginDate,endDate,recurrence,lastrecurrence,usermail) VALUES("+ eventActivityID + ","+ eventRoomID + ",'" + eventName + "','" + eventTimeSlot.getBeginDate() +"','" + eventTimeSlot.getEndDate() + "'," + eventTimeSlot.isRecurrence() + ",'" +eventTimeSlot.getLastReccurence() + "','"+eventContributorID + "')");
-			}
-			else{
-				connection.getState().executeUpdate("INSERT INTO EVENT (activityID,roomID,eventName,beginDate,endDate,recurrence,usermail) VALUES("+ eventActivityID + ","+ eventRoomID + ",'" + eventName + "','" + eventTimeSlot.getBeginDate() +"','" + eventTimeSlot.getEndDate() + "'," + eventTimeSlot.isRecurrence() + ",'"+eventContributorID + "')");
-			}
-			
+			connection.getState().executeQuery("INSERT INTO EVENT (activityID,usermail,roomID,eventName,beginDate,endDate,recurrence,lastrecurrence) VALUES("+ eventActivityID +",'"+ eventContributorID + "',"+ eventRoomID + ",'" + eventName + "'," + eventTimeSlot.getBeginDate() +"," + eventTimeSlot.getEndDate() + "," + eventTimeSlot.isRecurrence() + "," +eventTimeSlot.getLastReccurence() + ")");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -135,8 +128,6 @@ public class EventManagerDB extends Persistence.EventManager {
 				eventRoomID = resultEvent.getInt("roomID");
 				
 				events2.add(new Event(eventName,eventRoomID,timeSlot, eventActivityID, eventContributorID));
-
-				System.out.println("Result");
 				}
 			return events2;
 			} catch (SQLException e) {
@@ -150,7 +141,8 @@ public class EventManagerDB extends Persistence.EventManager {
 	public Boolean removeEvent(Event eventToRemove) {
 		
 		try {
-			connection.getState().executeUpdate("DELETE FROM EVENT WHERE eventName='"+ eventToRemove.getEventName()+"'");
+			//delete FROM ACTIVITY WHERE activityID=2;
+			connection.getState().executeQuery("DELETE INTO EVENT WHERE eventName="+ eventToRemove.getEventName());
 			return true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
