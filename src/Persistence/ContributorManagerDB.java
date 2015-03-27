@@ -100,7 +100,8 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	 
 	 
 	 
-	 public Boolean deleteContributorFromEvent(String eventName, String name, String firstname) { 
+	 public Boolean deleteContributorFromEvent(String eventName) { 
+		 //Retrieval of the event with its name
 		 Event myEvent = eventManagerDB.getAnEventWithName(eventName);
 		 return eventManagerDB.updateEvent(myEvent, myEvent.getEventName(), myEvent.getEventRoomID(), myEvent.getEventTimeSlot(),myEvent.getEventActivity(), name, firstname);
 	
