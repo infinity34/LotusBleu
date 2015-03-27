@@ -17,7 +17,7 @@ import Functions.CategoryFacade;
 import javax.swing.JComboBox;
 
 
-public class CategoryManagementDeleteCategory extends JPanel {
+public class CategoryManagementDeleteCategoryGUI extends JPanel {
 	
 	private CategoryFacade facade;
 	private JComboBox listCategory;
@@ -27,7 +27,7 @@ public class CategoryManagementDeleteCategory extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CategoryManagementDeleteCategory() {
+	public CategoryManagementDeleteCategoryGUI() {
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);

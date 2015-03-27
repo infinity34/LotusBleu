@@ -18,7 +18,7 @@ import Functions.CategoryFacade;
 import javax.swing.JComboBox;
 
 
-public class CategoryManagementUpdateCategoryField extends JPanel {
+public class CategoryManagementUpdateCategoryFieldGUI extends JPanel {
 
 	/**
 	 * Create the panel.
@@ -28,7 +28,7 @@ public class CategoryManagementUpdateCategoryField extends JPanel {
 	private JTextField categoryName;
 	private final String oldName;
 
-	public CategoryManagementUpdateCategoryField(String name) {
+	public CategoryManagementUpdateCategoryFieldGUI(String name) {
 		oldName = name;
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
@@ -91,7 +91,7 @@ public class CategoryManagementUpdateCategoryField extends JPanel {
 		
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategory());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryGUI());
 				}
 			});
 		
@@ -109,7 +109,7 @@ public class CategoryManagementUpdateCategoryField extends JPanel {
 					JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"Update Failed !");
 				}
 				
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategory());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryGUI());
 				}
 			});
 

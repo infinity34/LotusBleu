@@ -110,7 +110,7 @@ public class CategoryManagementMenuGUI extends JPanel {
 		
 		btnDeleteACategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementDeleteCategory());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementDeleteCategoryGUI());
 				}
 			});
 		/*
@@ -122,7 +122,7 @@ public class CategoryManagementMenuGUI extends JPanel {
 		
 		btnUpdateACategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategory());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryGUI());
 				}
 			});
 

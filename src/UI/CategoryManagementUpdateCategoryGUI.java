@@ -16,7 +16,7 @@ import Functions.CategoryFacade;
 import javax.swing.JComboBox;
 
 
-public class CategoryManagementUpdateCategory extends JPanel {
+public class CategoryManagementUpdateCategoryGUI extends JPanel {
 	
 	private CategoryFacade facade;
 	private JButton btnUpdateCategory;
@@ -24,7 +24,7 @@ public class CategoryManagementUpdateCategory extends JPanel {
 	private JComboBox listCategory;
 
 
-	public CategoryManagementUpdateCategory() {
+	public CategoryManagementUpdateCategoryGUI() {
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -69,7 +69,7 @@ public class CategoryManagementUpdateCategory extends JPanel {
 		
 		btnUpdateCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryField((String)listCategory.getSelectedItem()));
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryFieldGUI((String)listCategory.getSelectedItem()));
 				}
 			});
 	
