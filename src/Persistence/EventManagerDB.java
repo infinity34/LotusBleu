@@ -41,10 +41,11 @@ public class EventManagerDB extends Persistence.EventManager {
 	 * @param String 
 	 */
 	public Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {        
+			String eventActivity, String eventContributorName, String eventContributorFirstname ) {        
 		
 		try {
-			ResultSet resultatActivity = connection.getState().executeQuery("SELECT activityID FROM lotusbleu.ACTIVITY WHERE activityName =" + eventActivity.getName());
+			ResultSet resultatActivity = connection.getState().executeQuery("SELECT activityID FROM ACTIVITY WHERE activityName ='" + eventActivity+"'");
+
 			int eventActivityID = resultatActivity.getInt("activityID");
 			
 			ResultSet resultatContributor = connection.getState().executeQuery("SELECT userID FROM lotusbleu.USER WHERE userName =" + eventContributorName +"AND userFirstName =" + eventContributorFirstname);

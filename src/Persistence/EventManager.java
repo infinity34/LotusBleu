@@ -27,7 +27,7 @@ public abstract class EventManager {
 	 * @param String 
 	 */
     public abstract Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname );
+    		String eventActivity, String eventContributorName, String eventContributorFirstname );
 
 
 	/**

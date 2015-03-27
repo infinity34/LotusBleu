@@ -68,7 +68,7 @@ public class EventFacade {
 		 * 
 		 */
 	    public Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-				Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {        
+	    		String eventActivity, String eventContributorName, String eventContributorFirstname ) {        
 	    	
 	    	return eventManager.addEvent(eventName,eventRoomID,eventTimeSlot,eventActivity,eventContributorName,eventContributorFirstname );
 	    } 
