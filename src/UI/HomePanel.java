@@ -62,12 +62,11 @@ public class HomePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, btnManageRoom, 0, SpringLayout.WEST, btnRegistration);
 		add(btnRegistration);
 		
-		JButton btnManageEvent = new JButton("Manage Event");
-		springLayout.putConstraint(SpringLayout.NORTH, btnManageEvent, 10, SpringLayout.SOUTH, btnActivityManagement);
-		springLayout.putConstraint(SpringLayout.WEST, btnManageEvent, 55, SpringLayout.EAST, btnProductManagement);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnManageEvent, -367, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnManageEvent, -214, SpringLayout.EAST, this);
-		add(btnManageEvent);
+		JButton btnManageEvent_1 = new JButton("Manage Event");
+		springLayout.putConstraint(SpringLayout.NORTH, btnManageEvent_1, 6, SpringLayout.SOUTH, btnProductManagement);
+		springLayout.putConstraint(SpringLayout.WEST, btnManageEvent_1, 0, SpringLayout.WEST, btnCategoryManagement);
+		springLayout.putConstraint(SpringLayout.EAST, btnManageEvent_1, 0, SpringLayout.EAST, btnCategoryManagement);
+		add(btnManageEvent_1);
 		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,7 +109,7 @@ public class HomePanel extends JPanel {
 			}
 		});
 		
-		btnManageEvent.addActionListener(new ActionListener() {
+		btnManageEvent_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new EventMainView());
 			}
