@@ -117,7 +117,7 @@ public class EventManagerDB extends Persistence.EventManager {
 			Activity activity = new Activity(resultatActivity.getString("activityName"),resultatActivity.getString("activityDescritption"));
 			
 			//Get the contributorRole
-			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE mail ='" + resultEvent.getInt("usermail")+"'");
+			ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE mail ='" + resultEvent.getString("usermail")+"'");
 			
 			
 			event = new Event(resultEvent.getString("eventName"),resultEvent.getInt("eventRoomID"), new TimeSlot(resultEvent.getDate("beginDate"),resultEvent.getDate("endDate"),resultEvent.getBoolean("recurrence"),resultEvent.getDate("lastReccurence")), activity,resultatContributor.getString("userName"), resultatContributor.getString("userFirstName") );
