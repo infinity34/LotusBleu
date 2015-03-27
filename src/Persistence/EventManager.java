@@ -45,7 +45,7 @@ public abstract class EventManager {
 	 * @param String 
 	 * @return 
 	 */
-    public abstract Event getAnEventWithName(String name);
+   // public abstract Event getAnEventWithName(String name);
 
     /**
 	 * <p>Remove an event</p>
@@ -61,5 +61,7 @@ public abstract class EventManager {
 	 */
 	public abstract Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			String eventActivity, String eventContributorName, String eventContributorFirstname);
+
+	public abstract ArrayList<Event> getEventsWithAName(String name);
 	
 }

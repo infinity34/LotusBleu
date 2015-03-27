@@ -2,7 +2,9 @@
 package Functions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import Data.ClassRoom;
 import Data.Room;
 import Persistence.RoomManager;
 import Persistence.RoomManagerDB;
@@ -47,12 +49,13 @@ public class RoomManagementFacade {
 	}
 	
 	/**
-	 * return the list of all rooms
+	 * return an array with the rooms field
 	 */
-	public ArrayList<Room> loadRooms(){
+	public String[][] loadRooms(){
 		this.roomManager.loadRooms();
-		return this.roomManager.getRooms();
+		return this.roomManager.loadRoomsView();
 	}
+
 
 	/**
 	 * add a room
@@ -84,12 +87,32 @@ public class RoomManagementFacade {
 	} 
 	
 	/**
+	 * Delete a room
+	 * Delete the instance in the DataBase
+	 * and Delete the room with the name name
+	 * in list of the roomManager
+	 * @return 
+	 */
+	public void deleteRoom(String name) {        
+		this.roomManager.removeRoom(name);
+	} 
+	
+	/**
 	 * Update a room
 	 * Update the instance in the DataBase
 	 * @return 
 	 */
-	public void updateRoom(int roomID, int area, int numberOfParticipant) {        
-		
+	public void updateRoom(String name, int area, Room room) {        
+		this.roomManager.updateRoom(name, area, room);
+	}
+	
+	/**
+	 * get a room
+	 * @return room
+	 * @param String name
+	 */
+	public Room getRoom(String name) {        
+		return this.roomManager.getRoom(name);
 	}
 
 }

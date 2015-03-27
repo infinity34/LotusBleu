@@ -28,10 +28,11 @@ public class HomePanel extends JPanel {
 		
 		JButton btnAccessoryManagement = new JButton("Manage Accessory");
 		springLayout.putConstraint(SpringLayout.NORTH, btnAccessoryManagement, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnAccessoryManagement, -214, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.WEST, btnAccessoryManagement, 55, SpringLayout.EAST, btnCategoryManagement);
 		add(btnAccessoryManagement);
 		
 		JButton btnManageRoom = new JButton("Manage Room");
+		springLayout.putConstraint(SpringLayout.EAST, btnAccessoryManagement, -24, SpringLayout.WEST, btnManageRoom);
 		springLayout.putConstraint(SpringLayout.NORTH, btnManageRoom, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, btnManageRoom, -10, SpringLayout.EAST, this);
 		add(btnManageRoom);
@@ -51,23 +52,21 @@ public class HomePanel extends JPanel {
 		JButton btnActivityManagement = new JButton("Manage Activity");
 		springLayout.putConstraint(SpringLayout.NORTH, btnActivityManagement, 6, SpringLayout.SOUTH, btnAccessoryManagement);
 		springLayout.putConstraint(SpringLayout.WEST, btnActivityManagement, 55, SpringLayout.EAST, btnContributorManagement);
-		springLayout.putConstraint(SpringLayout.WEST, btnAccessoryManagement, 0, SpringLayout.WEST, btnActivityManagement);
 		add(btnActivityManagement);
 		
-		JButton btnNewButton = new JButton("Manage TRUC");
-		springLayout.putConstraint(SpringLayout.EAST, btnActivityManagement, -24, SpringLayout.WEST, btnNewButton);
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 6, SpringLayout.SOUTH, btnManageRoom);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 450, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -10, SpringLayout.EAST, this);
-		springLayout.putConstraint(SpringLayout.WEST, btnManageRoom, 0, SpringLayout.WEST, btnNewButton);
-		add(btnNewButton);
+		JButton btnRegistration = new JButton("Manage Registration");
+		springLayout.putConstraint(SpringLayout.EAST, btnActivityManagement, -24, SpringLayout.WEST, btnRegistration);
+		springLayout.putConstraint(SpringLayout.NORTH, btnRegistration, 6, SpringLayout.SOUTH, btnManageRoom);
+		springLayout.putConstraint(SpringLayout.WEST, btnRegistration, 450, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.EAST, btnRegistration, -10, SpringLayout.EAST, this);
+		springLayout.putConstraint(SpringLayout.WEST, btnManageRoom, 0, SpringLayout.WEST, btnRegistration);
+		add(btnRegistration);
 		
-		JButton btnManageEvent = new JButton("Manage Event");
-		springLayout.putConstraint(SpringLayout.NORTH, btnManageEvent, 10, SpringLayout.SOUTH, btnActivityManagement);
-		springLayout.putConstraint(SpringLayout.WEST, btnManageEvent, 55, SpringLayout.EAST, btnProductManagement);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnManageEvent, 39, SpringLayout.SOUTH, btnActivityManagement);
-		springLayout.putConstraint(SpringLayout.EAST, btnManageEvent, 0, SpringLayout.EAST, btnAccessoryManagement);
-		add(btnManageEvent);
+		JButton btnManageEvent_1 = new JButton("Manage Event");
+		springLayout.putConstraint(SpringLayout.NORTH, btnManageEvent_1, 6, SpringLayout.SOUTH, btnProductManagement);
+		springLayout.putConstraint(SpringLayout.WEST, btnManageEvent_1, 0, SpringLayout.WEST, btnCategoryManagement);
+		springLayout.putConstraint(SpringLayout.EAST, btnManageEvent_1, 0, SpringLayout.EAST, btnCategoryManagement);
+		add(btnManageEvent_1);
 		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -105,14 +104,20 @@ public class HomePanel extends JPanel {
 			}
 		});
 
-		btnNewButton.addActionListener(new ActionListener() {
+		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		btnManageEvent.addActionListener(new ActionListener() {
+		btnManageEvent_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new EventMainView());
+			}
+		});
+		
+		btnRegistration.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new RegistrationAdminMain());
 			}
 		});
 	}

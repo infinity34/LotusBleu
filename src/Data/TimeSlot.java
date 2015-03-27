@@ -12,7 +12,7 @@ public class TimeSlot {
 	
 	private Date beginDate;
 	private Date endDate;
-	private boolean recurrence;
+	private int recurrence;
 	private Date lastReccurence;
 	
 	/**
@@ -21,7 +21,7 @@ public class TimeSlot {
 	 * @param recurrence
 	 * @param lastReccurence
 	 */
-	public TimeSlot(Date beginDate, Date endDate, boolean recurrence,
+	public TimeSlot(Date beginDate, Date endDate, int recurrence,
 			Date lastReccurence) {
 		super();
 		this.beginDate = beginDate;
@@ -56,13 +56,13 @@ public class TimeSlot {
 	/**
 	 * @return the recurrence
 	 */
-	public boolean isRecurrence() {
+	public int isRecurrence() {
 		return recurrence;
 	}
 	/**
 	 * @param recurrence the recurrence to set
 	 */
-	public void setRecurrence(boolean recurrence) {
+	public void setRecurrence(int recurrence) {
 		this.recurrence = recurrence;
 	}
 	/**

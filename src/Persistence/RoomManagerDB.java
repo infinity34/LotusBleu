@@ -109,7 +109,7 @@ public class RoomManagerDB extends RoomManager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * allows to add an office to the database and to the list
 	 * @param :int roomID, int area (parameters of a office) 
@@ -139,4 +139,63 @@ public class RoomManagerDB extends RoomManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public void removeRoom(String name) {
+		this.removeListRoom(name);
+		try {
+			dBconnection.getState().executeUpdate(
+					"DELETE FROM `lotusbleu`.`ROOM` WHERE roomName = '"
+							+ name +"'");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * get the room with the name name
+	 * @param String name
+	 */
+	public Room getRoom(String name){
+		try{
+			ResultSet resultatRoom = dBconnection.getState().executeQuery(
+					"SELECT * FROM lotusbleu.ROOM WHERE roomName = '"
+							+ name+"'");
+			if (resultatRoom.next()){
+				
+				Room room;
+				
+				String nameRoom = resultatRoom.getString("roomName");
+				int area = resultatRoom.getInt("roomArea");
+				if (resultatRoom.getString("roomType").equals("ClassRoom")){
+					int NB = resultatRoom.getInt("numberOfParticpant");
+					room = new ClassRoom(nameRoom, area, NB);
+				}
+				else{
+					room = new Office(nameRoom, area);
+				}
+				return room;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	@Override
+	public void updateRoom(String name, int area, Room oldroom) {
+		
+		try {
+			dBconnection.getState().executeUpdate(
+					"UPDATE `lotusbleu`.`ROOM` SET roomName ='" + name 
+									+ "', roomArea = "+ area
+									+" WHERE  roomName = '" + oldroom.getRoomName() +"'");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+	}
+
 }

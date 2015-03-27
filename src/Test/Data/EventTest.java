@@ -28,7 +28,7 @@ public class EventTest {
 	public void setUp() throws Exception {
 		//Room room = new ClassRoom(0, null, 0);
 		Activity activity = new Activity("Salsa", "Salsa description");
-		TimeSlot timeslot = new TimeSlot(null, null, false, null);
+		TimeSlot timeslot = new TimeSlot(null, null, 0, null);
 		event = new Event("Salsa Night",101,timeslot,activity,"Toto","Jean");
 	}
 

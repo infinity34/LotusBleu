@@ -105,7 +105,11 @@ public class EventFacade {
 		 * <p>Get an event</p>
 		 * 
 		 */
-	    public Event getAnEventWithName(String name) {
+	   /* public Event getAnEventWithName(String name) {
 	    	return eventManager.getAnEventWithName(name);
+	    }*/
+	    
+	    public  ArrayList<Event> getEventsWithAName(String name){
+	    	return eventManager.getEventsWithAName(name);
 	    }
  }
