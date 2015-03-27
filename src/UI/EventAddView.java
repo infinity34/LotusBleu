@@ -263,6 +263,11 @@ public class EventAddView extends JPanel implements ActionListener {
 		gbc_btnSubmit.gridx = 5;
 		gbc_btnSubmit.gridy = 15;
 		add(btnSubmit, gbc_btnSubmit);
+		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventMainView());
+			}});
 
 	}
 
