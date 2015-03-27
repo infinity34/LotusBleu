@@ -111,7 +111,7 @@ public class EventManagerDB extends Persistence.EventManager {
 		Event event = null;
 		try {
 			ResultSet resultEvent = connection.getState().executeQuery("SELECT * FROM EVENT WHERE eventName='"+ name+"'");
-			
+			resultEvent.last();
 			//Create the activity object
 			ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityID =" + resultEvent.getInt("activityID"));
 			Activity activity = new Activity(resultatActivity.getString("activityName"),resultatActivity.getString("activityDescritption"));
