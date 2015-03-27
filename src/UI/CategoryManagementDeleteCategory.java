@@ -53,12 +53,12 @@ public class CategoryManagementDeleteCategory extends JPanel {
 		add(btnDeleteCategory);
 		
 		listCategory = new JComboBox();
-		//ArrayList<Category> allCategory =  facade.getAllCategory();
-		/*
+		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();
+		
 		for(int i = 0 ; i< allCategory.size(); i++)
 		{
-			listCategory.addItem(allCategory.get(i));
-		}*/
+			listCategory.addItem(allCategory.get(i).getCategoryName());
+		}
 		springLayout.putConstraint(SpringLayout.NORTH, listCategory, -5, SpringLayout.NORTH, lblNameOfThe);
 		springLayout.putConstraint(SpringLayout.WEST, listCategory, 16, SpringLayout.EAST, lblNameOfThe);
 		springLayout.putConstraint(SpringLayout.EAST, listCategory, 140, SpringLayout.EAST, lblNameOfThe);

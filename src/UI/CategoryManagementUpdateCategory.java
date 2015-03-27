@@ -5,11 +5,13 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import Data.Category;
 import Functions.CategoryFacade;
 import javax.swing.JComboBox;
 
@@ -49,12 +51,12 @@ public class CategoryManagementUpdateCategory extends JPanel {
 		add(btnBack);
 		
 		listeCategory = new JComboBox();
-		//ArrayList<Category> allCategory =  facade.getAllCategory();
-				/*
-				for(int i = 0 ; i< allCategory.size(); i++)
-				{
-					listCategory.addItem(allCategory.get(i));
-				}*/
+		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();
+		
+		for(int i = 0 ; i< allCategory.size(); i++)
+		{
+			listCategory.addItem(allCategory.get(i).getCategoryName());
+		}
 		springLayout.putConstraint(SpringLayout.NORTH, listeCategory, -5, SpringLayout.NORTH, lblNameOfThe);
 		springLayout.putConstraint(SpringLayout.WEST, listeCategory, 22, SpringLayout.EAST, lblNameOfThe);
 		springLayout.putConstraint(SpringLayout.EAST, listeCategory, 163, SpringLayout.EAST, lblNameOfThe);
