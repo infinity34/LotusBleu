@@ -3,7 +3,6 @@ package Persistence;
 
 import java.util.ArrayList;
 
-import Data.Activity;
 import Data.Event;
 import Data.TimeSlot;
 
@@ -21,21 +20,12 @@ public class EventManagerXML extends Persistence.EventManager {
 	}
 
 	@Override
-	public Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {
-				return null;
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ArrayList<Event> getEventsByKeyword(String keyword) {
 		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public Event getAnEventWithName(String name) {
 		return null;
 		// TODO Auto-generated method stub
@@ -53,6 +43,50 @@ public class EventManagerXML extends Persistence.EventManager {
 	public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			String eventActivity, String eventContributorName, String eventContributorFirstname) {
 		return null;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Boolean addEvent(String eventName, int eventRoomID,
+			TimeSlot eventTimeSlot, String eventActivity,
+			String eventContributorName, String eventContributorFirstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Event> getEventsForUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Event> getEventsWithAName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Event getAnEventWithID(int evenIDreceived) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Event> getMyEvents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void registerToEvent(Event event) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cancelRegistrationToEvent(Event event) {
 		// TODO Auto-generated method stub
 		
 	}

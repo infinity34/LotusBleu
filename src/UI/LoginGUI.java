@@ -123,7 +123,7 @@ public class LoginGUI {
 								
 				if(facade.Login(userId,password)){
 					// lance l'interface principale
-					MainFrame.getMainFrame();
+					MainFrame.getMainFrame().setMainPanel(new HomePanel());;
 					getFrmLotusBleu().dispose();
 				}
 				else {

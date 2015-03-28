@@ -3,7 +3,6 @@ package Persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import Data.ClassRoom;
 import Data.Office;
 import Data.Room;
@@ -11,6 +10,8 @@ import Tools.DBconnection;
 
 /**
  * 
+ * @author remy
+ * @Design Prisca
  */
 public class RoomManagerDB extends RoomManager {
 	/**
@@ -19,7 +20,10 @@ public class RoomManagerDB extends RoomManager {
 	public DBconnection dBconnection;
 
 	/**
-	 * 
+	 * Constructor of RoomManagerDB
+	 * this class deals with the persistent
+	 *  of an object room
+	 *  We use a Data Base as persistence
 	 */
 	public RoomManagerDB() {
 		super();
@@ -40,6 +44,10 @@ public class RoomManagerDB extends RoomManager {
 		this.dBconnection = connection;
 	}
 
+	/**
+	 * Initialize the list rooms
+	 * with the rooms presents in the database
+	 */
 	public void loadRooms() {
 		try {
 			ResultSet resultatClassRoom = dBconnection.getState().executeQuery(
@@ -62,10 +70,14 @@ public class RoomManagerDB extends RoomManager {
 		}
 	}
 
+	/**
+	 * add a room to the list rooms
+	 * and add the room in the DB
+	 * @param room
+	 */
 	public void addRoom( Room room ) {
 		this.addListRoom(room);
 		try {
-
 			if(room.getClass().getSimpleName().equals("ClassRoom")){
 
 				dBconnection.getState().executeUpdate(
@@ -83,7 +95,8 @@ public class RoomManagerDB extends RoomManager {
 								+"null , Office)");
 			}
 			else{
-				//TODO
+				//TODO Exception
+				System.out.println("probleme room invalide");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,7 +105,7 @@ public class RoomManagerDB extends RoomManager {
 
 	/**
 	 * allows to add a classRoom to the database and to the list
-	 * @param :STring name , int area, int numberOfParticipant (parameters of a classroom) 
+	 * @param :String name , int area, int numberOfParticipant (parameters of a classroom) 
 	 */
 	public void addRoom( String name, int area, int numberOfParticipant ) {
 		Room room = new ClassRoom(name, area, numberOfParticipant);
@@ -128,32 +141,53 @@ public class RoomManagerDB extends RoomManager {
 			e.printStackTrace();
 		}
 	}
-	public void removeRoom(Room room) {
+	
+	/**
+	 * Delete a room of the DB
+	 * and of the list rooms
+	 * @param room
+	 * @return true if the update 
+	 * has modified the room 
+	 * 
+	 */
+	public boolean removeRoom(Room room) {
 		this.removeListRoom(room);
+		int result = 0;
 		try {
-			dBconnection.getState().executeUpdate(
+			result = dBconnection.getState().executeUpdate(
 					"DELETE FROM Room WHERE roomName = '"
 							+ room.getRoomName() +"'");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result>0;
 	}
 	
-	public void removeRoom(String name) {
+	/**
+	 * Delete a room with the name "name" of the DB
+	 * and of the list rooms
+	 * @param room
+	 * @return true if the udate has modified a room
+	 * in the DB
+	 */
+	public boolean removeRoom(String name) {
 		this.removeListRoom(name);
+		int result = 0;
 		try {
-			dBconnection.getState().executeUpdate(
+			result =dBconnection.getState().executeUpdate(
 					"DELETE FROM `lotusbleu`.`ROOM` WHERE roomName = '"
 							+ name +"'");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result>0;
 	}
 
 	/**
 	 * get the room with the name name
+	 * in The DB
 	 * @param String name
 	 */
 	public Room getRoom(String name){
@@ -184,11 +218,20 @@ public class RoomManagerDB extends RoomManager {
 		
 	}
 
-	@Override
-	public void updateRoom(String name, int area, Room oldroom) {
-		
+	/**
+	 * update a room oldroom
+	 * with a name, and an area
+	 * @param String name
+	 * @param int area
+	 * @param Room oldroom
+	 * @return true if the update 
+	 * has found the old room
+	 * and if it has modified its fields
+	 */
+	public boolean updateRoom(String name, int area, Room oldroom) {
+		int result = 0;
 		try {
-			dBconnection.getState().executeUpdate(
+			result = dBconnection.getState().executeUpdate(
 					"UPDATE `lotusbleu`.`ROOM` SET roomName ='" + name 
 									+ "', roomArea = "+ area
 									+" WHERE  roomName = '" + oldroom.getRoomName() +"'");
@@ -196,6 +239,7 @@ public class RoomManagerDB extends RoomManager {
 
 			e.printStackTrace();
 		}
+		return result>0;
 	}
 
 }

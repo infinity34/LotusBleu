@@ -7,17 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SpringLayout;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.Box;
 
 import Data.User;
 import Functions.PaymentFacade;
 import Functions.ProfileManagementFacade;
 import Functions.SessionFacade;
 
+@SuppressWarnings("serial")
 public class ProfileManagementGUI extends JPanel {
 	public ProfileManagementGUI() {
 		profileManagementFacade = new ProfileManagementFacade();
@@ -44,12 +42,12 @@ public class ProfileManagementGUI extends JPanel {
 				SpringLayout.WEST, lblFirstname);
 		add(lblDateDeFin);
 
-		JLabel lbldate = new JLabel("XX/XX/XXXX");
-		/*if(user.getMemberRole().getSubscription().getEndSubscriptionDate() != null){
+		JLabel lbldate = new JLabel("");
+		if(user.getMemberRole() != null){
 			lbldate.setText(user.getMemberRole().getSubscription().getEndSubscriptionDate().toString());
 		}else{
 			lbldate.setText("N/A");
-		}*/
+		}
 		springLayout.putConstraint(SpringLayout.NORTH, lbldate, 0,
 				SpringLayout.NORTH, lblDateDeFin);
 		springLayout.putConstraint(SpringLayout.WEST, lbldate, 6,
@@ -247,6 +245,11 @@ public class ProfileManagementGUI extends JPanel {
 		});
 
 		JButton btnMyEvents = new JButton("My Events");
+		btnMyEvents.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new MyEventsGUI());
+			}
+		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnMyEvents, 5, SpringLayout.SOUTH, btnChangePassword);
 		springLayout.putConstraint(SpringLayout.WEST, btnMyEvents, 0,
 				SpringLayout.WEST, btnSaveChanges);

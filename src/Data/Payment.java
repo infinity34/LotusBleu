@@ -2,30 +2,37 @@ package Data;
 
 import java.util.Date;
 
-/**
- * 
- * 
- * @poseidon-object-id [I48c9a015m14c095cecaamm7327]
- */
+
+ /**
+  * 
+  * @author remy
+  *
+  */
 public class Payment {
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I48c9a015m14c095cecaamm72e5]
+	 * This is the date of the payment
+	 * for the purchase
 	 */
 	private Date paymentDate;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I48c9a015m14c095cecaamm72d4]
+	 * the purchase amount
 	 */
-	private int amount;
+	private double amount;
+	
+	/**
+	 * Constructor
+	 * create an object payment
+	 * with an amount and a date
+	 * @param amout
+	 * @param date
+	 */
+	public Payment(int amount, Date date) {
+		super();
+		this.amount = amount;
+		this.paymentDate = date;
+	}
 
 	/**
 	 * @return the paymentDate
@@ -35,8 +42,8 @@ public class Payment {
 	}
 
 	/**
+	 * set the date with the date in parameter
 	 * @param paymentDate
-	 *            the paymentDate to set
 	 */
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
@@ -45,30 +52,15 @@ public class Payment {
 	/**
 	 * @return the amount
 	 */
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
 	/**
+	 * set the amount with the argument
 	 * @param amount
-	 *            the amount to set
 	 */
 	public void setAmount(int amount) {
 		this.amount = amount;
-	}
-
-	/**
-	 * <p>
-	 * Creates a payment
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I3c73971m14c0964d9f6mm76e2]
-	 * @param amout
-	 * @param date
-	 */
-	public Payment(int amount, Date date) {
-		super();
-		this.amount = amount;
-		this.paymentDate = date;
 	}
 }

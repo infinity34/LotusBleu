@@ -2,7 +2,9 @@
 package Persistence;
 
 /**
- * 
+ * @author remy
+ * @author maxime
+ * @Design Clément
  */
 public class PaymentManager {
 
@@ -19,7 +21,7 @@ public class PaymentManager {
 	 * @return 
 	 */
 	public Boolean ProceedPayment(String cardInformation, float amount) {
-		return true;
+		return this.paymentExt.checkProceedPayment(cardInformation);
 	}
 
 

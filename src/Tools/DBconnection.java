@@ -51,4 +51,11 @@ public class DBconnection {
 	public Statement getState() {
 		return this.state;
 	}
+
+	/**
+	 * @return the con
+	 */
+	public Connection getCon() {
+		return con;
+	}
 }

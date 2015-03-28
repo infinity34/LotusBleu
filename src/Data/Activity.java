@@ -34,4 +34,13 @@ public class Activity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Activity [name=" + name + ", description=" + description
+				+ ", inCharge=" + inCharge + "]";
+	}
  }

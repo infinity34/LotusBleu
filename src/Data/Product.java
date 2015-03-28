@@ -1,11 +1,16 @@
 
 package Data;
-
+/**
+ * 
+ * @author Clément Roque
+ *
+ */
 
 public class Product {
 	
 	private int productID;
 	private String productName;
+
 	private float productPrice;
 	private float productDiscount;
 	private int productQuantity;
@@ -44,6 +49,4 @@ public class Product {
 	public int getProductCategoryID() {
 		return productCategoryID;
 	}
-	
-	
- }
+}

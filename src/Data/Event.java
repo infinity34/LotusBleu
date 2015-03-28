@@ -38,6 +38,18 @@ public class Event {
 		this.setEventContributorFirstname(eventContributorFirstname);
 	}
 	
+	public Event(String eventName, int eventID, int eventRoomID, TimeSlot eventTimeSlot,
+			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {
+		super();
+		this.eventName = eventName;
+		this.eventID = eventID;
+		this.setEventRoomID(eventRoomID);
+		this.eventTimeSlot = eventTimeSlot;
+		this.eventActivity = eventActivity;
+		this.setEventContributorName(eventContributorName);
+		this.setEventContributorFirstname(eventContributorFirstname);
+	}
+	
 	public Event(int eventID, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			int eventActivityID, String eventContributorID) {
 		super();
@@ -49,6 +61,32 @@ public class Event {
 		this.setEventContributorID(eventContributorID);
 	}
 
+	public Event(int eventID, String eventName, int eventRoomID,
+			TimeSlot eventTimeSlot, String eventContributorName, String eventContributorFirstname) {
+		super();
+		this.eventID = eventID;
+		this.eventName = eventName;
+		this.setEventRoomID(eventRoomID);
+		this.eventTimeSlot = eventTimeSlot;
+		this.setEventContributorID(eventContributorID);
+		this.setEventContributorName(eventContributorName);
+		this.setEventContributorFirstname(eventContributorFirstname);
+	}
+	
+	public Event(int eventID, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			int eventActivityID,Activity eventActivity, String eventContributorID, String eventContributorName, String eventContributorFirstname) {
+		super();
+		this.eventID = eventID;
+		this.eventName = eventName;
+		this.setEventRoomID(eventRoomID);
+		this.eventTimeSlot = eventTimeSlot;
+		this.eventActivityID = eventActivityID;
+		this.eventActivity = eventActivity;
+		this.setEventContributorID(eventContributorID);
+		this.setEventContributorName(eventContributorName);
+		this.setEventContributorFirstname(eventContributorFirstname);
+	}
+	
 	/**
 	 * @return the eventName
 	 */
