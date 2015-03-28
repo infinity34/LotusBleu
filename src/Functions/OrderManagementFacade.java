@@ -2,6 +2,7 @@
 package Functions;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * 
@@ -30,6 +31,12 @@ public class OrderManagementFacade {
      */
     public ResultSet listOrder(String state){
     	return orderManager.listOrder(state);
+    }
+    
+    
+    //Return the information of the user who did the order
+    public ArrayList displayOrderOwner (int orderId){
+    	return orderManager.displayOrderOwner (orderId);
     }
     
 /**

@@ -3,6 +3,8 @@ package Persistence;
 
 import java.sql.ResultSet;
 
+import java.util.ArrayList;
+
 /**
  * This class allows to manage order
  * 
@@ -76,4 +78,6 @@ public abstract class OrderManager {
 	 * @param state 
 	 */
 	public abstract ResultSet listOrder(String state);
+	
+    public abstract ArrayList displayOrderOwner (int orderId);
 }
