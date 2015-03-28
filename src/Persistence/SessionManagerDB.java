@@ -8,6 +8,7 @@ import Data.MemberRole;
 import Data.Payment;
 import Data.Subscription;
 import Data.User;
+import Functions.SessionFacade;
 import Tools.DBconnection;
 import Tools.PasswordHash;
 
@@ -142,6 +143,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	/**
 	 * regiter a user in the database
 	 * and login
+	 * and send an answer for the right
 	 * @param usermail
 	 * @param firstname
 	 * @param lastname
@@ -155,7 +157,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	 */
 	public boolean register(String usermail, String firstname, String lastname,
 			String address, String address2, String city, int postcode,
-			String telephone, String password) {
+			String telephone, String password,  boolean inCharge, boolean admin) {
 
 		/*On encrypte le password*/
 		String pwd;
@@ -166,6 +168,26 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				statut = dbConnection.getState().executeUpdate(
 						"INSERT INTO lotusbleu.USER (mail,password,userName,userFirstName,address1,address2,postCode,city,phone,isAdmin,isResponsible,isContributor,isMember)"
 								+ "VALUES('"+ usermail+ "', '"+  pwd +"', '"+ firstname +"', '"+ lastname +"', '"+ address +"', '"+ address2 +"', '"+ postcode +"', '"+  city +"', '"+  telephone +"',"+ 0 +"," + 0 +"," + 0 +"," + 0 +")");
+				
+				
+				if(inCharge){
+					User user = SessionFacade.getSessionFacade().GetCurrentUser();
+					String message = user.getUserfirstname() + " " + user.getUsername()
+							+ " a fait une demande pour devenir inCharge";
+					dbConnection.getState().executeUpdate(
+							"INSERT INTO lotusbleu.NOTIFICATION (notificationMessage,notificationDate,userID) VALUES('"
+							+ message +"' ,current_date() , '"
+							+ user.getUsermail() + "')");
+				}
+				if(admin){
+					User user = SessionFacade.getSessionFacade().GetCurrentUser();
+					String message = user.getUserfirstname() + " " + user.getUsername()
+							+ " a fait une demande pour devenir admin";
+					dbConnection.getState().executeUpdate(
+							"INSERT INTO lotusbleu.NOTIFICATION (notificationMessage,notificationDate,userID) VALUES('"
+							+ message +"' ,current_date() , '"
+							+ user.getUsermail() + "')");
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -216,6 +238,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 					+ ",city ='" + city
 					+ "',phone ='"+ telephone
 					+"' Where mail='"+ oldUser.getUsermail()+"'");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

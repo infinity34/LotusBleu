@@ -166,20 +166,26 @@ public class RegistrationAdminAdd extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, address1TextField, 0, SpringLayout.EAST, postcodeTexfield);
 		add(address1TextField);
 		address1TextField.setColumns(10);
-	
+		
+		
+		
 		btnAddUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				boolean admin = rdbtnNewRadioButton.isSelected();
+				boolean inCharge = rdbtnInCharge.isSelected();
+				
 				String firstname = firstnameTexfield.getText();
 				String lastname = lastnameTexfield.getText();
 				String usermail = usermailTextField.getText();
-				String address = address2Texfield.getText();
+				String address = address1TextField.getText();
 				String address2 = address2Texfield.getText();
 				String city = cityTexfield.getText();
 				String telephone = telephoneTexfield.getText();
 				String password = passwordTexfield.getText();
 				int postcode = Integer.parseInt(postcodeTexfield.getText());
 				
-				registrationAdminFacade.addRegistration(usermail, firstname, lastname, address, address2, city, postcode, telephone, password);
+				registrationAdminFacade.addRegistration(usermail, firstname, lastname, address, address2, city, postcode, telephone, password,inCharge, admin );
 			}
 		});
 	}
