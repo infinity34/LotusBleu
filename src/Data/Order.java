@@ -1,6 +1,7 @@
 package Data;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 /**
@@ -153,14 +154,19 @@ public class Order {
 	}
 
 	/**
-	 * <p>
-	 * Return the value of this order
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I2d1a4d66m14c0966aad0mm7521]
 	 * @return double The amount of this order
 	 */
 	public double getTotalAmount() {
-		return 0;
+		double amount = 0;
+		OrderLine currentOrderLine;
+		
+		Iterator<OrderLine> it = orderLine.iterator();
+		while(it.hasNext()){
+			currentOrderLine = it.next();
+			amount = (currentOrderLine.getQuantity()*currentOrderLine.getProduct().getPrice()) + amount;
+		}
+		
+		return amount;
+		
 	}
 }
