@@ -7,60 +7,51 @@ import java.util.TreeSet;
 /**
  * Represents an order
  * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm7a9c]
+ * @author remy
+ * @author ??
  */
 public class Order {
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm792c]
+	 * Id of an order
 	 */
 	private String orderID;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm76d3]
+	 * Represents the date of an order
 	 */
 	private Date orderDate;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im77122398m14bf8fac935mm773c]
+	 * represents the user who has passed
+	 * this order
 	 */
 	private Data.User user;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I48c9a015m14c095cecaamm737b]
+	 * Represents the State of the Order:
+	 * Pending, Confirmed, Sent, Cancelled
 	 */
 	private OrderState orderState;
+
 	/**
-	 * 
-	 * 
-	 * @poseidon-object-id [Im77122398m14bf8fac935mm77bd]
+	 * Represents the set of the order line
+	 * i.e the quantity and the product
 	 */
 	public TreeSet<OrderLine> orderLine;
+
 	/**
-	 * 
-	 * 
-	 * @poseidon-object-id [I48c9a015m14c095cecaamm730b]
+	 * Represents the payment of the order
+	 * the date and the amount
 	 */
 	public Data.Payment payment;
 
 	/**
-	 * 
+	 * Constructor
+	 * Create an order thanks to the basket
+	 * and a payment
+	 * @param basket
+	 * @param payment
 	 */
 	public Order(Basket basket, Payment payment) {
 		super();
@@ -80,7 +71,7 @@ public class Order {
 
 	/**
 	 * @param orderID
-	 *            the orderID to set
+	 * the orderID to set
 	 */
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
@@ -95,7 +86,7 @@ public class Order {
 
 	/**
 	 * @param orderDate
-	 *            the orderDate to set
+	 * the orderDate to set
 	 */
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
@@ -110,7 +101,7 @@ public class Order {
 
 	/**
 	 * @param user
-	 *            the user to set
+	 * the user to set
 	 */
 	public void setUser(Data.User user) {
 		this.user = user;
@@ -125,7 +116,7 @@ public class Order {
 
 	/**
 	 * @param orderState
-	 *            the orderState to set
+	 * the orderState to set
 	 */
 	public void setOrderState(OrderState orderState) {
 		this.orderState = orderState;
@@ -140,7 +131,7 @@ public class Order {
 
 	/**
 	 * @param payment
-	 *            the payment to set
+	 * the payment to set
 	 */
 	public void setPayment(Data.Payment payment) {
 		this.payment = payment;
@@ -154,19 +145,17 @@ public class Order {
 	}
 
 	/**
+	 * calculates the amount of the order
 	 * @return double The amount of this order
 	 */
 	public double getTotalAmount() {
 		double amount = 0;
 		OrderLine currentOrderLine;
-		
 		Iterator<OrderLine> it = orderLine.iterator();
 		while(it.hasNext()){
 			currentOrderLine = it.next();
-			amount = (currentOrderLine.getQuantity()*currentOrderLine.getProduct().getPrice()) + amount;
+			amount = (currentOrderLine.getQuantity()*currentOrderLine.getProduct().getProductPrice()) + amount;
 		}
-		
 		return amount;
-		
 	}
 }
