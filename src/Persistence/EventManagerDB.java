@@ -301,7 +301,12 @@ public class EventManagerDB extends Persistence.EventManager {
 		return events;
 	}
 
-	@Override
+	/**
+	 * Register an user to an event
+	 * 
+	 * @author Maxime Clerix
+	 * @param the event to register
+	 */
 	public void registerToEvent(Event event) {
 		System.out.println(event.toString());
 		try {
@@ -316,4 +321,72 @@ public class EventManagerDB extends Persistence.EventManager {
 		}
 	}
 
+	/**
+	 * Retourne la liste des evenements auxquels participe un utilisateur
+	 * 
+	 * @author Maxime Clerix
+	 * @return An arraylist of the events
+	 */
+	public ArrayList<Event> getMyEvents() {
+		ArrayList<Event> events = new ArrayList<Event>();
+		Event event;
+		try {
+			String query = "SELECT * FROM lotusbleu.EVENT e WHERE eventID IN (select eventID from lotusbleu.REGISTRATION where userID = \""
+					+ SessionFacade.getSessionFacade().GetCurrentUser()
+							.getUsermail()
+					+ "\") and beginDate > current_date() ORDER BY beginDate asc";
+			ResultSet resultat = connection.getState().executeQuery(query);
+			Statement state;
+			while (resultat.next()) {
+				// Create the activity object
+				state = connection.getCon().createStatement();
+				ResultSet resultatActivity = state
+						.executeQuery("SELECT * FROM ACTIVITY WHERE activityID ="
+								+ resultat.getInt("activityID"));
+				Activity activity = null;
+				if (resultatActivity.next()) {
+					activity = new Activity(
+							resultatActivity.getString("activityName"),
+							resultatActivity.getString("activityDescritption"));
+				}
+
+				// Get the contributorRole
+				state = connection.getCon().createStatement();
+				ResultSet resultatContributor = state
+						.executeQuery("SELECT * FROM USER WHERE mail =\""
+								+ resultat.getString("usermail")+"\"");
+				resultatContributor.next();
+
+				event = new Event(resultat.getString("eventName"),
+						resultat.getInt("eventID"),
+						resultat.getInt("roomID"), new TimeSlot(
+								resultat.getDate("beginDate"),
+								resultat.getDate("endDate"),
+								resultat.getInt("recurrence"),
+								resultat.getDate("lastrecurrence")), activity,
+						resultatContributor.getString("userName"),
+						resultatContributor.getString("userFirstName"));
+
+				events.add(event);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return events;
+	}
+
+	@Override
+	public void cancelRegistrationToEvent(Event event) {
+		System.out.println(event.toString());
+		try {
+			connection.getState().executeUpdate(
+					"DELETE FROM REGISTRATION (eventID,userID) WHERE eventID = "
+							+ event.getEventID()
+							+ " AND userID =\""
+							+ SessionFacade.getSessionFacade().GetCurrentUser()
+									.getUsermail() + "\"");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
