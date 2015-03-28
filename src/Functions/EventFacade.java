@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import Data.Activity;
 import Data.Event;
 import Data.TimeSlot;
-import Persistence.ActivityManagerBD;
-import Persistence.EventManager;
 import Persistence.EventManagerDB;
 
 /**
@@ -128,5 +126,28 @@ public class EventFacade {
 	     */
 	    public ArrayList<Event> getEventsForUser(){
 	    	return eventManager.getEventsForUser();
+	    }
+	    
+	    /**
+	     * Return the list of events for which the user is not already registered 
+	     * 
+	     * @return ArrayList<Event> the list of events
+	     */
+	    public ArrayList<Event> getMyEvents(){
+	    	return eventManager.getMyEvents();
+	    }
+	    
+	    /**
+	     * 
+	     */
+	    public void registerToEvent(Event event){
+	    	eventManager.registerToEvent(event);
+	    }
+	    
+	    /**
+	     * 
+	     */
+	    public void cancelRegistrationToEvent(Event event){
+	    	eventManager.cancelRegistrationToEvent(event);
 	    }
  }

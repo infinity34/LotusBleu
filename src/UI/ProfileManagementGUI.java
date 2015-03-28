@@ -44,12 +44,12 @@ public class ProfileManagementGUI extends JPanel {
 				SpringLayout.WEST, lblFirstname);
 		add(lblDateDeFin);
 
-		JLabel lbldate = new JLabel("XX/XX/XXXX");
-		/*if(user.getMemberRole().getSubscription().getEndSubscriptionDate() != null){
+		JLabel lbldate = new JLabel("");
+		if(user.getMemberRole() != null){
 			lbldate.setText(user.getMemberRole().getSubscription().getEndSubscriptionDate().toString());
 		}else{
 			lbldate.setText("N/A");
-		}*/
+		}
 		springLayout.putConstraint(SpringLayout.NORTH, lbldate, 0,
 				SpringLayout.NORTH, lblDateDeFin);
 		springLayout.putConstraint(SpringLayout.WEST, lbldate, 6,
