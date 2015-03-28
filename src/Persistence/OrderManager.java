@@ -3,7 +3,6 @@ package Persistence;
 
 import java.sql.ResultSet;
 
-import java.util.ArrayList;
 
 /**
  * This class allows to manage order
@@ -33,16 +32,14 @@ public abstract class OrderManager {
 	 * 
 	 * @poseidon-object-id [I610a0d25m14bffb8994amm7172]
 	 */
-	public abstract Boolean cancelOrder(); 
+	public abstract Boolean cancelOrder(int orderId); 
 
 	/**
 	 * 
 	 * 
 	 * @poseidon-object-id [I610a0d25m14bffb8994amm714d]
 	 */
-	public void confirmPurchase() {        
-		// your code here
-	} 
+	public abstract Boolean confirmPurchase(int orderId);
 
 	/**
 	 * <p>Does ...</p>
@@ -67,9 +64,8 @@ public abstract class OrderManager {
 	 * 
 	 * @poseidon-object-id [I610a0d25m14bffb8994amm70de]
 	 */
-	public void confirmSending() {        
-		// your code here
-	} 
+    public abstract Boolean sendPurchase(int orderId);
+    
 
 	/**
 	 * <p>Return a table with the information of the orders which are in the given state</p>
@@ -79,5 +75,5 @@ public abstract class OrderManager {
 	 */
 	public abstract ResultSet listOrder(String state);
 	
-    public abstract ArrayList displayOrderOwner (int orderId);
+
 }

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -186,20 +187,66 @@ public class OrderManagementMenuGUI extends JPanel {
 		add(btnOk);
 		
 		JButton btnConfirm = new JButton("Confirm");
-		btnConfirm.setBounds(336, 110, 78, 23);
+		btnConfirm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean isAdd = myFacade.confirmPurchase(Integer.parseInt(txtOrderId.getText()));
+				
+				if(!isAdd){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "Fail !", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					JOptionPane.showMessageDialog(null, "The order "+txtOrderId.getText()+" has been confirmed! :) :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getMainFrame().setMainPanel(new OrderManagementMenuGUI());
+				}
+			}
+		});
+		
+		
+		btnConfirm.setBounds(328, 110, 86, 23);
 		add(btnConfirm);
 		
 		JButton btnSend = new JButton("Send");
-		btnSend.setBounds(424, 110, 78, 23);
+		
+		
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean isAdd = myFacade.sendPurchase(Integer.parseInt(txtOrderId.getText()));
+				
+				if(!isAdd){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "Fail !", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					JOptionPane.showMessageDialog(null, "The sent of the order "+txtOrderId.getText()+" is confirmed! :) :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getMainFrame().setMainPanel(new OrderManagementMenuGUI());
+				}
+			}
+		});
+		
+		btnSend.setBounds(413, 110, 78, 23);
 		add(btnSend);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(512, 110, 78, 23);
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean isAdd = myFacade.cancelOrder(Integer.parseInt(txtOrderId.getText()));
+				
+				if(!isAdd){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "Fail !", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					JOptionPane.showMessageDialog(null, "The order "+txtOrderId.getText()+" has been canceled! :) :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getMainFrame().setMainPanel(new OrderManagementMenuGUI());
+				}
+			}
+		});
+		btnCancel.setBounds(490, 110, 78, 23);
 		add(btnCancel);
-		
-		
-		/*ResultSet rs = myFacade.listOrder("Pending");
-		ResultSetTableModel rtm = new ResultSetTableModel(rs);
-		*/
+
 	}
  }
