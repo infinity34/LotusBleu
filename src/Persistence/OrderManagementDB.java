@@ -15,7 +15,7 @@ import Tools.DBconnection;
  */
 public class OrderManagementDB extends Persistence.OrderManager {
 	DBconnection connection;
-	private ResultSet result;
+
 	
 	public OrderManagementDB() {
 		super();
@@ -33,19 +33,19 @@ public class OrderManagementDB extends Persistence.OrderManager {
 	@Override
 	public ResultSet listOrder(String state) {
 		try{
-			this.result = connection.getState().executeQuery("SELECT p.productName, o.orderDate, u.userName, u.userFirstName, ol.quantity, os.orderStateWording"
-																	+"FROM PRODUCT p, ORDER o, USER u,ORDERLINE ol, ORDERSTATE os"
-																	+"WHERE p.productID=ol.productID AND"
-																	+"o.orderID=ol.orderID AND"
-																	+"o.userMail=u.mail AND"
-																	+"os.orderStateID=o.orderStateID AND"
-																	+"os.orderStateWording='"+state+"'");
-			this.result.last();
-			return this.result;
+			ResultSet result = connection.getState().executeQuery("SELECT productName, orderDate, userName, userFirstName, quantity, orderStateWording "
+					+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
+					+"WHERE P.productID = L.productID AND "
+					+"O.orderID = L.orderID AND "
+					+"O.userMail = U.mail AND "
+					+"S.orderStateID = O.orderStateID AND "
+					+"S.orderStateWording ='"+state+"'");
+			return result;
 			}
 		catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return this.result;
+		//return result;
 	}
  }

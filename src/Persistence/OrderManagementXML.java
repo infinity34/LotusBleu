@@ -1,6 +1,8 @@
 
 package Persistence;
 
+import java.sql.ResultSet;
+
 /**
  * 
  * 
@@ -8,7 +10,7 @@ package Persistence;
  */
 public class OrderManagementXML extends Persistence.OrderManager {
 	
-	public Object listOrder(String state){
+	public ResultSet listOrder(String state){
 		return null;
 	}
 
