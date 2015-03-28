@@ -69,7 +69,8 @@ public class CategoryManagementUpdateCategoryGUI extends JPanel {
 		
 		btnUpdateCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryFieldGUI((String)listCategory.getSelectedItem()));
+				Category category = CategoryFacade.getFacade().getCategory((String)listCategory.getSelectedItem());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementUpdateCategoryFieldGUI(category));
 				}
 			});
 	

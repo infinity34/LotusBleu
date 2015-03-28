@@ -28,8 +28,8 @@ public class CategoryManagementUpdateCategoryFieldGUI extends JPanel {
 	private JTextField categoryName;
 	private final String oldName;
 
-	public CategoryManagementUpdateCategoryFieldGUI(String name) {
-		oldName = name;
+	public CategoryManagementUpdateCategoryFieldGUI(Category category) {
+		oldName = category.getCategoryName();
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -56,7 +56,7 @@ public class CategoryManagementUpdateCategoryFieldGUI extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnBack, -10, SpringLayout.SOUTH, this);
 		add(btnBack);
 		
-		categoryName = new JTextField();
+		categoryName = new JTextField(oldName);
 		springLayout.putConstraint(SpringLayout.NORTH, categoryName, 0, SpringLayout.NORTH, lblNameOfThe);
 		springLayout.putConstraint(SpringLayout.WEST, categoryName, 63, SpringLayout.EAST, lblNameOfThe);
 		add(categoryName);

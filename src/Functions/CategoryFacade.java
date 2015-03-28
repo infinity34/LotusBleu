@@ -40,7 +40,7 @@ public class CategoryFacade {
     } 
     
     public Category getCategory(String name) {
-		return null;
+		return CategoryManagerBD.getManagerDB().getCategory(name);
     	
     	//return categoryManager.getCategory().get(0);
     }

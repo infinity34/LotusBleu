@@ -120,9 +120,20 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		public Category getCategory(String name) {
 			try {
 				ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryName = \""+name+"\"");
+				resultat.next();
+				if(resultat.getString("subCategoryOf").isEmpty())
+				{
+					return (new Category(
+							resultat.getString("categoryName"),
+							resultat.getBoolean("available")));	
+				}
+				else
+				{
 				return (new Category(
 						resultat.getString("categoryName"),
+						getCategory(resultat.getString("subCategoryOf")),
 						resultat.getBoolean("available")));	
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
