@@ -13,14 +13,20 @@ import Persistence.SessionManager;
  * Designed by Maxime
  * Developed by Prisca
  */
-public class AccessoryFacade {
+	public class AccessoryFacade {
 
-    //private SessionManager session;
-    public Persistence.AccessoryManager accessoryManager;
+    private static AccessoryFacade facade;
+    private Persistence.AccessoryManager accessoryManager;
     
-    public AccessoryFacade(){
+    private AccessoryFacade(){
     	super();
     	this.accessoryManager = new AccessoryManagerDB();
+    }
+    
+    public static AccessoryFacade getAccessoryFacade(){
+		if(facade == null)
+			facade = new AccessoryFacade();
+		return facade;
     }
 
 /**

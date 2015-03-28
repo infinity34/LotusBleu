@@ -19,7 +19,7 @@ import Functions.AccessoryFacade;
 public class AccessoryDeleteView extends JPanel {
 
 	private JTextField txtEnterTheName;
-	private AccessoryFacade myFacade = new AccessoryFacade();
+	private AccessoryFacade myFacade = AccessoryFacade.getAccessoryFacade();
 	
 	/**
 	 * Create the panel.

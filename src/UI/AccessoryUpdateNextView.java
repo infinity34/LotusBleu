@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 public class AccessoryUpdateNextView extends JPanel {
 	private JTextField txtEnterTheNew;
 	private String oldAccessoryName;
-	private AccessoryFacade myFacade = new AccessoryFacade();
+	private AccessoryFacade myFacade = AccessoryFacade.getAccessoryFacade();
 	private JLabel lblNewLabel_2;
 
 	/**

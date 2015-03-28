@@ -18,7 +18,7 @@ import Functions.AccessoryFacade;
 
 public class AccessoryAddView extends JPanel {
 	private JTextField txtAccessoryName;
-	private AccessoryFacade myFacade = new AccessoryFacade();
+	private AccessoryFacade myFacade = AccessoryFacade.getAccessoryFacade();
 	/**
 	 * Create the panel.
 	 */

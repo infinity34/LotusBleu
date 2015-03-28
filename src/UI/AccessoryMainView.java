@@ -19,7 +19,7 @@ import Functions.AccessoryFacade;
 
 public class AccessoryMainView extends JPanel {
 	
-	private AccessoryFacade myFacade = new AccessoryFacade();
+	private AccessoryFacade myFacade = AccessoryFacade.getAccessoryFacade();
 	/**
 	 * Create the panel.
 	 */

@@ -25,7 +25,7 @@ public class AccessoryUpdateView extends JPanel {
 
 	
 	private JTextField txtEnterTheName;
-	private AccessoryFacade myFacade = new AccessoryFacade();
+	private AccessoryFacade myFacade = AccessoryFacade.getAccessoryFacade();
 	
 	
 	/**
