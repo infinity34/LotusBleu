@@ -39,7 +39,7 @@ public class Event {
 	}
 	
 	public Event(String eventName, int eventID, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {
+			Activity eventActivity, String eventContributorName, String eventContributorFirstname, String contributorID ) {
 		super();
 		this.eventName = eventName;
 		this.eventID = eventID;
@@ -48,6 +48,7 @@ public class Event {
 		this.eventActivity = eventActivity;
 		this.setEventContributorName(eventContributorName);
 		this.setEventContributorFirstname(eventContributorFirstname);
+		this.eventContributorID = contributorID;
 	}
 	
 	public Event(int eventID, String eventName, int eventRoomID, TimeSlot eventTimeSlot,

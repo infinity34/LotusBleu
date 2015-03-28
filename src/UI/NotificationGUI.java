@@ -30,6 +30,7 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 	JList<Notification> list_read;
 	JTextPane txtpnDate;
 	JTextPane txtpnState;
+	boolean isChanging = false;
 
 	/**
 	 * Create the panel.
@@ -76,9 +77,12 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 				SpringLayout.SOUTH, this);
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Do you want to delete this notification ?", "Delete Notification", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+				if (JOptionPane.showConfirmDialog(null,
+						"Do you want to delete this notification ?",
+						"Delete Notification", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					notificationFacade.remove(selectedNotification);
-					MainFrame.getMainFrame().setMainPanel(new NotificationGUI());
+					MainFrame.getMainFrame()
+							.setMainPanel(new NotificationGUI());
 				}
 			}
 		});
@@ -151,14 +155,14 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
+
 		if (e.getSource() == list) {
 			this.selectedNotification = list.getSelectedValue();
 			this.txtpnZoneDeNotification.setText(selectedNotification
 					.getMessage());
 			this.btnMarkAsUnread.setEnabled(true);
 			this.btnMarkAsUnread.setText("Mark as read");
-			 this.txtpnDate.setText(selectedNotification.getDate().toString());
-			// this.list.getSelectionModel().clearSelection();
+			this.txtpnDate.setText(selectedNotification.getDate().toString());
 		} else {
 			this.selectedNotification = list_read.getSelectedValue();
 			this.txtpnZoneDeNotification.setText(selectedNotification
@@ -166,7 +170,6 @@ public class NotificationGUI extends JPanel implements ListSelectionListener {
 			this.btnMarkAsUnread.setText("Mark as unread");
 			this.btnMarkAsUnread.setEnabled(true);
 			this.txtpnDate.setText(selectedNotification.getDate().toString());
-			// this.list_read.getSelectionModel().clearSelection();
 		}
 	}
 }

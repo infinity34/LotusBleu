@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
 		setTitle("Lotus Bleu");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 686, 498);
+		setBounds(100, 100, 650, 505);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -94,6 +94,7 @@ public class MainFrame extends JFrame {
 		menuPanel.add(btnDisconnect);
 		
 		mainPanel = new JPanel();
+		mainPanel.setSize(640, 480);
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
@@ -119,6 +120,7 @@ public class MainFrame extends JFrame {
 	{
 		contentPane.remove(mainPanel);
 		mainPanel = panel;
+		mainPanel.setSize(640, 480);
 		contentPane.add(mainPanel, BorderLayout.CENTER);
 		this.setVisible(true);
 	}

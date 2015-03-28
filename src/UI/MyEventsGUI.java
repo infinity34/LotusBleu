@@ -38,7 +38,6 @@ public class MyEventsGUI extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 6, SpringLayout.SOUTH, label);
 		springLayout.putConstraint(SpringLayout.WEST, scrollPane, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 392, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, scrollPane, 630, SpringLayout.WEST, this);
 		add(scrollPane);
 		
@@ -46,8 +45,10 @@ public class MyEventsGUI extends JPanel {
 		scrollPane.setViewportView(eventsTable);
 		
 		JButton btnInscription = new JButton("Cancel Inscription");
-		springLayout.putConstraint(SpringLayout.NORTH, btnInscription, 6, SpringLayout.SOUTH, scrollPane);
+		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, -6, SpringLayout.NORTH, btnInscription);
 		springLayout.putConstraint(SpringLayout.WEST, btnInscription, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnInscription, -10, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.EAST, btnInscription, -316, SpringLayout.EAST, this);
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int option = JOptionPane.showConfirmDialog(null, "Do you to cancel your inscription?", "Cancel", JOptionPane.YES_NO_OPTION);
@@ -62,15 +63,14 @@ public class MyEventsGUI extends JPanel {
 		add(btnInscription);
 		
 		JButton btnDetails = new JButton("Details");
+		springLayout.putConstraint(SpringLayout.NORTH, btnDetails, 0, SpringLayout.NORTH, btnInscription);
+		springLayout.putConstraint(SpringLayout.WEST, btnDetails, 6, SpringLayout.EAST, btnInscription);
+		springLayout.putConstraint(SpringLayout.EAST, btnDetails, -10, SpringLayout.EAST, this);
 		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new EventDetailsView(model.getEvents().get(eventsTable.getSelectedRow())));
 			}
 		});
-		springLayout.putConstraint(SpringLayout.EAST, btnInscription, -6, SpringLayout.WEST, btnDetails);
-		springLayout.putConstraint(SpringLayout.NORTH, btnDetails, 6, SpringLayout.SOUTH, scrollPane);
-		springLayout.putConstraint(SpringLayout.WEST, btnDetails, 330, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnDetails, 0, SpringLayout.EAST, scrollPane);
 		add(btnDetails);
 	}
 }
