@@ -198,7 +198,6 @@ public class EventManagerDB extends Persistence.EventManager {
 			
 			String contributorID = null;
 			if ((eventContributorName != null)&&(eventContributorFirstname != null)){
-				System.out.println("test");
 				//Get the contributorID
 				ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userName ='" + eventContributorName + "' AND userFirstName ='"+ eventContributorFirstname +"' AND isContributor=1");
 				resultContributor.first();
@@ -231,7 +230,6 @@ public class EventManagerDB extends Persistence.EventManager {
 						+ " , lastrecurrence = '"+ eventTimeSlot.getLastReccurence()
 						+"' WHERE  eventID = " + eventToUpdate.getEventID());
 			}
-			System.out.println(contributorID);
 			connection.getState().executeUpdate(request);
 			return true;
 		} catch (SQLException e) {
