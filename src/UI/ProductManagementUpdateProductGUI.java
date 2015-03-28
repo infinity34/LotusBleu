@@ -69,6 +69,7 @@ public class ProductManagementUpdateProductGUI extends JPanel
 		
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				Product product = ProductManagementFacade.getFacade().getProduct((String)listProduct.getSelectedItem());
 				UI.MainFrame.getMainFrame().setMainPanel(new ProductManagementUpdateProductFieldGUI(product));
 				}

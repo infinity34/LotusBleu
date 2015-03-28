@@ -34,7 +34,7 @@ public class ProductManagementUpdateProductFieldGUI extends JPanel {
 	
 	
 	public ProductManagementUpdateProductFieldGUI(Product product) {
-		id = product.getProductCategoryID();
+		id = product.getProductID();
 		this.setSize(640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -157,7 +157,6 @@ public class ProductManagementUpdateProductFieldGUI extends JPanel {
 					int quantitySel = ((Number)quantity.getValue()).intValue();
 					String motherCategory = (String)listCategory.getSelectedItem();
 					
-				
 					if(ProductManagementFacade.getFacade().updateProduct(id,nameSel, priceSel, discountSel, quantitySel, motherCategory))
 					{
 						JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Product updated !");
