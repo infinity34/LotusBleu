@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.text.NumberFormatter;
 
 import Data.Category;
+import Data.Product;
 import Functions.ProductManagementFacade;
 
 import java.awt.event.ActionListener;
@@ -22,18 +23,18 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 
-public class ProductManagementAddProductGUI extends JPanel {
-	
+public class ProductManagementUpdateProductFieldGUI extends JPanel {
+
 	private JTextField productNameTextField;
 	private JComboBox listCategory;
 	private JSpinner price;
 	private JSpinner quantity;
 	private JSpinner discount;
+	private int id;
 	
 	
-	
-	public ProductManagementAddProductGUI() {
-		
+	public ProductManagementUpdateProductFieldGUI(Product product) {
+		id = product.getProductCategoryID();
 		this.setSize(640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -47,7 +48,8 @@ public class ProductManagementAddProductGUI extends JPanel {
 		JLabel lblProductName = new JLabel("Product name :");
 		add(lblProductName);
 		
-		productNameTextField = new JTextField();
+		productNameTextField = new JTextField(product.getProductName());
+		
 		springLayout.putConstraint(SpringLayout.NORTH, productNameTextField, 53, SpringLayout.SOUTH, lblAddAProduct);
 		springLayout.putConstraint(SpringLayout.WEST, productNameTextField, 40, SpringLayout.EAST, lblProductName);
 		springLayout.putConstraint(SpringLayout.NORTH, lblProductName, 2, SpringLayout.NORTH, productNameTextField);
@@ -98,7 +100,7 @@ public class ProductManagementAddProductGUI extends JPanel {
 		}
 		add(listCategory);
 		
-		price = new JSpinner(new SpinnerNumberModel(0,
+		price = new JSpinner(new SpinnerNumberModel(product.getProductPrice(),
                 0, 
                 5000, 
                 0.1));               
@@ -112,7 +114,7 @@ public class ProductManagementAddProductGUI extends JPanel {
 		formatter.setFormat(decimalFormat); 
 		((NumberFormatter)priceForm.getFormatter()).setAllowsInvalid(false);
 		
-		quantity = new JSpinner(new SpinnerNumberModel(0,
+		quantity = new JSpinner(new SpinnerNumberModel(product.getProductQuantity(),
                 0, 
                 5000, 
                 1));
@@ -123,7 +125,7 @@ public class ProductManagementAddProductGUI extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, quantity, 0, SpringLayout.EAST, productNameTextField);
 		add(quantity);
 		
-		discount = new JSpinner(new SpinnerNumberModel(0,
+		discount = new JSpinner(new SpinnerNumberModel(product.getProductDiscount(),
                 0, 
                 100, 
                 1));
@@ -156,14 +158,14 @@ public class ProductManagementAddProductGUI extends JPanel {
 					String motherCategory = (String)listCategory.getSelectedItem();
 					
 				
-					if(ProductManagementFacade.getFacade().addProduct(nameSel, priceSel, discountSel, quantitySel, motherCategory))
+					if(ProductManagementFacade.getFacade().updateProduct(id,nameSel, priceSel, discountSel, quantitySel, motherCategory))
 					{
-						JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Product added !");
+						JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Product updated !");
 						UI.MainFrame.getMainFrame().setMainPanel(new ProductManagementMenuGUI());
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(new ProductManagementAddProductGUI(),"Product already exists !");
+						JOptionPane.showMessageDialog(new ProductManagementAddProductGUI(),"Product name already taken !");
 					}
 				}
 			}

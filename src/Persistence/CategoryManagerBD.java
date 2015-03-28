@@ -41,9 +41,7 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 			while (resultat.next()) {
 					allCat.add(new Category(
 							resultat.getString("categoryName"),
-							resultat.getBoolean("available")));	
-			
-						
+							resultat.getBoolean("available")));							
 				
 			}
 		} catch (SQLException e) {
@@ -72,12 +70,6 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 				}
 				
 	    }
-
-		@Override
-		public void getCategory() {
-			// TODO Auto-generated method stub
-			
-		}
 
 		@Override
 		public boolean updateCategory(String oldName, String name, String fatherCategory,	Boolean available) {
@@ -125,8 +117,30 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		}
 
 		@Override
-		public void getCategory(String name) {
-			// TODO Auto-generated method stub
+		public Category getCategory(String name) {
+			try {
+				ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryName = \""+name+"\"");
+				return (new Category(
+						resultat.getString("categoryName"),
+						resultat.getBoolean("available")));	
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+
+		@Override
+		public int getCategoryID(String name) {
+			try {
+				ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryName = '"+name+"'");
+				resultat.next();
+				return resultat.getInt("categoryID");
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return 0;
+			}
+			
 			
 		} 
     

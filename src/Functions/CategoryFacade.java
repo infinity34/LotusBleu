@@ -45,6 +45,12 @@ public class CategoryFacade {
     	//return categoryManager.getCategory().get(0);
     }
     
+    public int getCategoryID(String name) {
+		return CategoryManagerBD.getManagerDB().getCategoryID(name);
+    	
+    	
+    }
+    
 
     
 
