@@ -68,9 +68,21 @@ public class HomePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, btnManageEvent_1, 0, SpringLayout.EAST, btnCategoryManagement);
 		add(btnManageEvent_1);
 		
+		JButton btnManageOrder = new JButton("Manage Orders");
+		springLayout.putConstraint(SpringLayout.NORTH, btnManageOrder, 0, SpringLayout.NORTH, btnProductManagement);
+		springLayout.putConstraint(SpringLayout.WEST, btnManageOrder, 0, SpringLayout.WEST, btnAccessoryManagement);
+		springLayout.putConstraint(SpringLayout.EAST, btnManageOrder, 0, SpringLayout.EAST, btnAccessoryManagement);
+		add(btnManageOrder);
+		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
+			}
+		});
+		
+		btnManageOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new OrderManagementMenuGUI());
 			}
 		});
 		

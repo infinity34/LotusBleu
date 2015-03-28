@@ -1,6 +1,8 @@
 
 package Functions;
 
+import java.sql.ResultSet;
+
 /**
  * 
  * 
@@ -8,14 +10,28 @@ package Functions;
  */
 public class OrderManagementFacade {
 
+	
+	
 /**
  * <p>Does ...</p>
  * 
  * @poseidon-object-id [I610a0d25m14bffb8994amm71af]
  */
-    public void cancelOrder() {        
-        // your code here
+    public Boolean cancelOrder() {        
+    	return orderManager.cancelOrder();
     } 
+    
+    
+    /**
+     * <p>Display all the information about the purchase request</p>
+     * @return 
+     * 
+     * @poseidon-object-id [I610a0d25m14bffb8994amm71af]
+     */
+    public ResultSet listOrder(String state){
+    	return orderManager.listOrder(state);
+    }
+    
 /**
  * 
  * 

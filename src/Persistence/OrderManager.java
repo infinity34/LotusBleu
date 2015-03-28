@@ -1,6 +1,8 @@
 
 package Persistence;
 
+import java.sql.ResultSet;
+
 /**
  * This class allows to manage order
  * 
@@ -12,7 +14,7 @@ package Persistence;
  * 
  * @poseidon-object-id [Im26623am14bf96eff7cmm7be8]
  */
-public class OrderManager {
+public abstract class OrderManager {
 
 	/**
 	 * 
@@ -22,17 +24,6 @@ public class OrderManager {
 	public Data.Order order;
 
 	
-	//Constructors *********************************************************
-	
-	/**
-	 * 
-	 * 
-	 * 
-	 */
-	public OrderManager(){
-
-	}
-
 	//Instance methods ******************************************************
 
 	/**
@@ -40,9 +31,7 @@ public class OrderManager {
 	 * 
 	 * @poseidon-object-id [I610a0d25m14bffb8994amm7172]
 	 */
-	public void cancelOrder() {        
-		// your code here
-	} 
+	public abstract Boolean cancelOrder(); 
 
 	/**
 	 * 
@@ -81,12 +70,10 @@ public class OrderManager {
 	} 
 
 	/**
-	 * <p>Does ...</p>
+	 * <p>Return a table with the information of the orders which are in the given state</p>
 	 * 
 	 * @poseidon-object-id [I610a0d25m14bffb8994amm70b9]
 	 * @param state 
 	 */
-	public void listOrder(String state) {        
-		// your code here
-	} 
+	public abstract ResultSet listOrder(String state);
 }
