@@ -122,7 +122,7 @@ public class RoomManagerDB extends RoomManager {
 					"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
 							+ "VALUES ('"+ room.getRoomName() +"', "
 							+ room.getArea() +", "
-							+"null , Office)");
+							+"null , 'Office')");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
