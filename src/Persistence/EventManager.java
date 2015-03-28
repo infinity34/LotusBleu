@@ -68,4 +68,6 @@ public abstract class EventManager {
 	
 	public abstract ArrayList<Event> getEventsForUser();
 	
+	public abstract void registerToEvent(Event event);
+	
 }

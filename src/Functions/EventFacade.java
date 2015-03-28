@@ -129,4 +129,11 @@ public class EventFacade {
 	    public ArrayList<Event> getEventsForUser(){
 	    	return eventManager.getEventsForUser();
 	    }
+	    
+	    /**
+	     * 
+	     */
+	    public void registerToEvent(Event event){
+	    	eventManager.registerToEvent(event);
+	    }
  }

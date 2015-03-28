@@ -16,7 +16,7 @@ public class EventTableModel extends AbstractTableModel {
 
 	private final ArrayList<Event> events;
 
-	private final String[] entetes = {"Name", "Begin", "End", "Action" };
+	private final String[] entetes = {"Name", "Begin", "End"};
 
 	/**
 	 * Creates an empty EventTableModel

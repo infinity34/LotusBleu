@@ -275,6 +275,7 @@ public class EventManagerDB extends Persistence.EventManager {
 				resultatContributor.next();
 
 				event = new Event(resultat.getString("eventName"),
+						resultat.getInt("eventID"),
 						resultat.getInt("roomID"), new TimeSlot(
 								resultat.getDate("beginDate"),
 								resultat.getDate("endDate"),
@@ -289,6 +290,21 @@ public class EventManagerDB extends Persistence.EventManager {
 			e.printStackTrace();
 		}
 		return events;
+	}
+
+	@Override
+	public void registerToEvent(Event event) {
+		System.out.println(event.toString());
+		try {
+			connection.getState().executeUpdate(
+					"INSERT INTO REGISTRATION (eventID,userID) VALUES("
+							+ event.getEventID()
+							+ ",\""
+							+ SessionFacade.getSessionFacade().GetCurrentUser()
+									.getUsermail() + "\")");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
