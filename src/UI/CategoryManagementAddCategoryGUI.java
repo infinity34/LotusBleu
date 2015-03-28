@@ -96,15 +96,22 @@ public class CategoryManagementAddCategoryGUI extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				String motherCategory = (String)listCategory.getSelectedItem();
-				
-				if(CategoryFacade.getFacade().createCategory(categoryName.getText(), motherCategory , chckbxAvailable.isSelected()))
+				if(categoryName.getText().isEmpty())
 				{
-					JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Category added !");
-					UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+					JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"you must give a name to your category!");
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"Category already exists !");
+				
+					if(CategoryFacade.getFacade().createCategory(categoryName.getText(), motherCategory , chckbxAvailable.isSelected()))
+					{
+						JOptionPane.showMessageDialog(new CategoryManagementMenuGUI(),"Category added !");
+						UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementMenuGUI());
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(new CategoryManagementAddCategoryGUI(),"Category already exists !");
+					}
 				}
 			}
 

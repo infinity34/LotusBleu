@@ -20,7 +20,7 @@ public class ProductManagementFacade {
 		return facade;
 	}
 
-    private boolean addProduct() {        
+    private boolean addProduct(String name, float price, float discount, int quantity, String categoryName) {        
         // your code here
         return false;
     } 

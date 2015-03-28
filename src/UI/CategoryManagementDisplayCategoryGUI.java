@@ -30,7 +30,7 @@ public class CategoryManagementDisplayCategoryGUI extends JPanel {
 		add(table);
 		
 		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();
-		String[] headers = allCategory.get(0)
+		//String[] headers = allCategory.get(0)
 	}
 	
 
