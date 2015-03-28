@@ -13,7 +13,6 @@ import Tools.PasswordHash;
 /**
  * 
  * 
- <<<<<<< HEAD
  */
 public class SessionManagerDB extends Persistence.SessionManager {
 	/**
@@ -138,4 +137,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 			e.printStackTrace();
 		}
 	}
+	
+
+	
 }

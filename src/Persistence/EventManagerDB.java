@@ -369,7 +369,7 @@ public class EventManagerDB extends Persistence.EventManager {
 		System.out.println(event.toString());
 		try {
 			connection.getState().executeUpdate(
-					"DELETE FROM REGISTRATION (eventID,userID) WHERE eventID = "
+					"DELETE FROM REGISTRATION WHERE eventID = "
 							+ event.getEventID()
 							+ " AND userID =\""
 							+ SessionFacade.getSessionFacade().GetCurrentUser()

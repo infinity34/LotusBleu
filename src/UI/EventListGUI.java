@@ -1,7 +1,5 @@
 package UI;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
@@ -17,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class EventListGUI extends JPanel {
 	private JTable eventsTable;
 	private EventTableModel model;
@@ -53,6 +52,9 @@ public class EventListGUI extends JPanel {
 				int option = JOptionPane.showConfirmDialog(null, "Voulez-vous vous inscrire ?", "Inscription", JOptionPane.YES_NO_OPTION);
 				if(option == JOptionPane.YES_OPTION){
 					facade.registerToEvent(model.getEvents().get(eventsTable.getSelectedRow()));
+					model = new EventTableModel(facade.getEventsForUser());
+					eventsTable.setModel(model);
+					model.fireTableDataChanged();
 				}
 			}
 		});
