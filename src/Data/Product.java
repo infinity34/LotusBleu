@@ -1,96 +1,52 @@
 
 package Data;
-
 /**
  * 
- * @author remy
+ * @author Clément Roque
  *
  */
+
 public class Product {
 	
 	private int productID;
 	private String productName;
-	private double productPrice;
-	private double productDiscount;
+
+	private float productPrice;
+	private float productDiscount;
 	private int productQuantity;
-	private  Category categoryProduct;
+	private int productCategoryID;
 	
-	/**
-	 * @return the product name
-	 */
+	public Product(int id, String name, float price, float discount, int quantity, int categoryID)
+	{
+		this.productCategoryID = categoryID;
+		this.productDiscount = discount;
+		this.productID = id;
+		this.productName = name;
+		this.productPrice = price;
+		this.productQuantity = quantity;
+	}
+
+	public int getProductID() {
+		return productID;
+	}
+
 	public String getProductName() {
 		return productName;
 	}
-	
-	/**
-	 * Set the product name with the parameter productName
-	 * @param productName
-	 */
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	
-	/**
-	 * @return the product price
-	 */
-	public double getProductPrice() {
+
+	public float getProductPrice() {
 		return productPrice;
 	}
-	
-	/**
-	 * set the product price with the argument
-	 * @param productPrice
-	 */
-	public void setProductPrice(double productPrice) {
-		this.productPrice = productPrice;
-	}
-	
-	/**
-	 * @return the product discount
-	 */
-	public double getProductDiscount() {
+
+	public float getProductDiscount() {
 		return productDiscount;
 	}
-	
-	/**
-	 * set the Discount
-	 * @param productDiscount
-	 */
-	public void setProductDiscount(double productDiscount) {
-		this.productDiscount = productDiscount;
-	}
-	
-	/**
-	 * @return the product Quantity
-	 */
+
 	public int getProductQuantity() {
 		return productQuantity;
 	}
-	
-	
-	/**
-	 * set the product quantity with the 
-	 * quantity in parameter
-	 * @param productQuantity
-	 */
-	public void setProductQuantity(int productQuantity) {
-		this.productQuantity = productQuantity;
+
+	public int getProductCategoryID() {
+		return productCategoryID;
 	}
-	
-	/**
-	 * @return the product category 
-	 */
-	public Category getCategoryProduct() {
-		return categoryProduct;
-	}
-	
-	/**
-	 * set the Category of the product with the
-	 * category in parameter
-	 * @param categoryProduct
-	 */
-	public void setCategoryProduct(Category categoryProduct) {
-		this.categoryProduct = categoryProduct;
-	}
-	
- }
+}

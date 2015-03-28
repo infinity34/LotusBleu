@@ -5,6 +5,7 @@ package Data;
 public class Category {
 
 
+	//private int categoryID;
     private String categoryName;
     private Category motherCategory;
     private Boolean available;

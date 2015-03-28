@@ -1,16 +1,21 @@
 
 package Functions;
 
+import java.util.ArrayList;
+
+import Data.Product;
+import Persistence.ProductManagerDB;
+
 public class ProductManagementFacade {
 	
-	private ProductManagementFacade facade;
+	private static ProductManagementFacade facade;
 	
 	private ProductManagementFacade()
 	{
 		
 	}
 	
-	public ProductManagementFacade getFacade()
+	public static ProductManagementFacade getFacade()
 	{
 		if (facade == null)
 		{
@@ -20,26 +25,32 @@ public class ProductManagementFacade {
 		return facade;
 	}
 
-    private boolean addProduct(String name, float price, float discount, int quantity, String categoryName) {        
-        // your code here
-        return false;
+	public boolean addProduct(String name, float price, float discount, int quantity, String categoryName) {        
+        return ProductManagerDB.getManagerDB().addProduct(name, price, discount, quantity, categoryName);
     } 
 
 
-    private boolean updateProduct() {        
-        // your code here
-        return false;
+	public boolean updateProduct(int id ,String nameSel, float priceSel, float discountSel, int quantitySel, String motherCategory) {        
+        return ProductManagerDB.getManagerDB().updateProduct(id, nameSel, priceSel, discountSel, quantitySel, motherCategory);
     } 
 
 
-    private boolean deleteProduct() {        
+	public boolean deleteProduct(String name) {        
+       return ProductManagerDB.getManagerDB().deleteProduct(name);
+    }
+	
+	public Product getProduct(String name)
+	{
+		return ProductManagerDB.getManagerDB().getProduct(name);
+	}
+
+
+	public void displayAllProduct() {        
         // your code here
-        return false;
     } 
-
-
-    private void displayAllProduct() {        
-        // your code here
+	
+	public ArrayList<Product> getAllProduct() {        
+        return ProductManagerDB.getManagerDB().getAllProduct();
     } 
 
     

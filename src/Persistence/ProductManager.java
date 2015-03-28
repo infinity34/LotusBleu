@@ -2,47 +2,21 @@ package Persistence;
 
 import java.util.ArrayList;
 
+import Data.Category;
 import Data.Product;
 
-/**
- * 
- * 
- * @poseidon-object-id [I48c9a015m14c095cecaamm736a]
- */
-public class ProductManager {
 
-	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I2d1a4d66m14c0966aad0mm756f]
-	 */
-	private ArrayList<Product> products;
 
-	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I2d1a4d66m14c0966aad0mm75f9]
-	 * @return
-	 */
-	public ArrayList<Product> getProducts() {
-		return this.products;
-	}
+public abstract class ProductManager {
 
-	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I2d1a4d66m14c0966aad0mm75d4]
-	 * @param String
-	 * @return
-	 */
-	public ArrayList<Product> getProductByKeyword(String keyword) {
-		// your code here
-		return null;
-	}
+
+    public abstract boolean addProduct(String name, float price, float discount, int quantity, String categoryName);
+
+    public abstract boolean updateProduct(int id,String nameSel, float priceSel, float discountSel, int quantitySel, String motherCategory);       
+
+    public abstract boolean deleteProduct(String name);
+
+    public abstract ArrayList<Product> getAllProduct();
+    public abstract Product getProduct(String name);
+    
 }
