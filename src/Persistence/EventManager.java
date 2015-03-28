@@ -2,7 +2,6 @@
 package Persistence;
 import java.util.ArrayList;
 
-import Data.Activity;
 import Data.Event;
 import Data.TimeSlot;
 

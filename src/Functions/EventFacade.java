@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import Data.Activity;
 import Data.Event;
 import Data.TimeSlot;
-import Persistence.ActivityManagerBD;
-import Persistence.EventManager;
 import Persistence.EventManagerDB;
 
 /**

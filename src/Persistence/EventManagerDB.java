@@ -1,6 +1,5 @@
 package Persistence;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,7 +7,6 @@ import java.util.ArrayList;
 
 import Data.Activity;
 import Data.Event;
-import Data.Notification;
 import Data.TimeSlot;
 import Functions.SessionFacade;
 import Tools.DBconnection;
