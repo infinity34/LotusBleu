@@ -71,7 +71,7 @@ public class OrderManagementMenuGUI extends JPanel {
 			new Object[][] {
 			},
 			new String[] {
-				"OrderID", "Product name", "State", "Quantity", "User first name", "User name", "Order date", "Action"
+				"OrderID", "Product name","Order date", "User first name", "User name",  "State", "Quantity"
 			}
 		));
 		//  JComboBox of the possible actions
@@ -82,15 +82,12 @@ public class OrderManagementMenuGUI extends JPanel {
 		namesComboBox.addItem("Cancel");
 		
 
-		TableColumn nameColumn = table.getColumn("Action");
-		nameColumn.setCellEditor(new DefaultCellEditor(namesComboBox));
-		nameColumn.setCellEditor(new DefaultCellEditor(namesComboBox));
 		
 		JButton btnRefreshOrders = new JButton("Pending");
 		btnRefreshOrders.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT orderID,productName, orderDate, userName, userFirstName, quantity, orderStateWording "
+					ResultSet rs = connection.getState().executeQuery("SELECT O.orderID,productName, orderDate, userName, userFirstName, quantity, orderStateWording "
 							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
 							+"WHERE P.productID = L.productID AND "
 							+"O.orderID = L.orderID AND "
@@ -98,8 +95,7 @@ public class OrderManagementMenuGUI extends JPanel {
 							+"S.orderStateID = O.orderStateID AND "
 							+"S.orderStateWording = 'Pending';");
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					//table.add
-					table.addColumn(nameColumn);
+					
 					
 					}
 				catch (SQLException e) {
@@ -117,7 +113,7 @@ public class OrderManagementMenuGUI extends JPanel {
 		btnConfirmed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
+					ResultSet rs = connection.getState().executeQuery("SELECT O.orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
 							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
 							+"WHERE P.productID = L.productID AND "
 							+"O.orderID = L.orderID AND "
@@ -142,7 +138,7 @@ public class OrderManagementMenuGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
+					ResultSet rs = connection.getState().executeQuery("SELECT O.orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
 							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
 							+"WHERE P.productID = L.productID AND "
 							+"O.orderID = L.orderID AND "
@@ -164,7 +160,7 @@ public class OrderManagementMenuGUI extends JPanel {
 		btnCancelledrejected.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT ,orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
+					ResultSet rs = connection.getState().executeQuery("SELECT ,O.orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
 							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
 							+"WHERE P.productID = L.productID AND "
 							+"O.orderID = L.orderID AND "
