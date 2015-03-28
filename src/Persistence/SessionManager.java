@@ -65,5 +65,21 @@ public abstract class SessionManager {
 	public abstract void changePassword(String password);
 	
 	public abstract void registerForAYear(Date date,  boolean firstSubscription);
+
+	/**
+	 * set a user in the database
+	 * @param usermail
+	 * @param firstname
+	 * @param lastname
+	 * @param address
+	 * @param address2
+	 * @param city
+	 * @param postcode
+	 * @param telephone
+	 * @param password
+	 * @return
+	 */
+	public abstract boolean register(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password);
 	
+	public abstract boolean setRegistration(String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, User oldUser);
 }
