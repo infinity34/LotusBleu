@@ -129,9 +129,25 @@ public class EventFacade {
 	    }
 	    
 	    /**
+	     * Return the list of events for which the user is not already registered 
+	     * 
+	     * @return ArrayList<Event> the list of events
+	     */
+	    public ArrayList<Event> getMyEvents(){
+	    	return eventManager.getMyEvents();
+	    }
+	    
+	    /**
 	     * 
 	     */
 	    public void registerToEvent(Event event){
 	    	eventManager.registerToEvent(event);
+	    }
+	    
+	    /**
+	     * 
+	     */
+	    public void cancelRegistrationToEvent(Event event){
+	    	eventManager.cancelRegistrationToEvent(event);
 	    }
  }

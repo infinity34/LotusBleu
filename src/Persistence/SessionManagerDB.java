@@ -63,17 +63,18 @@ public class SessionManagerDB extends Persistence.SessionManager {
 					ResultSet resultatMember = dbConnection
 							.getState()
 							.executeQuery(
-									"SELECT  FROM lotusbleu.USER U, lotusbleu.SUBSCRIPTION S, lotusbleu.PAYMENT P WHERE U.mail=\""
-											+ username
-											+ "\" AND U.mail = S.userID AND S.paymentID = P.paymentID");
-
+									"SELECT * FROM lotusbleu.USER U, lotusbleu.SUBSCRIPTION S WHERE U.mail=\""
+											+ user.getUsermail()
+											+ "\" AND U.mail = S.userID");
+					resultatMember.next();
 					Date subscriptionDate = resultatMember
 							.getDate("subscriptionDate");
 					Date subscriptionEndDate = resultatMember
 							.getDate("subscriptionEndDate");
-					Payment payment = new Payment(
+					/*Payment payment = new Payment(
 							resultatMember.getInt("paymentAmount"),
-							resultatMember.getDate("paymentDate"));
+							resultatMember.getDate("paymentDate"));*/
+					Payment payment = null;
 					user.setMemberRole(new MemberRole(new Subscription(
 							subscriptionDate, subscriptionEndDate, payment)));
 				}
@@ -113,10 +114,10 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		java.util.Date current = new java.util.Date();
 		Date sqlDate = new Date(current.getTime());
 		try {
-			dbConnection.getState().executeQuery(
-					"UPDATE Subscription SET endDate =" + date.toString()
-							+ " WHERE  userID = "
-							+ user.getUsermail());
+			dbConnection.getState().executeUpdate(
+					"UPDATE SUBSCRIPTION SET subscriptionEndDate ='" + date.toString()
+							+ "', subscriptionDate ='"+sqlDate.toString()+"' WHERE  userID = \""
+							+ user.getUsermail()+"\"");
 			String insert = "INSERT INTO PAYMENT (paymentAmount,paymentDate) VALUES (100, '"
 					+ date.toString() + "')";
 			System.out.println(insert);
