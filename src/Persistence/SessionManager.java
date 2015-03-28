@@ -9,7 +9,7 @@ import Data.User;
  * 
  * 
  */
-public class SessionManager {
+public abstract class SessionManager {
 
 	/**
 	 * 
@@ -38,9 +38,7 @@ public class SessionManager {
 	 * 
 	 * @return 
 	 */
-	public Boolean Login(String username, String password) {        
-		return null;
-	} 
+	public abstract Boolean Login(String username, String password);
 
 	/**
 	 * <p>Disconnect the user</p>
@@ -62,10 +60,10 @@ public class SessionManager {
 		return this.user;
 	}
 	
-	public void updateUser(){}
+	public abstract void updateUser();
 	
-	public void changePassword(String password){}
+	public abstract void changePassword(String password);
 	
-	public void registerForAYear(Date date){}
+	public abstract void registerForAYear(Date date,  boolean firstSubscription);
 	
 }
