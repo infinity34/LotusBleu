@@ -1,59 +1,81 @@
 
 package Functions;
 
+import Data.User;
 import Persistence.SessionManager;
-
-
 
 /**
  * 
- * 
- * @poseidon-object-id [I64875daam14c1cbbcc52mm7df9]
+ * @author remy
+ * @Design Prisca
  */
 public class RegistrationAdminFacade {
 
+	/**
+	 * 
+	 */
+	//public Persistence.RegistrationAdminManager registrationAdminManager;
+
+	/**
+	 * Session Manager to manage the 
+	 * registration and the connection
+	 */
 	public SessionManager sessionManager;
-	
+
+	/**
+	 * Facade constructor
+	 * initialize the facade 
+	 * with the SessionManager
+	 */
 	public RegistrationAdminFacade() {
 		this.sessionManager = new SessionManager();
 	}
-	
-	
+
+
 	/**
+	 * 
+	 * Method to register a user
 	 * 
 	 * @param password 
 	 * @param telephone 
 	 * @param postcode 
 	 * @param city 
-	 * @param address 
+	 * @param address 	 
+	 * @param address2
 	 * @param lastname 
 	 * @param firstname 
 	 * @param usermail 
-	 * 
-	 * @poseidon-object-id [I64875daam14c1cbbcc52mm7d71]
-	 * @return 
+	 * @param city2 
+	 * @return true if the user has been added
 	 */
-	public boolean addRegistration(String usermail, String firstname, String lastname, String address, String city, int postcode, String telephone, String password) {        
+	public boolean addRegistration(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password) {        
 		// your code here
-		return this.sessionManager.registerForAYear(date);;
+		return this.sessionManager.register(usermail, firstname, lastname, address,address2, city, postcode, telephone, password);
 	} 
 
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * @poseidon-object-id [I64875daam14c1cbbcc52mm7d4c]
-	 * @return 
+	 * change the registration with the fields in parameter
+	 * @param usermail
+	 * @param firstname
+	 * @param lastname
+	 * @param address
+	 * @param address2
+	 * @param city
+	 * @param postcode
+	 * @param telephone
+	 * @param password
+	 * @param oldUser
+	 * @return true if the update has executed with success
 	 */
-	public boolean setRagistration() {        
-		// your code here
-		return false;
+	public boolean setRagistration(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, User oldUser) {        
+
+		return this.sessionManager.setRegistration(usermail, firstname, lastname, address,address2, city, postcode, telephone, password, oldUser);
 	} 
 
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * @poseidon-object-id [I64875daam14c1cbbcc52mm7d27]
-	 * @return 
+	 * delete a user with the mail usermail
+	 * @param usermail
+	 * @return
 	 */
 	public boolean deleteRegistration(String usermail) {        
 		// your code here
@@ -61,23 +83,20 @@ public class RegistrationAdminFacade {
 	} 
 
 	/**
-	 * <p>Does ...</p>
-	 * @return 
-	 * 
-	 * @poseidon-object-id [I34add1b6m14c1cdf1de1mm7aba]
+	 * @return a tab of information on the 
+	 * registration in DataBase
 	 */
 	public Object[][] displayRegistrations() {        
-		// your code here
+		return this.sessionManager.displayRegistrations();
 	} 
-	/**
-	 * 
-	 * 
-	 * @poseidon-object-id [I64875daam14c1cbbcc52mm7d9b]
-	 */
-	public Persistence.RegistrationAdminManager registrationAdminManager;
 
-	public void getRegistration(String usermail) {
-		// TODO Auto-generated method stub
+	/**
+	 * search a User with the email usermail
+	 * @param usermail
+	 * @return a User
+	 */
+	public User getRegistration(String usermail) {
+
 
 	}
 }
