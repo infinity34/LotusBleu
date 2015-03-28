@@ -120,14 +120,16 @@ public class EventManagerDB extends Persistence.EventManager {
 			String eventContributorID; 
 			TimeSlot timeSlot;
 			int eventRoomID;
+			int eventID;
 			while (resultEvent.next()){
 				eventName = resultEvent.getString("eventName");
 				timeSlot = new TimeSlot(resultEvent.getDate("beginDate"),resultEvent.getDate("endDate"),resultEvent.getInt("recurrence"),resultEvent.getDate("lastrecurrence"));
 				eventActivityID = resultEvent.getInt("activityID");
 				eventContributorID = resultEvent.getString("usermail");
 				eventRoomID = resultEvent.getInt("roomID");
+				eventID = resultEvent.getInt("eventID");
 				
-				events2.add(new Event(eventName,eventRoomID,timeSlot, eventActivityID, eventContributorID));
+				events2.add(new Event(eventID,eventName,eventRoomID,timeSlot, eventActivityID, eventContributorID));
 				}
 			return events2;
 			} catch (SQLException e) {
@@ -136,13 +138,42 @@ public class EventManagerDB extends Persistence.EventManager {
 			}
 		return events2;
 	}
+	
+	@Override
+	public Event getAnEventWithID(int evenIDreceived){
+		
+		Event event = null ;
+		
+		
+		try {
+			ResultSet resultEvent = connection.getState().executeQuery("SELECT * FROM EVENT WHERE eventID = "+ evenIDreceived );
+			resultEvent.first();
+			
+			String eventName = resultEvent.getString("eventName");
+			TimeSlot timeSlot = new TimeSlot(resultEvent.getDate("beginDate"),resultEvent.getDate("endDate"),resultEvent.getInt("recurrence"),resultEvent.getDate("lastrecurrence"));
+			int eventActivityID = resultEvent.getInt("activityID");
+			String eventContributorID = resultEvent.getString("usermail");
+			int eventRoomID = resultEvent.getInt("roomID");
+			int eventID = resultEvent.getInt("eventID");
+				
+			event = new Event(eventID,eventName,eventRoomID,timeSlot, eventActivityID, eventContributorID);
+				
+			return event;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return event;
+		
+	}
+	
 
 	@Override
 	public Boolean removeEvent(Event eventToRemove) {
 		
 		try {
 			//delete FROM ACTIVITY WHERE activityID=2;
-			connection.getState().executeQuery("DELETE INTO EVENT WHERE eventName="+ eventToRemove.getEventName());
+			connection.getState().executeUpdate("DELETE FROM EVENT WHERE eventID="+ eventToRemove.getEventID());
 			return true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -63,5 +63,7 @@ public abstract class EventManager {
 			String eventActivity, String eventContributorName, String eventContributorFirstname);
 
 	public abstract ArrayList<Event> getEventsWithAName(String name);
+
+	public abstract Event getAnEventWithID(int evenIDreceived);
 	
 }

@@ -112,4 +112,12 @@ public class EventFacade {
 	    public  ArrayList<Event> getEventsWithAName(String name){
 	    	return eventManager.getEventsWithAName(name);
 	    }
+	    
+	    /**
+		 * <p>Get an event with eventID</p>
+		 * 
+		 */
+	    public Event getAnEventWithID(int evenIDreceived){
+	    	return eventManager.getAnEventWithID(evenIDreceived);
+	    }
  }

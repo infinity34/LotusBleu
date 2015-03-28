@@ -16,6 +16,7 @@ public class Event {
 	private String eventContributorFirstname; //Represents the contributor's firstname responsible of this event
 	private int eventActivityID;
 	private String eventContributorID;
+	private int eventID;
 
 	/**
 	 * Create a new Event
@@ -37,14 +38,15 @@ public class Event {
 		this.setEventContributorFirstname(eventContributorFirstname);
 	}
 	
-	public Event(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+	public Event(int eventID, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			int eventActivityID, String eventContributorID) {
 		super();
+		this.eventID = eventID;
 		this.eventName = eventName;
 		this.setEventRoomID(eventRoomID);
 		this.eventTimeSlot = eventTimeSlot;
 		this.eventActivityID = eventActivityID;
-		this.eventContributorID = eventContributorID;
+		this.setEventContributorID(eventContributorID);
 	}
 
 	/**
@@ -122,7 +124,7 @@ public class Event {
 	}
 	
 	public String toString(){
-		return this.eventName + ":" + this.eventTimeSlot.getBeginDate();
+		return this.eventID +": " +this.eventName + ": " + this.eventTimeSlot.getBeginDate() + " to " + this.eventTimeSlot.getEndDate() ;
 	}
 
 	public int getEventActivityID() {
@@ -131,6 +133,22 @@ public class Event {
 
 	public void setEventActivityID(int eventActivityID) {
 		this.eventActivityID = eventActivityID;
+	}
+
+	public int getEventID() {
+		return eventID;
+	}
+
+	public void setEventID(int eventID) {
+		this.eventID = eventID;
+	}
+
+	public String getEventContributorID() {
+		return eventContributorID;
+	}
+
+	public void setEventContributorID(String eventContributorID) {
+		this.eventContributorID = eventContributorID;
 	}
 
 }

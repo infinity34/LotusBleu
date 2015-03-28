@@ -9,16 +9,24 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.ItemSelectable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import Data.Event;
+import Functions.EventFacade;
 
 public class EventDeleteNextView extends JPanel {
 
 	private ArrayList<Event> events;
+	private String eventSelected;
 	
 	/**
 	 * Create the panel.
@@ -64,6 +72,20 @@ public class EventDeleteNextView extends JPanel {
 		gbc_comboBox.gridy = 6;
 		add(comboBox, gbc_comboBox);
 		
+		
+		ItemListener itemListener = new ItemListener() {
+		      public void itemStateChanged(ItemEvent itemEvent) {
+		        int state = itemEvent.getStateChange();
+		        //System.out.println((state == ItemEvent.SELECTED) ? "Selected" : "Deselected");
+		        //System.out.println("Item: " + itemEvent.getItem());
+		        ItemSelectable is = itemEvent.getItemSelectable();
+		        eventSelected = selectedString(is);
+		        //System.out.println(" Selected: " + eventSelected);
+		      }
+		    };
+		comboBox.addItemListener(itemListener);
+		
+		
 		JButton btnCancel = new JButton("Cancel");
 		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
 		gbc_btnCancel.insets = new Insets(0, 0, 0, 5);
@@ -77,7 +99,33 @@ public class EventDeleteNextView extends JPanel {
 		gbc_btnSubmit.gridx = 6;
 		gbc_btnSubmit.gridy = 8;
 		add(btnSubmit, gbc_btnSubmit);
-
+		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventMainView());
+			}});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Event eventToDelete = EventFacade.getFacade().getAnEventWithID(getEventIDinString(eventSelected));
+				if(eventToDelete != null){
+					boolean isDeleted = EventFacade.getFacade().removeEvent(eventToDelete);
+					if(isDeleted){
+						//Information popup
+						JOptionPane.showMessageDialog(null, "Event Deleted! :)", "Success", JOptionPane.INFORMATION_MESSAGE);
+						MainFrame.getMainFrame().setMainPanel(new EventMainView());
+					}
+					else{
+						//Error popup 
+						JOptionPane.showMessageDialog(null, "The event doesn't deleted! :(", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				else{
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "The event doesn't deleted! :(", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}});
 	}
 	
 	public ArrayList<Event> getEvents(){
@@ -87,5 +135,15 @@ public class EventDeleteNextView extends JPanel {
 	public void setEvents(ArrayList<Event> alist){
 		this.events = alist;
 	}
+	
+	public int getEventIDinString(String eventDescription){
+		String[] stringEvent = eventDescription.split(":");
+		return  Integer.parseInt(stringEvent[0]);
+	}
+	
+	static private String selectedString(ItemSelectable is) {
+	    Object selected[] = is.getSelectedObjects();
+	    return ((selected.length == 0) ? "null" : (String) selected[0]);
+	  }
 
 }
