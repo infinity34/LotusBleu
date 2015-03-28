@@ -1,15 +1,13 @@
-
 package Persistence;
 
 import java.util.ArrayList;
 
 import Data.ClassRoom;
 import Data.Room;
-
 /**
  * 
- * 
- * 
+ * @author remy
+ * @Design Prisca
  */
 public abstract class RoomManager {
 
@@ -64,9 +62,9 @@ public abstract class RoomManager {
 	
 	public abstract Room getRoom(String name);
 
-	public abstract void removeRoom(Room room);
+	public abstract boolean removeRoom(Room room);
 	
-	public abstract void removeRoom(String name);
+	public abstract boolean removeRoom(String name);
 
 	public void removeListRoom(Room room) {
 		this.rooms.remove(room);
@@ -95,9 +93,16 @@ public abstract class RoomManager {
 	}
 	
 	/**
-	 * update the room
+	 * update a room oldroom
+	 * with a name, and an area
+	 * @param String name
+	 * @param int area
+	 * @param Room oldroom
+	 * @return true if the update 
+	 * has found the old room
+	 * and if it has modified its fields
 	 */
-	public abstract void updateRoom(String name, int area, Room oldroom);
+	public abstract boolean updateRoom(String name, int area, Room oldroom);
 
 
 }

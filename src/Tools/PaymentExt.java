@@ -1,19 +1,24 @@
 
 package Tools;
 
-/**
- * 
- * 
- * @poseidon-object-id [Im3d5f9a4em14c178ccc5bmm7e00]
- */
-public class PaymentExt {
 
 /**
- * <p>Does ...</p>
  * 
- * @poseidon-object-id [Im3d5f9a4em14c178ccc5bmm7d15]
+ * @author remy
+ * @Design clément
  */
-    public void Paid() {        
-        // your code here
-    } 
+
+public class PaymentExt {
+
+
+/**
+ * check the information of the payment
+ * (credit card...)
+ * and procced at the payment
+ * @param cardInformation
+ * @return
+ */
+public Boolean checkProceedPayment(String cardInformation) {
+	return true;
+} 
  }

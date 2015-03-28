@@ -2,7 +2,6 @@
 package Persistence;
 import java.util.ArrayList;
 
-import Data.Activity;
 import Data.Event;
 import Data.TimeSlot;
 
@@ -65,5 +64,9 @@ public abstract class EventManager {
 	public abstract ArrayList<Event> getEventsWithAName(String name);
 
 	public abstract Event getAnEventWithID(int evenIDreceived);
+	
+	public abstract ArrayList<Event> getEventsForUser();
+	
+	public abstract void registerToEvent(Event event);
 	
 }
