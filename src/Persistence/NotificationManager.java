@@ -8,7 +8,7 @@ import javax.swing.DefaultListModel;
 import Data.Notification;
 import Data.User;
 
-public class NotificationManager {
+public abstract class NotificationManager {
 
 	protected ArrayList<Notification> notifications;
 	
@@ -49,11 +49,11 @@ public class NotificationManager {
 		this.notifications = new ArrayList<Notification>();
 	}
 	
-	public void loadNotifications(User user){}
+	public abstract void loadNotifications(User user);
 	
-	public void markAsRead(Notification notification){}
+	public abstract void markAsRead(Notification notification);
 	
-	public void markAsUnread(Notification notification){}
+	public abstract void markAsUnread(Notification notification);
 	
-	public void removeNotification(Notification notification){}
+	public abstract void removeNotification(Notification notification);
 }

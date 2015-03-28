@@ -66,4 +66,6 @@ public abstract class EventManager {
 
 	public abstract Event getAnEventWithID(int evenIDreceived);
 	
+	public abstract ArrayList<Event> getEventsForUser();
+	
 }

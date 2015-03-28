@@ -21,14 +21,6 @@ public class EventManagerXML extends Persistence.EventManager {
 	}
 
 	@Override
-	public Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {
-				return null;
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ArrayList<Event> getEventsByKeyword(String keyword) {
 		return null;
 		// TODO Auto-generated method stub
@@ -55,5 +47,19 @@ public class EventManagerXML extends Persistence.EventManager {
 		return null;
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Boolean addEvent(String eventName, int eventRoomID,
+			TimeSlot eventTimeSlot, String eventActivity,
+			String eventContributorName, String eventContributorFirstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Event> getEventsForUser() {
+		// TODO Auto-generated method stub
+		return null;
 	}
  }
