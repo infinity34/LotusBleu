@@ -34,6 +34,7 @@ public class EventManagerDB extends Persistence.EventManager {
 	 */
 	public DBconnection getConnection() {
 		return connection;
+
 	}
 
 	//Methods
@@ -67,49 +68,39 @@ public class EventManagerDB extends Persistence.EventManager {
 	 * 
 	 */
 	public ArrayList<Event> getEvents() {        
-	       // your code here
+		events = new ArrayList<Event>();   
+		// your code here
+		ResultSet resultat = null;
 		try {
-			ResultSet resultat = connection.getState().executeQuery(
-					"SELECT * FROM lotusbleu.EVENT");
+			resultat = connection.getState().executeQuery(
+					"SELECT * FROM lotusbleu.EVENT e, lotusbleu.ACTIVITY a,lotusbleu.USER u WHERE e.activityID = a.activityID AND e.usermail=u.mail");
 			
-			
-			do {
+			resultat.beforeFirst();
+			while(resultat.next()) {
 				//Create the TimeSlot object
-				TimeSlot timeslot = new TimeSlot(resultat.getDate("beginDate"),resultat.getDate("endDate"),resultat.getInt("recurrence"),resultat.getDate("lastReccurence"));
-				
-				//Create the activity object
-				ResultSet resultatActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityID =" + resultat.getInt("activityID"));
-				Activity activity = new Activity(resultatActivity.getString("activityName"),resultatActivity.getString("activityDescritption"));
-				
-				//Get the contributorRole
-				ResultSet resultatContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userID =" + resultat.getInt("contributorID"));
-				
+				TimeSlot timeslot = new TimeSlot(resultat.getDate("beginDate"),resultat.getDate("endDate"),resultat.getInt("recurrence"),resultat.getDate("lastRecurrence"));
 				
 				//Add the event in the events ArrayList
-				this.events.add(new Event(resultat.getString("eventName"),resultat.getInt("roomID"), timeslot, activity, resultatContributor.getString("userName"), resultatContributor.getString("userFirstName")));
-			} while (resultat.next());
+				this.events.add(new Event(resultat.getInt("eventID"), resultat.getString("eventName"), resultat.getInt("roomID"), timeslot, resultat.getInt("activityID"), new Activity(resultat.getString("activityName"), resultat.getString("activityDescritption")), resultat.getString("usermail"), resultat.getString("userName"), resultat.getString("userFirstName")));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			try {
+				resultat.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return events;
 	} 
 
-	/**
-	 * <p>Get all events with keyword</p>
-	 * 
-	 * @param String 
-	 * @return 
-	 */
-	public ArrayList<Event> getEventsByKeyword(String keyword) {
-		return events;        
-	        // your code here
-	}
-
 	@Override
 	public ArrayList<Event> getEventsWithAName(String name) {
-		events2 = new ArrayList<Event>() ;
+		events2 = new ArrayList<Event>();
 		
 		
 		try {
@@ -201,33 +192,54 @@ public class EventManagerDB extends Persistence.EventManager {
 			int activityID = resultActivity.getInt("activityID");
 			
 			String contributorID = null;
-			if (!(eventContributorName == null)&&(eventContributorFirstname== null)){
+			if ((eventContributorName != null)&&(eventContributorFirstname != null)){
+				System.out.println("test");
 				//Get the contributorID
 				ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userName ='" + eventContributorName + "' AND userFirstName ='"+ eventContributorFirstname +"' AND isContributor=1");
 				resultContributor.first();
 				contributorID = resultContributor.getString("mail");
 			}
-			
-			
 			//Update the event
 			//UPDATE EVENT SET eventName ='Step Stage', roomID =4, activityID = 5 
 			//, usermail = 'b', beginDate = '2015-12-25', endDate = '2015-12-26'
 			//, recurrence = 4, lastrecurrence = '2016-12-25' WHERE  eventID = 4;
-			connection.getState().executeUpdate("UPDATE EVENT SET eventName ='" + eventName 
-									+ "', roomID ="+ eventRoomID
-									+ " , activityID ="+ activityID
-									+ " , usermail = '"+ contributorID
-									+ "' , beginDate = '"+ eventTimeSlot.getBeginDate()
-									+ "' , endDate = '"+ eventTimeSlot.getEndDate()
-									+ "' , recurrence ="+ eventTimeSlot.isRecurrence()
-									+ " , lastrecurrence = '"+ eventTimeSlot.getLastReccurence()
-									+"' WHERE  eventID = " + eventToUpdate.getEventID());
+			String request;
+			if (eventTimeSlot.getLastReccurence() == null){
+				request = new String("UPDATE EVENT SET eventName ='" + eventName 
+						+ "', roomID ="+ eventRoomID
+						+ " , activityID ="+ activityID
+						+ " , usermail = '"+ contributorID
+						+ "' , beginDate = '"+ eventTimeSlot.getBeginDate()
+						+ "' , endDate = '"+ eventTimeSlot.getEndDate()
+						+ "' , recurrence ="+ eventTimeSlot.isRecurrence()
+						+ " , lastrecurrence = NULL"
+						+" WHERE  eventID = " + eventToUpdate.getEventID());
+
+			}else{
+				request = new String("UPDATE EVENT SET eventName ='" + eventName 
+						+ "', roomID ="+ eventRoomID
+						+ " , activityID ="+ activityID
+						+ " , usermail = '"+ contributorID
+						+ "' , beginDate = '"+ eventTimeSlot.getBeginDate()
+						+ "' , endDate = '"+ eventTimeSlot.getEndDate()
+						+ "' , recurrence ="+ eventTimeSlot.isRecurrence()
+						+ " , lastrecurrence = '"+ eventTimeSlot.getLastReccurence()
+						+"' WHERE  eventID = " + eventToUpdate.getEventID());
+			}
+			System.out.println(contributorID);
+			connection.getState().executeUpdate(request);
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public ArrayList<Event> getEventsByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

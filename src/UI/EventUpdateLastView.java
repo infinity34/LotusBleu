@@ -286,7 +286,6 @@ public class EventUpdateLastView extends JPanel {
 						
 						lastRecurrence = Date.valueOf(textNewLastReccurence.getText());
 					}
-					
 					TimeSlot aTimeSlot = new TimeSlot(beginDate,endDate,(int)spinner.getValue(),lastRecurrence);
 					boolean isUpdated = EventFacade.getFacade().updateEvent(eventToUpdate,textNewEventName.getText(), Integer.parseInt(textNewRoomID.getText()), aTimeSlot, textNewActivityName.getText(), textNewContributorName.getText(), textNewContributorFirstName.getText());
 					if(isUpdated){
@@ -296,7 +295,7 @@ public class EventUpdateLastView extends JPanel {
 					}
 					else{
 						//Error popup 
-						JOptionPane.showMessageDialog(null, "The Event doesn't updated!", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "The Event wasn't updated!", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}else{
 					JOptionPane.showMessageDialog(null, "An invalid date was specified", "Error", JOptionPane.ERROR_MESSAGE);

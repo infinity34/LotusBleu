@@ -63,7 +63,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 					ResultSet resultatMember = dbConnection
 							.getState()
 							.executeQuery(
-									"SELECT  FROM lotusbleu.USER U, lotusbleu.SUBSCRIPTION S, lotusbleu.PAYMENT P WHERE U.mail=\""
+									"SELECT FROM lotusbleu.USER U, lotusbleu.SUBSCRIPTION S, lotusbleu.PAYMENT P WHERE U.mail=\""
 											+ username
 											+ "\" AND U.mail = S.userID AND S.paymentID = P.paymentID");
 
