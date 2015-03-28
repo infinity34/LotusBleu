@@ -53,6 +53,9 @@ public class MyEventsGUI extends JPanel {
 				int option = JOptionPane.showConfirmDialog(null, "Do you to cancel your inscription?", "Cancel", JOptionPane.YES_NO_OPTION);
 				if(option == JOptionPane.YES_OPTION){
 					facade.cancelRegistrationToEvent(model.getEvents().get(eventsTable.getSelectedRow()));
+					model = new EventTableModel(facade.getMyEvents());
+					eventsTable.setModel(model);
+					model.fireTableDataChanged();
 				}
 			}
 		});
