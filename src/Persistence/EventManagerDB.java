@@ -238,7 +238,12 @@ public class EventManagerDB extends Persistence.EventManager {
 		return false;
 	}
 
-	@Override
+	/**
+	 * Retourne la liste des evenements auxquels l'utilisateur ne participe pas et qui ont lieu à partir de la date courrante
+	 * 
+	 * @return ArrayList<Event> the list of events
+	 * @author Maxime Clerix
+	 */
 	public ArrayList<Event> getEventsForUser() {
 		ArrayList<Event> events = new ArrayList<Event>();
 		Event event;
