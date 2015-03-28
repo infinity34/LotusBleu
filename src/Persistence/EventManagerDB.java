@@ -155,8 +155,16 @@ public class EventManagerDB extends Persistence.EventManager {
 			String eventContributorID = resultEvent.getString("usermail");
 			int eventRoomID = resultEvent.getInt("roomID");
 			int eventID = resultEvent.getInt("eventID");
-				
-			event = new Event(eventID,eventName,eventRoomID,timeSlot, eventActivityID, eventContributorID);
+			
+			ResultSet resultActivity = connection.getState().executeQuery("SELECT * FROM ACTIVITY WHERE activityID = "+ eventActivityID );
+			resultActivity.first();
+			Activity activity = new Activity(resultActivity.getString("activityName"), resultActivity.getString("activityDescritption"));
+			
+			ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE mail = '"+ eventContributorID +"'" );
+			resultContributor.first();
+			String contributorName = resultContributor.getString("userName");
+			String contributorFirstName = resultContributor.getString("userFirstName");
+			event = new Event(eventID,eventName,eventRoomID,timeSlot,eventActivityID, activity, eventContributorID,contributorName,contributorFirstName);
 				
 			return event;
 			} catch (SQLException e) {
@@ -189,26 +197,31 @@ public class EventManagerDB extends Persistence.EventManager {
 		try {
 			//Get the activity with its name
 			ResultSet resultActivity = connection.getState().executeQuery("SELECT * FROM lotusbleu.ACTIVITY WHERE activityName ='" + eventActivity+"'");
+			resultActivity.first();
+			int activityID = resultActivity.getInt("activityID");
 			
-		
-			int contributorID = (Integer) null;
-			if (!(eventContributorName =="")&&(eventContributorFirstname=="")){
+			String contributorID = null;
+			if (!(eventContributorName == null)&&(eventContributorFirstname== null)){
 				//Get the contributorID
-				ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM lotusbleu.USER WHERE userName ='" + eventContributorName + "' AND userFirstName ='"+ eventContributorFirstname +"' AND isContributor=1");
-				contributorID = resultContributor.getInt("contributorID");
+				ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userName ='" + eventContributorName + "' AND userFirstName ='"+ eventContributorFirstname +"' AND isContributor=1");
+				resultContributor.first();
+				contributorID = resultContributor.getString("mail");
 			}
 			
+			
 			//Update the event
-			connection.getState().executeUpdate(
-					"UPDATE EVENT SET eventName ='" + eventName 
-									+ "' AND roomID ="+ eventRoomID
-									+ "' AND activityID ="+ resultActivity.getInt("activityID")
-									+ "' AND contributorID ="+ contributorID
-									+ " AND beginDate ="+ eventTimeSlot.getBeginDate()
-									+ " AND endDate ="+ eventTimeSlot.getEndDate()
-									+ " AND recurrence ="+ eventTimeSlot.getLastReccurence()
-									+ " AND lastrecurrence ="+ eventTimeSlot.isRecurrence()
-									+"WHERE  eventName = " + eventToUpdate.getEventName());
+			//UPDATE EVENT SET eventName ='Step Stage', roomID =4, activityID = 5 
+			//, usermail = 'b', beginDate = '2015-12-25', endDate = '2015-12-26'
+			//, recurrence = 4, lastrecurrence = '2016-12-25' WHERE  eventID = 4;
+			connection.getState().executeUpdate("UPDATE EVENT SET eventName ='" + eventName 
+									+ "', roomID ="+ eventRoomID
+									+ " , activityID ="+ activityID
+									+ " , usermail = '"+ contributorID
+									+ "' , beginDate = '"+ eventTimeSlot.getBeginDate()
+									+ "' , endDate = '"+ eventTimeSlot.getEndDate()
+									+ "' , recurrence ="+ eventTimeSlot.isRecurrence()
+									+ " , lastrecurrence = '"+ eventTimeSlot.getLastReccurence()
+									+"' WHERE  eventID = " + eventToUpdate.getEventID());
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

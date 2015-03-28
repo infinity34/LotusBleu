@@ -27,6 +27,7 @@ public class EventDeleteNextView extends JPanel {
 
 	private ArrayList<Event> events;
 	private String eventSelected;
+	private JComboBox comboBox;
 	
 	/**
 	 * Create the panel.
@@ -64,7 +65,7 @@ public class EventDeleteNextView extends JPanel {
 			eventsName[i] = events.get(i).toString();
 		}
 		
-		JComboBox comboBox = new JComboBox(eventsName);
+		this.comboBox = new JComboBox(eventsName);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -72,7 +73,7 @@ public class EventDeleteNextView extends JPanel {
 		gbc_comboBox.gridy = 6;
 		add(comboBox, gbc_comboBox);
 		
-		
+		/*
 		ItemListener itemListener = new ItemListener() {
 		      public void itemStateChanged(ItemEvent itemEvent) {
 		        int state = itemEvent.getStateChange();
@@ -84,7 +85,7 @@ public class EventDeleteNextView extends JPanel {
 		      }
 		    };
 		comboBox.addItemListener(itemListener);
-		
+		*/
 		
 		JButton btnCancel = new JButton("Cancel");
 		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
@@ -107,6 +108,8 @@ public class EventDeleteNextView extends JPanel {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Object objectEvent = comboBox.getSelectedItem(); 
+				eventSelected = (String) objectEvent;
 				Event eventToDelete = EventFacade.getFacade().getAnEventWithID(getEventIDinString(eventSelected));
 				if(eventToDelete != null){
 					boolean isDeleted = EventFacade.getFacade().removeEvent(eventToDelete);
@@ -141,9 +144,5 @@ public class EventDeleteNextView extends JPanel {
 		return  Integer.parseInt(stringEvent[0]);
 	}
 	
-	static private String selectedString(ItemSelectable is) {
-	    Object selected[] = is.getSelectedObjects();
-	    return ((selected.length == 0) ? "null" : (String) selected[0]);
-	  }
 
 }

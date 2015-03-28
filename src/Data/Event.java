@@ -49,6 +49,20 @@ public class Event {
 		this.setEventContributorID(eventContributorID);
 	}
 
+	public Event(int eventID, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			int eventActivityID,Activity eventActivity, String eventContributorID, String eventContributorName, String eventContributorFirstname) {
+		super();
+		this.eventID = eventID;
+		this.eventName = eventName;
+		this.setEventRoomID(eventRoomID);
+		this.eventTimeSlot = eventTimeSlot;
+		this.eventActivityID = eventActivityID;
+		this.eventActivity = eventActivity;
+		this.setEventContributorID(eventContributorID);
+		this.setEventContributorName(eventContributorName);
+		this.setEventContributorFirstname(eventContributorFirstname);
+	}
+	
 	/**
 	 * @return the eventName
 	 */

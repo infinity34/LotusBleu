@@ -1,14 +1,22 @@
 package UI;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+
+import Functions.EventFacade;
 
 public class EventUpdateView extends JPanel {
 	private JTextField txtEventNameTo;
@@ -67,6 +75,17 @@ public class EventUpdateView extends JPanel {
 		gbc_btnSubmit.gridy = 7;
 		add(btnSubmit, gbc_btnSubmit);
 
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new EventMainView());
+			}});
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventUpdateNextView nextView = new EventUpdateNextView(EventFacade.getFacade().getEventsWithAName(txtEventNameTo.getText()));
+				MainFrame.getMainFrame().setMainPanel(nextView);
+			}});
+		
 	}
 
 }
