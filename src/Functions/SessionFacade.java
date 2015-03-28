@@ -79,12 +79,12 @@ public class SessionFacade {
 			}
 			endDate.setYear(endDate.getYear()+1);
 			System.out.println(endDate);
-			this.sessionManager.registerForAYear(endDate);
+			this.sessionManager.registerForAYear(endDate, false);
 		}
 		else{
 			currentDate.setYear(currentDate.getYear()+1);
 			System.out.println(currentDate);
-			this.sessionManager.registerForAYear(currentDate);
+			this.sessionManager.registerForAYear(currentDate, true);
 		}
 	} 
 
