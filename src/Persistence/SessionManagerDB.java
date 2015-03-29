@@ -6,12 +6,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import Data.Activity;
+import Data.AdminRole;
+import Data.ContributorRole;
 import Data.Event;
+import Data.InChargeRole;
 import Data.MemberRole;
 import Data.Payment;
 import Data.Subscription;
 import Data.TimeSlot;
 import Data.User;
+import Data.UserRole;
 import Functions.SessionFacade;
 import Tools.DBconnection;
 import Tools.PasswordHash;
@@ -80,7 +84,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 							resultatMember.getInt("paymentAmount"),
 							resultatMember.getDate("paymentDate"));*/
 					Payment payment = null;
-					user.setMemberRole(new MemberRole(new Subscription(
+					user.setUserRole(new MemberRole(new Subscription(
 							subscriptionDate, subscriptionEndDate, payment)));
 				}
 			}
@@ -277,8 +281,29 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				String postcode = resultat.getString("postCode");
 				String city = resultat.getString("city");
 				String phone = resultat.getString("phone");
+				String isAdmin =  resultat.getString("isAdmin");
+				String isRespo =  resultat.getString("isResponsible");
+				String isContrib =  resultat.getString("isContributor");
+				String isMember =  resultat.getString("isMember");
+				
+				UserRole userRole;
+				if (isAdmin.equals("1")){
+					userRole = new AdminRole();
+				}
+				else if(isRespo.equals("1")){
+					userRole = new InChargeRole();
+				}
+				else if(isContrib.equals("1")){
+					userRole = new ContributorRole();
+				}
+				else if(isMember.equals("1")){
+					userRole = new MemberRole();
+				}
+				else{
+					userRole = new UserRole();
+				}
 
-				user = new User();
+				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, userRole);
 				
 				//Add the user in the registration ArrayList
 				registration.add(user);
