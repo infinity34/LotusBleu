@@ -1,4 +1,3 @@
-
 package Data;
 
 /**
@@ -8,37 +7,16 @@ package Data;
  */
 public class ContributorRole extends UserRole {
 	
-	private String shortDescription;
 	
-	private String description;
+	private String description; // It is a description of the contributor
 
-	/**
-	 * @param shortDescription
-	 * @param description
-	 */
-	public ContributorRole(String shortDescription, String description) {
+	//Constructor
+	public ContributorRole(String description) {
 		super();
-		this.shortDescription = shortDescription;
 		this.description = description;
 	}
 
-	public ContributorRole() {
-		// TODO Auto-generated constructor stub
-	}
 
-	/**
-	 * @return the shortDescription
-	 */
-	public String getShortDescription() {
-		return shortDescription;
-	}
-
-	/**
-	 * @param shortDescription the shortDescription to set
-	 */
-	public void setShortDescription(String shortDescription) {
-		this.shortDescription = shortDescription;
-	}
 
 	/**
 	 * @return the description
@@ -59,8 +37,7 @@ public class ContributorRole extends UserRole {
 	 */
 	@Override
 	public String toString() {
-		return "ContributorRole [shortDescription=" + shortDescription
-				+ ", description=" + description + "]";
+		return "Contributor description : " + description;
 	}
 	
 	
