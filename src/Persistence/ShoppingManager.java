@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Data.Category;
-
 import Data.Basket;
-
 import Data.Order;
 import Data.OrderLine;
+import Data.Payment;
 import Data.Product;
 import Data.User;
 import Functions.SessionFacade;
@@ -21,54 +20,24 @@ import Functions.SessionFacade;
 public abstract class ShoppingManager {
 
 	//Variables
+	private Basket basket;
 	private ArrayList<Order> orders;
-
-	//Methods
-	public ArrayList<Order> getOrders() {
-		return this.orders;
-	}
 
 	/**
 	 * @param orders
-	 *            the orders to set
+	 * @param basket
 	 */
-	public void setOrders(ArrayList<Order> orders) {
-		this.orders = orders;
+	public ShoppingManager() {
+		super();
+		this.basket = Basket.getBasket(SessionFacade.getSessionFacade().GetCurrentUser());
+		this.orders = new ArrayList<Order>();
 	}
 
 	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I777ab4eam14bf4e91384mm7c7d]
-	 * @param Product
-	 * @param quantity
+	 * @return the basket
 	 */
-	public void addOrderLine(Product product, int quantity) {
-		// your code here
-	}
-
-	/**
-	 * <p>
-	 * Return the basket of the current user
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm78a9]
-	 * @return
-	 */
-	public abstract Data.Basket getBasket(User user);
-
-	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm7884]
-	 * @param OrderLine
-	 */
-	public void removeOrderLine(OrderLine line) {
-		// your code here
+	public Basket getBasket() {
+		return basket;
 	}
 
 	/**
@@ -79,7 +48,7 @@ public abstract class ShoppingManager {
 	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm76e5]
 	 */
 	public void emptyBasket() {
-		// your code here
+		this.basket.empty();
 	}
 
 	/**
@@ -89,8 +58,9 @@ public abstract class ShoppingManager {
 	 * 
 	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm76c0]
 	 */
-	public void validBasket() {
-		// your code here
+	public void validBasket(Payment payment) {
+		this.orders.add(new Order(this.basket,payment));
+		this.basket.empty();
 	}
 
 	/**
@@ -111,8 +81,13 @@ public abstract class ShoppingManager {
 	public abstract ArrayList<Category> getSubCategories(String parentCat);
 
 	public abstract ArrayList<Product> getProductsByCat(int category);
-
 	
-	public abstract void addProductToBasket(Product product, int quantity);
+	public void addProductToBasket(Product product, int quantity){
+		this.basket.addLine(product, quantity);
+	}
+	
+	public void removeProductFromBasket(OrderLine orderline){
+		this.basket.removeLine(orderline);
+	}
 
 }

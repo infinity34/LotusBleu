@@ -102,14 +102,4 @@ public class ShoppingManagerDB extends Persistence.ShoppingManager {
 		System.out.println(products.size());
 		return products;
 	}
-
-	@Override
-	public void addProductToBasket(Product product, int quantity) {
-		addOrderLine(product, quantity);
-	}
-
-	@Override
-	public Basket getBasket(User user) {
-		return getBasket(user);
-	}
 }
