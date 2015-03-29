@@ -11,7 +11,7 @@ import Tools.DBconnection;
 /**
  * 
  * @author remy
- * @Design Prisca
+ * @author Design Prisca
  */
 public class RoomManagerDB extends RoomManager {
 	/**
@@ -108,7 +108,7 @@ public class RoomManagerDB extends RoomManager {
 
 	/**
 	 * allows to add a classRoom to the database and to the list
-	 * @param :String name , int area, int numberOfParticipant (parameters of a classroom) 
+	 * @param :String name , int area, int numberOfParticipant
 	 */
 	public boolean addRoom( String name, int area, int numberOfParticipant ) {
 		Room room = new ClassRoom(name, area, numberOfParticipant);
@@ -130,7 +130,7 @@ public class RoomManagerDB extends RoomManager {
 
 	/**
 	 * allows to add an office to the database and to the list
-	 * @param :int roomID, int area (parameters of a office) 
+	 * @param : String name, int area 
 	 */
 	public boolean addRoom(  String name, int area ) {
 		Room room = new Office(name, area);
@@ -175,7 +175,7 @@ public class RoomManagerDB extends RoomManager {
 	/**
 	 * Delete a room with the name "name" of the DB
 	 * and of the list rooms
-	 * @param room
+	 * @param String name
 	 * @return true if the udate has modified a room
 	 * in the DB
 	 */
