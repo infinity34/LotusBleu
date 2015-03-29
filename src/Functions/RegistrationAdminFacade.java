@@ -89,7 +89,7 @@ public class RegistrationAdminFacade {
 	 * @return a tab of information on the 
 	 * registration in DataBase
 	 */
-	public Object[][] displayRegistrations() {        
+	public ArrayList<User> displayRegistrations() {        
 		return this.sessionManager.displayRegistrations();
 	} 
 

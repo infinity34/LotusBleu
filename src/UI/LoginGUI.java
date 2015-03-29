@@ -98,14 +98,8 @@ public class LoginGUI {
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setForeground(Color.BLUE);
 		lblUser.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-		lblUser.setBounds(6, 210, 338, 16);
+		lblUser.setBounds(6, 198, 338, 16);
 		frmLotusBleu.getContentPane().add(lblUser);
-		
-		JLabel lblSignIn = new JLabel("Sign in");
-		lblSignIn.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSignIn.setForeground(Color.BLUE);
-		lblSignIn.setBounds(0, 238, 344, 16);
-		frmLotusBleu.getContentPane().add(lblSignIn);
 		
 		JCheckBox chckbxRemember = new JCheckBox("Remember me");
 		chckbxRemember.setHorizontalAlignment(SwingConstants.CENTER);
@@ -116,6 +110,10 @@ public class LoginGUI {
 		pwdPassword.setText("Password");
 		pwdPassword.setBounds(121, 117, 134, 28);
 		frmLotusBleu.getContentPane().add(pwdPassword);
+		
+		JButton btnSignIn = new JButton("Sign in");
+		btnSignIn.setBounds(128, 216, 117, 25);
+		frmLotusBleu.getContentPane().add(btnSignIn);
 		
 		
 		btnLogin.addActionListener(new ActionListener() {
@@ -132,6 +130,13 @@ public class LoginGUI {
 				else {
 					JOptionPane.showMessageDialog(null, "wrong login/password ");
 				}
+			}
+		});
+		
+		btnSignIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrationGUI registr = new RegistrationGUI();
+				registr.setVisible(true);
 			}
 		});
 	}

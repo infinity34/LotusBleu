@@ -1,5 +1,5 @@
 package Data;
 
-public class UserRole {
+public class UserRole{
 
 }

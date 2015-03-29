@@ -64,8 +64,8 @@ public class SessionFacade {
 		return this.sessionManager.GetCurrentUser();
 	} 
 	
-	public boolean registration(){
-		return true;
+	public boolean registration(String lastname,String usermail, String password,String firstname, String address, String address2, int postCode, String city, String phone, boolean admin, boolean inCharge){
+		return this.sessionManager.register(usermail, firstname, lastname, address, address2, city, postCode, phone, password, inCharge, admin);
 	}
 
 	public void registrationCotisation() {   
