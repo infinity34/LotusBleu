@@ -12,22 +12,6 @@ import java.util.ArrayList;
  */
 public class ContributorManagerXML extends Persistence.ContributorManager {
 
-
-	
-
-	@Override
-	public ResultSet listEvents(String name, String firstname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	@Override
-	public Boolean deleteContributorFromEvent(String eventName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public Boolean addContributorToEvent(String myEvent, String begin,
 			String end, String name, String firstname) {
@@ -36,16 +20,17 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 	}
 
 	@Override
-	 public Boolean createContributor(String name,String firstname, String description){
-		 return null;
-	 }
-
-	@Override
-	public Boolean deleteContributor(String name, String firstname) {
+	public ResultSet listEvents(String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public Boolean createContributor(String name, String firstname,
+			String description) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public ArrayList<String> listContributor() {
@@ -53,10 +38,24 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 		return null;
 	}
 
+	@Override
+	public Boolean deleteContributor(String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean deleteContributorFromEvent(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public ArrayList<String> searchContributor(String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
  }
