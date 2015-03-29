@@ -43,7 +43,6 @@ public class EventFacade {
 	 * <p> Return the list of all events which are in the database</p>
 	 *
 	 * @return ArrayList
-	 * 		<Event>
 	 */
 	public ArrayList<Event> getEvents() {        
 
@@ -99,14 +98,15 @@ public class EventFacade {
 		return ActivityFacade.getFacade().getAllActivities();
 	} 
 
-	/**
-	 * <p>Get an event</p>
-	 * 
-	 */
+
 	/* public Event getAnEventWithName(String name) {
 	    	return eventManager.getAnEventWithName(name);
 	    }*/
-
+	/**
+	 * 
+	 * @param name
+	 * @return ArrayList
+	 */
 	public  ArrayList<Event> getEventsWithAName(String name){
 		return eventManager.getEventsWithAName(name);
 	}
