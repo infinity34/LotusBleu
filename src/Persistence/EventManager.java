@@ -22,8 +22,13 @@ public abstract class EventManager {
 
 	/**
 	 * <p>Add an event with its name</p>
-	 * 
-	 * @param String 
+	 *  
+	 * @param eventName 
+	 * @param eventRoomID 
+	 * @param eventTimeSlot 
+	 * @param eventActivity 
+	 * @param eventContributorName 
+	 * @param eventContributorFirstname 
 	 */
     public abstract Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
     		String eventActivity, String eventContributorName, String eventContributorFirstname );
@@ -32,31 +37,30 @@ public abstract class EventManager {
 	/**
 	 * <p>Get an event with keyword</p>
 	 * 
-	 * @param String 
-	 * @return 
+	 * @param keyword 
 	 */
     public abstract ArrayList<Event> getEventsByKeyword(String keyword);
  
 
-	/**
-	 * <p>Get an event with name</p>
-	 * 
-	 * @param String 
-	 * @return 
-	 */
    // public abstract Event getAnEventWithName(String name);
 
     /**
 	 * <p>Remove an event</p>
 	 * 
-	 * @param String 
+	 * @param eventToRemove 
 	 */
 	public abstract Boolean removeEvent(Event eventToRemove);
 
 	/**
 	 * <p>Update an event</p>
 	 * 
-	 * @param String 
+	 * @param eventToUpdate 
+	 * @param eventName 
+	 * @param eventRoomID 
+	 * @param eventTimeSlot 
+	 * @param eventActivity 
+	 * @param eventContributorName 
+	 * @param eventContributorFirstname 
 	 */
 	public abstract Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			String eventActivity, String eventContributorName, String eventContributorFirstname);

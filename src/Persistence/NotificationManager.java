@@ -33,7 +33,6 @@ public abstract class NotificationManager {
 	 * Return an array of notifications
 	 * 
 	 * @param user
-	 * @return
 	 */
 	public Notification[] getNotificationsArray(User user){
 		this.loadNotifications(user);

@@ -40,7 +40,12 @@ public class EventManagerDB extends Persistence.EventManager {
 	 * Add an event with its name
 	 * </p>
 	 * 
-	 * @param String
+	 * @param eventName
+	 * @param eventRoomID
+	 * @param eventTimeSlot
+	 * @param eventActivity
+	 * @param eventContributorName
+	 * @param eventContributorFirstname
 	 */
 	public Boolean addEvent(String eventName, int eventRoomID,
 			TimeSlot eventTimeSlot, String eventActivity,
@@ -294,7 +299,6 @@ public class EventManagerDB extends Persistence.EventManager {
 	 * et qui ont lieu à partir de la date courrante
 	 * 
 	 * @return ArrayList<Event> the list of events
-	 * @author Maxime Clerix
 	 */
 	public ArrayList<Event> getEventsForUser() {
 		ArrayList<Event> events = new ArrayList<Event>();
@@ -346,8 +350,7 @@ public class EventManagerDB extends Persistence.EventManager {
 	/**
 	 * Register an user to an event
 	 * 
-	 * @author Maxime Clerix
-	 * @param the
+	 * @param event
 	 *            event to register
 	 */
 	public void registerToEvent(Event event) {
@@ -375,7 +378,6 @@ public class EventManagerDB extends Persistence.EventManager {
 	/**
 	 * Retourne la liste des evenements auxquels participe un utilisateur
 	 * 
-	 * @author Maxime Clerix
 	 * @return An arraylist of the events
 	 */
 	public ArrayList<Event> getMyEvents() {
@@ -428,8 +430,8 @@ public class EventManagerDB extends Persistence.EventManager {
 	/**
 	 * Cancel the registration to an event for the current user
 	 * 
-	 * @param the event concerned by the cancellation
-	 * @author Maxime Clerix
+	 * @param event 
+	 * 	the event concerned by the cancellation
 	 */
 	@Override
 	public void cancelRegistrationToEvent(Event event) {

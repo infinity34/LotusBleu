@@ -27,9 +27,7 @@ public class NotificationFacade {
 		this.notificationManager = notificationManager;
 	}
 
-	/**
-	 * @param notificationManager
-	 */
+
 	public NotificationFacade() {
 		super();
 		this.notificationManager = new NotificationManagerDB();

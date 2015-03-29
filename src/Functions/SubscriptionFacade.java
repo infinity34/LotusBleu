@@ -16,7 +16,6 @@ public class SubscriptionFacade {
  * <p>Does ...</p>
  * 
  * @param amount 
- * @return 
  */
     public Boolean ProceedSubscription(float amount) {        
         // your code here

@@ -22,10 +22,11 @@ public class Event {
 	 * Create a new Event
 	 * 
 	 * @param eventName
-	 * @param eventRoom
+	 * @param eventRoomID
 	 * @param eventTimeSlot
 	 * @param eventActivity
-	 * @param eventContributor
+	 * @param eventContributorName
+	 * @param eventContributorFirstname
 	 */
 	public Event(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
 			Activity eventActivity, String eventContributorName, String eventContributorFirstname ) {

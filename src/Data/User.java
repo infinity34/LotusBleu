@@ -97,7 +97,11 @@ public class User {
 	 * @param postcode
 	 * @param city
 	 * @param phone
-	 * @param userRole
+	 * @param memberRole
+	 *  @param adminRole
+	 *   @param inChargeRole
+	 *    @param contributorRole
+	 *
 	 */
 	public User(String mail, String username, String userFirstName,
 			String address, String address2, String postcode,
@@ -261,7 +265,7 @@ public class User {
 	/**
 	 * set the phone of the user
 	 * 
-	 * @param password
+	 * @param phone
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
@@ -293,7 +297,7 @@ public class User {
 	/**
 	 * set the admin role of the user
 	 * allows to become an admin
-	 * @param memberRole
+	 * @param adminRole
 	 */
 	public void setAdminRole(AdminRole adminRole) {
 		this.adminRole = adminRole;
@@ -325,7 +329,7 @@ public class User {
 	/**
 	 * set the inChargeRole role of the user
 	 * allows to become inChargeRole or not
-	 * @param inChargeRole
+	 * @param contributorRole
 	 */
 	public void setContributorRole(ContributorRole contributorRole) {
 		this.contributorRole = contributorRole;

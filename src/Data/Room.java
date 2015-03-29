@@ -4,7 +4,7 @@ package Data;
 /**
  * 
  * @author remy
- * @Design Prisca
+ * @author Prisca (design)
  *
  */
 public abstract class Room {

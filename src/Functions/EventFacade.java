@@ -52,8 +52,7 @@ public class EventFacade {
 	/**
 	 * <p>Does ...</p>
 	 * 
-	 * @param String 
-	 * @return 
+	 * @param keyword  
 	 */
 	    public ArrayList<Event> getEventByKeyword(String keyword) {        
 	
@@ -93,7 +92,6 @@ public class EventFacade {
 		/**
 		 * <p>Get all activities</p>
 		 * 
-		 * @return 
 		 */
 	    public ArrayList<Activity> getAllActivities() {        
 	    	return ActivityFacade.getFacade().getAllActivities();

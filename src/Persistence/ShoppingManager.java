@@ -17,10 +17,6 @@ public abstract class ShoppingManager {
 	private Basket basket;
 	private ArrayList<Order> orders;
 
-	/**
-	 * @param orders
-	 * @param basket
-	 */
 	public ShoppingManager() {
 		super();
 		this.basket = Basket.getBasket(SessionFacade.getSessionFacade().GetCurrentUser());
@@ -39,7 +35,6 @@ public abstract class ShoppingManager {
 	 * Test if the basket is empty.
 	 * </p>
 	 * 
-	 * @return Boolean
 	 */
 	public void emptyBasket() {
 		this.basket.empty();
@@ -63,7 +58,7 @@ public abstract class ShoppingManager {
 	 * <p>
 	 * Does ...
 	 * </p>
-	 * @param Order
+	 * @param order
 	 */
 	public void cancelOrder(Order order) {
 		// your code here

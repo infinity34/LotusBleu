@@ -78,7 +78,6 @@ public class RegistrationAdminFacade {
 	/**
 	 * delete a user with the mail usermail
 	 * @param usermail
-	 * @return
 	 */
 	public boolean deleteRegistration(String usermail) {        
 		

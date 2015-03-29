@@ -21,24 +21,22 @@ public abstract class AccessoryManager {
 	/**
 	 * <p> Add an accessory </p>
 	 *
-	 * @param String
-	 * @return 
+	 * @param name
 	 */
 	public abstract Boolean addAccessory(String name);
 	
 	/**
 	 * <p> Set an accessory </p>
 	 *
-	 * @param String
-	 * @return 
+	 * @param accessory
+	 * @param newName
 	 */
 	public abstract Boolean setAccessory(Accessory accessory,String newName);
 	
 	/**
 	 * <p> Delete an accessory </p>
 	 *
-	 * @param String
-	 * @return 
+	 * @param accessory
 	 */
 	public abstract Boolean deleteAccessory(Accessory accessory);
 

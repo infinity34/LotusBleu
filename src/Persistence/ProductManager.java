@@ -19,18 +19,18 @@ public abstract class ProductManager {
 	 *	@param price
 	 *	@param discount
 	 *	@param quantity
-	 **	@param categoryName
+	 *	@param categoryName
 	 *	@return true true if product has been add in the data base, else return false
 	 */
     public abstract boolean addProduct(String name, float price, float discount, int quantity, String categoryName);
 
     /**
 	 *	@param id
-	 *	@param name
-	 *	@param price
-	 *	@param discount
-	 *	@param quantity
-	 **	@param categoryName
+	 *	@param nameSel
+	 *	@param priceSel
+	 *	@param discountSel
+	 *	@param quantitySel
+	 *	@param motherCategory
 	 *	@return true true if product has been update in the data base, else return false
 	 */
     public abstract boolean updateProduct(int id,String nameSel, float priceSel, float discountSel, int quantitySel, String motherCategory);       

@@ -94,7 +94,7 @@ public class Basket {
 
 	/**
 	 * Remove a specified line from the basket
-	 * @param OrderLine
+	 * @param line
 	 */
 	public void removeLine(OrderLine line) {
 		this.orderLine.remove(line);
@@ -102,7 +102,7 @@ public class Basket {
 
 	/**
 	 * Add a specified line to the basket
-	 * @param Product
+	 * @param product
 	 * @param quantity
 	 */
 	public void addLine(Product product, int quantity) {

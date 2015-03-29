@@ -30,7 +30,7 @@ public Accessory(String accessoryName) {
 /**
  * <p>Set the name of the accessory</p>
  * 
- * @param String 
+ * @param name 
  */
     public void setAccessoryName(String name) {        
         this.accessoryName = name;

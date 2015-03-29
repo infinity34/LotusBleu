@@ -7,7 +7,7 @@ import Data.Room;
 /**
  * 
  * @author remy
- * @Design Prisca
+ * @author Prisca (Design)
  */
 public abstract class RoomManager {
 
@@ -103,9 +103,9 @@ public abstract class RoomManager {
 	/**
 	 * update a room oldroom
 	 * with a name, and an area
-	 * @param String name
-	 * @param int area
-	 * @param Room oldroom
+	 * @param name
+	 * @param  area
+	 * @param  oldroom
 	 * @return true if the update 
 	 * has found the old room
 	 * and if it has modified its fields

@@ -40,7 +40,6 @@ public class RoomManagementFacade {
 	/**
 	 * set the room manager with the roomManager
 	 * in parameter
-	 * @param roomManager
 	 */
 	public void setRoomManager(RoomManager roomManager){
 		this.roomManager = roomManager;
@@ -59,7 +58,6 @@ public class RoomManagementFacade {
 	 * add a room
 	 * create an instance in the dataBase
 	 * and add the room at the list
-	 * @return 
 	 */
 	public boolean addRoom(String name, int area, int numberOfParticipant){
 		System.out.println(name+", "+area +", "+numberOfParticipant);
@@ -79,7 +77,6 @@ public class RoomManagementFacade {
 	 * Delete a room
 	 * Delete the instance in the DataBase
 	 * and Delete the room in list of the roomManager
-	 * @return 
 	 */
 	public boolean deleteRoom(Room room) {        
 		return this.roomManager.removeRoom(room);
@@ -90,7 +87,7 @@ public class RoomManagementFacade {
 	 * Delete the instance in the DataBase
 	 * and Delete the room with the name name
 	 * in list of the roomManager
-	 * @return 
+
 	 */
 	public boolean deleteRoom(String name) {        
 		return this.roomManager.removeRoom(name);
@@ -99,7 +96,7 @@ public class RoomManagementFacade {
 	/**
 	 * Update a room
 	 * Update the instance in the DataBase
-	 * @return 
+
 	 */
 	public boolean updateRoom(String name, int area, Room room) {        
 		return this.roomManager.updateRoom(name, area, room);

@@ -17,28 +17,21 @@ public abstract class ActivityManager {
 	 * <p> Create an activity</p>
 	 * 
 	 * @param name 
-	 * @param inCharge 
-	 * @param shortDescription 
-	 * @param longDescription 
-	 * @return 
+	 * @param description  
 	 */
     public abstract Boolean createActivity(String name, String description);
 
 	/**
 	 * <p> edit an activity</p>
 	 *
-	 * @param name 
-	 * @param inCharge 
-	 * @param shortDescription 
-	 * @param longDescription 
-	 * @return 
+	 * @param oldName 
+	 * @param newName 
 	 */
     public abstract Boolean editActivity(String oldName, String newName, String newDescription);
 
 	/**
 	 * <p>Delete an activity</p>
 	 * @param name 
-	 * @return 
 	 */
     public abstract Boolean deleteActivity(String name);
 

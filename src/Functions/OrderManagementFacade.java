@@ -52,7 +52,6 @@ public class OrderManagementFacade {
     
     /**
      * <p>Display all the information about the purchase request</p>
-     * @return 
      * 
      */
     public ResultSet listOrder(String state){

@@ -25,8 +25,9 @@ public class ContributorManagementFacade {
 /**
  * <p>Add or update the contributor of an event.</p>
  * 
- * @param contributor 
- * @return 
+ * @param id 
+ * @param name 
+ * @param firstname 
  */
 public Boolean addContributorToEvent(int id, String name, String firstname) {        
     	return contributorManager.addContributorToEvent(id, name, firstname);
@@ -35,8 +36,8 @@ public Boolean addContributorToEvent(int id, String name, String firstname) {
 /**
  * <p>List all the events of a contributor</p>
  * 
- * @param contributor 
- * @return 
+ * @param name 
+ * @param firstname 
  */
     public ArrayList<Event> listEvents(String name, String firstname) {    
         return contributorManager.listEvents(name, firstname);

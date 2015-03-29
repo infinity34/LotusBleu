@@ -50,7 +50,7 @@ public abstract class CategoryManager {
    	 */
     public abstract int getCategoryID(String name);
     /**
-   	 *	@param name   	
+   	 *	@param id   	
    	 *	@return return a category fetch by his id
    	 */
     public abstract Category getCategory(int id);

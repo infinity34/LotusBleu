@@ -19,15 +19,12 @@ public abstract class SessionManager {
 	public User user;
 
 	/**
-	 * @param user the user to set
+	 * @param user
 	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	/**
-	 * @param user
-	 */
 	public SessionManager() {
 		super();
 		this.user = new User();
@@ -37,7 +34,6 @@ public abstract class SessionManager {
 	 * <p>Does ...</p>
 	 * 
 	 * 
-	 * @return 
 	 */
 	public abstract Boolean Login(String username, String password);
 
@@ -45,7 +41,6 @@ public abstract class SessionManager {
 	 * <p>Disconnect the user</p>
 	 * 
 	 * 
-	 * @return 
 	 */
 	public void logout() {
 		this.user = null;
@@ -55,7 +50,6 @@ public abstract class SessionManager {
 	 * <p>Does ...</p>
 	 * 
 	 * 
-	 * @return 
 	 */
 	public User GetCurrentUser() {        
 		return this.user;
@@ -80,7 +74,6 @@ public abstract class SessionManager {
 	 * @param password
 	 * @param admin 
 	 * @param inCharge 
-	 * @return
 	 */
 	public abstract boolean register(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, boolean inCharge, boolean admin);
 	

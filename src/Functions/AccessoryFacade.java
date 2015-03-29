@@ -29,7 +29,6 @@ import Persistence.AccessoryManagerDB;
 
 /**
  * <p> Get all accessories</p>
- * @return 
  */
     public ArrayList<Accessory> getAccessories() {        
         return accessoryManager.getAccessories();
@@ -38,8 +37,7 @@ import Persistence.AccessoryManagerDB;
 
 /**
  * <p>Add an accessory</p>
- * @param String 
- * @return 
+ * @param name 
  */
     public Boolean addAccessory(String name) {        
     	return accessoryManager.addAccessory(name);
@@ -47,7 +45,7 @@ import Persistence.AccessoryManagerDB;
 
 /**
  * <p> Remove an accessory</p>
- * @param Accessory 
+ * @param accessory 
  */
     public Boolean removeAccessory(Accessory accessory) {        
     	return accessoryManager.deleteAccessory(accessory);
@@ -55,8 +53,8 @@ import Persistence.AccessoryManagerDB;
 
 /**
  * <p>Update an accessory</p>
- * @param Accessory 
- * @param String 
+ * @param accessory 
+ * @param newName 
  */
     public Boolean updateAccessory(Accessory accessory, String newName) {        
     	return accessoryManager.setAccessory(accessory,newName);

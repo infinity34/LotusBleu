@@ -40,7 +40,6 @@ public class SessionFacade {
 	 * 
 	 * @param username 
 	 * @param password 
-	 * @return 
 	 */
 	public Boolean Login(String username, String password) { 		
 		return sessionManager.Login(username,password);
@@ -57,7 +56,6 @@ public class SessionFacade {
 	 * <p>Does ...</p>
 	 * 
 	 * 
-	 * @return 
 	 */
 	public Data.User GetCurrentUser() {        
 		return this.sessionManager.GetCurrentUser();

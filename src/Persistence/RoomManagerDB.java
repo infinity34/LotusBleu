@@ -108,7 +108,9 @@ public class RoomManagerDB extends RoomManager {
 
 	/**
 	 * allows to add a classRoom to the database and to the list
-	 * @param :String name , int area, int numberOfParticipant
+	 * @param name 
+	 * @param area
+	 * @param numberOfParticipant
 	 */
 	public boolean addRoom( String name, int area, int numberOfParticipant ) {
 		Room room = new ClassRoom(name, area, numberOfParticipant);
@@ -130,7 +132,8 @@ public class RoomManagerDB extends RoomManager {
 
 	/**
 	 * allows to add an office to the database and to the list
-	 * @param : String name, int area 
+	 * @param name
+	 * @param area 
 	 */
 	public boolean addRoom(  String name, int area ) {
 		Room room = new Office(name, area);
@@ -175,7 +178,7 @@ public class RoomManagerDB extends RoomManager {
 	/**
 	 * Delete a room with the name "name" of the DB
 	 * and of the list rooms
-	 * @param String name
+	 * @param name
 	 * @return true if the udate has modified a room
 	 * in the DB
 	 */
@@ -196,7 +199,7 @@ public class RoomManagerDB extends RoomManager {
 	/**
 	 * get the room with the name name
 	 * in The DB
-	 * @param String name
+	 * @param name
 	 */
 	public Room getRoom(String name){
 		try{
@@ -229,9 +232,9 @@ public class RoomManagerDB extends RoomManager {
 	/**
 	 * update a room oldroom
 	 * with a name, and an area
-	 * @param String name
-	 * @param int area
-	 * @param Room oldroom
+	 * @param name
+	 * @param  area
+	 * @param  oldroom
 	 * @return true if the update 
 	 * has found the old room
 	 * and if it has modified its fields

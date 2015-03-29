@@ -79,7 +79,7 @@ public class CategoryFacade {
     }
     
     /**
-   	 *	@param name   	
+   	 *	@param id   	
    	 *	@return return a category fetch by his id
    	 */
     public Category getCategory(int id) {

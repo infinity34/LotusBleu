@@ -41,8 +41,6 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	 * Return true if the pair mail/password is OK
 	 * </p>
 	 * 
-	 * @author Maxime Clerix
-	 * @return
 	 */
 	public Boolean Login(String username, String password) {
 
@@ -154,7 +152,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	/**
 	 * Changes the password of the current user
 	 * 
-	 * @param password, the new password
+	 * @param password
 	 */
 	public void changePassword(String password) {
 		try {
@@ -169,8 +167,8 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	/**
 	 * Register a user for one more Year
 	 * 
-	 * @param date, the new date
-	 * @param firstSubscritption
+	 * @param date
+	 * @param firstSubscription
 	 */
 	public void registerForAYear(Date date, boolean firstSubscription) {
 		java.util.Date current = new java.util.Date();
@@ -214,7 +212,6 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	 * @param postcode
 	 * @param telephone
 	 * @param password
-	 * @return
 	 */
 	public boolean register(String usermail, String firstname, String lastname,
 			String address, String address2, String city, int postcode,

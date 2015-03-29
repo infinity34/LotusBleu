@@ -16,7 +16,6 @@ public class SubscriptionManager {
 /**
  * <p>Does ...</p>
  * 
- * @return 
  */
     public Boolean ProceedSubscription() {        
         // your code here
@@ -27,7 +26,6 @@ public class SubscriptionManager {
  * <p>Does ...</p>
  * 
  * @param amount 
- * @return 
  */
     public Boolean ProceedPayment(float amount) {        
         // your code here

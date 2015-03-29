@@ -16,7 +16,6 @@ public class PaymentFacade {
 	 * 
 	 * @param cardInformation
 	 * @param amount
-	 * @return
 	 */
 	public Boolean ProceedPayment(String cardInformation, String CSC, float amount) {
 		return paymentManager.ProceedPayment(cardInformation, CSC, amount);
@@ -26,9 +25,7 @@ public class PaymentFacade {
 	 * <p>
 	 * Does ...
 	 * </p>
-	 * @param cardInformation
 	 * @param amount
-	 * @return
 	 */
 	public Boolean ProceedPayment(float amount) {
 		JOptionPane.showInputDialog(null, "Enter your credit card number",

@@ -44,10 +44,9 @@ private static ActivityFacade facade;
 	/**
 	 * <p> Update an activity</p>
 	 * 
-	 * @param name 
-	 * @param inCharge 
-	 * @param shortDescription 
-	 * @param longDescription 
+	 * @param oldName 
+	 * @param newName 
+	 * @param newDescription 
 	 * @return Boolean
 	 */
     public Boolean editActivity(String oldName, String newName, String newDescription) {        
