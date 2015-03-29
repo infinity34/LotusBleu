@@ -4,23 +4,22 @@ package Persistence;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import Data.Event;
+
 
 /**
  * 
- * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm746e]
  */
 public class ContributorManagerXML extends Persistence.ContributorManager {
 
 	@Override
-	public Boolean addContributorToEvent(String myEvent, String begin,
-			String end, String name, String firstname) {
+	public Boolean addContributorToEvent(int id, String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultSet listEvents(String name, String firstname) {
+	public ArrayList<Event> listEvents(String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -56,6 +55,4 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 		return null;
 	}
 
-
-	
- }
+}
