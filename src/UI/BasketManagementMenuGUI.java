@@ -59,42 +59,24 @@ public class BasketManagementMenuGUI extends JPanel {
 		
 		
 		TreeSet<OrderLine> orderline = myFacade.getBasket().getOrderLine();
-		//OrderLine[] tab = orderline.toArray(new OrderLine[0]);
+		OrderLine[] tab = orderline.toArray(new OrderLine[0]);
 		String[] headers = {"Product ID", "Product name", "Price($)", "Discount(%)", "Quantity"};
-		Object [][] orders = new Object [orderline.size()][headers.length];
+		Object [][] orders = new String [orderline.size()][headers.length];
         Iterator<OrderLine> iter=orderline.iterator();
-        
         int i = 0;
-        if(orderline.size()==1){
-        	orders[0][0] = orderline.first().getProduct().getProductID();
-			orders[0][1] = orderline.first().getProduct().getProductName();
-			orders[0][2] = orderline.first().getProduct().getProductPrice();
-			orders[0][3] = orderline.first().getProduct().getProductDiscount();
-			orders[0][4] = orderline.first().getQuantity();
-        
-        }
-        else {
-        	while(iter.hasNext())
-        	{
-        		OrderLine o =iter.next();
-        		orders[i][0] = o.getProduct().getProductID();
-        		orders[i][1] = o.getProduct().getProductName();
-        		orders[i][2] = o.getProduct().getProductPrice();
-        		orders[i][3] = o.getProduct().getProductDiscount();
-        		orders[i][4] = o.getQuantity();
-        		i++;
-        	}
-		orders[i-1][0] = orderline.last().getProduct().getProductID();
-		orders[i-1][1] = orderline.last().getProduct().getProductName();
-		orders[i-1][2] = orderline.last().getProduct().getProductPrice();
-		orders[i-1][3] = orderline.last().getProduct().getProductDiscount();
-		orders[i-1][4] = orderline.last().getQuantity();
-        }
+        while(iter.hasNext())
+		{
+			orders[i][0] = iter.next().getProduct().getProductCategoryID();
+			orders[i][1] = iter.next().getProduct().getProductName();
+			orders[i][2] = iter.next().getProduct().getProductPrice();
+			orders[i][3] = iter.next().getProduct().getProductDiscount();
+			orders[i][4] = iter.next().getProduct().getProductQuantity();
+			
+			i++;
+		}
 		table = new JTable(orders, headers);
 
 
-		
-		
 		JButton btnNewButton = new JButton("Cancel");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,7 +121,7 @@ public class BasketManagementMenuGUI extends JPanel {
 			add(lblNumberOfArticles);
 		}
 		else {
-			JLabel lblNumberOfArticles = new JLabel("Number of articles in your basket : "+ myFacade.getBasket().getOrderLine().size());
+			JLabel lblNumberOfArticles = new JLabel("Number of articles in your basket : "+ LoginGUI.basket.getOrderLine().size());
 			lblNumberOfArticles.setBounds(39, 95, 482, 14);
 			add(lblNumberOfArticles);
 		}
