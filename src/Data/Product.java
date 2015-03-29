@@ -2,7 +2,8 @@
 package Data;
 /**
  * 
- * @author Clément Roque
+ * @author Clément
+ * @author Design Prisca
  *
  */
 
