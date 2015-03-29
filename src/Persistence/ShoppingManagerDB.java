@@ -6,10 +6,6 @@ import java.util.ArrayList;
 
 import Data.Category;
 import Data.Product;
-import Data.Basket;
-import Data.Product;
-import Data.User;
-import Functions.SessionFacade;
 import Tools.DBconnection;
 
 /**

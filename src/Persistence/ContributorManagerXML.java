@@ -1,8 +1,9 @@
 
 package Persistence;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import Data.Event;
 
 
 /**
@@ -12,18 +13,9 @@ import java.util.ArrayList;
  */
 public class ContributorManagerXML extends Persistence.ContributorManager {
 
-	@Override
-	public Boolean addContributorToEvent(String myEvent, String begin,
-			String end, String name, String firstname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public ResultSet listEvents(String name, String firstname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 
 	@Override
 	public Boolean createContributor(String name, String firstname,
@@ -52,6 +44,18 @@ public class ContributorManagerXML extends Persistence.ContributorManager {
 
 	@Override
 	public ArrayList<String> searchContributor(String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean addContributorToEvent(int id, String name, String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Event> listEvents(String name, String firstname) {
 		// TODO Auto-generated method stub
 		return null;
 	}

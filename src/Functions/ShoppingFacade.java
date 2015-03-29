@@ -8,6 +8,7 @@ import java.util.List;
 import Data.Basket;
 import Data.Category;
 import Data.OrderLine;
+import Data.Payment;
 import Data.Product;
 import Persistence.ProductManagerDB;
 import Persistence.ShoppingManager;
@@ -23,6 +24,7 @@ public class ShoppingFacade {
 
     private ShoppingFacade(){
     	shoppingManager = new ShoppingManagerDB();
+    	session = SessionFacade.getSessionFacade();
     	this.productManager = new ProductManagerDB();
     }
     
@@ -58,7 +60,7 @@ public class ShoppingFacade {
 
 
     public void addProductToBasket(Product product, int quantity) {  
-    	this.shoppingManager.addProductToBasket(product, quantity);
+    	this.shoppingManager.getBasket().addLine(product, quantity);
     } 
 
 
@@ -67,8 +69,8 @@ public class ShoppingFacade {
     } 
 
 
-    public void validBasket(Basket basket) {        
-        // your code here
+    public Boolean validBasket(Payment payment) {        
+    	return shoppingManager.validBasket(payment);
     } 
 
 

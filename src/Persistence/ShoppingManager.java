@@ -42,9 +42,9 @@ public abstract class ShoppingManager {
 
 	/**
 	 * <p>
-	 * Does ...
+	 * Test if the basket is empty.
 	 * </p>
-	 * 
+	 * @return Boolean
 	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm76e5]
 	 */
 	public void emptyBasket() {
@@ -53,14 +53,17 @@ public abstract class ShoppingManager {
 
 	/**
 	 * <p>
-	 * Does ...
+	 * Transform the basket into an order
+	 * and empty the basket
 	 * </p>
 	 * 
 	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm76c0]
 	 */
-	public void validBasket(Payment payment) {
+	public Boolean validBasket(Payment payment) {
 		this.orders.add(new Order(this.basket,payment));
 		this.basket.empty();
+		if (this.basket.isEmpty()) return true;
+		else return false;
 	}
 
 	/**

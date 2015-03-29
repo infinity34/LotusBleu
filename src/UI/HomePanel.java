@@ -7,8 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.SpringLayout;
+
+import Functions.ShoppingFacade;
 
 public class HomePanel extends JPanel {
 
@@ -19,6 +22,7 @@ public class HomePanel extends JPanel {
 		this.setSize(640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
+		ShoppingFacade shoppingFacade = ShoppingFacade.getShoppingFacade();
 		
 		JButton btnCategoryManagement = new JButton("Manage Category");
 		springLayout.putConstraint(SpringLayout.NORTH, btnCategoryManagement, 10, SpringLayout.NORTH, this);
@@ -100,6 +104,23 @@ public class HomePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, btnBasket, 0, SpringLayout.SOUTH, btnManageEvent_1);
 		springLayout.putConstraint(SpringLayout.EAST, btnBasket, 0, SpringLayout.EAST, btnAccessoryManagement);
 		add(btnBasket);
+		
+		JButton btnBasket_1 = new JButton("Basket");
+		btnBasket_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(shoppingFacade.getBasket().isEmpty()){
+					//Error popup 
+					JOptionPane.showMessageDialog(null, "The basket is empty!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					//Information popup
+					MainFrame.getMainFrame().setMainPanel(new BasketManagementMenuGUI());
+				}			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, btnBasket_1, 0, SpringLayout.NORTH, btnManageEvent_1);
+		springLayout.putConstraint(SpringLayout.WEST, btnBasket_1, 0, SpringLayout.WEST, btnManageRoom);
+		springLayout.putConstraint(SpringLayout.EAST, btnBasket_1, 0, SpringLayout.EAST, btnManageRoom);
+		add(btnBasket_1);
 		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
