@@ -13,15 +13,9 @@ import java.sql.ResultSet;
  * @author Roque Clément
  * @author Tartière Rémy
  * 
- * @poseidon-object-id [Im26623am14bf96eff7cmm7be8]
  */
 public abstract class OrderManager {
 
-	/**
-	 * 
-	 * 
-	 * @poseidon-object-id [Im26623am14bf96eff7cmm7bcc]
-	 */
 	public Data.Order order;
 
 	
@@ -30,15 +24,10 @@ public abstract class OrderManager {
 	/**
 	 * this method allows to cancel an order
 	 * 
-	 * @poseidon-object-id [I610a0d25m14bffb8994amm7172]
 	 */
 	public abstract Boolean cancelOrder(int orderId); 
 
-	/**
-	 * 
-	 * 
-	 * @poseidon-object-id [I610a0d25m14bffb8994amm714d]
-	 */
+
 	public abstract Boolean confirmPurchase(int orderId);
 
 
@@ -46,14 +35,12 @@ public abstract class OrderManager {
 	/**
 	 * <p>Does ...</p>
 	 * 
-	 * @poseidon-object-id [I610a0d25m14bffb8994amm7103]
 	 */
 	public abstract Boolean removeOrder(int id);        
 
 	/**
 	 * <p>Does ...</p>
 	 * 
-	 * @poseidon-object-id [I610a0d25m14bffb8994amm70de]
 	 */
     public abstract Boolean sendPurchase(int orderId);
     
@@ -61,7 +48,6 @@ public abstract class OrderManager {
 	/**
 	 * <p>Return a table with the information of the orders which are in the given state</p>
 	 * 
-	 * @poseidon-object-id [I610a0d25m14bffb8994amm70b9]
 	 * @param state 
 	 */
 	public abstract ResultSet listOrder(String state);

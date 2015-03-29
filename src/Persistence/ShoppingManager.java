@@ -12,11 +12,7 @@ import Data.Product;
 import Data.User;
 import Functions.SessionFacade;
 
-/**
- * 
- * 
- * @poseidon-object-id [I5c276a37m14bf4d9e555mm79b9]
- */
+
 public abstract class ShoppingManager {
 
 	//Variables
@@ -45,7 +41,6 @@ public abstract class ShoppingManager {
 	 * Does ...
 	 * </p>
 	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm76e5]
 	 */
 	public void emptyBasket() {
 		this.basket.empty();
@@ -56,7 +51,6 @@ public abstract class ShoppingManager {
 	 * Does ...
 	 * </p>
 	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm76c0]
 	 */
 	public void validBasket(Payment payment) {
 		this.orders.add(new Order(this.basket,payment));
@@ -67,8 +61,6 @@ public abstract class ShoppingManager {
 	 * <p>
 	 * Does ...
 	 * </p>
-	 * 
-	 * @poseidon-object-id [I2d1a4d66m14c0966aad0mm7438]
 	 * @param Order
 	 */
 	public void cancelOrder(Order order) {

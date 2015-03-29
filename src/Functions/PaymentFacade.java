@@ -26,8 +26,6 @@ public class PaymentFacade {
 	 * <p>
 	 * Does ...
 	 * </p>
-	 * 
-	 * @poseidon-object-id [Im3d5f9a4em14c178ccc5bmm7d6e]
 	 * @param cardInformation
 	 * @param amount
 	 * @return

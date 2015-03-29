@@ -5,11 +5,7 @@ import java.sql.ResultSet;
 
 import Persistence.OrderManagementDB;
 
-/**
- * 
- * 
- * @poseidon-object-id [Im26623am14bf96eff7cmm7af6]
- */
+
 public class OrderManagementFacade {
 	private static OrderManagementFacade facade;
     private Persistence.OrderManagementDB orderManager;
@@ -28,7 +24,6 @@ public class OrderManagementFacade {
 /**
  * <p>Does ...</p>
  * 
- * @poseidon-object-id [I610a0d25m14bffb8994amm71af]
  */
     public Boolean cancelOrder(int orderId) {        
     	return orderManager.cancelOrder(orderId);
@@ -59,7 +54,6 @@ public class OrderManagementFacade {
      * <p>Display all the information about the purchase request</p>
      * @return 
      * 
-     * @poseidon-object-id [I610a0d25m14bffb8994amm71af]
      */
     public ResultSet listOrder(String state){
     	return orderManager.listOrder(state);
@@ -74,16 +68,5 @@ public class OrderManagementFacade {
     }
 
     
-/**
- * 
- * 
- * @poseidon-object-id [Im26623am14bf96eff7cmm7aaf]
- */
-
-/**
- * 
- * 
- * @poseidon-object-id [Ima570141m14bf9c09221mm694d]
- */
     public Persistence.SessionManager sessionManager;
  }

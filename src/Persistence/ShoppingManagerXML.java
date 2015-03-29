@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import Data.Category;
 import Data.Product;
 
-/**
- * 
- * 
- * @poseidon-object-id [I777ab4eam14bf4e91384mm7b6b]
- */
 public class ShoppingManagerXML extends Persistence.ShoppingManager {
 
 	@Override

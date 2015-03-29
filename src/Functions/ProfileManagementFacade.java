@@ -4,11 +4,7 @@ package Functions;
 import Data.User;
 import Persistence.SessionManager;
 
-/**
- * 
- * 
- * @poseidon-object-id [Im21c582b6m14bfa1dcb70mm77a3]
- */
+
 public class ProfileManagementFacade {
 
 	public SessionManager sessionManager;

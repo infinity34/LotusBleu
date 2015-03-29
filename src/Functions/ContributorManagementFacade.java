@@ -13,11 +13,6 @@ import java.util.ArrayList;
 import Data.Event;
 import Persistence.ContributorManagerDB;
 
-/**
- * 
- * 
- * @poseidon-object-id [Im16e76644m14bffa18d1dmm764c]
- */
 public class ContributorManagementFacade {
 	
 	private static ContributorManagementFacade facade;
@@ -38,7 +33,6 @@ public class ContributorManagementFacade {
 /**
  * <p>Add or update the contributor of an event.</p>
  * 
- * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm7126]
  * @param contributor 
  * @return 
  */
@@ -49,7 +43,6 @@ public Boolean addContributorToEvent(int id, String name, String firstname) {
 /**
  * <p>List all the events of a contributor</p>
  * 
- * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm70e6]
  * @param contributor 
  * @return 
  */
@@ -60,7 +53,6 @@ public Boolean addContributorToEvent(int id, String name, String firstname) {
 /**
  * <p>make a user become a contributor.</p>
  * 
- * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm703d]
  */
     public Boolean createContributor(String name,String firstname, String description) {        
         return contributorManager.createContributor(name,firstname,description);
@@ -73,7 +65,6 @@ public Boolean addContributorToEvent(int id, String name, String firstname) {
 /**
  * <p>Return a list of all contributor's name and first name</p>
  * 
- * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm7018]
  * @return ArrayList of all contributors
  */
     public ArrayList<String> listContributor() {        
@@ -84,7 +75,6 @@ public Boolean addContributorToEvent(int id, String name, String firstname) {
 /**
  * <p>Make a user no being a contributor anymore.</p>
  * 
- * @poseidon-object-id [I1a98ea51m14c1cdb41d3mm6ff3]
  */
     public Boolean deleteContributor(String name, String firstname) {        
         return contributorManager.deleteContributor(name, firstname);
@@ -99,10 +89,5 @@ public Boolean addContributorToEvent(int id, String name, String firstname) {
     	return contributorManager.searchContributor(name,firstname);
     }
     
-/**
- * 
- * 
- * @poseidon-object-id [Im16e76644m14bffa18d1dmm75ec]
- */
     
  }

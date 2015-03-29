@@ -21,11 +21,7 @@ import net.proteanit.sql.DbUtils;
 import Functions.OrderManagementFacade;
 import Tools.DBconnection;
 
-/**
- * 
- * 
- * @poseidon-object-id [Im26623am14bf96eff7cmm7b11]
- */
+
 @SuppressWarnings("serial")
 public class OrderManagementMenuGUI extends JPanel {
 	public OrderManagementFacade myFacade = new OrderManagementFacade();
