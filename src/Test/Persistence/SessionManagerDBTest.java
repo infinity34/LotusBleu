@@ -1,7 +1,5 @@
 package Persistence;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,7 +7,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Data.User;
-
+/**
+ * 
+ * @author remy
+ *
+ */
 public class SessionManagerDBTest {
 
 	private static SessionManagerDB sessionManager;

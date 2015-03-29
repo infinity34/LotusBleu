@@ -18,7 +18,7 @@ public class PaymentExt {
  * @param cardInformation
  * @return true if the payment informations are correct
  */
-public Boolean checkProceedPayment(String cardInformation) {
+public Boolean checkProceedPayment(String cardInformation, String CSC) {
 	return true;
 } 
  }

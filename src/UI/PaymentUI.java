@@ -1,10 +1,16 @@
 package UI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import Functions.PaymentFacade;
 /**
  * 
  * 
@@ -13,6 +19,7 @@ public class PaymentUI extends JPanel  {
 
 
     private String cardInformation;
+    private String CSC;
     private float amount;
     
     private JTextField textField;
@@ -23,6 +30,7 @@ public class PaymentUI extends JPanel  {
 	 */
 	public PaymentUI(float amount) {
 		
+		this.paymentFacade = new PaymentFacade();
 		this.amount = amount; 
 		
 		SpringLayout springLayout = new SpringLayout();
@@ -60,6 +68,22 @@ public class PaymentUI extends JPanel  {
 		springLayout.putConstraint(SpringLayout.NORTH, lblAmount, 32, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, lblAmount, 0, SpringLayout.EAST, btnPaid);
 		add(lblAmount);
+		
+		btnPaid.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardInformation = textField.getText();
+				CSC = textField_1.getText();
+				boolean result = paymentFacade.ProceedPayment(cardInformation, CSC,amount);
+				
+				if( result){
+					JOptionPane.showMessageDialog(new JPanel(),"Success payment!");
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new JPanel(),"payment error !");
+				}
+			}
+		});
 
 	}
 

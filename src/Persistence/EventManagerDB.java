@@ -238,8 +238,9 @@ public class EventManagerDB extends Persistence.EventManager {
 			resultActivity.first();
 			int activityID = resultActivity.getInt("activityID");
 
-			String contributorID = null;
-			if ((eventContributorName != null)&&(eventContributorFirstname != null)){
+			String contributorID = "";
+			
+			if ((!eventContributorName.equals(""))&&(!eventContributorFirstname.equals(""))){
 				//Get the contributorID
 				ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userName ='" + eventContributorName + "' AND userFirstName ='"+ eventContributorFirstname +"' AND isContributor=1");
 				if(resultContributor.isBeforeFirst()){
