@@ -35,6 +35,26 @@ public class OrderManagementFacade {
     } 
     
     
+    public ResultSet getCancelledOrders(){
+    	return orderManager.getCancelledOrders();
+    }
+    
+    public ResultSet getConfirmedOrders(){
+    	return orderManager.getConfirmedOrders();
+    }
+    
+    public ResultSet getSentOrders(){
+    	return orderManager.getSentOrders();
+    }
+    
+    public ResultSet getPendingOrders(){
+    	return orderManager.getPendingOrders();
+    }
+    
+	public Boolean deleteOrder(int id){
+		return orderManager.removeOrder(id);	}
+
+    
     /**
      * <p>Display all the information about the purchase request</p>
      * @return 
