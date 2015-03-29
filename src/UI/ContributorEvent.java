@@ -2,35 +2,46 @@ package UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableModel;
 
+import Data.Event;
 import Functions.ContributorManagementFacade;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class ContributorEvent extends JPanel {
-	private ContributorManagementFacade myFacade = new ContributorManagementFacade();
 	private JTable table;
+	private final JScrollPane scrollPane = new JScrollPane();
 	private JTextField txtName;
 	private JTextField txtFirstname;
 	private JButton btnCancel;
 	
 	
-	public ContributorEvent( TableModel model )
+	public ContributorEvent()
 	  {
-	    table = new JTable( model );
-	    this.setSize(640, 480);
+		this.setSize(640, 480);
 		setLayout(null);
-	    add( new JScrollPane( table ), BorderLayout.CENTER );
+		
+		JLabel lblEventManagement = new JLabel("Contributor Management");
+		lblEventManagement.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEventManagement.setBounds(167, 13, 297, 26);
+		lblEventManagement.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		add(lblEventManagement);
+		
+
 	    
 	    
 		txtName = new JTextField();
@@ -62,9 +73,26 @@ public class ContributorEvent extends JPanel {
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultSet rs = myFacade.listEvents(txtName.getText(), txtFirstname.getText());				
-				ResultSetTableModel rtm = new ResultSetTableModel( rs );
-			}}); 
+				ArrayList<Event> events = ContributorManagementFacade.getContributorManagementFacade().listEvents(txtName.getText(),txtFirstname.getText());
+				String[] columnNames = {"Event Name","Activity Name","Room","Begin Date","End Date","Recurrence","Last recurrence","Contributor"};
+				Object[][] data = new Object[events.size()][8];
+				
+				for (int i = 0; i < events.size(); i++){
+					data[i][0]=events.get(i).getEventName();
+					data[i][1]=events.get(i).getEventActivity().getName();
+					data[i][2]=events.get(i).getEventRoomID();
+					data[i][3]=events.get(i).getEventTimeSlot().getBeginDate();
+					data[i][4]=events.get(i).getEventTimeSlot().getEndDate();
+					data[i][5]=events.get(i).getEventTimeSlot().isRecurrence();
+					data[i][6]=events.get(i).getEventTimeSlot().getLastReccurence();
+					data[i][7]=events.get(i).getEventContributorFirstname()+""+events.get(i).getEventContributorName();
+				}
+				scrollPane.setBounds(30, 244, 571, 158);
+				scrollPane.setViewportView(table);
+				table = new JTable(data,columnNames);	
+				add(scrollPane);
+				
+		}}); 
 		        
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

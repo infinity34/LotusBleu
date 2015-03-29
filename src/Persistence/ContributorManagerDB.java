@@ -26,6 +26,7 @@ import Tools.DBconnection;
 public class ContributorManagerDB extends Persistence.ContributorManager {
 	DBconnection connection;
 	private ArrayList<String> contributorList;
+	private ArrayList<Data.Event> events;
 	public EventManagerDB eventManagerDB = new EventManagerDB();
 	
 	public ContributorManagerDB() {
@@ -78,24 +79,35 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 
 
 	@Override
-	public ResultSet listEvents(String name, String firstname) {
-		ResultSet rs;
-		ResultSet rs2;
-		try{
-				rs = connection.getState().executeQuery("SELECT U.mail FROM lotusbleu.USER U, lotusbleu.CONTRIBUTOR C WHERE username='" +name+ "' AND userfirstname='" +firstname+ "' AND U.mail = C.userMail");
-				rs.last();
-				String mail = rs.getString("mail");
-				rs2 = connection.getState().executeQuery("SELECT eventId, eventName, beginDate, endDate FROM lotusbleu.EVENT WHERE userMail='"+mail+"'");
-				rs2.last();
-			return rs2;
-		}
-		catch (SQLException e){
-			e.printStackTrace();
-			return null;
-		}
-		
-		
-		
+	public ArrayList<Event> listEvents(String name, String firstname) {
+			events = new ArrayList<Event>();   
+			ResultSet resultat = null;
+			try {
+				resultat = connection.getState().executeQuery(
+						"SELECT * FROM lotusbleu.EVENT e, lotusbleu.ACTIVITY a,lotusbleu.USER u WHERE e.activityID = a.activityID AND e.usermail=u.mail AND userName='"+name+"' AND userFirstname='"+firstname+"'");
+				
+				resultat.beforeFirst();
+				while(resultat.next()) {
+					//Create the TimeSlot object
+					TimeSlot timeslot = new TimeSlot(resultat.getDate("beginDate"),resultat.getDate("endDate"),resultat.getInt("recurrence"),resultat.getDate("lastRecurrence"));
+					
+					//Add the event in the events ArrayList
+					this.events.add(new Event(resultat.getInt("eventID"), resultat.getString("eventName"), resultat.getInt("roomID"), timeslot, resultat.getInt("activityID"), new Activity(resultat.getString("activityName"), resultat.getString("activityDescritption")), resultat.getString("usermail"), resultat.getString("userName"), resultat.getString("userFirstName")));
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				try {
+					resultat.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			return events;		
 	}
 
 

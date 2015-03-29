@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 
 
+
+
+import Data.Event;
 import Persistence.ContributorManagerDB;
 
 /**
@@ -17,7 +20,7 @@ import Persistence.ContributorManagerDB;
  */
 public class ContributorManagementFacade {
 	
-	//private SessionManager session;
+	private static ContributorManagementFacade facade;
     public Persistence.ContributorManager contributorManager;
     
     public ContributorManagementFacade(){
@@ -25,6 +28,11 @@ public class ContributorManagementFacade {
     	this.contributorManager = new ContributorManagerDB();
     }
 	
+    public static ContributorManagementFacade getContributorManagementFacade(){
+		if(facade == null)
+			facade = new ContributorManagementFacade();
+		return facade;
+    }
 	
 	
 /**
@@ -45,7 +53,7 @@ public Boolean addContributorToEvent(int id, String name, String firstname) {
  * @param contributor 
  * @return 
  */
-    public ResultSet listEvents(String name, String firstname) {    
+    public ArrayList<Event> listEvents(String name, String firstname) {    
         return contributorManager.listEvents(name, firstname);
     } 
 

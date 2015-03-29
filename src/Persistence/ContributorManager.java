@@ -4,6 +4,8 @@ package Persistence;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import Data.Event;
+
 
 
 
@@ -16,7 +18,7 @@ public abstract class ContributorManager {
 	
 	public abstract Boolean addContributorToEvent(int id, String name, String firstname);
      
-    public abstract ResultSet listEvents(String name, String firstname);
+    public abstract ArrayList<Event> listEvents(String name, String firstname);
     
     public abstract Boolean createContributor(String name,String firstname, String description);
     

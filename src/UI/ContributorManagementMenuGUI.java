@@ -118,7 +118,7 @@ public class ContributorManagementMenuGUI extends JPanel {
 		
 		btnSeeAllThe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.getMainFrame().setMainPanel(new ContributorEvent(null));
+				MainFrame.getMainFrame().setMainPanel(new ContributorEvent());
 			}
 		});
 		
