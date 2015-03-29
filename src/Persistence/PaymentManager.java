@@ -20,8 +20,8 @@ public class PaymentManager {
 	 * @param amount 
 	 * @return true if the card informations are "true" 
 	 */
-	public Boolean ProceedPayment(String cardInformation, float amount) {
-		return this.paymentExt.checkProceedPayment(cardInformation);
+	public Boolean ProceedPayment(String cardInformation, String CSC, float amount) {
+		return this.paymentExt.checkProceedPayment(cardInformation, CSC);
 	}
 
 

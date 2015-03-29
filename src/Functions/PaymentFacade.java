@@ -18,8 +18,8 @@ public class PaymentFacade {
 	 * @param amount
 	 * @return
 	 */
-	public Boolean ProceedPayment(String cardInformation, float amount) {
-		return paymentManager.ProceedPayment(cardInformation, amount);
+	public Boolean ProceedPayment(String cardInformation, String CSC, float amount) {
+		return paymentManager.ProceedPayment(cardInformation, CSC, amount);
 	}
 
 	/**
