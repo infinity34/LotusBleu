@@ -4,29 +4,46 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.CardLayout;
+
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+
 import java.awt.GridLayout;
 import javax.swing.SpringLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.text.NumberFormatter;
+
+import Functions.RegistrationFacade;
+import Functions.SessionFacade;
 
 public class RegistrationGUI extends JFrame {
 	private JTextField name;
 	private JTextField firstName;
 	private JTextField address1;
 	private JTextField address2;
-	private JTextField postCode;
+	private JSpinner postCode;
 	private JTextField city;
 	private JTextField phone;
 	private JTextField mail;
+	private JPasswordField password;
+	private JPasswordField passwordB;
 	
 	public RegistrationGUI() {
 
 		this.setResizable(false);
 		this.setTitle("ZEN LOUNGE REGISTRATION");
-		this.setBounds(100, 100, 350, 320);
+		this.setBounds(100, 100, 350, 400);
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 		
@@ -49,10 +66,12 @@ public class RegistrationGUI extends JFrame {
 		getContentPane().add(lblAddress);
 		
 		JLabel lblAdress = new JLabel("Address 2 :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblAdress, 237, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblAdress, 11, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblAdress);
 		
 		JLabel lblPostCode = new JLabel("Post code :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblPostCode, 262, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblPostCode, 11, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblPostCode);
 		
@@ -61,6 +80,8 @@ public class RegistrationGUI extends JFrame {
 		getContentPane().add(lblCity);
 		
 		JLabel lblPhone = new JLabel("Phone :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblPhone, 313, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, lblCity, -10, SpringLayout.NORTH, lblPhone);
 		springLayout.putConstraint(SpringLayout.WEST, lblPhone, 10, SpringLayout.WEST, getContentPane());
 		getContentPane().add(lblPhone);
 		
@@ -89,44 +110,98 @@ public class RegistrationGUI extends JFrame {
 		address1.setColumns(10);
 		
 		address2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, lblAdress, 2, SpringLayout.NORTH, address2);
+		springLayout.putConstraint(SpringLayout.WEST, address2, 43, SpringLayout.EAST, lblAdress);
+		springLayout.putConstraint(SpringLayout.SOUTH, address2, -117, SpringLayout.SOUTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.SOUTH, address1, -6, SpringLayout.NORTH, address2);
 		springLayout.putConstraint(SpringLayout.EAST, address1, 0, SpringLayout.EAST, address2);
 		getContentPane().add(address2);
 		address2.setColumns(10);
 		
-		postCode = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, address2, 0, SpringLayout.WEST, postCode);
-		springLayout.putConstraint(SpringLayout.SOUTH, address2, -6, SpringLayout.NORTH, postCode);
-		springLayout.putConstraint(SpringLayout.NORTH, lblPostCode, 2, SpringLayout.NORTH, postCode);
+		postCode = new JSpinner(new SpinnerNumberModel(0,
+                0, 
+                100000, 
+                1));
+		springLayout.putConstraint(SpringLayout.NORTH, postCode, -2, SpringLayout.NORTH, lblPostCode);
+		springLayout.putConstraint(SpringLayout.WEST, postCode, 0, SpringLayout.WEST, btnSubmit);
+		springLayout.putConstraint(SpringLayout.EAST, postCode, 0, SpringLayout.EAST, name);
+		JFormattedTextField quantityForm = ((JSpinner.NumberEditor) postCode.getEditor()).getTextField();
+		((NumberFormatter)quantityForm.getFormatter()).setAllowsInvalid(false);
 		getContentPane().add(postCode);
-		postCode.setColumns(10);
 		
 		city = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, lblCity, 2, SpringLayout.NORTH, city);
-		springLayout.putConstraint(SpringLayout.SOUTH, postCode, -6, SpringLayout.NORTH, city);
-		springLayout.putConstraint(SpringLayout.EAST, postCode, 0, SpringLayout.EAST, city);
+		springLayout.putConstraint(SpringLayout.NORTH, city, -2, SpringLayout.NORTH, lblCity);
+		springLayout.putConstraint(SpringLayout.EAST, city, 0, SpringLayout.EAST, name);
 		getContentPane().add(city);
 		city.setColumns(10);
 		
 		phone = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, lblPhone, 2, SpringLayout.NORTH, phone);
-		springLayout.putConstraint(SpringLayout.SOUTH, city, -6, SpringLayout.NORTH, phone);
-		springLayout.putConstraint(SpringLayout.EAST, city, 0, SpringLayout.EAST, phone);
-		springLayout.putConstraint(SpringLayout.WEST, phone, 116, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, phone, -6, SpringLayout.NORTH, btnSubmit);
+		springLayout.putConstraint(SpringLayout.NORTH, phone, -2, SpringLayout.NORTH, lblPhone);
+		springLayout.putConstraint(SpringLayout.EAST, phone, 0, SpringLayout.EAST, name);
 		getContentPane().add(phone);
 		phone.setColumns(10);
 		
 		JLabel lblMail = new JLabel("Mail :");
-		springLayout.putConstraint(SpringLayout.WEST, lblMail, 0, SpringLayout.WEST, lblName);
 		getContentPane().add(lblMail);
 		
 		mail = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, lblMail, 2, SpringLayout.NORTH, mail);
-		springLayout.putConstraint(SpringLayout.SOUTH, mail, -6, SpringLayout.NORTH, firstName);
-		springLayout.putConstraint(SpringLayout.EAST, mail, 0, SpringLayout.EAST, name);
+		springLayout.putConstraint(SpringLayout.NORTH, mail, -2, SpringLayout.NORTH, lblMail);
 		getContentPane().add(mail);
 		mail.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("Password :");
+		springLayout.putConstraint(SpringLayout.SOUTH, lblPassword, -275, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, lblMail, -6, SpringLayout.NORTH, lblPassword);
+		springLayout.putConstraint(SpringLayout.EAST, lblMail, 0, SpringLayout.EAST, lblPassword);
+		getContentPane().add(lblPassword);
+		
+		JLabel lblConfirmPassword = new JLabel("Confirm Password :");
+		springLayout.putConstraint(SpringLayout.NORTH, lblConfirmPassword, 6, SpringLayout.SOUTH, lblPassword);
+		springLayout.putConstraint(SpringLayout.EAST, lblConfirmPassword, 0, SpringLayout.EAST, lblMail);
+		getContentPane().add(lblConfirmPassword);
+		
+		password = new JPasswordField();
+		springLayout.putConstraint(SpringLayout.WEST, password, 173, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, mail, 0, SpringLayout.EAST, password);
+		springLayout.putConstraint(SpringLayout.EAST, lblPassword, -26, SpringLayout.WEST, password);
+		springLayout.putConstraint(SpringLayout.NORTH, password, -2, SpringLayout.NORTH, lblPassword);
+		getContentPane().add(password);
+		password.setColumns(10);
+		
+		passwordB = new JPasswordField();
+		springLayout.putConstraint(SpringLayout.NORTH, passwordB, 2, SpringLayout.SOUTH, password);
+		springLayout.putConstraint(SpringLayout.WEST, passwordB, 0, SpringLayout.WEST, mail);
+		getContentPane().add(passwordB);
+		passwordB.setColumns(10);
+		
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(!(Arrays.equals(password.getPassword(), passwordB.getPassword()))) 
+				{
+					JOptionPane.showMessageDialog(new JPanel(),"passwords must be the same !");
+				}
+				else
+				{
+					if(SessionFacade.getSessionFacade().registration(name.getText(),
+							mail.getText(),
+							password.getText(), 
+							firstName.getText(), 
+							address1.getText(), address2.getText(), 
+							(int)postCode.getValue(), city.getText(),
+							phone.getText(), false, false))
+					{
+						JOptionPane.showMessageDialog(new JPanel(),"registration completed !");
+						dispose();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(new JPanel(),"email address already used !");
+					}
+							
+				}
+			
+				
+				}
+			});
 	}
 }
