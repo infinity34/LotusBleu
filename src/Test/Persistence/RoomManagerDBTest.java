@@ -49,11 +49,22 @@ public class RoomManagerDBTest {
 		assertNotEquals("problème la liste ne fait pas la taille voulu (verifier avec requete sur la base si elle n'a pas evoluer)",3,roomManager.getRooms().size());
 	}
 	
+	
 	@Test
-	public void testAddRoom() {
-		
-		roomManager.addRoom("classroom 2",20,25);
+	public void testRemoveListRoom() {
+		assertEquals("problème la liste n'est pas vide à l'initialisation",0,roomManager.getRooms().size());
+		Room room1 = new ClassRoom("classroom",15, 45);
+		roomManager.addListRoom(room1);
+		assertEquals("problème la liste n'a pas le bon nombre de pièce",1,roomManager.getRooms().size());
+		roomManager.removeListRoom(room1);
+		assertEquals("problème la liste n'est pas vide après la suppression du seul élément",0,roomManager.getRooms().size());
 	}
 	
+	/*
+	@Test d'integration
+	public void testAddRoom() {
+		roomManager.addRoom("classroom 2",20,25);
+	}
+	*/
 
 }
