@@ -3,6 +3,7 @@ package UI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
@@ -72,7 +73,15 @@ public class PaymentUI extends JPanel  {
 			public void actionPerformed(ActionEvent e) {
 				cardInformation = textField.getText();
 				CSC = textField_1.getText();
-				paymentFacade.ProceedPayment(cardInformation, CSC,amount);
+				boolean result = paymentFacade.ProceedPayment(cardInformation, CSC,amount);
+				
+				if( result){
+					JOptionPane.showMessageDialog(new JPanel(),"Success payment!");
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new JPanel(),"payment error !");
+				}
 			}
 		});
 
