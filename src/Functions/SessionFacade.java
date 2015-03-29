@@ -50,7 +50,6 @@ public class SessionFacade {
 	 * <p>Does ...</p>
 	 * 
 	 * 
-	 * @return 
 	 */
 	public void Logout() {} 
 

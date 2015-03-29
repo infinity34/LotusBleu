@@ -25,7 +25,7 @@ public class Payment {
 	 * Constructor
 	 * create an object payment
 	 * with an amount and a date
-	 * @param amout
+	 * @param amount
 	 * @param date
 	 */
 	public Payment(int amount, Date date) {
