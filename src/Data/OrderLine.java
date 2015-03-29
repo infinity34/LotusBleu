@@ -1,6 +1,6 @@
 package Data;
 
-public class OrderLine {
+public class OrderLine implements Comparable<OrderLine> {
 
 	/**
 	 * <p>
@@ -48,5 +48,10 @@ public class OrderLine {
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public int compareTo(OrderLine o) {
+		return (int) ((this.quantity*this.product.getProductPrice()) - (o.quantity*o.product.getProductPrice()));
 	}
 }
