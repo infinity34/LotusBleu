@@ -113,12 +113,12 @@ public class CategoryManagementMenuGUI extends JPanel {
 				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementDeleteCategoryGUI());
 				}
 			});
-		/*
+		
 		btnDisplayCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementDeleteCategory());
+				UI.MainFrame.getMainFrame().setMainPanel(new CategoryManagementDisplayCategoryGUI());
 				}
-			});*/
+			});
 		
 		btnUpdateACategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
