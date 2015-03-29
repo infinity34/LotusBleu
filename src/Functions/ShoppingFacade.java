@@ -1,12 +1,16 @@
 
 package Functions;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 import Data.Basket;
 import Data.Category;
 import Data.Product;
+
+import Persistence.ProductManagerDB;
+
 import Persistence.ShoppingManager;
 import Persistence.ShoppingManagerDB;
 
@@ -20,6 +24,7 @@ public class ShoppingFacade {
 
     private ShoppingFacade(){
     	shoppingManager = new ShoppingManagerDB();
+    	this.productManager = new ProductManagerDB();
     }
     
     public static ShoppingFacade getShoppingFacade(){
@@ -28,10 +33,10 @@ public class ShoppingFacade {
     	}
     	return shopFacade;
     }
-    public ArrayList<Product> getProducts() {        
-        // your code here
-        return null;
-    } 
+    public ResultSet getProducts() {        
+    	return productManager.allProducts();
+    }
+
 
     public ArrayList<Category> getMainCategories(){
 		return shoppingManager.getMainCategories();
@@ -54,7 +59,6 @@ public class ShoppingFacade {
 
 
     public void addProductToBasket(Product product, int quantity) {        
-        // your code here
     } 
 
 
@@ -69,7 +73,6 @@ public class ShoppingFacade {
 
 
     public Basket getBasket() {        
-        // your code here
-        return null;
+    	return Basket.getBasket(session.GetCurrentUser());
     } 
  }

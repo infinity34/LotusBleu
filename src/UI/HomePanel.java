@@ -90,6 +90,16 @@ public class HomePanel extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, btnShop, 0, SpringLayout.WEST, btnAccessoryManagement);
 		springLayout.putConstraint(SpringLayout.EAST, btnShop, 0, SpringLayout.EAST, btnAccessoryManagement);
 		add(btnShop);
+		JButton btnBasket = new JButton("Basket");
+		btnBasket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new BasketManagementMenuGUI());
+			}
+		});
+		springLayout.putConstraint(SpringLayout.WEST, btnBasket, 0, SpringLayout.WEST, btnAccessoryManagement);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnBasket, 0, SpringLayout.SOUTH, btnManageEvent_1);
+		springLayout.putConstraint(SpringLayout.EAST, btnBasket, 0, SpringLayout.EAST, btnAccessoryManagement);
+		add(btnBasket);
 		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -3,6 +3,7 @@ package Functions;
 
 import Data.User;
 import Persistence.SessionManager;
+import Persistence.SessionManagerDB;
 
 /**
  * 
@@ -28,7 +29,7 @@ public class RegistrationAdminFacade {
 	 * with the SessionManager
 	 */
 	public RegistrationAdminFacade() {
-		this.sessionManager = new SessionManager();
+		this.sessionManager = new SessionManagerDB();
 	}
 
 
@@ -45,12 +46,14 @@ public class RegistrationAdminFacade {
 	 * @param lastname 
 	 * @param firstname 
 	 * @param usermail 
+	 * @param admin 
+	 * @param inCharge 
 	 * @param city2 
 	 * @return true if the user has been added
 	 */
-	public boolean addRegistration(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password) {        
+	public boolean addRegistration(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, boolean inCharge, boolean admin) {        
 		// your code here
-		return this.sessionManager.register(usermail, firstname, lastname, address,address2, city, postcode, telephone, password);
+		return this.sessionManager.register(usermail, firstname, lastname, address, address2, city, postcode, telephone, password,inCharge, admin);
 	} 
 
 	/**
@@ -67,9 +70,9 @@ public class RegistrationAdminFacade {
 	 * @param oldUser
 	 * @return true if the update has executed with success
 	 */
-	public boolean setRagistration(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, User oldUser) {        
+	public boolean setRagistration( String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, User oldUser) {        
 
-		return this.sessionManager.setRegistration(usermail, firstname, lastname, address,address2, city, postcode, telephone, password, oldUser);
+		return this.sessionManager.setRegistration( firstname, lastname, address,address2, city, postcode, telephone, password, oldUser);
 	} 
 
 	/**
@@ -86,7 +89,7 @@ public class RegistrationAdminFacade {
 	 * @return a tab of information on the 
 	 * registration in DataBase
 	 */
-	public Object[][] displayRegistrations() {        
+	public ArrayList<User> displayRegistrations() {        
 		return this.sessionManager.displayRegistrations();
 	} 
 

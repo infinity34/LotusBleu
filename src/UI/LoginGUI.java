@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
+import Data.Basket;
 import Functions.SessionFacade;
 import Tools.PasswordHash;
 
@@ -31,6 +32,7 @@ public class LoginGUI {
 	private JTextField txtUserid;
 	private JPasswordField pwdPassword;
 	private SessionFacade facade;
+	static Basket basket;
 
 	/**
 	 * Launch the application.
@@ -96,14 +98,8 @@ public class LoginGUI {
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setForeground(Color.BLUE);
 		lblUser.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-		lblUser.setBounds(6, 210, 338, 16);
+		lblUser.setBounds(6, 198, 338, 16);
 		frmLotusBleu.getContentPane().add(lblUser);
-		
-		JLabel lblSignIn = new JLabel("Sign in");
-		lblSignIn.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSignIn.setForeground(Color.BLUE);
-		lblSignIn.setBounds(0, 238, 344, 16);
-		frmLotusBleu.getContentPane().add(lblSignIn);
 		
 		JCheckBox chckbxRemember = new JCheckBox("Remember me");
 		chckbxRemember.setHorizontalAlignment(SwingConstants.CENTER);
@@ -115,6 +111,10 @@ public class LoginGUI {
 		pwdPassword.setBounds(121, 117, 134, 28);
 		frmLotusBleu.getContentPane().add(pwdPassword);
 		
+		JButton btnSignIn = new JButton("Sign in");
+		btnSignIn.setBounds(128, 216, 117, 25);
+		frmLotusBleu.getContentPane().add(btnSignIn);
+		
 		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -125,10 +125,18 @@ public class LoginGUI {
 					// lance l'interface principale
 					MainFrame.getMainFrame().setMainPanel(new HomePanel());;
 					getFrmLotusBleu().dispose();
+					Basket basket = new Basket(facade.GetCurrentUser());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "wrong login/password ");
 				}
+			}
+		});
+		
+		btnSignIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrationGUI registr = new RegistrationGUI();
+				registr.setVisible(true);
 			}
 		});
 	}

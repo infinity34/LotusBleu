@@ -129,10 +129,11 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 				}
 				else
 				{
-				return (new Category(
-						resultat.getString("categoryName"),
-						getCategory(resultat.getString("subCategoryOf")),
-						resultat.getBoolean("available")));	
+					boolean tmp = resultat.getBoolean("available");
+					return (new Category(
+							resultat.getString("categoryName"),
+							getCategory(resultat.getString("subCategoryOf")),
+							tmp));	
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

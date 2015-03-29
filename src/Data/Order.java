@@ -149,7 +149,7 @@ public class Order {
 	 * @return double The amount of this order
 	 */
 	public double getTotalAmount() {
-		double amount = 0;
+		float amount = 0;
 		OrderLine currentOrderLine;
 		Iterator<OrderLine> it = orderLine.iterator();
 		while(it.hasNext()){

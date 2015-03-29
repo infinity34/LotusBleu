@@ -77,9 +77,12 @@ public abstract class SessionManager {
 	 * @param postcode
 	 * @param telephone
 	 * @param password
+	 * @param admin 
+	 * @param inCharge 
 	 * @return
 	 */
-	public abstract boolean register(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password);
+	public abstract boolean register(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, boolean inCharge, boolean admin);
 	
 	public abstract boolean setRegistration(String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, User oldUser);
+	
 }
