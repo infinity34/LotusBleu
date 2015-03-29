@@ -84,8 +84,9 @@ public class ProductView extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				facade.addProductToBasket(product, (Integer)spinner.getValue());
-				
+				int quantity = (Integer)spinner.getValue();
+				facade.addProductToBasket(product, quantity);
+				MainFrame.getMainFrame().setMainPanel(new BasketManagementMenuGUI());
 			}
 		});
 		btnAddToCart.setBounds(286, 365, 97, 25);

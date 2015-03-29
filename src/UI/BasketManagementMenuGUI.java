@@ -3,8 +3,11 @@ package UI;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -14,6 +17,7 @@ import javax.swing.*;
 
 import net.proteanit.sql.DbUtils;
 import Data.Basket;
+import Data.Order;
 import Data.OrderLine;
 import Data.Product;
 import Functions.OrderManagementFacade;
@@ -59,8 +63,23 @@ public class BasketManagementMenuGUI extends JPanel {
 				"Product ID", "Product name", "Price($)", "Discount(%)", "Quantity"
 			}
 		));
-		ResultSet rs = myFacade.getProducts();
-		table.setModel(DbUtils.resultSetToTableModel(rs));
+		
+		
+		
+		TreeSet<OrderLine> orderline = myFacade.getBasket().getOrderLine();
+		OrderLine[] tab = orderline.toArray(new OrderLine[0]);
+		String[] headers = {"Product ID", "Product name", "Price($)", "Discount(%)", "Quantity"};
+		Object [][] orders = new String [orderline.size()][headers.length];
+        Iterator<OrderLine> iter=orderline.iterator();
+        int i = 0;
+        while(iter.hasNext())
+		{
+			orders[i][0] = iter.next();
+		}
+		table = new JTable(orders, headers);
+
+
+		
 		
 		JButton btnNewButton = new JButton("Cancel");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -100,7 +119,7 @@ public class BasketManagementMenuGUI extends JPanel {
 		btnAddToBasket.setBounds(405, 127, 116, 23);
 		add(btnAddToBasket);
 		
-		if(LoginGUI.basket == null){
+		if(myFacade.getBasket() == null){
 			JLabel lblNumberOfArticles = new JLabel("Number of articles in your basket : 0 ");
 			lblNumberOfArticles.setBounds(39, 95, 482, 14);	
 			add(lblNumberOfArticles);

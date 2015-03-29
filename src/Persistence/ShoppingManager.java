@@ -38,9 +38,10 @@ public abstract class ShoppingManager {
 
 	/**
 	 * <p>
-	 * Does ...
+	 * Test if the basket is empty.
 	 * </p>
 	 * 
+	 * @return Boolean
 	 */
 	public void emptyBasket() {
 		this.basket.empty();
@@ -48,13 +49,16 @@ public abstract class ShoppingManager {
 
 	/**
 	 * <p>
-	 * Does ...
+	 * Transform the basket into an order
+	 * and empty the basket
 	 * </p>
 	 * 
 	 */
-	public void validBasket(Payment payment) {
+	public Boolean validBasket(Payment payment) {
 		this.orders.add(new Order(this.basket,payment));
 		this.basket.empty();
+		if (this.basket.isEmpty()) return true;
+		else return false;
 	}
 
 	/**
