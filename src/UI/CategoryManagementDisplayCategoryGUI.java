@@ -12,17 +12,17 @@ import Data.Category;
 
 public class CategoryManagementDisplayCategoryGUI extends JPanel {
 	private JTable table;
-	
+	private JButton btnback;
 	public CategoryManagementDisplayCategoryGUI()
 	{
 		this.setSize( 640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
-		JButton button = new JButton("< Back");
-		springLayout.putConstraint(SpringLayout.WEST, button, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, button, -10, SpringLayout.SOUTH, this);
-		add(button);
+		JButton btnback = new JButton("< Back");
+		springLayout.putConstraint(SpringLayout.WEST, btnback, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnback, -10, SpringLayout.SOUTH, this);
+		add(btnback);
 		
 		table = new JTable();
 		springLayout.putConstraint(SpringLayout.NORTH, table, 154, SpringLayout.NORTH, this);
