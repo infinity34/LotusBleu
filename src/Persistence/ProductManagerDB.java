@@ -28,7 +28,7 @@ public class ProductManagerDB extends Persistence.ProductManager {
 		return managerBD;
 	}
 
-private ProductManagerDB() {
+public ProductManagerDB() {
 	super();
 	this.connection = DBconnection.getConnection();
 	}
@@ -132,4 +132,19 @@ private ProductManagerDB() {
 		}
 		
 	}
+
+	@Override
+	public ResultSet allProducts() {
+		try {
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.PRODUCT");
+			//resultat.last();
+			return resultat;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}		
+	}
+	
+	
 }

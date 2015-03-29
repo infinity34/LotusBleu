@@ -45,7 +45,7 @@ public class RegistrationAdminDelete extends JPanel {
 		btnDeleteUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usermail = usermailTextfield.getText();
-				registrationAdminFacade.deleteRegistration(usermail);
+				boolean result = registrationAdminFacade.deleteRegistration(usermail);
 			}
 		});
 

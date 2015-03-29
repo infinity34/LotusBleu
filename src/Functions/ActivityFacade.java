@@ -18,7 +18,6 @@ private Persistence.ActivityManager activityManager;
 private static ActivityFacade facade;
 	
 	private ActivityFacade(){
-		super();
 		this.activityManager = new ActivityManagerBD();
 	}
 	

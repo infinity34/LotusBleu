@@ -1,6 +1,8 @@
 
 package Functions;
 
+import java.util.ArrayList;
+
 import Data.User;
 import Persistence.SessionManager;
 import Persistence.SessionManagerDB;
@@ -81,8 +83,8 @@ public class RegistrationAdminFacade {
 	 * @return
 	 */
 	public boolean deleteRegistration(String usermail) {        
-		// your code here
-		return false;
+		
+		return this.sessionManager.deleteRegistration(usermail);
 	} 
 
 	/**
