@@ -20,6 +20,9 @@ public class RegistrationAdminList extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * This panel display all the registration
+	 * the param facade allows to acces at the differents methods needed
+	 * @param registrationAdminFacade
 	 */
 	public RegistrationAdminList(RegistrationAdminFacade registrationAdminFacade) {
 
