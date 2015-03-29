@@ -1,8 +1,16 @@
 package Tools;
 import java.security.MessageDigest;
+/**
+ * Passworw Hash
+ * Developped by Clément
+ */
 
 public class PasswordHash {
 
+	    /**
+	   	 *	@param password   	
+	   	 *	@return return a hashed string (sha-256)
+	   	 */
 	    public static String PasswordHash(String password) throws Exception
 	    {	 
 	        MessageDigest md = MessageDigest.getInstance("SHA-256");
