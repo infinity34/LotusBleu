@@ -14,7 +14,12 @@ public class RegistrationAdminMain extends JPanel {
 	private RegistrationAdminFacade registrationAdminFacade;
 	
 	/**
-	 * Create the panel.
+	 * Create a panel
+	 * This panel allows to give the choice to the user
+	 * to Add a registration
+	 * to Delete a registration
+	 * To update a registration
+	 * To display all registrations
 	 */
 	public RegistrationAdminMain() {
 		
@@ -45,6 +50,8 @@ public class RegistrationAdminMain extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, btnDeleteRegistration, 248, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.EAST, btnDeleteRegistration, 0, SpringLayout.EAST, btnListRegistration);
 		add(btnDeleteRegistration);
+		
+		/* when we click on the button, the panel associated is printed */
 		
 		btnAddRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
