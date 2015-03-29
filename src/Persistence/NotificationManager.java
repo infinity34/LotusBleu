@@ -45,6 +45,13 @@ public abstract class NotificationManager {
 		return dlm;
 	}
 	
+	/**
+	 * @return the notifications
+	 */
+	public ArrayList<Notification> getNotifications() {
+		return notifications;
+	}
+
 	public NotificationManager(){
 		this.notifications = new ArrayList<Notification>();
 	}

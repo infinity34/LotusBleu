@@ -2,6 +2,7 @@
 package Persistence;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import Data.User;
 
@@ -85,4 +86,12 @@ public abstract class SessionManager {
 	
 	public abstract boolean setRegistration(String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, User oldUser);
 	
+	/**
+	 * return a list of all User in dataBase the highest role is associated to the user
+	 * 
+	 * @return ArrayList<User>
+	 */
+	public abstract ArrayList<User> displayRegistrations();
+	
+	public abstract boolean deleteRegistration(String usermail);
 }

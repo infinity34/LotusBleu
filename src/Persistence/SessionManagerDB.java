@@ -261,15 +261,25 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		}
 	}
 	
-	public ArrayList displayRegistrations(){
+	/**
+	 * return a list of all User in dataBase
+	 * the highest role is associated to
+	 * the user
+	 * 
+	 * @return ArrayList<User>
+	 */
+	public ArrayList<User> displayRegistrations(){
+		//Declaration
 		ArrayList<User> registration = new ArrayList<User>();   
 		User user;
-		
 		ResultSet resultat = null;
+		
 		try {
+			//execution of the query
 			resultat = dbConnection.getState().executeQuery(
-					"SELECT * FROM lotusbleu.User");
+					"SELECT * FROM lotusbleu.USER");
 			
+			//collect the information for all user
 			resultat.beforeFirst();
 			while(resultat.next()) {
 			
@@ -302,7 +312,8 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				else{
 					userRole = new UserRole();
 				}
-
+				
+				//creation of the user
 				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, userRole);
 				
 				//Add the user in the registration ArrayList
@@ -322,6 +333,29 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		}
 
 		return registration;
+	}
+	
+	/**
+	 * 
+	 */
+	public boolean deleteRegistration(String usermail){
+		int result = 0;
+		try {
+			result =dbConnection.getState().executeUpdate(
+					"DELETE FROM `lotusbleu`.`USER` WHERE mail = '"
+							+ usermail +"'");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			return true;
+		}
+		else {
+			return false;
+		}
+
 	}
 
 }
