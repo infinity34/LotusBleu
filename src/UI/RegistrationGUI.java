@@ -37,6 +37,10 @@ public class RegistrationGUI extends JFrame {
 	private JTextField mail;
 	private JPasswordField password;
 	private JPasswordField passwordB;
+	/**
+	 * @return create a Jframe for registration
+	 * 
+	 * */
 	
 	public RegistrationGUI() {
 
