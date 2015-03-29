@@ -75,5 +75,13 @@ public abstract class OrderManager {
 	 */
 	public abstract ResultSet listOrder(String state);
 	
+	public abstract ResultSet getCancelledOrders();
+	
+	public abstract ResultSet getConfirmedOrders();
+	
+	public abstract ResultSet getSentOrders();
+	
+	public abstract ResultSet getPendingOrders();
+	
 
 }

@@ -73,24 +73,8 @@ public class OrderManagementMenuGUI extends JPanel {
 		JButton btnRefreshOrders = new JButton("Pending");
 		btnRefreshOrders.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT O.orderID,productName, orderDate, userName, userFirstName, quantity, orderStateWording "
-							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
-							+"WHERE P.productID = L.productID AND "
-							+"O.orderID = L.orderID AND "
-							+"O.userMail = U.mail AND "
-							+"S.orderStateID = O.orderStateID AND "
-							+"S.orderStateWording = 'Pending';");
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					
-					}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
-				
-				
+				ResultSet rs = myFacade.getCancelledOrders();
+				table.setModel(DbUtils.resultSetToTableModel(rs));	
 			}
 		});
 		btnRefreshOrders.setBounds(38, 158, 139, 23);
@@ -99,22 +83,8 @@ public class OrderManagementMenuGUI extends JPanel {
 		JButton btnConfirmed = new JButton("Confirmed");
 		btnConfirmed.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT O.orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
-							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
-							+"WHERE P.productID = L.productID AND "
-							+"O.orderID = L.orderID AND "
-							+"O.userMail = U.mail AND "
-							+"S.orderStateID = O.orderStateID AND "
-							+"S.orderStateWording = 'Confirmed';");
+					ResultSet rs = myFacade.getConfirmedOrders();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					
-					}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
 			}
 		});
 		btnConfirmed.setBounds(176, 158, 139, 23);
@@ -122,22 +92,9 @@ public class OrderManagementMenuGUI extends JPanel {
 		
 		JButton btnSent = new JButton("Sent");
 		btnSent.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT O.orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
-							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
-							+"WHERE P.productID = L.productID AND "
-							+"O.orderID = L.orderID AND "
-							+"O.userMail = U.mail AND "
-							+"S.orderStateID = O.orderStateID AND "
-							+"S.orderStateWording = 'Sent';");
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
+			public void actionPerformed(ActionEvent arg0) {				
+					ResultSet rs = myFacade.getSentOrders();
+					table.setModel(DbUtils.resultSetToTableModel(rs));					
 			}
 		});
 		btnSent.setBounds(315, 158, 139, 23);
@@ -145,22 +102,10 @@ public class OrderManagementMenuGUI extends JPanel {
 		
 		JButton btnCancelledrejected = new JButton("Cancelled/Rejected");
 		btnCancelledrejected.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					ResultSet rs = connection.getState().executeQuery("SELECT O.orderID, productName, orderDate, userName, userFirstName, quantity, orderStateWording "
-							+"FROM lotusbleu.PRODUCT P, lotusbleu.ORDER O, lotusbleu.USER U, lotusbleu.ORDERLINE L, lotusbleu.ORDERSTATE S "
-							+"WHERE P.productID = L.productID AND "
-							+"O.orderID = L.orderID AND "
-							+"O.userMail = U.mail AND "
-							+"S.orderStateID = O.orderStateID AND "
-							+"S.orderStateWording = 'Cancelled/Rejected';");
+			public void actionPerformed(ActionEvent arg0) {				
+					ResultSet rs = myFacade.getCancelledOrders();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					
-					}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
+		
 			}
 		});
 		btnCancelledrejected.setBounds(451, 158, 139, 23);
