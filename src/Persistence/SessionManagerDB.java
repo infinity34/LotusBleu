@@ -3,10 +3,14 @@ package Persistence;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
 
+import Data.Activity;
+import Data.Event;
 import Data.MemberRole;
 import Data.Payment;
 import Data.Subscription;
+import Data.TimeSlot;
 import Data.User;
 import Functions.SessionFacade;
 import Tools.DBconnection;
@@ -251,6 +255,48 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		else{
 			return false;
 		}
+	}
+	
+	public ArrayList displayRegistrations(){
+		ArrayList<User> registration = new ArrayList<User>();   
+		User user;
+		
+		ResultSet resultat = null;
+		try {
+			resultat = dbConnection.getState().executeQuery(
+					"SELECT * FROM lotusbleu.User");
+			
+			resultat.beforeFirst();
+			while(resultat.next()) {
+			
+				String mail = resultat.getString("mail");
+				String username = resultat.getString("userName");
+				String userFirstName = resultat.getString("userFirstName");
+				String address = resultat.getString("address1");
+				String address2 = resultat.getString("address2");
+				String postcode = resultat.getString("postCode");
+				String city = resultat.getString("city");
+				String phone = resultat.getString("phone");
+
+				user = new User();
+				
+				//Add the user in the registration ArrayList
+				registration.add(user);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				resultat.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return registration;
 	}
 
 }
