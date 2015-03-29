@@ -54,9 +54,9 @@ public abstract class RoomManager {
 		}
 	} 
 
-	public abstract void addRoom(String name, int area, int numberOfParticipant);
+	public abstract boolean addRoom(String name, int area, int numberOfParticipant);
 	
-	public abstract void addRoom(String name, int area);
+	public abstract boolean addRoom(String name, int area);
 
 	public abstract void loadRooms();
 	
