@@ -4,44 +4,32 @@ import java.util.TreeSet;
 
 /**
  * 
- * 
- * @poseidon-object-id [Ifc4ab2m14bf8c18020mm75fe]
+ * @author Lyvia
+ * @author Design Maxime
+ * @author Design Clément
+ *
  */
 public class Basket {
 
 	/**
-	 * <p>
-	 * Represents the owner of this basket
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im73916ddfm14bf8e24976mm78ed]
+	 * the user assciated at this basket
 	 */
 	private User user;
 
 	/**
-	 * <p>
 	 * Represents the basket (Attribute which allow to implement singleton
 	 * pattern)
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im77122398m14bf8fac935mm774d]
 	 */
 	private static Basket basket;
-	
+
 	/**
-	 * 
-	 * 
-	 * @poseidon-object-id [Ifc4ab2m14bf8c18020mm75a0]
-	 * @poseidon-type Data.OrderLine
+	 * a set of orderLine
+	 * i.e the quantity and the product
 	 */
 	private TreeSet<OrderLine> orderLine;
 
 	/**
-	 * <p>
 	 * Return the current basket of the user
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im73916ddfm14bf8e24976mm78d9]
 	 * @return Basket
 	 */
 	public static Basket getBasket(User user) {
@@ -52,11 +40,7 @@ public class Basket {
 	}
 
 	/**
-	 * <p>
 	 * Create a new Basket
-	 * </p>
-	 * 
-	 * @poseidon-object-id [Im73916ddfm14bf8e24976mm78b4]
 	 */
 	public Basket(User user) {
 		super();
@@ -94,11 +78,7 @@ public class Basket {
 	}
 
 	/**
-	 * <p>
 	 * Test if the basket is empty
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm786c]
 	 * @return boolean
 	 */
 	public boolean isEmpty() {
@@ -106,22 +86,14 @@ public class Basket {
 	}
 
 	/**
-	 * <p>
 	 * Remove all the elements from the basket
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm7845]
 	 */
 	public void empty() {
 		this.orderLine = new TreeSet<OrderLine>();
 	}
 
 	/**
-	 * <p>
 	 * Remove a specified line from the basket
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm7820]
 	 * @param OrderLine
 	 */
 	public void removeLine(OrderLine line) {
@@ -129,11 +101,7 @@ public class Basket {
 	}
 
 	/**
-	 * <p>
 	 * Add a specified line to the basket
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm77df]
 	 * @param Product
 	 * @param quantity
 	 */
