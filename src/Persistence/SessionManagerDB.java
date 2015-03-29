@@ -18,8 +18,8 @@ import Tools.DBconnection;
 import Tools.PasswordHash;
 
 /**
- * @auhtor Maxime Clerix
- * @auhtor rémy
+ * @author Maxime Clerix
+ * @author rémy
  */
 public class SessionManagerDB extends Persistence.SessionManager {
 
@@ -320,7 +320,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	 * the highest role is associated to
 	 * the user
 	 * 
-	 * @return ArrayList<User>
+	 * @return the list of users
 	 */
 	public ArrayList<User> displayRegistrations(){
 		//Declaration
