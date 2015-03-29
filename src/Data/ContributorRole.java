@@ -1,6 +1,6 @@
 package Data;
 
- class ContributorRole extends UserRole {
+ public class ContributorRole extends UserRole {
 	
 	private String shortDescription;
 	
