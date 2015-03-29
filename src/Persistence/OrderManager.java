@@ -41,23 +41,14 @@ public abstract class OrderManager {
 	 */
 	public abstract Boolean confirmPurchase(int orderId);
 
-	/**
-	 * <p>Does ...</p>
-	 * 
-	 * @poseidon-object-id [I610a0d25m14bffb8994amm7128]
-	 */
-	public void rejectPurchase() {        
-		// your code here
-	} 
+
 
 	/**
 	 * <p>Does ...</p>
 	 * 
 	 * @poseidon-object-id [I610a0d25m14bffb8994amm7103]
 	 */
-	public void removeOrder() {        
-		// your code here
-	} 
+	public abstract Boolean removeOrder(int id);        
 
 	/**
 	 * <p>Does ...</p>

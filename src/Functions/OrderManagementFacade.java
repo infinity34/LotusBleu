@@ -51,6 +51,10 @@ public class OrderManagementFacade {
     	return orderManager.getPendingOrders();
     }
     
+	public Boolean deleteOrder(int id){
+		return orderManager.removeOrder(id);	}
+
+    
     /**
      * <p>Display all the information about the purchase request</p>
      * @return 

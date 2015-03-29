@@ -1,13 +1,9 @@
 
 package Persistence;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Locale;
+
 
 import Tools.DBconnection;
 
@@ -164,6 +160,26 @@ public class OrderManagementDB extends Persistence.OrderManager {
 			e.printStackTrace();
 			return false;
 		}		
+	}
+
+
+	@Override
+	public Boolean removeOrder(int id) {
+		try {
+			ResultSet rs = connection.getState().executeQuery("SELECT U.mail FROM lotusbleu.USER U, lotusbleu.ORDER O "
+					+"WHERE U.mail=O.userMail AND O.orderId='"+id+"'");
+			rs.last();
+			String mail = rs.getString("mail");
+			connection.getState().executeUpdate("DELETE FROM lotusbleu.ORDERLINE WHERE orderId="+id);
+			connection.getState().executeUpdate("DELETE FROM lotusbleu.ORDER WHERE orderId="+id);
+			connection.getState().executeUpdate("INSERT INTO lotusbleu.NOTIFICATION(notificationRead,notificationMessage,notificationDate,userID) "
+					+"values (0,\"Your order number '"+id+"' have been deleted!\",CURRENT_DATE(),'"+mail+"')");
+			return true;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 
