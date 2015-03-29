@@ -3,6 +3,12 @@ package Data;
 
 
 public class Category {
+	/**
+	 * 
+	 * @author Clément
+	 * @author Design Lyvia
+	 *
+	 */
 
     private String categoryName;
     private String motherCategory;
