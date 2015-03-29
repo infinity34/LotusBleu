@@ -22,7 +22,7 @@ public class HomePanel extends JPanel {
 		this.setSize(640, 480);
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
-		ShoppingFacade shoppingFacade = ShoppingFacade.getShoppingFacade();
+		final ShoppingFacade shoppingFacade = ShoppingFacade.getShoppingFacade();
 		
 		JButton btnCategoryManagement = new JButton("Manage Category");
 		springLayout.putConstraint(SpringLayout.NORTH, btnCategoryManagement, 10, SpringLayout.NORTH, this);
