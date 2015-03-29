@@ -64,7 +64,7 @@ public class User {
 	 * represents the role of an user
 	 * (admin, incharge, member)
 	 */
-	private MemberRole memberRole;
+	private UserRole userRole;
 
 	// Constructor ******************************************************
 
@@ -83,11 +83,11 @@ public class User {
 	 * @param postcode
 	 * @param city
 	 * @param phone
-	 * @param memberRole
+	 * @param userRole
 	 */
 	public User(String mail, String username, String userFirstName,
 				String address, String address2, String postcode,
-				String city, String phone, MemberRole memberRole){
+				String city, String phone, UserRole userRole){
 
 		this.usermail = mail;
 		this.username = username;
@@ -97,7 +97,7 @@ public class User {
 		this.postcode = postcode;
 		this.city = city;
 		this.phone = phone;
-		this.memberRole = memberRole;
+		this.userRole = userRole;
 	}
 
 	// Accessing methods ************************************************
@@ -247,19 +247,19 @@ public class User {
 	}
 	
 	/**
-	 * @return the memberRole
+	 * @return the userRole
 	 */
-	public MemberRole getMemberRole() {
-		return memberRole;
+	public UserRole geUserRole() {
+		return userRole;
 	}
 
 	/**
-	 * set the member role of the user
+	 * set the user role of the user
 	 * the user can be member, in charge or admin 
-	 * @param memberRole
+	 * @param userRole
 	 */
-	public void setMemberRole(MemberRole memberRole) {
-		this.memberRole = memberRole;
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 	/* (non-Javadoc)

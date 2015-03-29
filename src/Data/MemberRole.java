@@ -32,6 +32,10 @@ public class MemberRole extends UserRole {
 	public MemberRole(Subscription subscription) {
 		super();
 		this.subscription = subscription;
+	}
+
+	public MemberRole() {
+		// TODO Auto-generated constructor stub
 	}	
 	
 }
