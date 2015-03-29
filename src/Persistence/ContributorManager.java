@@ -1,7 +1,7 @@
 
 package Persistence;
 
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
 
 import Data.Event;

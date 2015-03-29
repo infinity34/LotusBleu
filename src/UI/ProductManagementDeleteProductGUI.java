@@ -13,7 +13,6 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import Data.Product;
-import Functions.CategoryFacade;
 import Functions.ProductManagementFacade;
 
 public class ProductManagementDeleteProductGUI extends JPanel

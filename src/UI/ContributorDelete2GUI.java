@@ -2,20 +2,16 @@ package UI;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 
-import net.proteanit.sql.DbUtils;
+import javax.swing.JTextField;
+
+import javax.swing.SwingConstants;
+
 import Functions.ContributorManagementFacade;
 
 import javax.swing.JButton;

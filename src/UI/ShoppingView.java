@@ -1,7 +1,7 @@
 
 package UI;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -10,12 +10,8 @@ import javax.swing.ToolTipManager;
 
 import Data.Category;
 import Data.Product;
-import Data.Order;
-import Functions.ShoppingFacade;
 
-import java.awt.FlowLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import Functions.ShoppingFacade;
 
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;

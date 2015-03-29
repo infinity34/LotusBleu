@@ -3,7 +3,7 @@ package UI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.CardLayout;
+
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -13,7 +13,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-import java.awt.GridLayout;
 import javax.swing.SpringLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;

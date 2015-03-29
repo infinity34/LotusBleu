@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import Functions.SessionFacade;
 import java.awt.event.ActionListener;

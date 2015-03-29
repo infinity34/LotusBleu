@@ -4,9 +4,7 @@ package Functions;
 import java.util.ArrayList;
 
 import Data.Accessory;
-import Persistence.AccessoryManager;
 import Persistence.AccessoryManagerDB;
-import Persistence.SessionManager;
 
 /**
  * Accessory

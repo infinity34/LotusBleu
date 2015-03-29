@@ -1,15 +1,7 @@
 
 package Functions;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
-
-
-
-
-
-
-
 import Data.Event;
 import Persistence.ContributorManagerDB;
 

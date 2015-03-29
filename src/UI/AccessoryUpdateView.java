@@ -1,16 +1,14 @@
 package UI;
 
 import java.awt.Font;
-import java.util.ArrayList;
+
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SpinnerListModel;
 import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.JSpinner;
+
 
 import Data.Accessory;
 import Functions.AccessoryFacade;

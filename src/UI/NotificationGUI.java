@@ -17,7 +17,6 @@ import Functions.SessionFacade;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.ListModel;
 
 @SuppressWarnings("serial")
 public class NotificationGUI extends JPanel implements ListSelectionListener {

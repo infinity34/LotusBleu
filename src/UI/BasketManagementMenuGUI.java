@@ -1,13 +1,10 @@
 package UI;
 
 import java.awt.Font;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -15,14 +12,9 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
-import net.proteanit.sql.DbUtils;
-import Data.Basket;
-import Data.Order;
 import Data.OrderLine;
 import Data.Product;
-import Functions.OrderManagementFacade;
 import Functions.ProductManagementFacade;
-import Functions.SessionFacade;
 import Functions.ShoppingFacade;
 
 import java.awt.event.ActionListener;

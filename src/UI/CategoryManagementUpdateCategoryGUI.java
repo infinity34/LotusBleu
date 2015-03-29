@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.SpringLayout;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import Data.Category;
@@ -18,7 +17,6 @@ import javax.swing.JComboBox;
 
 public class CategoryManagementUpdateCategoryGUI extends JPanel {
 	
-	private CategoryFacade facade;
 	private JButton btnUpdateCategory;
 	private JButton btnBack;
 	private JComboBox listCategory;

@@ -8,8 +8,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import Data.Category;
@@ -19,7 +17,6 @@ import javax.swing.JComboBox;
 
 public class CategoryManagementDeleteCategoryGUI extends JPanel {
 	
-	private CategoryFacade facade;
 	private JComboBox listCategory;
 	private JButton btnBack;
 	private JButton btnDeleteCategory;

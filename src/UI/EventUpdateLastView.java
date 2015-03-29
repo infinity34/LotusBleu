@@ -15,11 +15,10 @@ import java.sql.Date;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
+
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerModel;
 
-import Data.Activity;
 import Data.Event;
 import Data.TimeSlot;
 import Functions.EventFacade;

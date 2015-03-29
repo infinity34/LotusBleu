@@ -9,7 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 
 import Data.Category;
 

@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Data.Accessory;
-import Data.Activity;
 import Tools.DBconnection;
 
 /**

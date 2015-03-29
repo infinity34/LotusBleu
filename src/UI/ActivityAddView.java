@@ -2,7 +2,6 @@ package UI;
 
 import javax.swing.JPanel;
 
-import Data.Activity;
 import Functions.ActivityFacade;
 
 import java.awt.GridBagLayout;

@@ -3,7 +3,6 @@ package Persistence;
 import java.sql.SQLException;
 
 import Tools.DBconnection;
-import Persistence.SessionManager;
 /**
  * 
  * 

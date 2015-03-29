@@ -2,13 +2,10 @@ package UI;
 
 import javax.swing.JPanel;
 
-import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 
-import java.awt.GridBagConstraints;
 import java.awt.Font;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

@@ -23,7 +23,6 @@ import javax.swing.JPasswordField;
 
 import Data.Basket;
 import Functions.SessionFacade;
-import Tools.PasswordHash;
 
 
 public class LoginGUI {

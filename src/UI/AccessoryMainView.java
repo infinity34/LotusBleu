@@ -3,7 +3,6 @@ package UI;
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;

@@ -4,7 +4,6 @@ package Functions;
 import java.util.ArrayList;
 
 import Data.Activity;
-import Persistence.AccessoryManagerDB;
 import Persistence.ActivityManagerBD;
 
 /**

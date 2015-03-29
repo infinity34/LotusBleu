@@ -1,7 +1,6 @@
 package Persistence;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import Data.Category;
 import Data.Basket;
@@ -9,7 +8,6 @@ import Data.Order;
 import Data.OrderLine;
 import Data.Payment;
 import Data.Product;
-import Data.User;
 import Functions.SessionFacade;
 
 

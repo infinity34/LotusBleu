@@ -11,7 +11,6 @@ import Data.OrderLine;
 import Data.Payment;
 import Data.Product;
 import Persistence.ProductManagerDB;
-import Persistence.ShoppingManager;
 import Persistence.ShoppingManagerDB;
 
 public class ShoppingFacade {
