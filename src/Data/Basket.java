@@ -58,7 +58,7 @@ public class Basket {
 	 * 
 	 * @poseidon-object-id [Im73916ddfm14bf8e24976mm78b4]
 	 */
-	private Basket(User user) {
+	public Basket(User user) {
 		super();
 		this.orderLine = new TreeSet<OrderLine>();
 		this.setUser(user);

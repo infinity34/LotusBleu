@@ -1,6 +1,7 @@
 
 package Functions;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import Data.Product;
@@ -10,7 +11,7 @@ public class ProductManagementFacade {
 	
 	private static ProductManagementFacade facade;
 	
-	private ProductManagementFacade()
+	public ProductManagementFacade()
 	{
 		
 	}
@@ -53,5 +54,8 @@ public class ProductManagementFacade {
         return ProductManagerDB.getManagerDB().getAllProduct();
     } 
 
+	public ResultSet allProducts(){
+		return ProductManagerDB.getManagerDB().allProducts();
+	}
     
  }

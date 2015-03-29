@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
+import Data.Basket;
 import Functions.SessionFacade;
 import Tools.PasswordHash;
 
@@ -31,6 +32,7 @@ public class LoginGUI {
 	private JTextField txtUserid;
 	private JPasswordField pwdPassword;
 	private SessionFacade facade;
+	static Basket basket;
 
 	/**
 	 * Launch the application.
@@ -125,6 +127,7 @@ public class LoginGUI {
 					// lance l'interface principale
 					MainFrame.getMainFrame().setMainPanel(new HomePanel());;
 					getFrmLotusBleu().dispose();
+					Basket basket = new Basket(facade.GetCurrentUser());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "wrong login/password ");

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Data.Category;
 import Data.Product;
+import java.sql.ResultSet;
 
 
 
@@ -18,5 +19,6 @@ public abstract class ProductManager {
 
     public abstract ArrayList<Product> getAllProduct();
     public abstract Product getProduct(String name);
+	public abstract ResultSet allProducts();
     
 }
