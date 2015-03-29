@@ -97,13 +97,14 @@ public class User {
 	 * @param postcode
 	 * @param city
 	 * @param phone
-	 * @param memberRole
+	 * @param userRole
 	 */
 	public User(String mail, String username, String userFirstName,
 			String address, String address2, String postcode,
 			String city, String phone, MemberRole memberRole,
 			AdminRole adminRole, InChargeRole inChargeRole,
 			ContributorRole contributorRole){
+
 
 		this.usermail = mail;
 		this.username = username;
