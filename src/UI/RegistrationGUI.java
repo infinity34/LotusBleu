@@ -24,7 +24,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
-import Functions.RegistrationFacade;
 import Functions.SessionFacade;
 
 public class RegistrationGUI extends JFrame {
