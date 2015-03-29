@@ -296,26 +296,27 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				String isContrib =  resultat.getString("isContributor");
 				String isMember =  resultat.getString("isMember");
 				
-				UserRole userRole = new UserRole();
-				UserRole adminRole;
-				UserRole inChargeRole;
-				UserRole memberRole;
+				AdminRole adminRole = null;
+				ContributorRole contributorRole = null;
+				InChargeRole inChargeRole = null;
+				MemberRole memberRole = null;
 				
 				if (isAdmin.equals("1")){
-					userRole = new AdminRole();
+					adminRole = new AdminRole();
 				}
 				if(isRespo.equals("1")){
-					userRole = new InChargeRole();
+					inChargeRole = new InChargeRole();
 				}
 				if(isContrib.equals("1")){
-					userRole = new ContributorRole();
+					contributorRole = new ContributorRole();
 				}
 				if(isMember.equals("1")){
-					userRole = new MemberRole();
+					memberRole = new MemberRole();
 				}
 				
 				//creation of the user
-				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, userRole);
+				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, memberRole,
+						 adminRole, inChargeRole, contributorRole);
 				
 				//Add the user in the registration ArrayList
 				registration.add(user);
