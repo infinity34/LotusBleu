@@ -85,6 +85,12 @@ public class HomePanel extends JPanel {
 		});
 		add(btnNewButton_1);
 		
+		JButton btnShop = new JButton("Shop");
+		springLayout.putConstraint(SpringLayout.NORTH, btnShop, 6, SpringLayout.SOUTH, btnManageOrder);
+		springLayout.putConstraint(SpringLayout.WEST, btnShop, 0, SpringLayout.WEST, btnAccessoryManagement);
+		springLayout.putConstraint(SpringLayout.EAST, btnShop, 0, SpringLayout.EAST, btnAccessoryManagement);
+		add(btnShop);
+		
 		btnAccessoryManagement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new AccessoryMainView());
@@ -141,6 +147,12 @@ public class HomePanel extends JPanel {
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.getMainFrame().setMainPanel(new RegistrationAdminMain());
+			}
+		});
+		
+		btnShop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ShoppingView());
 			}
 		});
 	}

@@ -49,4 +49,9 @@ public class Product {
 	public int getProductCategoryID() {
 		return productCategoryID;
 	}
+	
+	@Override
+	public String toString(){
+		return this.getProductName();
+	}
 }

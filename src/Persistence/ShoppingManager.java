@@ -1,7 +1,9 @@
 package Persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import Data.Category;
 import Data.Order;
 import Data.OrderLine;
 import Data.Product;
@@ -11,7 +13,7 @@ import Data.Product;
  * 
  * @poseidon-object-id [I5c276a37m14bf4d9e555mm79b9]
  */
-public class ShoppingManager {
+public abstract class ShoppingManager {
 
 	/**
 	 * <p>
@@ -119,4 +121,10 @@ public class ShoppingManager {
 	public void cancelOrder(Order order) {
 		// your code here
 	}
+
+	public abstract ArrayList<Category> getMainCategories();
+
+	public abstract ArrayList<Category> getSubCategories(String parentCat);
+
+	public abstract ArrayList<Product> getProductsByCat(int category);
 }
