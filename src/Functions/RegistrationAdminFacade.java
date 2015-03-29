@@ -10,7 +10,7 @@ import Persistence.SessionManagerDB;
 /**
  * 
  * @author remy
- * @Design Prisca
+ * @author Design Prisca
  */
 public class RegistrationAdminFacade {
 
@@ -50,7 +50,6 @@ public class RegistrationAdminFacade {
 	 * @param usermail 
 	 * @param admin 
 	 * @param inCharge 
-	 * @param city2 
 	 * @return true if the user has been added
 	 */
 	public boolean addRegistration(String usermail, String firstname, String lastname, String address, String address2, String city, int postcode, String telephone, String password, boolean inCharge, boolean admin) {        
@@ -60,7 +59,6 @@ public class RegistrationAdminFacade {
 
 	/**
 	 * change the registration with the fields in parameter
-	 * @param usermail
 	 * @param firstname
 	 * @param lastname
 	 * @param address

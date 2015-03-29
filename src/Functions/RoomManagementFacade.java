@@ -40,7 +40,7 @@ public class RoomManagementFacade {
 	/**
 	 * set the room manager with the roomManager
 	 * in parameter
-	 * @param the roomManager
+	 * @param roomManager
 	 */
 	public void setRoomManager(RoomManager roomManager){
 		this.roomManager = roomManager;
@@ -108,7 +108,7 @@ public class RoomManagementFacade {
 	/**
 	 * get a room
 	 * @return room
-	 * @param String name
+	 * @param name
 	 */
 	public Room getRoom(String name) {        
 		return this.roomManager.getRoom(name);
