@@ -21,8 +21,11 @@ public class ProductView extends JPanel{
 	private JTextField discount;
 	private JTextField quantity;
 	private ShoppingFacade facade;
+	private JSpinner spinner;
+	private Product product;
 	
-	public ProductView(Product product){
+	public ProductView(Product producttmp){
+		this.product = producttmp;
 		setLayout(null);
 		facade = ShoppingFacade.getShoppingFacade();
 		
@@ -71,7 +74,7 @@ public class ProductView extends JPanel{
 		quantity.setColumns(10);
 		
 		SpinnerModel model = new SpinnerNumberModel(1, 1, product.getProductQuantity(), 1);
-		JSpinner spinner = new JSpinner(model);
+		spinner = new JSpinner(model);
 		spinner.setBounds(238, 366, 30, 22);
 		add(spinner);
 		

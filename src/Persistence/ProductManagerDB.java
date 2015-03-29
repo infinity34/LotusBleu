@@ -12,6 +12,7 @@ import Tools.DBconnection;
  * Product ManagerDB
  * Designed by Prisca
  * Developped by Clément
+ * @author Clément
  */
 
 
