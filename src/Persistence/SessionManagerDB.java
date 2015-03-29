@@ -5,27 +5,26 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import Data.Activity;
 import Data.AdminRole;
+import Data.ClassRoom;
 import Data.ContributorRole;
-import Data.Event;
 import Data.InChargeRole;
 import Data.MemberRole;
+import Data.Office;
 import Data.Payment;
+import Data.Room;
 import Data.Subscription;
-import Data.TimeSlot;
 import Data.User;
-import Data.UserRole;
 import Functions.SessionFacade;
 import Tools.DBconnection;
 import Tools.PasswordHash;
 
 /**
- * 
- * 
+ * @auhtor Maxime Clerix
+ * @auhtor rémy
  */
 public class SessionManagerDB extends Persistence.SessionManager {
-	
+
 	/**
 	 * 
 	 */
@@ -193,16 +192,16 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				statut = dbConnection.getState().executeUpdate(
 						"INSERT INTO lotusbleu.USER (mail,password,userName,userFirstName,address1,address2,postCode,city,phone,isAdmin,isResponsible,isContributor,isMember)"
 								+ "VALUES('"+ usermail+ "', '"+  pwd +"', '"+ firstname +"', '"+ lastname +"', '"+ address +"', '"+ address2 +"', '"+ postcode +"', '"+  city +"', '"+  telephone +"',"+ 0 +"," + 0 +"," + 0 +"," + 0 +")");
-				
-				
+
+
 				if(inCharge){
 					User user = SessionFacade.getSessionFacade().GetCurrentUser();
 					String message = user.getUserfirstname() + " " + user.getUsername()
 							+ " a fait une demande pour devenir inCharge";
 					dbConnection.getState().executeUpdate(
 							"INSERT INTO lotusbleu.NOTIFICATION (notificationMessage,notificationDate,userID) VALUES('"
-							+ message +"' ,current_date() , '"
-							+ user.getUsermail() + "')");
+									+ message +"' ,current_date() , '"
+									+ user.getUsermail() + "')");
 				}
 				if(admin){
 					User user = SessionFacade.getSessionFacade().GetCurrentUser();
@@ -210,8 +209,8 @@ public class SessionManagerDB extends Persistence.SessionManager {
 							+ " a fait une demande pour devenir admin";
 					dbConnection.getState().executeUpdate(
 							"INSERT INTO lotusbleu.NOTIFICATION (notificationMessage,notificationDate,userID) VALUES('"
-							+ message +"' ,current_date() , '"
-							+ user.getUsermail() + "')");
+									+ message +"' ,current_date() , '"
+									+ user.getUsermail() + "')");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -234,9 +233,10 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	public boolean setRegistration(String firstname, String lastname,
 			String address, String address2, String city, int postcode,
 			String telephone, String password, User oldUser) {
-		
+
 		String pwd="";
-		if(password.equals("")){
+		System.out.println(password);
+		if(password!=null){
 			/*On encrypte le password*/
 			try {
 				pwd = PasswordHash.PasswordHash(password);
@@ -254,15 +254,15 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		try {
 			statut = dbConnection.getState().executeUpdate(
 					"UPDATE lotusbleu.USER SET "
-					+ "password ='" + pwd 
-					+ "', userName = '" + firstname 
-					+"',userFirstName ='" + lastname
-					+"',address1 ='" + address 
-					+ "',address2 ='" + address2
-					+ "',postCode =" + postcode
-					+ ",city ='" + city
-					+ "',phone ='"+ telephone
-					+"' Where mail='"+ oldUser.getUsermail()+"'");
+							+ "password ='" + pwd 
+							+ "', userName = '" + firstname 
+							+"',userFirstName ='" + lastname
+							+"',address1 ='" + address 
+							+ "',address2 ='" + address2
+							+ "',postCode =" + postcode
+							+ ",city ='" + city
+							+ "',phone ='"+ telephone
+							+"' Where mail='"+ oldUser.getUsermail()+"'");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -277,7 +277,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * return a list of all User in dataBase
 	 * the highest role is associated to
@@ -290,16 +290,16 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		ArrayList<User> registration = new ArrayList<User>();   
 		User user;
 		ResultSet resultat = null;
-		
+
 		try {
 			//execution of the query
 			resultat = dbConnection.getState().executeQuery(
 					"SELECT * FROM lotusbleu.USER");
-			
+
 			//collect the information for all user
 			resultat.beforeFirst();
 			while(resultat.next()) {
-			
+
 				String mail = resultat.getString("mail");
 				String username = resultat.getString("userName");
 				String userFirstName = resultat.getString("userFirstName");
@@ -312,12 +312,12 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				String isRespo =  resultat.getString("isResponsible");
 				String isContrib =  resultat.getString("isContributor");
 				String isMember =  resultat.getString("isMember");
-				
+
 				AdminRole adminRole = null;
 				ContributorRole contributorRole = null;
 				InChargeRole inChargeRole = null;
 				MemberRole memberRole = null;
-				
+
 				if (isAdmin.equals("1")){
 					adminRole = new AdminRole();
 				}
@@ -330,11 +330,11 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				if(isMember.equals("1")){
 					memberRole = new MemberRole();
 				}
-				
+
 				//creation of the user
 				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, memberRole,
-						 adminRole, inChargeRole, contributorRole);
-				
+						adminRole, inChargeRole, contributorRole);
+
 				//Add the user in the registration ArrayList
 				registration.add(user);
 			}
@@ -353,9 +353,10 @@ public class SessionManagerDB extends Persistence.SessionManager {
 
 		return registration;
 	}
-	
+
 	/**
-	 * 
+	 * delete the registration in the DB
+	 * thanks to the usermail
 	 */
 	public boolean deleteRegistration(String usermail){
 		int result = 0;
@@ -367,7 +368,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		if(result>0){
 			return true;
 		}
@@ -377,4 +378,59 @@ public class SessionManagerDB extends Persistence.SessionManager {
 
 	}
 
+	public User getRegistration(String usermail){
+
+		ResultSet resultat;
+		try {
+
+			//execution of the query
+			resultat = dbConnection.getState().executeQuery(
+					"SELECT * FROM lotusbleu.USER Where mail ='"+usermail +"'");
+
+			//collect the information for all user
+			resultat.beforeFirst();
+			if(resultat.next()) {
+
+				String mail = resultat.getString("mail");
+				String username = resultat.getString("userName");
+				String userFirstName = resultat.getString("userFirstName");
+				String address = resultat.getString("address1");
+				String address2 = resultat.getString("address2");
+				String postcode = resultat.getString("postCode");
+				String city = resultat.getString("city");
+				String phone = resultat.getString("phone");
+				String isAdmin =  resultat.getString("isAdmin");
+				String isRespo =  resultat.getString("isResponsible");
+				String isContrib =  resultat.getString("isContributor");
+				String isMember =  resultat.getString("isMember");
+
+				AdminRole adminRole = null;
+				ContributorRole contributorRole = null;
+				InChargeRole inChargeRole = null;
+				MemberRole memberRole = null;
+
+				if (isAdmin.equals("1")){
+					adminRole = new AdminRole();
+				}
+				if(isRespo.equals("1")){
+					inChargeRole = new InChargeRole();
+				}
+				if(isContrib.equals("1")){
+					contributorRole = new ContributorRole();
+				}
+				if(isMember.equals("1")){
+					memberRole = new MemberRole();
+				}
+
+				//creation of the user
+				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, memberRole,
+						adminRole, inChargeRole, contributorRole);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return user;
+	}
 }

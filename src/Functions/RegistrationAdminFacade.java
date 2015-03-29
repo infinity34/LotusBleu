@@ -101,7 +101,7 @@ public class RegistrationAdminFacade {
 	 * @return a User
 	 */
 	public User getRegistration(String usermail) {
-
+		return this.sessionManager.getRegistration(usermail);
 
 	}
 }

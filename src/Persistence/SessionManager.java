@@ -94,4 +94,6 @@ public abstract class SessionManager {
 	public abstract ArrayList<User> displayRegistrations();
 	
 	public abstract boolean deleteRegistration(String usermail);
+	
+	public abstract User getRegistration(String usermail);
 }

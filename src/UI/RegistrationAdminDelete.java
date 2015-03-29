@@ -3,6 +3,7 @@ package UI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
@@ -45,7 +46,16 @@ public class RegistrationAdminDelete extends JPanel {
 		btnDeleteUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usermail = usermailTextfield.getText();
+				
 				boolean result = registrationAdminFacade.deleteRegistration(usermail);
+				if( result){
+					JOptionPane.showMessageDialog(new JPanel(),"deletion completed !");
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new JPanel(),"you can't delete the user, we wan't to stock the old information");
+				}
+
 			}
 		});
 

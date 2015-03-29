@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import Data.User;
 import Functions.RegistrationAdminFacade;
 
 public class RegistrationAdminUpdate extends JPanel {
@@ -43,8 +44,9 @@ public class RegistrationAdminUpdate extends JPanel {
 		btnSearchUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usermail = usermailTextfield.getText();
-				registrationAdminFacade.getRegistration(usermail);
+				User user = registrationAdminFacade.getRegistration(usermail);
 				//TODO affichage update
+				MainFrame.getMainFrame().setMainPanel(new RegistrationAdminUpdateField(user, registrationAdminFacade));
 			}
 		});
 
