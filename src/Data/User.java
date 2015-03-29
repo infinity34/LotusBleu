@@ -1,91 +1,120 @@
 package Data;
 
 /**
+ * this class allows to create an user
+ * we can associate a role to the user
+ * all getter and setter are presents
  * 
+ * @author remy
  * 
  */
+
 public class User {
 
+	// Instance Variables ***********************************************
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents the username of an user 
 	 */
 	private String username;
-	
+
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents user first name of an user
 	 */
 	private String userfirstname;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents the first part of the user address
 	 */
 	private String address1;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents the second part of the user address
+	 * if the first field can't support all characters
 	 */
 	private String address2;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents the post code of an user
 	 */
 	private String postcode;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents the city name of the user
 	 */
 	private String city;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents the mail of an user
+	 * two users can't have the same mail
 	 */
 	private String usermail;
+	
+	/**
+	 * Represents the phone of the user
+	 */
+	private String phone;
 
 	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
+	 * Represents the password encrypted of an user
 	 */
 	private String password;
 	
-	private MemberRole memberRole;
-	
 
+	/**
+	 * represents the role of an user
+	 * (admin, incharge, member)
+	 */
+	private MemberRole memberRole;
+
+
+
+	// Constructor ******************************************************
+
+	public User(){
+
+	}
+
+	/**
+	 * Construct the user
+	 * 
+	 * @param mail
+	 * @param username
+	 * @param userFirstName
+	 * @param address
+	 * @param address2
+	 * @param postcode
+	 * @param city
+	 * @param phone
+	 * @param memberRole
+	 */
+	public User(String mail, String username, String userFirstName,
+			String address, String address2, String postcode,
+			String city, String phone, MemberRole memberRole){
+
+		this.usermail = mail;
+		this.username = username;
+		this.userfirstname = userFirstName;
+		this.address1 = address;
+		this.address2 = address2;
+		this.postcode = postcode;
+		this.city = city;
+		this.phone = phone;
+		this.memberRole = memberRole;
+	}
 	
+	// Accessing methods ************************************************
+
 	/**
 	 * @return the username
 	 */
 	public String getUsername() {
 		return username;
 	}
-	
 
-	
 	/**
+	 * set the user name
+	 * 
 	 * @param username
-	 *            the username to set
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -99,8 +128,9 @@ public class User {
 	}
 
 	/**
+	 * set the firstname of the user
+	 * 
 	 * @param userfirstname
-	 *            the userfirstname to set
 	 */
 	public void setUserfirstname(String userfirstname) {
 		this.userfirstname = userfirstname;
@@ -114,8 +144,9 @@ public class User {
 	}
 
 	/**
+	 * set the address of the user
+	 * 
 	 * @param address1
-	 *            the address1 to set
 	 */
 	public void setAddress1(String address1) {
 		this.address1 = address1;
@@ -128,9 +159,11 @@ public class User {
 		return address2;
 	}
 
-	/**
+	/**	 
+	 * set the second part of the 
+	 * address of the user
+	 * 
 	 * @param address2
-	 *            the address2 to set
 	 */
 	public void setAddress2(String address2) {
 		this.address2 = address2;
@@ -144,8 +177,8 @@ public class User {
 	}
 
 	/**
+	 * set the post code of the user
 	 * @param postcode
-	 *            the postcode to set
 	 */
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
@@ -159,8 +192,9 @@ public class User {
 	}
 
 	/**
+	 * set the city name of the user
+	 * 
 	 * @param city
-	 *            the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
@@ -174,8 +208,8 @@ public class User {
 	}
 
 	/**
+	 * set the email of the user
 	 * @param usermail
-	 *            the usermail to set
 	 */
 	public void setUsermail(String usermail) {
 		this.usermail = usermail;
@@ -189,11 +223,29 @@ public class User {
 	}
 
 	/**
+	 * set the password of the user
+	 * the password must be encrypted
+	 * 
 	 * @param password
-	 *            the password to set
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the phone
+	 */
+	public String getPhone() {
+		return phone;
+	}
+
+	/**
+	 * set the phone of the user
+	 * 
+	 * @param password
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	/**
@@ -204,12 +256,14 @@ public class User {
 	}
 
 	/**
-	 * @param memberRole the memberRole to set
+	 * set the member role of the user
+	 * the user can be member, in charge or admin 
+	 * @param memberRole
 	 */
 	public void setMemberRole(MemberRole memberRole) {
 		this.memberRole = memberRole;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

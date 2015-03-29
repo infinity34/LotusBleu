@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTree;
+import javax.swing.ToolTipManager;
 
 import Data.Category;
 import Data.Product;
@@ -25,6 +26,7 @@ import javax.swing.tree.TreePath;
 
 
 
+
 public class ShoppingView extends JPanel implements TreeSelectionListener{
 	private DefaultMutableTreeNode root;
 	private ShoppingFacade facade;
@@ -34,17 +36,23 @@ public class ShoppingView extends JPanel implements TreeSelectionListener{
 	public ShoppingView() {
 		setLayout(null);
 		facade = ShoppingFacade.getShoppingFacade();
+		
+		
 		/* Main SplitPane */
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setBounds(0, 0, 640, 480);
 		add(splitPane);
 		
 		/* Left SplitPane component (tree) */
-		root = new DefaultMutableTreeNode();
+		root = new DefaultMutableTreeNode("Shopping");
 		tree = new JTree(root);
 		tree.setBorder(new EmptyBorder(2, 4, 0, 0));
 		tree.setRootVisible(false);
 		tree.addTreeSelectionListener(this);
+		
+		/* Icons */
+		ToolTipManager.sharedInstance().registerComponent(tree);
+		tree.setCellRenderer(new CellRenderer());
 		
 		/* Right SplitPane component */
 		rightPanel = new JPanel();
