@@ -2,40 +2,24 @@ package Persistence;
 
 import java.util.ArrayList;
 
+import Data.Basket;
 import Data.Order;
 import Data.OrderLine;
 import Data.Product;
+import Data.User;
+import Functions.SessionFacade;
 
 /**
  * 
  * 
  * @poseidon-object-id [I5c276a37m14bf4d9e555mm79b9]
  */
-public class ShoppingManager {
+public abstract class ShoppingManager {
 
-	/**
-	 * <p>
-	 * Represents ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I5c276a37m14bf4d9e555mm79a0]
-	 */
+	//Variables
 	private ArrayList<Order> orders;
-	/**
-	 * 
-	 * 
-	 * @poseidon-object-id [I48c9a015m14c095cecaamm734d]
-	 */
-	public Data.Basket basket;
 
-	/**
-	 * <p>
-	 * Does ...
-	 * </p>
-	 * 
-	 * @poseidon-object-id [I777ab4eam14bf4e91384mm7cc5]
-	 * @return
-	 */
+	//Methods
 	public ArrayList<Order> getOrders() {
 		return this.orders;
 	}
@@ -63,16 +47,13 @@ public class ShoppingManager {
 
 	/**
 	 * <p>
-	 * Does ...
+	 * Return the basket of the current user
 	 * </p>
 	 * 
 	 * @poseidon-object-id [I1af2f395m14bf8ee2be3mm78a9]
 	 * @return
 	 */
-	public Data.Basket getBasket() {
-		// your code here
-		return null;
-	}
+	public abstract Data.Basket getBasket(User user);
 
 	/**
 	 * <p>
@@ -119,4 +100,6 @@ public class ShoppingManager {
 	public void cancelOrder(Order order) {
 		// your code here
 	}
+	
+	public abstract void addProductToBasket(Product product, int quantity);
 }
