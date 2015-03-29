@@ -3,6 +3,7 @@ package Persistence;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import Data.AdminRole;
@@ -68,11 +69,12 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				user.setPostcode(resultat.getString("postCode"));
 				user.setUsermail(resultat.getString("mail"));
 
+				
 				// Création du MemberRole, de la subscription et du payment
 				// associé à la subscription
 				if (resultat.getInt("isMember") == 1) {
-					ResultSet resultatMember = dbConnection
-							.getState()
+					Statement state = dbConnection.getCon().createStatement();
+					ResultSet resultatMember = state
 							.executeQuery(
 									"SELECT * FROM lotusbleu.USER U, lotusbleu.SUBSCRIPTION S WHERE U.mail=\""
 											+ user.getUsermail()
@@ -88,6 +90,25 @@ public class SessionManagerDB extends Persistence.SessionManager {
 					Payment payment = null;
 					user.setMemberRole(new MemberRole(new Subscription(
 							subscriptionDate, subscriptionEndDate, payment)));
+				}
+				
+				if(resultat.getInt("isAdmin") == 1){
+					user.setAdminRole(new AdminRole());
+				}
+				if(resultat.getInt("isResponsible") == 1){
+					user.setInChargeRole(new InChargeRole());
+				}
+				if(resultat.getInt("isContributor") == 1){
+					ContributorRole contributor = new ContributorRole();
+					Statement state = dbConnection.getCon().createStatement();
+					ResultSet resultatContributor = state
+							.executeQuery(
+									"SELECT * FROM lotusbleu.CONTRIBUTOR WHERE userMail=\""
+											+ user.getUsermail()
+											+ "\"");
+					resultatContributor.next();
+					contributor.setDescription(resultatContributor.getString("longDesc"));
+					user.setContributorRole(contributor);
 				}
 			}
 		} catch (Exception e) {
