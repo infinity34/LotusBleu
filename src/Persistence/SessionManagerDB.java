@@ -84,7 +84,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 							resultatMember.getInt("paymentAmount"),
 							resultatMember.getDate("paymentDate"));*/
 					Payment payment = null;
-					user.setUserRole(new MemberRole(new Subscription(
+					user.setMemberRole(new MemberRole(new Subscription(
 							subscriptionDate, subscriptionEndDate, payment)));
 				}
 			}
