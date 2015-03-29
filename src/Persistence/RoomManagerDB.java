@@ -11,7 +11,7 @@ import Tools.DBconnection;
 /**
  * 
  * @author remy
- * @Design Prisca
+ * @author Design Prisca
  */
 public class RoomManagerDB extends RoomManager {
 	/**
@@ -75,12 +75,14 @@ public class RoomManagerDB extends RoomManager {
 	 * and add the room in the DB
 	 * @param room
 	 */
-	public void addRoom( Room room ) {
+	public boolean addRoom( Room room ) {
 		this.addListRoom(room);
+		int statut = 0;
+		
 		try {
 			if(room.getClass().getSimpleName().equals("ClassRoom")){
 
-				dBconnection.getState().executeUpdate(
+				statut = dBconnection.getState().executeUpdate(
 						"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
 								+ "VALUES ('"+ room.getRoomName() +"', "
 								+ room.getArea() +", "
@@ -88,7 +90,7 @@ public class RoomManagerDB extends RoomManager {
 								+", 'ClassRoom')");
 			}
 			else if(room.getClass().getSimpleName().equals("Office")){
-				dBconnection.getState().executeUpdate(
+				statut = dBconnection.getState().executeUpdate(
 						"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
 								+ "VALUES ('"+ room.getRoomName() +"', "
 								+ room.getArea() +", "
@@ -101,17 +103,19 @@ public class RoomManagerDB extends RoomManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return statut>0;
 	}
 
 	/**
 	 * allows to add a classRoom to the database and to the list
-	 * @param :String name , int area, int numberOfParticipant (parameters of a classroom) 
+	 * @param :String name , int area, int numberOfParticipant
 	 */
-	public void addRoom( String name, int area, int numberOfParticipant ) {
+	public boolean addRoom( String name, int area, int numberOfParticipant ) {
 		Room room = new ClassRoom(name, area, numberOfParticipant);
 		this.addListRoom(room);
+		int statut = 0;
 		try {
-			dBconnection.getState().executeUpdate(
+			statut = dBconnection.getState().executeUpdate(
 					"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
 							+ "VALUES ('"+ room.getRoomName() +"', "
 							+ room.getArea() +", "
@@ -121,17 +125,20 @@ public class RoomManagerDB extends RoomManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return statut >0;
 	}
 
 	/**
 	 * allows to add an office to the database and to the list
-	 * @param :int roomID, int area (parameters of a office) 
+	 * @param : String name, int area 
 	 */
-	public void addRoom(  String name, int area ) {
+	public boolean addRoom(  String name, int area ) {
 		Room room = new Office(name, area);
 		this.addListRoom(room);
+		int statut = 0;
+		
 		try {
-			dBconnection.getState().executeUpdate(
+			statut = dBconnection.getState().executeUpdate(
 					"INSERT INTO `lotusbleu`.`ROOM` (`roomName`, `roomArea`, `numberOfParticpant`, `roomType`)"
 							+ "VALUES ('"+ room.getRoomName() +"', "
 							+ room.getArea() +", "
@@ -140,6 +147,7 @@ public class RoomManagerDB extends RoomManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return statut>0;
 	}
 	
 	/**
@@ -167,7 +175,7 @@ public class RoomManagerDB extends RoomManager {
 	/**
 	 * Delete a room with the name "name" of the DB
 	 * and of the list rooms
-	 * @param room
+	 * @param String name
 	 * @return true if the udate has modified a room
 	 * in the DB
 	 */

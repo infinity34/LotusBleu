@@ -4,7 +4,7 @@ package Persistence;
 /**
  * @author remy
  * @author maxime
- * @Design Clément
+ * @author Design Clément
  */
 public class PaymentManager {
 
@@ -15,10 +15,10 @@ public class PaymentManager {
 	public Tools.PaymentExt paymentExt;
 
 	/**
-	 * 
+	 * check the payment 
 	 * @param cardInformation 
 	 * @param amount 
-	 * @return 
+	 * @return true if the card informations are "true" 
 	 */
 	public Boolean ProceedPayment(String cardInformation, float amount) {
 		return this.paymentExt.checkProceedPayment(cardInformation);

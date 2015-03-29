@@ -17,7 +17,8 @@ public abstract class RoomManager {
 	private ArrayList<Room> rooms;
 
 	/**
-	 * 
+	 * Constructor of a Room Manager
+	 * initialize the room list
 	 */
 	public RoomManager() {
 		this.setRooms(new ArrayList<Room>());
@@ -32,20 +33,27 @@ public abstract class RoomManager {
 	}
 
 	/**
-	 * @param set the room list
+	 * set the room list
+	 * @param rooms
 	 */
 	public void setRooms(ArrayList<Room> rooms) {
 		this.rooms = rooms;
 	}
 
 	/**
-	 * 
-	 * @return 
+	 * Add the room (in parameter)
+	 * to the list
+	 * @param room
 	 */
 	public void addListRoom( Room room ) {        
 		this.rooms.add(room);
 	} 
-	
+
+	/**
+	 * Delete the room with the name "name"
+	 * of the list 
+	 * @param name
+	 */
 	public void removeListRoom( String name ) {     
 		for(int i=0; i<rooms.size();i++){
 			if(rooms.get(i).getRoomName().equals(name)){
@@ -53,33 +61,33 @@ public abstract class RoomManager {
 			}
 		}
 	} 
-
-	public abstract void addRoom(String name, int area, int numberOfParticipant);
 	
-	public abstract void addRoom(String name, int area);
+	public abstract boolean addRoom(String name, int area, int numberOfParticipant);
+
+	public abstract boolean addRoom(String name, int area);
 
 	public abstract void loadRooms();
-	
+
 	public abstract Room getRoom(String name);
 
 	public abstract boolean removeRoom(Room room);
-	
+
 	public abstract boolean removeRoom(String name);
 
 	public void removeListRoom(Room room) {
 		this.rooms.remove(room);
 	}
-	
+
 	/**
 	 * return an array with the field of rooms
+	 * allows the display of the rooms
 	 */
 	public String[][] loadRoomsView(){
 		this.loadRooms();
-		
-		String[][] tab = new String[rooms.size()][3];
-		
-		for( int i=0; i<rooms.size(); i++){
 
+		String[][] tab = new String[rooms.size()][3];
+
+		for( int i=0; i<rooms.size(); i++){
 			tab[i][0] = rooms.get(i).getRoomName();
 			tab[i][1] = Integer.toString(rooms.get(i).getArea());
 			if (rooms.get(i).getClass().getSimpleName().equals("ClassRoom")){
@@ -91,7 +99,7 @@ public abstract class RoomManager {
 		}
 		return tab;
 	}
-	
+
 	/**
 	 * update a room oldroom
 	 * with a name, and an area

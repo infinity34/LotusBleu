@@ -8,7 +8,6 @@ import javax.swing.JButton;
 /**
  * 
  * 
- * @poseidon-object-id [Im3d5f9a4em14c178ccc5bmm7e32]
  */
 public class PaymentUI extends JPanel  {
 

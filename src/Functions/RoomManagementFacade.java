@@ -11,18 +11,19 @@ import Persistence.RoomManagerDB;
 
 /**
  * 
- * 
+ * @author remy
+ *
  */
 public class RoomManagementFacade {
 
 	/**
-	 * 
-	 * 
+	 * roomManager
+	 * allows to manage the persistence of the Room
 	 */
 	public RoomManager roomManager;
 
 	/**
-	 * 
+	 * Constructor
 	 * 
 	 */
 	public RoomManagementFacade(){
@@ -30,14 +31,14 @@ public class RoomManagementFacade {
 		//TODO
 		this.roomManager = new RoomManagerDB();
 	}
-	
+
 	/**
 	 * @return the roomManager
 	 */
 	public RoomManager getRoomManager(){
 		return this.roomManager;
 	}
-	
+
 
 	/**
 	 * set the room manager with the roomManager
@@ -47,7 +48,7 @@ public class RoomManagementFacade {
 	public void setRoomManager(RoomManager roomManager){
 		this.roomManager = roomManager;
 	}
-	
+
 	/**
 	 * return an array with the rooms field
 	 */
@@ -61,10 +62,11 @@ public class RoomManagementFacade {
 	 * add a room
 	 * create an instance in the dataBase
 	 * and add the room at the list
+	 * @return 
 	 */
-	public void addRoom(String name, int area, int numberOfParticipant){
+	public boolean addRoom(String name, int area, int numberOfParticipant){
 		System.out.println(name+", "+area +", "+numberOfParticipant);
-		this.roomManager.addRoom(name, area, numberOfParticipant);
+		return this.roomManager.addRoom(name, area, numberOfParticipant);
 	}
 
 	/**
@@ -72,20 +74,20 @@ public class RoomManagementFacade {
 	 * create an instance in the dataBase
 	 * and add the room at the list
 	 */
-	public void addRoom(String name, int area){
-		this.roomManager.addRoom(name, area);
+	public boolean addRoom(String name, int area){
+		return this.roomManager.addRoom(name, area);
 	}
-	
+
 	/**
 	 * Delete a room
 	 * Delete the instance in the DataBase
 	 * and Delete the room in list of the roomManager
 	 * @return 
 	 */
-	public void deleteRoom(Room room) {        
-		this.roomManager.removeRoom(room);
+	public boolean deleteRoom(Room room) {        
+		return this.roomManager.removeRoom(room);
 	} 
-	
+
 	/**
 	 * Delete a room
 	 * Delete the instance in the DataBase
@@ -93,19 +95,19 @@ public class RoomManagementFacade {
 	 * in list of the roomManager
 	 * @return 
 	 */
-	public void deleteRoom(String name) {        
-		this.roomManager.removeRoom(name);
+	public boolean deleteRoom(String name) {        
+		return this.roomManager.removeRoom(name);
 	} 
-	
+
 	/**
 	 * Update a room
 	 * Update the instance in the DataBase
 	 * @return 
 	 */
-	public void updateRoom(String name, int area, Room room) {        
-		this.roomManager.updateRoom(name, area, room);
+	public boolean updateRoom(String name, int area, Room room) {        
+		return this.roomManager.updateRoom(name, area, room);
 	}
-	
+
 	/**
 	 * get a room
 	 * @return room

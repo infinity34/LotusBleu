@@ -15,7 +15,19 @@ public class OrderManagementXML extends Persistence.OrderManager {
 	}
 
 	@Override
-	public Boolean cancelOrder() {
+	public Boolean cancelOrder(int orderId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean confirmPurchase(int orderId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean sendPurchase(int orderId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

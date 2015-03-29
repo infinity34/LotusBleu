@@ -32,14 +32,16 @@ public class ShoppingView extends JPanel implements TreeSelectionListener{
 	private ShoppingFacade facade;
 	private JPanel rightPanel;
 	private JTree tree;
+	private JSplitPane splitPane;
 	
 	public ShoppingView() {
 		setLayout(null);
 		facade = ShoppingFacade.getShoppingFacade();
 		
 		
+		
 		/* Main SplitPane */
-		JSplitPane splitPane = new JSplitPane();
+		splitPane = new JSplitPane();
 		splitPane.setBounds(0, 0, 640, 480);
 		add(splitPane);
 		
@@ -83,7 +85,7 @@ public class ShoppingView extends JPanel implements TreeSelectionListener{
 		/* if nothing is selected */ 
 		if (node == null) return;
 		Object nodeInfo = node.getUserObject();
-		if (nodeInfo.getClass().getName().endsWith("Category")){
+		if (nodeInfo.getClass().getName().contains("Category")){
 			
 			try{
 				List<Category> subCategories = facade.getSubCategories(((Category)node.getUserObject()).getCategoryName());
@@ -101,6 +103,10 @@ public class ShoppingView extends JPanel implements TreeSelectionListener{
 				System.out.println("ClassCastException");
 			}
 			
+		}else if (nodeInfo.getClass().getName().contains("Product")){
+			this.splitPane.remove(2);
+			this.rightPanel = new ProductView(((Product)node.getUserObject()));
+			this.splitPane.setRightComponent(rightPanel);
 		}
 		
 	}

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import Data.Product;
 
+
 /**
  * Product Manager XML
  * Designed by Prisca
@@ -22,6 +23,7 @@ public class ProductManagerXML extends ProductManager {
 	 **	@param categoryName
 	 *	@return true true if product has been add in the data base, else return false
 	 */
+
 	public boolean addProduct(String name, float price, float discount,
 			int quantity, String categoryName) {
 		// TODO Auto-generated method stub
@@ -29,6 +31,7 @@ public class ProductManagerXML extends ProductManager {
 	}
 
 	@Override
+
 	 /**
 		 *	@param id
 		 *	@param name
@@ -45,6 +48,7 @@ public class ProductManagerXML extends ProductManager {
 	}
 
 	@Override
+
 	/**
    	 *	@param name
    	 *	@return true true if product has been delete from the data base, else return false
@@ -55,28 +59,35 @@ public class ProductManagerXML extends ProductManager {
 	}
 
 	@Override
+
 	/**
    	 *	@return all of the product in the database
    	 */
+
 	public ArrayList<Product> getAllProduct() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+
 	 /**
      * @param name
    	 *	@return return the product fetch by name
    	 */
+
 	public Product getProduct(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+
 	 /**
    	 *	@return all of the product in the database
    	 */
+
+
 	public ResultSet allProducts() {
 		// TODO Auto-generated method stub
 		return null;

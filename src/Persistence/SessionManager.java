@@ -89,9 +89,11 @@ public abstract class SessionManager {
 	/**
 	 * return a list of all User in dataBase the highest role is associated to the user
 	 * 
-	 * @return ArrayList<User>
+	 * @return the list of users
 	 */
 	public abstract ArrayList<User> displayRegistrations();
 	
 	public abstract boolean deleteRegistration(String usermail);
+	
+	public abstract User getRegistration(String usermail);
 }

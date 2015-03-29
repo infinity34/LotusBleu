@@ -12,28 +12,17 @@ import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 
+/**
+ * 
+ * @author remy
+ *
+ */
 public class PaymentGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField cb;
 	private JTextField txtEnterTheCryptogram;
 	private JTextField txtEnterTheValidity;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PaymentGUI frame = new PaymentGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

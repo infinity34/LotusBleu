@@ -5,7 +5,7 @@ package Tools;
 /**
  * 
  * @author remy
- * @Design clément
+ * @author Design clément
  */
 
 public class PaymentExt {
@@ -14,9 +14,9 @@ public class PaymentExt {
 /**
  * check the information of the payment
  * (credit card...)
- * and procced at the payment
+ * and proceed at the payment
  * @param cardInformation
- * @return
+ * @return true if the payment informations are correct
  */
 public Boolean checkProceedPayment(String cardInformation) {
 	return true;

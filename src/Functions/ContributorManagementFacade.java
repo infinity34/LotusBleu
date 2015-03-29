@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 
 
+
+
+
+import Data.Event;
 import Persistence.ContributorManagerDB;
 
 /**
@@ -16,7 +20,7 @@ import Persistence.ContributorManagerDB;
  */
 public class ContributorManagementFacade {
 	
-	//private SessionManager session;
+	private static ContributorManagementFacade facade;
     public Persistence.ContributorManager contributorManager;
     
     public ContributorManagementFacade(){
@@ -24,6 +28,11 @@ public class ContributorManagementFacade {
     	this.contributorManager = new ContributorManagerDB();
     }
 	
+    public static ContributorManagementFacade getContributorManagementFacade(){
+		if(facade == null)
+			facade = new ContributorManagementFacade();
+		return facade;
+    }
 	
 	
 /**
@@ -33,8 +42,8 @@ public class ContributorManagementFacade {
  * @param contributor 
  * @return 
  */
-public Boolean addContributorToEvent(String myEvent,String begin,String end, String name, String firstname) {        
-    	return contributorManager.addContributorToEvent(myEvent,begin, end, name, firstname);
+public Boolean addContributorToEvent(int id, String name, String firstname) {        
+    	return contributorManager.addContributorToEvent(id, name, firstname);
     } 
 
 /**
@@ -44,7 +53,7 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
  * @param contributor 
  * @return 
  */
-    public ResultSet listEvents(String name, String firstname) {    
+    public ArrayList<Event> listEvents(String name, String firstname) {    
         return contributorManager.listEvents(name, firstname);
     } 
 
@@ -82,8 +91,8 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
     } 
     
     
-    public Boolean deleteContributorFromEvent(String eventName) { 
-		 return contributorManager.deleteContributorFromEvent(eventName);
+	 public Boolean deleteContributorFromEvent(int id){
+		 return contributorManager.deleteContributorFromEvent(id);
 	} 
     
     public ArrayList<String> searchContributor(String name, String firstname){

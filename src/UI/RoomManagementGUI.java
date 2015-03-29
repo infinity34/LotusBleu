@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JList;
@@ -99,12 +100,22 @@ public class RoomManagementGUI extends JPanel {
 				String name = roomNameTextfield.getText();
 				int area = Integer.parseInt(roomAreaTextfield.getText());
 				String nb = roomMaxAttendeeTextfield.getText();
+
+				boolean result;
 				if(!nb.equals("")){
 					Integer NBAttendee = Integer.parseInt(nb);
-					roomManagementFacade.addRoom(name, area, NBAttendee);
+					result = roomManagementFacade.addRoom(name, area, NBAttendee);
 				} 
 				else{
-					roomManagementFacade.addRoom(name, area);
+					result = roomManagementFacade.addRoom(name, area);
+				}
+
+				if( result){
+					JOptionPane.showMessageDialog(new JPanel(),"room added !");
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new JPanel(),"problem room no added !");
 				}
 			}
 
@@ -195,7 +206,15 @@ public class RoomManagementGUI extends JPanel {
 					public void actionPerformed(ActionEvent e) {
 						String name = roomNameTextfield.getText();
 						int area = Integer.parseInt(roomAreaTextfield.getText());
-						roomManagementFacade.updateRoom(name, area, room);
+						boolean result = roomManagementFacade.updateRoom(name, area, room);
+						
+						if( result){
+							JOptionPane.showMessageDialog(new JPanel(),"room updated !");
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(new JPanel(),"room no updated error !");
+						}
 					}
 				});
 			}
@@ -229,7 +248,14 @@ public class RoomManagementGUI extends JPanel {
 		btnDeleteTheRoom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = roomNameDelete.getText();
-				roomManagementFacade.deleteRoom(name);
+				boolean result = roomManagementFacade.deleteRoom(name);
+				if( result){
+					JOptionPane.showMessageDialog(new JPanel(),"room deleted !");
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(new JPanel(),"room no deleted!");
+				}
 			}
 
 		});

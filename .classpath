@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="src/|src/Test/" kind="src" path=""/>
+	<classpathentry excluding="src/|src/Test/|doc/" kind="src" path=""/>
 	<classpathentry excluding="Test/" kind="src" path="src"/>
 	<classpathentry kind="src" path="src/Test"/>
+	<classpathentry kind="src" path="doc"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="forms-1.3.0.jar" sourcepath="forms-1.3.0-src.zip"/>
