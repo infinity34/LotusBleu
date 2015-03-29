@@ -29,8 +29,8 @@ public class CategoryManagementDisplayCategoryGUI extends JPanel {
 		
 		ArrayList<Category> allCategory =  Functions.CategoryFacade.getFacade().getAllCategory();
 		String[] headers = {"Name", "Available", "Mother category"};
-		String [][] category = new String [allCategory.size()-1][3];
-		for (int i = 0 ; i<allCategory.size()-1; i++)
+		String [][] category = new String [allCategory.size()][headers.length];
+		for (int i = 0 ; i<allCategory.size(); i++)
 		{
 			category[i][0] = allCategory.get(i).getCategoryName();
 			if(allCategory.get(i).getAvailable())

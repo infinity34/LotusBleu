@@ -18,5 +18,6 @@ public abstract class CategoryManager {
     public abstract ArrayList<Category> getAllCategory();
     public abstract Category getCategory(String name);
     public abstract int getCategoryID(String name);
+    public abstract Category getCategory(int id);
     
  }

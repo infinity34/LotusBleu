@@ -50,6 +50,11 @@ public class CategoryFacade {
     	
     	
     }
+    public Category getCategory(int id) {
+		return CategoryManagerBD.getManagerDB().getCategory(id);
+    	
+    	
+    }
     
 
     

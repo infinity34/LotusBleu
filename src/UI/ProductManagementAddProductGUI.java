@@ -94,7 +94,8 @@ public class ProductManagementAddProductGUI extends JPanel {
 		
 		for(int i = 0 ; i< allCategory.size(); i++)
 		{
-			listCategory.addItem(allCategory.get(i).getCategoryName());
+			if(allCategory.get(i).getAvailable())
+				listCategory.addItem(allCategory.get(i).getCategoryName());
 		}
 		add(listCategory);
 		

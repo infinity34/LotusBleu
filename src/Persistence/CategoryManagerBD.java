@@ -167,6 +167,34 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 			}
 			
 			
+		}
+
+		@Override
+		public Category getCategory(int id) {
+		
+			try {
+				ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryID = \""+id+"\"");
+				resultat.next();
+				
+				if(resultat.getString("subCategoryOf").isEmpty())
+				{
+					return (new Category(
+							resultat.getString("categoryName"),
+							resultat.getBoolean("available")));	
+				}
+				else
+				{
+					boolean tmp = resultat.getBoolean("available");
+					return (new Category(
+							resultat.getString("categoryName"),
+							resultat.getString("subCategoryOf"),
+							tmp));	
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		} 
     
  }
