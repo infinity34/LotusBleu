@@ -84,7 +84,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 							resultatMember.getInt("paymentAmount"),
 							resultatMember.getDate("paymentDate"));*/
 					Payment payment = null;
-					user.setUserRole(new MemberRole(new Subscription(
+					user.setMemberRole(new MemberRole(new Subscription(
 							subscriptionDate, subscriptionEndDate, payment)));
 				}
 			}
@@ -296,21 +296,22 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				String isContrib =  resultat.getString("isContributor");
 				String isMember =  resultat.getString("isMember");
 				
-				UserRole userRole;
+				UserRole userRole = new UserRole();
+				UserRole adminRole;
+				UserRole inChargeRole;
+				UserRole memberRole;
+				
 				if (isAdmin.equals("1")){
 					userRole = new AdminRole();
 				}
-				else if(isRespo.equals("1")){
+				if(isRespo.equals("1")){
 					userRole = new InChargeRole();
 				}
-				else if(isContrib.equals("1")){
+				if(isContrib.equals("1")){
 					userRole = new ContributorRole();
 				}
-				else if(isMember.equals("1")){
+				if(isMember.equals("1")){
 					userRole = new MemberRole();
-				}
-				else{
-					userRole = new UserRole();
 				}
 				
 				//creation of the user
