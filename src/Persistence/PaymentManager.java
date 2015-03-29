@@ -4,7 +4,7 @@ package Persistence;
 /**
  * @author remy
  * @author maxime
- * @Design Clément
+ * @author Design Clément
  */
 public class PaymentManager {
 
