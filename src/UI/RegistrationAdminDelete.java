@@ -19,8 +19,9 @@ public class RegistrationAdminDelete extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * give the facade to acces at the differents functions
+	 * @param registrationAdminFacade
 	 */
-	
 	public RegistrationAdminDelete(RegistrationAdminFacade registrationAdminFacade) {
 		
 		this.registrationAdminFacade = registrationAdminFacade;
@@ -48,6 +49,8 @@ public class RegistrationAdminDelete extends JPanel {
 				String usermail = usermailTextfield.getText();
 				
 				boolean result = registrationAdminFacade.deleteRegistration(usermail);
+				
+				/* Affiche un pop pour dire si la suppression a eu lieu */
 				if( result){
 					JOptionPane.showMessageDialog(new JPanel(),"deletion completed !");
 				}
