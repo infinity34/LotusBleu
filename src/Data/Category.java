@@ -4,14 +4,14 @@ package Data;
 
 public class Category {
 
-
-	//private int categoryID;
     private String categoryName;
+    private String motherCategory;
+
     private int categoryID;
-    private Category motherCategory;
+
     private Boolean available;
     
-	public Category(String categoryName,Category motherCategory, Boolean available) {
+	public Category(String categoryName,String motherCategory, Boolean available) {
 		super();
 		this.categoryName = categoryName;
 		this.available = available;
@@ -20,6 +20,7 @@ public class Category {
 	
 	public Category(String categoryName, Boolean available) {
 		super();
+		this.motherCategory = "";
 		this.categoryName = categoryName;
 		this.available = available;
 	}
@@ -33,6 +34,14 @@ public class Category {
 
 	public String getCategoryName() {
 		return categoryName;
+	}
+	
+	public String getMotherCategoryName() {
+		return motherCategory;
+	}
+	
+	public boolean getAvailable() {
+		return available;
 	}
 	
 	

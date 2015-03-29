@@ -39,9 +39,21 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		try {
 			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY");
 			while (resultat.next()) {
-					allCat.add(new Category(
+				
+				if(resultat.getString("subCategoryOf").isEmpty())
+				{
+					allCat.add (new Category(
 							resultat.getString("categoryName"),
-							resultat.getBoolean("available")));							
+							resultat.getBoolean("available")));	
+				}
+				else
+				{
+					boolean tmp = resultat.getBoolean("available");
+					allCat.add (new Category(
+							resultat.getString("categoryName"),
+							resultat.getString("subCategoryOf"),
+							tmp));	
+				}						
 				
 			}
 		} catch (SQLException e) {
@@ -121,6 +133,7 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 			try {
 				ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryName = \""+name+"\"");
 				resultat.next();
+				
 				if(resultat.getString("subCategoryOf").isEmpty())
 				{
 					return (new Category(
@@ -132,7 +145,7 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 					boolean tmp = resultat.getBoolean("available");
 					return (new Category(
 							resultat.getString("categoryName"),
-							getCategory(resultat.getString("subCategoryOf")),
+							resultat.getString("subCategoryOf"),
 							tmp));	
 				}
 			} catch (SQLException e) {
