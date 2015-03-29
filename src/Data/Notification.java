@@ -6,7 +6,7 @@ package Data;
 import java.sql.Date;
 
 /**
- * @author max
+ * @author Maxime Clerix
  *
  * Represents a Notification Message
  */

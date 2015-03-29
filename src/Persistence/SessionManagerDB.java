@@ -3,6 +3,7 @@ package Persistence;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import Data.Activity;
@@ -25,12 +26,15 @@ import Tools.PasswordHash;
  * 
  */
 public class SessionManagerDB extends Persistence.SessionManager {
+	
 	/**
-	 * 
 	 * 
 	 */
 	private DBconnection dbConnection;
 
+	/**
+	 * Creates a sessionManger
+	 */
 	public SessionManagerDB() {
 		super();
 		dbConnection = DBconnection.getConnection();
@@ -41,7 +45,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	 * Return true if the pair mail/password is OK
 	 * </p>
 	 * 
-	 * @author max
+	 * @author Maxime Clerix
 	 * @return
 	 */
 	public Boolean Login(String username, String password) {
@@ -66,11 +70,12 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				user.setPostcode(resultat.getString("postCode"));
 				user.setUsermail(resultat.getString("mail"));
 
+				
 				// Création du MemberRole, de la subscription et du payment
 				// associé à la subscription
 				if (resultat.getInt("isMember") == 1) {
-					ResultSet resultatMember = dbConnection
-							.getState()
+					Statement state = dbConnection.getCon().createStatement();
+					ResultSet resultatMember = state
 							.executeQuery(
 									"SELECT * FROM lotusbleu.USER U, lotusbleu.SUBSCRIPTION S WHERE U.mail=\""
 											+ user.getUsermail()
@@ -87,6 +92,25 @@ public class SessionManagerDB extends Persistence.SessionManager {
 					user.setMemberRole(new MemberRole(new Subscription(
 							subscriptionDate, subscriptionEndDate, payment)));
 				}
+				
+				if(resultat.getInt("isAdmin") == 1){
+					user.setAdminRole(new AdminRole());
+				}
+				if(resultat.getInt("isResponsible") == 1){
+					user.setInChargeRole(new InChargeRole());
+				}
+				if(resultat.getInt("isContributor") == 1){
+					ContributorRole contributor = new ContributorRole();
+					Statement state = dbConnection.getCon().createStatement();
+					ResultSet resultatContributor = state
+							.executeQuery(
+									"SELECT * FROM lotusbleu.CONTRIBUTOR WHERE userMail=\""
+											+ user.getUsermail()
+											+ "\"");
+					resultatContributor.next();
+					contributor.setDescription(resultatContributor.getString("longDesc"));
+					user.setContributorRole(contributor);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,6 +118,9 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		return (numberOfRows > 0);
 	}
 
+	/**
+	 * Updates the current user's information
+	 */
 	public void updateUser() {
 		try {
 			dbConnection.getState().executeQuery(
@@ -109,6 +136,11 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		}
 	}
 
+	/**
+	 * Changes the password of the current user
+	 * 
+	 * @param password, the new password
+	 */
 	public void changePassword(String password) {
 		try {
 			dbConnection.getState().executeQuery(
@@ -119,6 +151,12 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		}
 	}
 
+	/**
+	 * Register a user for one more Year
+	 * 
+	 * @param date, the new date
+	 * @param firstSubscritption
+	 */
 	public void registerForAYear(Date date, boolean firstSubscription) {
 		java.util.Date current = new java.util.Date();
 		Date sqlDate = new Date(current.getTime());
@@ -296,26 +334,27 @@ public class SessionManagerDB extends Persistence.SessionManager {
 				String isContrib =  resultat.getString("isContributor");
 				String isMember =  resultat.getString("isMember");
 				
-				UserRole userRole = new UserRole();
-				UserRole adminRole;
-				UserRole inChargeRole;
-				UserRole memberRole;
+				AdminRole adminRole = null;
+				ContributorRole contributorRole = null;
+				InChargeRole inChargeRole = null;
+				MemberRole memberRole = null;
 				
 				if (isAdmin.equals("1")){
-					userRole = new AdminRole();
+					adminRole = new AdminRole();
 				}
 				if(isRespo.equals("1")){
-					userRole = new InChargeRole();
+					inChargeRole = new InChargeRole();
 				}
 				if(isContrib.equals("1")){
-					userRole = new ContributorRole();
+					contributorRole = new ContributorRole();
 				}
 				if(isMember.equals("1")){
-					userRole = new MemberRole();
+					memberRole = new MemberRole();
 				}
 				
 				//creation of the user
-				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, userRole);
+				user = new User(mail,username, userFirstName, address, address2, postcode, city, phone, memberRole,
+						 adminRole, inChargeRole, contributorRole);
 				
 				//Add the user in the registration ArrayList
 				registration.add(user);

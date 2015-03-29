@@ -61,13 +61,25 @@ public class User {
 	
 
 	/**
-	 * represents the role of an user
-	 * (admin, incharge, member)
+	 * represents the role member for a user
 	 */
 	private MemberRole memberRole;
 
+	/**
+	 * represents the role administrator for a user
+	 */
+	private AdminRole adminRole;
+	
+	/**
+	 * represents the role in charge for a user
+	 */
+	private InChargeRole inChargeRole;
 
-
+	/**
+	 * represents the role contributor for a user
+	 */
+	private ContributorRole contributorRole;
+	
 	// Constructor ******************************************************
 
 	public User(){
@@ -85,11 +97,14 @@ public class User {
 	 * @param postcode
 	 * @param city
 	 * @param phone
-	 * @param memberRole
+	 * @param userRole
 	 */
 	public User(String mail, String username, String userFirstName,
 			String address, String address2, String postcode,
-			String city, String phone, MemberRole memberRole){
+			String city, String phone, MemberRole memberRole,
+			AdminRole adminRole, InChargeRole inChargeRole,
+			ContributorRole contributorRole){
+
 
 		this.usermail = mail;
 		this.username = username;
@@ -100,6 +115,10 @@ public class User {
 		this.city = city;
 		this.phone = phone;
 		this.memberRole = memberRole;
+		this.adminRole = adminRole;
+		this.inChargeRole = inChargeRole;
+		this.contributorRole = contributorRole;
+		
 	}
 	
 	// Accessing methods ************************************************
@@ -264,6 +283,54 @@ public class User {
 		this.memberRole = memberRole;
 	}
 
+	/**
+	 * @return the adminRole
+	 */
+	public AdminRole getAdminRole() {
+		return adminRole;
+	}
+
+	/**
+	 * set the admin role of the user
+	 * allows to become an admin
+	 * @param memberRole
+	 */
+	public void setAdminRole(AdminRole adminRole) {
+		this.adminRole = adminRole;
+	}
+	
+	/**
+	 * @return the inChargeRole
+	 */
+	public InChargeRole getInChargeRole() {
+		return inChargeRole;
+	}
+
+	/**
+	 * set the inChargeRole role of the user
+	 * allows to become inChargeRole or not
+	 * @param inChargeRole
+	 */
+	public void setInChargeRole(InChargeRole inChargeRole) {
+		this.inChargeRole = inChargeRole;
+	}
+	
+	/**
+	 * @return the inChargeRole
+	 */
+	public ContributorRole getContributorRole() {
+		return contributorRole;
+	}
+
+	/**
+	 * set the inChargeRole role of the user
+	 * allows to become inChargeRole or not
+	 * @param inChargeRole
+	 */
+	public void setContributorRole(ContributorRole contributorRole) {
+		this.contributorRole = contributorRole;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
