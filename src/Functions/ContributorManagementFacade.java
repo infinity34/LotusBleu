@@ -34,8 +34,8 @@ public class ContributorManagementFacade {
  * @param contributor 
  * @return 
  */
-public Boolean addContributorToEvent(String myEvent,String begin,String end, String name, String firstname) {        
-    	return contributorManager.addContributorToEvent(myEvent,begin, end, name, firstname);
+public Boolean addContributorToEvent(int id, String name, String firstname) {        
+    	return contributorManager.addContributorToEvent(id, name, firstname);
     } 
 
 /**

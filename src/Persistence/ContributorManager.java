@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public abstract class ContributorManager {
 	
-	public abstract Boolean addContributorToEvent(String myEvent,String begin,String end, String name, String firstname);
+	public abstract Boolean addContributorToEvent(int id, String name, String firstname);
      
     public abstract ResultSet listEvents(String name, String firstname);
     

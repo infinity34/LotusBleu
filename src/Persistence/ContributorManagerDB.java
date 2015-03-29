@@ -49,8 +49,8 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 					name = result.getString("userName");
 					firstname = result.getString("userFirstName");
 					fullname = name+" "+firstname;
+					(this.contributorList).add(fullname);
 					}
-				     (this.contributorList).add(fullname);
 			}
 				catch (SQLException e) {
 					e.printStackTrace();
@@ -59,41 +59,9 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	    } 
 	
 	
-	 public Boolean addContributorToEvent(String myEvent,String begin,String end, String name, String firstname) {
-		 try {
-			 //retrieval of the time slot
-			 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-			 java.util.Date beginDate;
-			 java.util.Date endDate;
-			try {
-				beginDate = sdf.parse(begin);
-				endDate = sdf.parse(end);
-				 ResultSet resultTimeslot = connection.getState().executeQuery("SELECT * FROM TIMESLOT WHERE begindate="+beginDate+"AND enddate="+end);
-				 TimeSlot ts = new TimeSlot(beginDate, endDate, resultTimeslot.getBoolean("recurrence"),resultTimeslot.getDate("lastReccurence"));
-				 
-				 //Retrieval of the activity
-				 ResultSet resultActivity = connection.getState().executeQuery("SELECT eventActivity FROM EVENT WHERE eventname="+myEvent);
-				 Activity act = new Activity(resultActivity.getString("name"), resultActivity.getString("description"));
-				 
-				 //retrieval of the event
-				 ResultSet result =  connection.getState().executeQuery("SELECT * FROM USER WHERE eventname="+myEvent);
-				 int roomID = result.getInt("roomID");
-				 Event event = new Event(myEvent, roomID, ts, act, name, firstname);	
-				 
-				 return eventManagerDB.updateEvent(event, myEvent, roomID, ts, act.getName(), name, firstname);
-			
-				} 
-			catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
-			
-			 }
-		 catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
+	 public Boolean addContributorToEvent(int id, String name, String firstname) {
+		 Event event = eventManagerDB.getAnEventWithID(id);	
+		 return eventManagerDB.updateEvent(event, event.getEventName(), event.getEventRoomID(), event.getEventTimeSlot(), event.getEventActivity().getName(), name, firstname);
 	}
 	 
 	 
@@ -118,20 +86,6 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 				rs.last();
 				String mail = rs.getString("mail");
 				rs2 = connection.getState().executeQuery("SELECT eventId, eventName, beginDate, endDate FROM lotusbleu.EVENT WHERE userMail='"+mail+"'");
-			/*int size = result.getFetchSize();
-			String[][] Tableau = new String[size][6];
-			String eventName = result.getString("eventName");
-			int room = result.getInt("eventRoomID");
-			Date beginD = result.getDate("beginDate");
-			Date endD = result.getDate("endDate");
-			int recurrence = result.getInt("recurrence");
-			//get the activity name
-			ResultSet resultAct = connection.getState().executeQuery("SELECT name FROM ACTIVITY WHERE activityID='" +result.getInt("activityID"));
-			String activityName = resultAct.getString("name");
-			String fullEvent = "Event name : "+eventName+" Activity : "+activityName+" Room : "+room+" Time slot : "+beginD+"/"+endD);
-			for(int index=0;index<size;++){
-				
-			}*/
 				rs2.last();
 			return rs2;
 		}
@@ -147,16 +101,20 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 
 	@Override
 	public Boolean createContributor(String name, String firstname, String description) {
+		ResultSet result= null;
 		try {
-			ResultSet result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
+			result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
 			result.last();
-			if (!(result.getInt("isContributor") == 1)){
+			if (result.getInt("isContributor") == 0){
 				connection.getState().executeUpdate("UPDATE USER SET isContributor = 1 WHERE mail='"+result.getString("mail")+"'");
 				result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
 				result.last();
+				String mail = result.getString("mail");
 				connection.getState().executeUpdate("INSERT INTO CONTRIBUTOR(longDesc,usermail) VALUES ('"+description+"','"+ result.getString("mail")+"')");
-			}
-			return true;
+				result = connection.getState().executeQuery("SELECT * FROM CONTRIBUTOR WHERE userMail='"+mail+"'");
+				return result.isBeforeFirst();
+				}
+			else {return false;}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -173,7 +131,7 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 				connection.getState().executeUpdate("UPDATE USER SET isContributor = 0");
 				result = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
 				result.last();
-				connection.getState().executeUpdate("DELETE FROM CONTRITOR WHERE userMail='"+result.getString("mail")+"'");
+				connection.getState().executeUpdate("DELETE FROM CONTRIBUTOR WHERE userMail='"+result.getString("mail")+"'");
 			}
 		return true;
 		}

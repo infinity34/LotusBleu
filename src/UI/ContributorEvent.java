@@ -22,6 +22,7 @@ public class ContributorEvent extends JPanel {
 	private JTable table;
 	private JTextField txtName;
 	private JTextField txtFirstname;
+	private JButton btnCancel;
 	
 	
 	public ContributorEvent( TableModel model )
@@ -49,28 +50,31 @@ public class ContributorEvent extends JPanel {
 		txtFirstname.setColumns(10);
 		
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(470, 97, 117, 29);
+		btnSubmit.setBounds(210, 186, 117, 29);
 		add(btnSubmit);
+		
+		btnCancel = new JButton("Cancel");
+		btnCancel.setBounds(337, 186, 117, 29);
+		add(btnCancel);
+		
 		
 		//Listener
 		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ResultSet rs = myFacade.listEvents(txtName.getText(), txtFirstname.getText());
-				
+				ResultSet rs = myFacade.listEvents(txtName.getText(), txtFirstname.getText());				
 				ResultSetTableModel rtm = new ResultSetTableModel( rs );
+			}}); 
 		        
-		        
-		        
-			    JButton btnBack = new JButton("Back");
-				mainFrame.getContentPane().add(btnBack);
-				
-				btnBack.addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent e) {
-						MainFrame.getMainFrame().setMainPanel(new ContributorEvent(model));
-				}});
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new ContributorManagementMenuGUI());
+			}
+		});
+
+
 			
-			}});
+			
 	    
 	    
 	    
