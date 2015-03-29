@@ -1,8 +1,12 @@
 package Persistence;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import Data.Category;
 
 import Data.Basket;
+
 import Data.Order;
 import Data.OrderLine;
 import Data.Product;
@@ -100,6 +104,15 @@ public abstract class ShoppingManager {
 	public void cancelOrder(Order order) {
 		// your code here
 	}
+
+
+	public abstract ArrayList<Category> getMainCategories();
+
+	public abstract ArrayList<Category> getSubCategories(String parentCat);
+
+	public abstract ArrayList<Product> getProductsByCat(int category);
+
 	
 	public abstract void addProductToBasket(Product product, int quantity);
+
 }

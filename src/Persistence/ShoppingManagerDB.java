@@ -1,5 +1,11 @@
 package Persistence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import Data.Category;
+import Data.Product;
 import Data.Basket;
 import Data.Product;
 import Data.User;
@@ -39,6 +45,62 @@ public class ShoppingManagerDB extends Persistence.ShoppingManager {
 	 */
 	public void setConnection(DBconnection connection) {
 		this.connection = connection;
+	}
+	
+	@Override
+	public ArrayList<Category> getMainCategories() {
+		ArrayList<Category> cats = new ArrayList<Category>();
+		try {
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE subCategoryOf=''");
+			while (resultat.next()) {
+				cats.add(new Category(
+							resultat.getString("categoryName"),
+							resultat.getBoolean("available"),
+							resultat.getInt("categoryID")));							
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(cats.size());
+		return cats;
+	}
+
+	@Override
+	public ArrayList<Category> getSubCategories(String parentCat) {
+		ArrayList<Category> cats = new ArrayList<Category>();
+		try {
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE subCategoryOf='"+parentCat+"'");
+			while (resultat.next()) {
+				cats.add(new Category(
+							resultat.getString("categoryName"),
+							resultat.getBoolean("available"),
+							resultat.getInt("categoryID")));							
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(cats.size());
+		return cats;
+	}
+
+	@Override
+	public ArrayList<Product> getProductsByCat(int category) {
+		ArrayList<Product> products = new ArrayList<Product>();
+		try {
+			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.PRODUCT WHERE categoryID='"+category+"'");
+			while (resultat.next()) {
+				products.add(new Product(resultat.getInt("productID"),resultat.getString("productName"),
+						resultat.getFloat("productPrice"),resultat.getFloat("productDiscount"),
+						resultat.getInt("productQuantity"),resultat.getInt("categoryID")));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(products.size());
+		return products;
 	}
 
 	@Override
