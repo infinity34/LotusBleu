@@ -60,13 +60,8 @@ public class ContributorEvent extends JPanel {
 				
 				ResultSetTableModel rtm = new ResultSetTableModel( rs );
 		        
-		        TablePanel tablePanel = new TablePanel( rtm );
 		        
-		        JFrame mainFrame = new JFrame( txtFirstname.getText()+" "+txtName.getText()+" events :" );
-		        mainFrame.getContentPane().add( tablePanel, BorderLayout.CENTER );
-		        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
-		        mainFrame.setSize( 640, 480 );
-		        mainFrame.setVisible( true );
+		        
 			    JButton btnBack = new JButton("Back");
 				mainFrame.getContentPane().add(btnBack);
 				

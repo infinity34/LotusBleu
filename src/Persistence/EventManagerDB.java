@@ -242,8 +242,9 @@ public class EventManagerDB extends Persistence.EventManager {
 			if ((eventContributorName != null)&&(eventContributorFirstname != null)){
 				//Get the contributorID
 				ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE userName ='" + eventContributorName + "' AND userFirstName ='"+ eventContributorFirstname +"' AND isContributor=1");
-				resultContributor.first();
+				if(resultContributor.isBeforeFirst()){
 				contributorID = resultContributor.getString("mail");
+				}
 			}
 			//Update the event
 			//UPDATE EVENT SET eventName ='Step Stage', roomID =4, activityID = 5 

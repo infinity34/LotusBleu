@@ -99,7 +99,7 @@ public class ContributorManagementMenuGUI extends JPanel {
 		*/
 		deleteContributorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainFrame.getMainFrame().setMainPanel(new ContributorDeleteGUI());
+				MainFrame.getMainFrame().setMainPanel(new ContributorDelete2GUI());
 			}
 		});
 		

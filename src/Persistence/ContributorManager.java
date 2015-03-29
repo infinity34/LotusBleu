@@ -24,7 +24,7 @@ public abstract class ContributorManager {
 
     public abstract Boolean deleteContributor(String name, String firstname);
     
-    public abstract Boolean deleteContributorFromEvent(String eventName);
-   
+	 public abstract Boolean deleteContributorFromEvent(int id);
+	 
     public abstract ArrayList<String> searchContributor(String name, String firstname);
  }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 
+
 import Persistence.ContributorManagerDB;
 
 /**
@@ -82,8 +83,8 @@ public Boolean addContributorToEvent(String myEvent,String begin,String end, Str
     } 
     
     
-    public Boolean deleteContributorFromEvent(String eventName) { 
-		 return contributorManager.deleteContributorFromEvent(eventName);
+	 public Boolean deleteContributorFromEvent(int id){
+		 return contributorManager.deleteContributorFromEvent(id);
 	} 
     
     public ArrayList<String> searchContributor(String name, String firstname){

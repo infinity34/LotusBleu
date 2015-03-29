@@ -99,22 +99,25 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 	 
 	 
 	 
-	 public Boolean deleteContributorFromEvent(String eventName) { 
+	 public Boolean deleteContributorFromEvent(int id)  { 
 		 //Retrieval of the event with its name
-		 Event myEvent = eventManagerDB.getAnEventWithName(eventName);
+		 Event myEvent = eventManagerDB.getAnEventWithID(id);
 		 return eventManagerDB.updateEvent(myEvent, myEvent.getEventName(), myEvent.getEventRoomID(), myEvent.getEventTimeSlot(),myEvent.getEventActivity().getName(), "", "");
-	
+
+
 	 }
 
 
 
 	@Override
 	public ResultSet listEvents(String name, String firstname) {
-		
+		ResultSet rs;
+		ResultSet rs2;
 		try{
-			ResultSet resultContributor = connection.getState().executeQuery("SELECT * FROM USER WHERE username='" +name+ "'and userfirstname='" +firstname+ "'");
-			int id = resultContributor.getInt("userID");
-			ResultSet result = connection.getState().executeQuery("SELECT * FROM EVENT WHERE contributorID='"+id);
+				rs = connection.getState().executeQuery("SELECT U.mail FROM lotusbleu.USER U, lotusbleu.CONTRIBUTOR C WHERE username='" +name+ "' AND userfirstname='" +firstname+ "' AND U.mail = C.userMail");
+				rs.last();
+				String mail = rs.getString("mail");
+				rs2 = connection.getState().executeQuery("SELECT eventId, eventName, beginDate, endDate FROM lotusbleu.EVENT WHERE userMail='"+mail+"'");
 			/*int size = result.getFetchSize();
 			String[][] Tableau = new String[size][6];
 			String eventName = result.getString("eventName");
@@ -129,7 +132,8 @@ public class ContributorManagerDB extends Persistence.ContributorManager {
 			for(int index=0;index<size;++){
 				
 			}*/
-			return result;
+				rs2.last();
+			return rs2;
 		}
 		catch (SQLException e){
 			e.printStackTrace();
