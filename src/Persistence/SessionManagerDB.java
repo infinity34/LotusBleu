@@ -110,6 +110,25 @@ public class SessionManagerDB extends Persistence.SessionManager {
 					contributor.setDescription(resultatContributor.getString("longDesc"));
 					user.setContributorRole(contributor);
 				}
+				
+				if(resultat.getInt("isAdmin") == 1){
+					user.setAdminRole(new AdminRole());
+				}
+				if(resultat.getInt("isResponsible") == 1){
+					user.setInChargeRole(new InChargeRole());
+				}
+				if(resultat.getInt("isContributor") == 1){
+					ContributorRole contributor = new ContributorRole();
+					Statement state = dbConnection.getCon().createStatement();
+					ResultSet resultatContributor = state
+							.executeQuery(
+									"SELECT * FROM lotusbleu.CONTRIBUTOR WHERE userMail=\""
+											+ user.getUsermail()
+											+ "\"");
+					resultatContributor.next();
+					contributor.setDescription(resultatContributor.getString("longDesc"));
+					user.setContributorRole(contributor);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

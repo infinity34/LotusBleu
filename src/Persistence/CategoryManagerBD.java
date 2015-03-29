@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Data.Category;
-import Data.Notification;
-import Data.User;
-import Functions.CategoryFacade;
 import Tools.DBconnection;
 
+/**
+ * Category ManagerBD
+ * Designed by Lyvia
+ * Developped by Clément
+ */
 
 public class CategoryManagerBD extends Persistence.CategoryManager {
 	
@@ -23,7 +25,10 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 	{
 		this.connection = DBconnection.getConnection();
 	}
-	
+	   /**
+   	 *  	
+   	 *	@return return a manager (singleton way)
+   	 */
 	public static CategoryManagerBD getManagerDB()
 	{
 		if (managerBD == null)
@@ -33,7 +38,10 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		
 		return managerBD;
 	}
-	
+    /**
+   	 *	   	
+   	 *	@return a list of all the category present in database
+   	 */
 	public ArrayList<Category> getAllCategory() {
 		ArrayList<Category> allCat = new ArrayList<Category>();
 		try {
@@ -62,6 +70,12 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		return allCat;
 	}
 		
+	/**
+	 *	@param name
+	 *	@param motherCategoryName
+	 *	@param available
+	 *	@return true if the category has been created, false else
+	 */
 		public boolean createCategory(String name, String motherCategoryName, Boolean available) {   
 				try {
 					int avail;
@@ -84,6 +98,13 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 	    }
 
 		@Override
+	    /**
+		 *	@param oldName
+		 *	@param name
+		 *	@param fatherCategory
+		 *	@param available
+		 *	@return true if the category has been updated, false else
+		 */
 		public boolean updateCategory(String oldName, String name, String fatherCategory,	Boolean available) {
 			try {
 				int avail;
@@ -111,6 +132,10 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		}
 
 		@Override
+	    /**
+	   	 *	@param name   	
+	   	 *	@return true if the category has been deleted, false else
+	   	 */
 		public boolean deleteCategory(String name) {
 			try {
 				int resultat = connection.getState().executeUpdate("DELETE FROM lotusbleu.CATEGORY WHERE " +
@@ -129,6 +154,10 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		}
 
 		@Override
+	    /**
+	   	 *	@param name   	
+	   	 *	@return return a category fetch by his name
+	   	 */
 		public Category getCategory(String name) {
 			try {
 				ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryName = \""+name+"\"");
@@ -156,6 +185,10 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		}
 
 		@Override
+	    /**
+	   	 *	@param name   	
+	   	 *	@return return a categoryID fetch by his name
+	   	 */
 		public int getCategoryID(String name) {
 			try {
 				ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.CATEGORY WHERE categoryName = '"+name+"'");
@@ -170,6 +203,10 @@ public class CategoryManagerBD extends Persistence.CategoryManager {
 		}
 
 		@Override
+	    /**
+	   	 *	@param name   	
+	   	 *	@return return a category fetch by his id
+	   	 */
 		public Category getCategory(int id) {
 		
 			try {

@@ -7,10 +7,9 @@ import java.util.List;
 
 import Data.Basket;
 import Data.Category;
+import Data.OrderLine;
 import Data.Product;
-
 import Persistence.ProductManagerDB;
-
 import Persistence.ShoppingManager;
 import Persistence.ShoppingManagerDB;
 
@@ -58,11 +57,12 @@ public class ShoppingFacade {
     } 
 
 
-    public void addProductToBasket(Product product, int quantity) {        
+    public void addProductToBasket(Product product, int quantity) {  
+    	this.shoppingManager.addProductToBasket(product, quantity);
     } 
 
 
-    public void removeProductFromBasket(Product productToRemove) {        
+    public void removeProductFromBasket(OrderLine orderline) {        
         // your code here
     } 
 
