@@ -5,10 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Data.Category;
 import Data.Product;
 import Functions.CategoryFacade;
 import Tools.DBconnection;
+/**
+ * Product ManagerDB
+ * Designed by Prisca
+ * Developped by Clément
+ */
 
 
 public class ProductManagerDB extends Persistence.ProductManager {
@@ -38,6 +42,14 @@ public ProductManagerDB() {
 	}
 
 	@Override
+	/**
+	 *	@param name
+	 *	@param price
+	 *	@param discount
+	 *	@param quantity
+	 **	@param categoryName
+	 *	@return true true if product has been add in the data base, else return false
+	 */
 	public boolean addProduct(String name, float price, float discount,	int quantity, String categoryName) {
 
 		int catID = CategoryFacade.getFacade().getCategoryID(categoryName);
@@ -52,6 +64,15 @@ public ProductManagerDB() {
 	}
 
 	@Override
+	 /**
+		 *	@param id
+		 *	@param name
+		 *	@param price
+		 *	@param discount
+		 *	@param quantity
+		 **	@param categoryName
+		 *	@return true true if product has been update in the data base, else return false
+		 */
 	public boolean updateProduct(int id, String nameSel, float priceSel, float discountSel, int quantitySel, String motherCategory) {
 
 		try {
@@ -75,6 +96,10 @@ public ProductManagerDB() {
 	}
 
 	@Override
+	/**
+   	 *	@param name
+   	 *	@return true true if product has been delete from the data base, else return false
+   	 */
 	public boolean deleteProduct(String name) {
 
 		try {
@@ -92,6 +117,9 @@ public ProductManagerDB() {
 	}
 
 	@Override
+	/**
+   	 *	@return all of the product in the database
+   	 */
 	public ArrayList<Product> getAllProduct() {
 		
 		ArrayList<Product> allprod = new ArrayList<Product>();
@@ -113,6 +141,10 @@ public ProductManagerDB() {
 	}
 
 	@Override
+	/**
+     * @param name
+   	 *	@return return the product fetch by name
+   	 */
 	public Product getProduct(String name) {
 		Product product;
 		try {
@@ -134,6 +166,9 @@ public ProductManagerDB() {
 	}
 
 	@Override
+	 /**
+   	 *	@return all of the product in the database
+   	 */
 	public ResultSet allProducts() {
 		try {
 			ResultSet resultat = connection.getState().executeQuery("SELECT * FROM lotusbleu.PRODUCT");
