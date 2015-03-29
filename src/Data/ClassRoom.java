@@ -3,7 +3,7 @@ package Data;
 /**
  * 
  * @author remy
- * @Design Prisca
+ * @author Design Prisca
  */
 public class ClassRoom extends Room{
 
