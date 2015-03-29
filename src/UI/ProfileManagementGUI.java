@@ -136,10 +136,9 @@ public class ProfileManagementGUI extends JPanel {
 		postcodeTextfield.setColumns(10);
 
 		cityTextfield = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, cityTextfield, 52, SpringLayout.EAST, lblCity);
-		springLayout.putConstraint(SpringLayout.EAST, cityTextfield, -355, SpringLayout.EAST, this);
 		springLayout.putConstraint(SpringLayout.NORTH, lblCity, 6, SpringLayout.NORTH, cityTextfield);
-		springLayout.putConstraint(SpringLayout.NORTH, cityTextfield, 339, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, cityTextfield, 0, SpringLayout.WEST, address1Textfield);
+		springLayout.putConstraint(SpringLayout.EAST, cityTextfield, -355, SpringLayout.EAST, this);
 		if(user.getCity() != null){
 			this.cityTextfield.setText(user.getCity());
 		}
@@ -159,13 +158,15 @@ public class ProfileManagementGUI extends JPanel {
 		address2Textfield.setColumns(10);
 
 		phoneTextfield = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, phoneTextfield, 373, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, phoneTextfield, -79, SpringLayout.SOUTH, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, cityTextfield, -6, SpringLayout.NORTH, phoneTextfield);
+		springLayout.putConstraint(SpringLayout.WEST, phoneTextfield, 0, SpringLayout.WEST, address1Textfield);
 		springLayout.putConstraint(SpringLayout.EAST, phoneTextfield, -355, SpringLayout.EAST, this);
 		phoneTextfield.setColumns(10);
 		add(phoneTextfield);
 
 		mailTextfield = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, mailTextfield, 407, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, mailTextfield, 6, SpringLayout.SOUTH, phoneTextfield);
 		springLayout.putConstraint(SpringLayout.EAST, mailTextfield, -355, SpringLayout.EAST, this);
 		if(user.getUsermail() != null){
 			this.mailTextfield.setText(user.getUsermail());
@@ -176,8 +177,7 @@ public class ProfileManagementGUI extends JPanel {
 		add(mailTextfield);
 
 		JLabel lblPhone = new JLabel("Phone :");
-		springLayout.putConstraint(SpringLayout.WEST, phoneTextfield, 39, SpringLayout.EAST, lblPhone);
-		springLayout.putConstraint(SpringLayout.NORTH, lblPhone, 6, SpringLayout.NORTH, phoneTextfield);
+		springLayout.putConstraint(SpringLayout.NORTH, lblPhone, 379, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblPhone, 0, SpringLayout.WEST, lblAddress1);
 		add(lblPhone);
 

@@ -25,12 +25,15 @@ import Tools.PasswordHash;
  * 
  */
 public class SessionManagerDB extends Persistence.SessionManager {
+	
 	/**
-	 * 
 	 * 
 	 */
 	private DBconnection dbConnection;
 
+	/**
+	 * Creates a sessionManger
+	 */
 	public SessionManagerDB() {
 		super();
 		dbConnection = DBconnection.getConnection();
@@ -41,7 +44,7 @@ public class SessionManagerDB extends Persistence.SessionManager {
 	 * Return true if the pair mail/password is OK
 	 * </p>
 	 * 
-	 * @author max
+	 * @author Maxime Clerix
 	 * @return
 	 */
 	public Boolean Login(String username, String password) {
@@ -94,6 +97,9 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		return (numberOfRows > 0);
 	}
 
+	/**
+	 * Updates the current user's information
+	 */
 	public void updateUser() {
 		try {
 			dbConnection.getState().executeQuery(
@@ -109,6 +115,11 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		}
 	}
 
+	/**
+	 * Changes the password of the current user
+	 * 
+	 * @param password, the new password
+	 */
 	public void changePassword(String password) {
 		try {
 			dbConnection.getState().executeQuery(
@@ -119,6 +130,12 @@ public class SessionManagerDB extends Persistence.SessionManager {
 		}
 	}
 
+	/**
+	 * Register a user for one more Year
+	 * 
+	 * @param date, the new date
+	 * @param firstSubscritption
+	 */
 	public void registerForAYear(Date date, boolean firstSubscription) {
 		java.util.Date current = new java.util.Date();
 		Date sqlDate = new Date(current.getTime());

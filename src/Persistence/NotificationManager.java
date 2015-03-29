@@ -8,8 +8,17 @@ import javax.swing.DefaultListModel;
 import Data.Notification;
 import Data.User;
 
+/**
+ * The notificationManager manage a list of notifications
+ * 
+ * @author Maxime Clerix
+ *
+ */
 public abstract class NotificationManager {
 
+	/**
+	 * the list of notifications to manage
+	 */
 	protected ArrayList<Notification> notifications;
 	
 	/**
@@ -20,6 +29,12 @@ public abstract class NotificationManager {
 		return notifications;
 	}
 	
+	/**
+	 * Return an array of notifications
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public Notification[] getNotificationsArray(User user){
 		this.loadNotifications(user);
 		Notification[] array = new Notification[notifications.size()];
@@ -31,6 +46,13 @@ public abstract class NotificationManager {
 		return array;
 	}
 	
+	/**
+	 * return the DefaultListModel of notifications (used to fill a JList)
+	 * 
+	 * @param user
+	 * @param state
+	 * @return the DefaultListModel
+	 */
 	public DefaultListModel<Notification> getNotificationsListModel(User user, boolean state){
 		this.loadNotifications(user);
 		Notification current;
@@ -56,11 +78,31 @@ public abstract class NotificationManager {
 		this.notifications = new ArrayList<Notification>();
 	}
 	
+	/**
+	 * load the notifications in the private attribute notifications
+	 * 
+	 * @param user
+	 */
 	public abstract void loadNotifications(User user);
 	
+	/**
+	 * Mark a selected notification as read
+	 * 
+	 * @param notification
+	 */
 	public abstract void markAsRead(Notification notification);
 	
+	/**
+	 * Mark a selected notification as unread
+	 * 
+	 * @param notification
+	 */
 	public abstract void markAsUnread(Notification notification);
 	
+	/**
+	 * delete a selected notification
+	 * 
+	 * @param notification
+	 */
 	public abstract void removeNotification(Notification notification);
 }
