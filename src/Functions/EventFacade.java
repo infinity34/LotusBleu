@@ -16,136 +16,141 @@ import Persistence.EventManagerDB;
  */
 public class EventFacade {
 
-	
+
 	//Variables
-    public Persistence.EventManager eventManager;
-    private static EventFacade facade;
-    
-    //Constructors
-    private EventFacade(){
+	public Persistence.EventManager eventManager;
+	private static EventFacade facade;
+
+	//Constructors
+	private EventFacade(){
 		super();
 		this.eventManager = new EventManagerDB();
 	}
-    
-    public static EventFacade getFacade() {
+
+	public static EventFacade getFacade() {
 		if (facade == null)
 		{
 			facade = new EventFacade();
 		}
-		
+
 		return facade;
-		
+
 	}
-    
-    //Methods
-   
-    /**
-	 * <p> Return the list of all events which are in the database</p>
-	 *
-	 * @return ArrayList<Event>
-	 */
-    public ArrayList<Event> getEvents() {        
-        
-        return eventManager.getEvents();
-    } 
+
+	//Methods
 
 	/**
-	 * <p>Does ...</p>
-	 * 
-	 * @param keyword  
+	 * <p> Return the list of all events which are in the database</p>
+	 *
+	 * @return ArrayList
+	 * 		<Event>
 	 */
-	    public ArrayList<Event> getEventByKeyword(String keyword) {        
-	
-	    	return eventManager.getEventsByKeyword(keyword);
-	
-	    } 
-	
-	    /**
-		 * <p>Add an event with its name</p>
-		 * 
-		 */
-	    public Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-	    		String eventActivity, String eventContributorName, String eventContributorFirstname ) {        
-	    	
-	    	return eventManager.addEvent(eventName,eventRoomID,eventTimeSlot,eventActivity,eventContributorName,eventContributorFirstname );
-	    } 
-	
-		/**
-		 * <p>Remove an event</p>
-		 *
-		 */
-	    public Boolean removeEvent(Event eventToRemove) {        
-	
-	    	return eventManager.removeEvent(eventToRemove);
-	    } 
-	
-		/**
-		 * <p>Update an event</p>
-		 * 
-		 */
-	    public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
-				String eventActivity, String eventContributorName, String eventContributorFirstname) {        
-	    	return eventManager.updateEvent( eventToUpdate,  eventName,  eventRoomID,  eventTimeSlot,
-	    			 eventActivity,  eventContributorName,  eventContributorFirstname);
-	    } 
-	
-		/**
-		 * <p>Get all activities</p>
-		 * 
-		 */
-	    public ArrayList<Activity> getAllActivities() {        
-	    	return ActivityFacade.getFacade().getAllActivities();
-	    } 
-	    
-	    /**
-		 * <p>Get an event</p>
-		 * 
-		 */
-	   /* public Event getAnEventWithName(String name) {
+	public ArrayList<Event> getEvents() {        
+
+		return eventManager.getEvents();
+	} 
+
+	/**
+	 * 
+	 * @param keyword
+	 * @return ArrayList
+	 * 			<Event>
+	 */
+	public ArrayList<Event> getEventByKeyword(String keyword) {        
+
+		return eventManager.getEventsByKeyword(keyword);
+
+	} 
+
+	/**
+	 * <p>Add an event with its name</p>
+	 * 
+	 */
+	public Boolean addEvent(String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			String eventActivity, String eventContributorName, String eventContributorFirstname ) {        
+
+		return eventManager.addEvent(eventName,eventRoomID,eventTimeSlot,eventActivity,eventContributorName,eventContributorFirstname );
+	} 
+
+	/**
+	 * <p>Remove an event</p>
+	 *
+	 */
+	public Boolean removeEvent(Event eventToRemove) {        
+
+		return eventManager.removeEvent(eventToRemove);
+	} 
+
+	/**
+	 * <p>Update an event</p>
+	 * 
+	 */
+	public Boolean updateEvent(Event eventToUpdate, String eventName, int eventRoomID, TimeSlot eventTimeSlot,
+			String eventActivity, String eventContributorName, String eventContributorFirstname) {        
+		return eventManager.updateEvent( eventToUpdate,  eventName,  eventRoomID,  eventTimeSlot,
+				eventActivity,  eventContributorName,  eventContributorFirstname);
+	} 
+
+	/**
+	 * <p>Get all activities</p>
+	 * 
+	 */
+	public ArrayList<Activity> getAllActivities() {        
+		return ActivityFacade.getFacade().getAllActivities();
+	} 
+
+	/**
+	 * <p>Get an event</p>
+	 * 
+	 */
+	/* public Event getAnEventWithName(String name) {
 	    	return eventManager.getAnEventWithName(name);
 	    }*/
-	    
-	    public  ArrayList<Event> getEventsWithAName(String name){
-	    	return eventManager.getEventsWithAName(name);
-	    }
-	    
-	    /**
-		 * <p>Get an event with eventID</p>
-		 * 
-		 */
-	    public Event getAnEventWithID(int evenIDreceived){
-	    	return eventManager.getAnEventWithID(evenIDreceived);
-	    }
-	    
-	    /**
-	     * Return the list of events for which the user is not already registered 
-	     * 
-	     * @return ArrayList<Event> the list of events
-	     */
-	    public ArrayList<Event> getEventsForUser(){
-	    	return eventManager.getEventsForUser();
-	    }
-	    
-	    /**
-	     * Return the list of events for which the user is not already registered 
-	     * 
-	     * @return ArrayList<Event> the list of events
-	     */
-	    public ArrayList<Event> getMyEvents(){
-	    	return eventManager.getMyEvents();
-	    }
-	    
-	    /**
-	     * 
-	     */
-	    public void registerToEvent(Event event){
-	    	eventManager.registerToEvent(event);
-	    }
-	    
-	    /**
-	     * 
-	     */
-	    public void cancelRegistrationToEvent(Event event){
-	    	eventManager.cancelRegistrationToEvent(event);
-	    }
- }
+
+	public  ArrayList<Event> getEventsWithAName(String name){
+		return eventManager.getEventsWithAName(name);
+	}
+
+	/**
+	 * <p>Get an event with eventID</p>
+	 * @param evenIDreceived
+	 * @return Event
+	 */
+	public Event getAnEventWithID(int evenIDreceived){
+		return eventManager.getAnEventWithID(evenIDreceived);
+	}
+
+	/**
+	 * Return the list of events for which the user is not already registered 
+	 * 
+	 * @return ArrayList
+	 */
+	public ArrayList<Event> getEventsForUser(){
+		return eventManager.getEventsForUser();
+	}
+
+	/**
+	 * Return the list of events for which the user is not already registered 
+	 * 
+	 * @return ArrayList
+	 */
+	public ArrayList<Event> getMyEvents(){
+		return eventManager.getMyEvents();
+	}
+
+	/**
+	 * register for an event
+	 * @param event
+	 */
+	public void registerToEvent(Event event){
+		eventManager.registerToEvent(event);
+	}
+
+	/**
+	 * cancel the registration for the event in param
+	 * @param event
+	 */
+	public void cancelRegistrationToEvent(Event event){
+		eventManager.cancelRegistrationToEvent(event);
+	}
+}
