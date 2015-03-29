@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class BasketManagementMenuGUI extends JPanel {
 	
-	public ShoppingFacade myFacade = new ShoppingFacade();
+	public ShoppingFacade myFacade = ShoppingFacade.getShoppingFacade();
 	public ProductManagementFacade productFacade = new ProductManagementFacade();
 	public JTable table;
 	private JTextField txtProductName;
