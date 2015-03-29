@@ -6,7 +6,7 @@ package Data;
  * 
  * @poseidon-object-id [Im37e90f00m14bf8ad3fd2mm768c]
  */
-public class ContributorRole extends User {
+public class ContributorRole extends UserRole {
 	
 	private String shortDescription;
 	
@@ -20,6 +20,10 @@ public class ContributorRole extends User {
 		super();
 		this.shortDescription = shortDescription;
 		this.description = description;
+	}
+
+	public ContributorRole() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
