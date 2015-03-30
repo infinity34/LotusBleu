@@ -43,7 +43,7 @@ public class BasketManagementMenuGUI extends JPanel {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(39, 180, 551, 197);
-		add(scrollPane);
+		/*add(scrollPane);
 		
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -54,7 +54,7 @@ public class BasketManagementMenuGUI extends JPanel {
 			new String[] {
 				"Product ID", "Product name", "Price($)", "Discount(%)", "Quantity"
 			}
-		));
+		));*/
 		
 		
 		
@@ -66,15 +66,21 @@ public class BasketManagementMenuGUI extends JPanel {
         int i = 0;
         while(iter.hasNext())
 		{
-			orders[i][0] = iter.next().getProduct().getProductCategoryID();
-			orders[i][1] = iter.next().getProduct().getProductName();
-			orders[i][2] = iter.next().getProduct().getProductPrice();
-			orders[i][3] = iter.next().getProduct().getProductDiscount();
-			orders[i][4] = iter.next().getProduct().getProductQuantity();
-			
+        	OrderLine order = iter.next();
+
+        	orders[i][0] = Integer.toString(order.getProduct().getProductCategoryID());
+			orders[i][1] = order.getProduct().getProductName();
+			orders[i][2] = Float.toString(order.getProduct().getProductPrice());
+			orders[i][3] = Float.toString(order.getProduct().getProductDiscount());
+			orders[i][4] = Integer.toString(order.getQuantity());
+
 			i++;
+
 		}
-		table = new JTable(orders, headers);
+        add(scrollPane);
+		table = new JTable(orders,headers);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(table);
 
 
 		JButton btnNewButton = new JButton("Cancel");
@@ -121,7 +127,7 @@ public class BasketManagementMenuGUI extends JPanel {
 			add(lblNumberOfArticles);
 		}
 		else {
-			JLabel lblNumberOfArticles = new JLabel("Number of articles in your basket : "+ LoginGUI.basket.getOrderLine().size());
+			JLabel lblNumberOfArticles = new JLabel("Number of articles in your basket : "+ myFacade.getBasket().getOrderLine().size());
 			lblNumberOfArticles.setBounds(39, 95, 482, 14);
 			add(lblNumberOfArticles);
 		}
