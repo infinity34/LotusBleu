@@ -1,6 +1,8 @@
 
 package Persistence;
 
+import Tools.PaymentExt;
+
 /**
  * @author remy
  * @author maxime
@@ -14,6 +16,9 @@ public class PaymentManager {
 	 */
 	public Tools.PaymentExt paymentExt;
 
+	public PaymentManager(){
+		this.paymentExt = new PaymentExt();
+	}
 	/**
 	 * check the payment 
 	 * @param cardInformation 

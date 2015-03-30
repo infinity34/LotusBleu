@@ -89,7 +89,7 @@ public class BasketManagementMenuGUI extends JPanel {
 				MainFrame.getMainFrame().setMainPanel(new HomePanel());
 			}
 		});
-		btnNewButton.setBounds(264, 401, 89, 23);
+		btnNewButton.setBounds(277, 401, 100, 23);
 		add(btnNewButton);
 		
 		JLabel lblEnterTheProduct = new JLabel("Enter the product name :");
@@ -120,6 +120,15 @@ public class BasketManagementMenuGUI extends JPanel {
 		});
 		btnAddToBasket.setBounds(405, 127, 116, 23);
 		add(btnAddToBasket);
+		
+		JButton btnPayment = new JButton("payment");
+		btnPayment.setBounds(165, 398, 102, 29);
+		add(btnPayment);
+		btnPayment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.getMainFrame().setMainPanel(new PaymentUI(myFacade.getBasket().getBasketPrice()));
+			}
+		});
 		
 		if(myFacade.getBasket() == null){
 			JLabel lblNumberOfArticles = new JLabel("Number of articles in your basket : 0 ");

@@ -10,7 +10,6 @@ package Tools;
 
 public class PaymentExt {
 
-
 /**
  * check the information of the payment
  * (credit card...)

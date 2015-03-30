@@ -108,4 +108,16 @@ public class Basket {
 	public void addLine(Product product, int quantity) {
 		this.orderLine.add(new OrderLine(product, quantity));
 	}
+	
+	/**
+	 * calculate the price of the basket
+	 * @return a float price
+	 */
+	public float getBasketPrice() {
+		float amount = 0;
+		for(OrderLine orderLine : this.orderLine){
+			amount = orderLine.getQuantity() * orderLine.getProduct().getProductPrice() + amount;
+		}
+		return amount;
+	}
 }

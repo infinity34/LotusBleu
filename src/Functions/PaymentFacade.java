@@ -2,6 +2,8 @@ package Functions;
 
 import javax.swing.JOptionPane;
 
+import Persistence.PaymentManagerDB;
+
 /**
  * 
  */
@@ -11,6 +13,10 @@ public class PaymentFacade {
 	 * 
 	 */
 	public Persistence.PaymentManager paymentManager;
+	
+	public PaymentFacade(){
+		this.paymentManager = new PaymentManagerDB();
+	}
 
 	/**
 	 * 
