@@ -77,6 +77,7 @@ public class PaymentUI extends JPanel  {
 				
 				if( result){
 					JOptionPane.showMessageDialog(new JPanel(),"Success payment!");
+					
 				}
 				else
 				{
